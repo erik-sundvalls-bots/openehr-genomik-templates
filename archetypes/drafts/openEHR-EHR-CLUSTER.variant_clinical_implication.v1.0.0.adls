@@ -1,0 +1,224 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; uid=4f005b88-4d02-4041-ab88-98fb4a35e84d)
+	openEHR-EHR-CLUSTER.variant_clinical_implication.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+				["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+		["organisation"] = <"Regionala cancercentrum i samverkan">
+		["email"] = <"erik.sundvall@regionstockholm.se">
+		["date"] = <"2026-10-15">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Reusable cluster for diagnostic or therapeutic implications of a genomic variant, with identifier, status, implication type, and optional linked therapy/diagnosis text. Designed for nesting under genomic_variant_result-cancer Clinical implication slot, aligning with FHIR Genomics IG DiagnosticImplication and TherapeuticImplication Observations.">
+			use = <"Include 0..* under a variant result. Use Implication type to distinguish diagnostic vs therapeutic. Status mirrors FHIR Observation.status. Identifier supports FHIR-style linkage (Observation.identifier).">
+			misuse = <"Do not use as a standalone clinical diagnosis — use EVALUATION.problem_diagnosis for patient diagnoses. Do not encode ASCO/ESCAT here when those elements exist on the parent variant specialisation.">
+			keywords = <"implication", "diagnostic", "therapeutic", "genomic", "FHIR Genomics">
+			copyright = <"© Regionala cancercentrum i samverkan">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Återanvändbart kluster för diagnostisk eller terapeutisk implikation av en genomisk variant.">
+			use = <"Inkludera 0..* under ett variantresultat. Använd Implikationstyp för att skilja diagnostisk vs terapeutisk.">
+			misuse = <"Använd inte som fristående klinisk diagnos.">
+			keywords = <"implikation", "diagnostisk", "terapeutisk", "genomik">
+			copyright = <"© Regionala cancercentrum i samverkan">
+		>
+	>
+	licence = <"Creative Commons Attribution-ShareAlike 4.0 International">
+	custodian_namespace = <"se.rcc">
+	custodian_organisation = <"Regionala cancercentrum i samverkan">
+
+definition
+	CLUSTER[id1] matches {	-- Variant clinical implication
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[id2] occurrences matches {0..1} matches {	-- Implication identifier
+				value matches {
+					DV_IDENTIFIER[id3]
+				}
+			}
+			ELEMENT[id4] occurrences matches {1} matches {	-- Implication type
+				value matches {
+					DV_CODED_TEXT[id5] matches {
+						defining_code matches {[ac1]}
+					}
+				}
+			}
+			ELEMENT[id6] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					DV_CODED_TEXT[id7] matches {
+						defining_code matches {[ac2]}
+					}
+				}
+			}
+			ELEMENT[id8] occurrences matches {0..1} matches {	-- Summary
+				value matches {
+					DV_TEXT[id9]
+				}
+			}
+			ELEMENT[id10] occurrences matches {0..*} matches {	-- Related therapy or finding
+				value matches {
+					DV_TEXT[id11]
+					DV_CODED_TEXT[id12]
+				}
+			}
+			ELEMENT[id13] occurrences matches {0..1} matches {	-- Linked variant reference
+				value matches {
+					DV_URI[id14]
+					DV_IDENTIFIER[id15]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Variant clinical implication">
+				description = <"A diagnostic or therapeutic implication derived from a genomic variant finding.">
+			>
+			["id2"] = <
+				text = <"Implication identifier">
+				description = <"Business identifier for this implication entry (FHIR Observation.identifier).">
+			>
+			["id4"] = <
+				text = <"Implication type">
+				description = <"Whether this implication is diagnostic or therapeutic.">
+			>
+			["id6"] = <
+				text = <"Status">
+				description = <"Lifecycle status of the implication (e.g. preliminary, final, amended).">
+			>
+			["id8"] = <
+				text = <"Summary">
+				description = <"Free-text summary of the clinical implication.">
+			>
+			["id10"] = <
+				text = <"Related therapy or finding">
+				description = <"Associated drug, therapy class, or diagnostic finding text/code.">
+			>
+			["id13"] = <
+				text = <"Linked variant reference">
+				description = <"Optional explicit link back to the source variant when implications are stored separately.">
+			>
+			["at1"] = <
+				text = <"Diagnostic">
+				description = <"Implication affects diagnosis, subtype, or prognosis classification.">
+			>
+			["at2"] = <
+				text = <"Therapeutic">
+				description = <"Implication affects treatment choice or eligibility.">
+			>
+			["at3"] = <
+				text = <"Preliminary">
+				description = <"Implication is preliminary.">
+			>
+			["at4"] = <
+				text = <"Final">
+				description = <"Implication is final.">
+			>
+			["at5"] = <
+				text = <"Amended">
+				description = <"Implication has been amended.">
+			>
+			["at6"] = <
+				text = <"Cancelled">
+				description = <"Implication cancelled / entered in error.">
+			>
+			["ac1"] = <
+				text = <"Implication type">
+				description = <"Diagnostic or therapeutic.">
+			>
+			["ac2"] = <
+				text = <"Implication status">
+				description = <"Lifecycle status aligned loosely with FHIR Observation.status.">
+			>
+		>
+		["sv"] = <
+			["id1"] = <
+				text = <"Klinisk implikation av variant">
+				description = <"Diagnostisk eller terapeutisk implikation härledd från ett genomiskt variantfynd.">
+			>
+			["id2"] = <
+				text = <"Implikationsidentifierare">
+				description = <"Verksamhetsidentifierare för implikationsposten.">
+			>
+			["id4"] = <
+				text = <"Implikationstyp">
+				description = <"Om implikationen är diagnostisk eller terapeutisk.">
+			>
+			["id6"] = <
+				text = <"Status">
+				description = <"Livscykelstatus för implikationen.">
+			>
+			["id8"] = <
+				text = <"Sammanfattning">
+				description = <"Fritextsammanfattning av den kliniska implikationen.">
+			>
+			["id10"] = <
+				text = <"Relaterad behandling eller fynd">
+				description = <"Associerat läkemedel, behandlingsklass eller diagnostiskt fynd.">
+			>
+			["id13"] = <
+				text = <"Länkad variantreferens">
+				description = <"Valfri explicit länk tillbaka till källvarianten.">
+			>
+			["at1"] = <
+				text = <"Diagnostisk">
+				description = <"Implikation påverkar diagnos, subtyp eller prognosklassificering.">
+			>
+			["at2"] = <
+				text = <"Terapeutisk">
+				description = <"Implikation påverkar behandlingsval eller behörighet.">
+			>
+			["at3"] = <
+				text = <"Preliminär">
+				description = <"Implikationen är preliminär.">
+			>
+			["at4"] = <
+				text = <"Slutgiltig">
+				description = <"Implikationen är slutgiltig.">
+			>
+			["at5"] = <
+				text = <"Ändrad">
+				description = <"Implikationen har ändrats.">
+			>
+			["at6"] = <
+				text = <"Makulerad">
+				description = <"Implikationen makulerad / felaktigt registrerad.">
+			>
+			["ac1"] = <
+				text = <"Implikationstyp">
+				description = <"Diagnostisk eller terapeutisk.">
+			>
+			["ac2"] = <
+				text = <"Implikationsstatus">
+				description = <"Livscykelstatus.">
+			>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at1", "at2">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at3", "at4", "at5", "at6">
+		>
+	>

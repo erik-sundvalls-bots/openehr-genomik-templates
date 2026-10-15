@@ -1,0 +1,110 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; uid=e97ceae1-c9b5-448c-aa08-e47be5d810ea)
+	openEHR-EHR-CLUSTER.genomic_copy_number_variant-cancer.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.genomic_copy_number_variant.v1
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+				["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+		["organisation"] = <"Regionala cancercentrum i samverkan">
+		["email"] = <"erik.sundvall@regionstockholm.se">
+		["date"] = <"2026-10-15">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Specialisation of genomic_copy_number_variant that extends Copy number change type beyond Gain/Loss to include Amplification and Homozygous deletion, matching Swedish RCC underlag (SO:0001742 amplification threshold; SO:0002210 homozygous deletion) and FHIR Genomics copy-number-change-type.">
+			use = <"Use when CNV reporting requires the four SO-aligned categories Gain, Loss, Amplification, Homozygous deletion. Parent archetype intentionally deferred finer impact to Functional impact; this specialisation restores them as first-class change types for national cancer reporting.">
+			misuse = <"Do not use if only binary Gain/Loss is needed — prefer the parent. Do not confuse Amplification (high-level gain) with ordinary Gain.">
+			keywords = <"CNV", "amplification", "homozygous deletion", "copy number", "cancer", "SO">
+			copyright = <"© Regionala cancercentrum i samverkan / openEHR Foundation (parent)">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Specialisering som utökar kopietalsändringstyp med Amplifiering och Homozygot deletion utöver Gain/Loss.">
+			use = <"Använd när CNV-rapportering kräver fyra SO-alignerade kategorier.">
+			misuse = <"Använd inte om endast Gain/Loss behövs.">
+			keywords = <"CNV", "amplifiering", "homozygot deletion", "kopietal", "cancer">
+			copyright = <"© Regionala cancercentrum i samverkan / openEHR Foundation (förälder)">
+		>
+	>
+	licence = <"Creative Commons Attribution-ShareAlike 4.0 International">
+	custodian_namespace = <"se.rcc">
+	custodian_organisation = <"Regionala cancercentrum i samverkan">
+
+definition
+	CLUSTER[id1.1] matches {	-- Genomic copy number variant (cancer)
+		/items[id6]/value matches {
+			DV_CODED_TEXT[id9008.1] matches {
+				defining_code matches {[ac9001.1]}	-- Copy number change type (cancer)
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Genomic copy number variant (cancer)">
+				description = <"CNV description with extended change-type value set for cancer reporting.">
+			>
+			["id9008.1"] = <
+				text = <"Copy number change type value">
+				description = <"Coded value for copy number change type including amplification and homozygous deletion.">
+			>
+			["at0.1"] = <
+				text = <"Amplification">
+				description = <"High-level copy number gain (typically >4–6 copies; laboratory-specific threshold). SO:0001742 used clinically for amplification events such as ERBB2 or MYC.">
+			>
+			["at0.2"] = <
+				text = <"Homozygous deletion">
+				description = <"Both alleles deleted (0 copies). Aligns with SO:0002210 presence_absence_variation / homozygous deletion (e.g. CDKN2A).">
+			>
+			["ac9001.1"] = <
+				text = <"Copy number change type (cancer)">
+				description = <"Extended value set: Gain, Loss, Amplification, Homozygous deletion.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Genetisk variant – kopietal (cancer)">
+				description = <"CNV-beskrivning med utökad värdemängd för cancerapportering.">
+			>
+			["id9008.1"] = <
+				text = <"Kopietalsändringstyp värde">
+				description = <"Kodad kopietalsändringstyp inklusive amplifiering och homozygot deletion.">
+			>
+			["at0.1"] = <
+				text = <"Amplifiering">
+				description = <"Hög kopietalsökning (typiskt >4–6 kopior; labspecifik tröskel).">
+			>
+			["at0.2"] = <
+				text = <"Homozygot deletion">
+				description = <"Båda alleler deleterade (0 kopior).">
+			>
+			["ac9001.1"] = <
+				text = <"Kopietalsändringstyp (cancer)">
+				description = <"Utökad värdemängd: Gain, Loss, Amplifiering, Homozygot deletion.">
+			>
+		>
+	>
+	value_sets = <
+		["ac9001.1"] = <
+			id = <"ac9001.1">
+			members = <"at7", "at8", "at0.1", "at0.2">
+		>
+	>

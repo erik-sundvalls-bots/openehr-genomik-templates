@@ -1,57 +1,75 @@
-# Beslut och öppna frågor – fas 1
+# Beslut och öppna frågor – fas 2
 
-*Status: förslag från Grok Bot, 2026-10-15. Inget är beslutat förrän Erik godkänt.*
+*Uppdaterad 2026-10-15 (Europe/Stockholm). Fas 1-bakgrund behålls; Eriks svar 1–5 inarbetade.*
 
-## 1. Underlaget i siffror
-- 18 flikar: 3 informationsflikar (Information till granskare, Översikt, Vägval), *Alla variabler*, 14 listvärdesflikar.
-- *Alla variabler*: 97 rader = 17 informationsblock + **73 variabler** (några namn återkommer i flera block: `patient_ref`, `laboratorium_ref`, `variant_ref`, `karyotyp_iscn`).
-- Datatyper: Code 27, Reference 13, String 9, Identifier 8, UUID 3, Decimal 3, Quantity 3, Date 2, CodeableConcept 2, DateTime/Instant/Integer 1 vardera.
-- FHIR-resurser: Observation 37, DiagnosticReport 11, Specimen 10, Procedure/GenomicStudy 6, Organization 3, Patient 2, ServiceRequest 2, Device 1.
-- 14 värdemängder, 104 koder totalt (se `valuesets/valuesets.json`).
+## 1. Underlaget i siffror (oförändrat från fas 1)
+- 73 variabler: 34 covered, 26 partial, 9 gap, 4 demografi.
+- 14 värdemängder i `valuesets/`.
+- Se `analysis/variable-inventory.md`.
 
-## 2. Mappningsresultat (se `analysis/variable-inventory.md`)
-| Flagga | Antal | Betydelse |
-|---|---|---|
-| covered | 34 | Ren mappning till befintligt CKM-element |
-| partial | 26 | Möjlig mappning men med kompromiss (fel granularitet, utkastarketyp, kodverk i Additional details) |
-| gap | 9 | Inget lämpligt element – kräver specialisering/ny arketyp eller designbeslut |
-| demografi (utanför template) | 4 | Patient-id/personnummer/subject-referenser = EHR-subject |
+## 2. Eriks beslut (svar på fas 1-frågor)
 
-Huvudarketyper: `CLUSTER.genomic_variant_result.v1` (18 variabler), `CLUSTER.specimen.v1` (8), `OBSERVATION.laboratory_test_result.v1` (7), `CLUSTER.laboratory_test_analyte.v1` (7, TMB/MSI/HRD/tumörcellshalt), `CLUSTER.organisation.v1` (5), `CLUSTER.sequencing_assay.v0` (4).
+| # | Fråga | Beslut |
+|---|-------|--------|
+| 1 | Templateantal | **Både T1 Genomikrapport och T2 Genomikremiss** |
+| 2 | Luckor | **Lokala specialiseringar** i `archetypes/drafts/` **och** forumfärdiga förslag i `docs/forum-proposals/` (Erik publicerar själv — botten postar **inte**) |
+| 3 | Utkastarketyper | **OK** att använda `sequencing_assay.v0`, `translocation_variant.v0`, `service_request.v1`, `genetic_variant_presence.v0` |
+| 4 | Format / verktyg | Modellera i **ADL2**, konvertera till **ADL 1.4** efteråt. Java/Archie OK. **Kör inte EHRbase** — validering sker i Better-produkter på Karolinska |
+| 5 | Språk | **Engelska** som original/tekniskt språk + **svensk översättning** för export. Preferera ADL2-funktioner som stödjer detta |
 
-### Identifierade luckor (gap)
-1. **ASCO/AMP-tier** och **ESCAT** – finns inte i CKM; `genomic_variant_result` har bara ACMG (germline).
-2. **Genetiskt ursprung** (somatisk/germline) – inget eget element i `genomic_variant_result.v1`.
-3. **Kopietaltyp** – `genomic_copy_number_variant` har bara Gain/Loss; amplifiering och homozygot deletion saknas (underlaget använder SO-koder).
-4. **Diagnostisk/terapeutisk implikation** som egna poster med id/status/variant_ref – FHIR har separata Observations; i openEHR behövs designbeslut.
-5. **studie_id / analystyp** (GenomicStudy) – inget motsvarande i `sequencing_assay.v0`.
+Övriga fas 1-frågor (implikationer-design, SO-URI, lokala URI:er, patient/organisation) hanteras i utkast/forumförslag tills vidare; implikationer i fas 2 modelleras som **CLUSTER under variant** (se beslut 2.1 nedan).
 
-## 3. Föreslagen templateuppsättning
-Enligt CGEM: rapporten är *Event Assessment*, remissen *Managed Response*.
+### 2.1 Implikationer (arbetshypotes fas 2)
+Kluster inuti varianten (`CLUSTER.variant_clinical_implication`) — enklast för T1 v1 och tillräckligt för FHIR-spårbarhet via Implication identifier. Utvärdera EVALUATION senare om Better-/FHIRconnect-behov kräver egna poster.
 
-| # | Template | Rot | Innehåll | Kategori |
-|---|---|---|---|---|
-| T1 | **Genomikrapport – cancer** (huvudtemplate) | `COMPOSITION.report-result.v1` | `OBSERVATION.laboratory_test_result.v1` med specimen (nivå 1 + härledd nivå 2 via Parent specimen identifier), anatomical_location, specimen_processing, sequencing_assay + device (panel), 0..* `genomic_variant_result` (+ strukturerade varianttyper: substitution/deletion/insertion/delins/duplication/inversion/CNV/translocation), 0..* `laboratory_test_analyte` för TMB/MSI/HRD/tumörcellshalt, organisation (laboratorium) | event |
-| T2 | **Genomikremiss** (valfri) | `COMPOSITION.request.v1` | `INSTRUCTION.service_request.v1` (frågeställning, remiss_id), `EVALUATION.problem_diagnosis.v1` (ICD-10) | event |
+## 3. Templateuppsättning (beslutad)
 
-Alternativ: lägga remissvariablerna (diagnos, frågeställning, remiss_id) direkt i T1 under *Test request details* / *Clinical information provided*, eftersom INCA tar emot färdiga svar och inte hanterar beställningsflödet. **Min rekommendation: börja med T1 som täcker allt (inkl. remissreferenser), och T2 bara om beställningsflödet ska modelleras.** Implikationer (diagnostisk/terapeutisk) läggs i T1 som klustrar per variant i första versionen.
+| # | Template | Rot | CGEM |
+|---|----------|-----|------|
+| T1 | Genomikrapport – cancer | `COMPOSITION.report-result.v1` | Event Assessment |
+| T2 | Genomikremiss | `COMPOSITION.request.v1` | Managed Response |
 
-`templates/reference/Molecular_Pathology_Report.oet` (HiGHmed, CKM-utkast) visar samma mönster och används som förlaga, men bygger på gamla v0-arketyper.
+ADL2-utkast: `templates/adl2/`. OET 1.4-export kommer efter nedkonvertering.
 
-## 4. Format: ADL 1.4 OET → OPT 1.4 (rekommendation)
-- **ADL 1.4 OET + OPT 1.4** är vad EHRbase, Better och de flesta CDR:er tar emot, och alla CKM-arketyperna ovan är ADL 1.4. FHIRconnect-mappningar (fas 3) refererar till OPT 1.4/webbtemplate-sökvägar.
-- ADL2 är bättre långsiktigt (template = arketyp, AOM), men kräver konvertering av alla arketyper och ger sämre CDR-stöd idag.
-- **Validering på boxen:** Java saknas idag (kan installeras). Förslag: installera JDK 17 + Archie (`com.nedap.healthcare.archie`) för att parsa/validera ADL och generera OPT, och köra EHRbase i Docker (finns redan) för slutlig validering genom att ladda upp OPT och posta exempelkompositioner. OET kan även öppnas i Archetype Designer/Template Designer för kontroll.
-- Föreslagen arbetsgång: handskriven OET (enligt template-authoring-guiden) → OPT via Archie/EHRbase → webbtemplate + exempeldata → senare ADL2-export via Archie om ni vill.
+## 4. Format och verktygskedja (uppdaterat)
 
-## 5. Öppna frågor till Erik
-1. **Templateantal:** räcker en rapporttemplate (T1), eller vill du ha separat remisstemplate (T2)?
-2. **Luckor:** ska vi skapa lokala specialiseringar (t.ex. `genomic_variant_result-cancer` med ASCO-tier, ESCAT, genetiskt ursprung, exonnummer, ISCN) i `archetypes/drafts/`, eller föreslå ändringar upstream i CKM Genomics-projektet (som Norge/Tyskland driver)?
-3. **Utkastarketyper:** OK att använda `sequencing_assay.v0` (TEAMREVIEW), `translocation_variant.v0` (REVIEWSUSPENDED), `service_request.v1` (REASSESS_DRAFT) och `genetic_variant_presence.v0` (DRAFT)?
-4. **Implikationer:** klustrar inuti varianten (enklast) eller egna poster (EVALUATION) som FHIR:s separata Observations (bättre FHIR-spårbarhet)?
-5. **Kodverk:** SO som primär för variationstyp/konsekvens/kopietal, SNOMED CT som alternativ – OK? Vilken SO-URI ska användas (`http://www.sequenceontology.org` vs. IG:s variant)?
-6. **Lokala värdemängder** utan internationella koder (frågeställning, ASCO-tier, ESCAT, ctDNA/ctRNA/cfDNA, cellblock): vilken namnrymd/URI (förslag `https://cancercentrum.se/terminology/...` som platshållare)?
-7. **Patient/organisation:** behandla patient via EHR-subject (ingen templatedata) och HSA-id i `organisation`-klustret – OK?
-8. **Format:** OK med ADL 1.4 OET/OPT nu och ADL2 senare? Får jag installera Java/Archie och köra EHRbase i Docker på boxen för validering?
-9. **Språk:** svenska etiketter i templaten (namnöversättningar) + engelska arketyper?
-10. **Svenska arketyper:** jag har inte hittat någon svensk genomikarketyp; känner du till nationellt material (t.ex. Inera/Region) som borde kollas?
+### 4.1 ADL2 först
+- CKM-arketyper (ADL 1.4) konverteras till ADL2 med **Archie 3.21** → `archetypes/ckm-adl2/` (25 filer, parse2 OK).
+- Specialiseringar och templates författas som **ADL2** (`.adls`, `adl_version=2.0.6`) med `original_language=en` och `translations["sv"]`.
+
+### 4.2 Archie: endast 1.4 → 2
+Archie (`com.nedap.healthcare.archie`) har `ADL14Parser` + `ADL14Converter` (1.4→2) och `ADLParser` / `ADLArchetypeSerializer` för ADL2. **Ingen inbyggd 2→1.4-väg.**  
+Verktyg: `/workspace/tools/archie` → `archie-convert-0.1.0.jar` (kommandon `parse14`, `to2`, `parse2`, `batch`, `roundtrip14to2`).
+
+### 4.3 ADL2 → 1.4 via Ehrtslib (sidospår)
+Erik är författare till [ehrtslib](https://github.com/ErikSundvall/ehrtslib) (TypeScript/Deno) som har `ADL14Serializer` (2→1.4) och OPT/OET-stöd. Efter Archie-vägen: prova samma nedkonvertering/validering och dokumentera luckor i `docs/ehrtslib-gaps.md`. **Blockera inte** huvudspåret på Ehrtslib.
+
+### 4.4 Validering
+- Box: Archie parse2 för ADL2; senare Better på Karolinska för OPT/data.
+- **Ingen EHRbase** på boxen (beslut 4).
+
+## 5. Luckor och lokala specialiseringar
+
+### 5.1 ASCO/ESCAT-gap bekräftat
+CKM-sökning 2026-10-15: **0 träffar** för ASCO/AMP/ESCAT. GMS `mtbp_classification.v0` har endast grov relevansskala. Svenskt material: `analysis/swedish-prior-art/` (= GMS Information-specifications / modellbibliotek-lokala arketyper).
+
+### 5.2 Drafts (ADL2, EN+SV, parse2 OK)
+
+| Fil | Förälder / typ | Fyller |
+|-----|----------------|--------|
+| `archetypes/drafts/openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1.0.0.adls` | specialiserar `genomic_variant_result.v1` | Genetiskt ursprung, ASCO/AMP, ESCAT, exon, ISCN, SO molecular consequence, slot för implikation |
+| `archetypes/drafts/openEHR-EHR-CLUSTER.genomic_copy_number_variant-cancer.v1.0.0.adls` | specialiserar `genomic_copy_number_variant.v1` | Amplifiering + homozygot deletion i kopietaltyp |
+| `archetypes/drafts/openEHR-EHR-CLUSTER.variant_clinical_implication.v1.0.0.adls` | ny CLUSTER | Diagnostisk/terapeutisk implikation (id, typ, status, …) |
+
+### 5.3 Forumförslag (ej publicerade)
+`docs/forum-proposals/01`–`05` — ASCO+ESCAT vs ACMG; genetiskt ursprung; CNV Gain/Loss; implikationer; övrigt (exon/ISCN/SO).
+
+## 6. Kvarvarande öppna frågor
+6. Kodverk: SO som primär för variationstyp/konsekvens/kopietal — URI (`http://www.sequenceontology.org` vs IG-variant)?
+7. Lokala värdemängder (ASCO, ESCAT, frågeställning, …): namnrymd `https://cancercentrum.se/terminology/...` som platshållare?
+8. Patient via EHR-subject; HSA-id i `organisation` — bekräfta.
+9. När ska Erik posta forumförslagen?
+10. Preferens för Better Template Designer vs handskriven OET efter ADL2→1.4?
+
+## 7. Repo
+Privat: `https://github.com/erik-sundvalls-bots/openehr-genomik-templates` (gh som `erik-sundvalls-bots`).

@@ -1,0 +1,84 @@
+template (adl_version=2.0.6; rm_release=1.1.0; uid=6880d47e-dee8-47b9-a9df-a04687d042dd)
+	openEHR-EHR-COMPOSITION.t_genomics_request.v1.0.0
+
+specialize
+	openEHR-EHR-COMPOSITION.request.v1
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+				["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+		["organisation"] = <"Regionala cancercentrum i samverkan">
+		["date"] = <"2026-10-15">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Swedish RCC genomics service request / referral (Genomikremiss). Managed Response composition with service_request and problem_diagnosis (ICD-10).">
+			use = <"Scaffold for referral_id, clinical question (frågeställning), and diagnosis. Narrow value sets in OPT/Better.">
+			keywords = <"genomics", "request", "referral", "RCC">
+			copyright = <"© Regionala cancercentrum i samverkan">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Svensk RCC genomikremiss.">
+			use = <"Ställning för remiss_id, frågeställning och diagnos.">
+			keywords = <"genomik", "remiss", "RCC">
+			copyright = <"© Regionala cancercentrum i samverkan">
+		>
+	>
+	licence = <"Creative Commons Attribution-ShareAlike 4.0 International">
+	custodian_namespace = <"se.rcc">
+	custodian_organisation = <"Regionala cancercentrum i samverkan">
+
+definition
+	COMPOSITION[id1.1] matches {	-- Genomics request
+		content matches {
+			use_archetype INSTRUCTION[id0.1, openEHR-EHR-INSTRUCTION.service_request.v1] occurrences matches {1}
+			use_archetype EVALUATION[id0.2, openEHR-EHR-EVALUATION.problem_diagnosis.v1] occurrences matches {0..*}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Genomics request">
+				description = <"Request / referral for genomic testing.">
+			>
+			["id0.1"] = <
+				text = <"Service request">
+				description = <"Genomic test service request including clinical question.">
+			>
+			["id0.2"] = <
+				text = <"Problem / diagnosis">
+				description = <"Referring diagnosis (typically ICD-10).">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Genomikremiss">
+				description = <"Remiss / begäran om genomisk analys.">
+			>
+			["id0.1"] = <
+				text = <"Tjänstebegäran">
+				description = <"Begäran om genomisk analys inklusive frågeställning.">
+			>
+			["id0.2"] = <
+				text = <"Problem / diagnos">
+				description = <"Remitterande diagnos (typiskt ICD-10).">
+			>
+		>
+	>

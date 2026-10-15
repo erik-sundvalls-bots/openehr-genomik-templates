@@ -20,3 +20,17 @@ Phase 1 (analysis) — no templates authored yet. See `docs/decisions.md`.
 | `docs/decisions.md` | Template set, format recommendation, open questions (Swedish) |
 
 Source data © RCC i samverkan; CKM archetypes © openEHR Foundation, CC-BY-SA 4.0.
+
+
+## Phase 2 status (2026-10-15)
+- `archetypes/ckm-adl2/`: all 25 CKM archetypes converted to ADL2 with Archie 3.21 (`batch`). All pass `parse2`.
+- `archetypes/drafts/` (ADL2, original language EN + SV translation, all pass Archie `parse2`):
+  - `genomic_variant_result-cancer`: genetic origin, ASCO/AMP, ESCAT, exon, ISCN, SO consequence, implication slot
+  - `genomic_copy_number_variant-cancer`: adds Amplification and Homozygous deletion
+  - `variant_clinical_implication` (new CLUSTER)
+- `templates/adl2/`: T1 `t_genomics_cancer_report` (report-result) and T2 `t_genomics_request` (request). EN+SV scaffolds that pass `parse2`; detailed constraints not yet done.
+- `docs/forum-proposals/01–05`: forum drafts. **Not posted**; Erik posts them himself.
+- `docs/decisions.md`: answers 1–5 included.
+- `docs/ehrtslib-gaps.md`: ADL2→1.4 with Ehrtslib currently fails (0/5 usable).
+- `tools/`: ArchieConvert.java, the pom, and the Ehrtslib script.
+- **Not done:** ADL 1.4 / OET / OPT export (no working 2→1.4 converter), Better validation, full T1 constraints (specimen, assay, analytes, variant slots).

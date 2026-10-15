@@ -1,0 +1,75 @@
+template (adl_version=2.0.6; rm_release=1.1.0; uid=1b90427e-54d8-4bee-8b2f-0835e385b19a)
+	openEHR-EHR-COMPOSITION.t_genomics_cancer_report.v1.0.0
+
+specialize
+	openEHR-EHR-COMPOSITION.report-result.v1
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+				["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+		["organisation"] = <"Regionala cancercentrum i samverkan">
+		["date"] = <"2026-10-15">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Swedish RCC cancer genomics result report (Konfigurationsunderlag genomik). Event Assessment composition wrapping laboratory_test_result with specimen, assay, genomic variants (cancer specialisation), analytes (TMB/MSI/HRD/cellularity), and laboratory organisation.">
+			use = <"Scaffold — constrain further in Better Template Designer / OPT after ADL2→1.4 conversion. Slot includes use local drafts where CKM gaps exist.">
+			keywords = <"genomics", "cancer", "report", "RCC", "molecular pathology">
+			copyright = <"© Regionala cancercentrum i samverkan">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Svensk RCC cancergenomikrapport (Konfigurationsunderlag genomik).">
+			use = <"Ställning — begränsa vidare i Better / OPT efter ADL2→1.4.">
+			keywords = <"genomik", "cancer", "rapport", "RCC">
+			copyright = <"© Regionala cancercentrum i samverkan">
+		>
+	>
+	licence = <"Creative Commons Attribution-ShareAlike 4.0 International">
+	custodian_namespace = <"se.rcc">
+	custodian_organisation = <"Regionala cancercentrum i samverkan">
+
+definition
+	COMPOSITION[id1.1] matches {	-- Genomics cancer report
+		content matches {
+			use_archetype OBSERVATION[id0.1, openEHR-EHR-OBSERVATION.laboratory_test_result.v1] occurrences matches {1}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Genomics cancer report">
+				description = <"Result report for cancer genomic testing (Swedish RCC).">
+			>
+			["id0.1"] = <
+				text = <"Laboratory test result">
+				description = <"Genomic laboratory test result including specimens, assay, variants and analytes.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Genomikrapport – cancer">
+				description = <"Resultatrapport för cancergenomisk testning (RCC).">
+			>
+			["id0.1"] = <
+				text = <"Laboratorieresultat">
+				description = <"Genomiskt laboratorieresultat med prover, analys, varianter och analyter.">
+			>
+		>
+	>
