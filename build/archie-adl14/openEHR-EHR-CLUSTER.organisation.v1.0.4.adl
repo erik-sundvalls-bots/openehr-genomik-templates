@@ -3,7 +3,7 @@ archetype (adl_version=1.4; rm_release=1.1.0; generated)
 
 
 concept
-    [at0001]    -- Organisation
+    [at0000]    -- Organisation
 
 
 language
@@ -152,47 +152,47 @@ Cet archétype pourrait également servir de substitut aux données démographiq
     >
 
 definition
-    CLUSTER[at0001] matches {    -- Organisation
+    CLUSTER[at0000] matches {    -- Organisation
         items cardinality matches {1..*; unordered} matches {
-            ELEMENT[at0002] occurrences matches {0..1} matches {    -- Name
+            ELEMENT[at0001] occurrences matches {0..1} matches {    -- Name
                 value matches {
-                    DV_TEXT[at9000]
+                    DV_TEXT[at8999]
                 }
             }
-            ELEMENT[at0004] matches {    -- Identifier
+            ELEMENT[at0003] matches {    -- Identifier
                 value matches {
-                    DV_IDENTIFIER[at9001]
+                    DV_IDENTIFIER[at9000]
+                    DV_TEXT[at9001]
+                }
+            }
+            ELEMENT[at0004] matches {    -- Role
+                value matches {
                     DV_TEXT[at9002]
                 }
             }
-            ELEMENT[at0005] matches {    -- Role
-                value matches {
-                    DV_TEXT[at9003]
-                }
-            }
-            allow_archetype CLUSTER[at0006] matches {    -- Address
+            allow_archetype CLUSTER[at0005] matches {    -- Address
                 include
                     archetype_id/value matches {/openEHR-EHR-CLUSTER\.address(-[a-zA-Z0-9_]+)*\.v1\..*/}
             }
-            allow_archetype CLUSTER[at0023] matches {    -- Electronic communication
+            allow_archetype CLUSTER[at0022] matches {    -- Electronic communication
                 include
                     archetype_id/value matches {/openEHR-EHR-CLUSTER\.electronic_communication(-[a-zA-Z0-9_]+)*\.v1\..*/}
             }
-            allow_archetype CLUSTER[at0003] matches {    -- Contact person
+            allow_archetype CLUSTER[at0002] matches {    -- Contact person
                 include
                     archetype_id/value matches {/openEHR-EHR-CLUSTER\.person(-[a-zA-Z0-9_]+)*\.v1\..*/}
             }
-            allow_archetype CLUSTER[at0022] matches {    -- Parent organisation
+            allow_archetype CLUSTER[at0021] matches {    -- Parent organisation
                 include
                     archetype_id/value matches {/openEHR-EHR-CLUSTER\.organisation(-[a-zA-Z0-9_]+)*\.v1\..*/}
             }
-            allow_archetype CLUSTER[at0018] matches {    -- Additional details
+            allow_archetype CLUSTER[at0017] matches {    -- Additional details
                 include
                     archetype_id/value matches {/.*/}
             }
-            ELEMENT[at0020] occurrences matches {0..1} matches {    -- Comment
+            ELEMENT[at0019] occurrences matches {0..1} matches {    -- Comment
                 value matches {
-                    DV_TEXT[at9004]
+                    DV_TEXT[at9003]
                 }
             }
         }
@@ -202,47 +202,47 @@ ontology
     term_definitions = <
         ["de"] = <
             items = <
-            ["at0001"] = <
+            ["at0000"] = <
                 text = <"Organisation">
                 description = <"Eine Einheit, die aus einer oder mehreren Personen besteht und ein bestimmtes Ziel hat.">
                 comment = <"Zum Beispiel: ein Unternehmen, eine Institution, ein Verband, ein Netzwerk, eine Abteilung, eine Gemeindegruppe, eine Gesundheitspraxisgruppe, ein Kostenträger/Versicherer, ein Pflegeteam oder eine Gruppe von Nachbarn, die Pflege oder Unterstützung leisten.">
             >
-            ["at0002"] = <
+            ["at0001"] = <
                 text = <"Namenszeile">
                 description = <"Der Name oder Bezeichnung der Organisation in unstrukturierter Form.">
                 comment = <"Zum Beispiel: „Royal Children's Hospital“, \"ABC-Krankenpflegedienst\", „YNWA Oslo“ oder „JB Smith Rechtsanwälte“.">
             >
-            ["at0003"] = <
+            ["at0002"] = <
                 text = <"Kontaktperson">
                 description = <"Details zu einer oder mehreren Personen innerhalb der Organisation.">
             >
-            ["at0004"] = <
+            ["at0003"] = <
                 text = <"Identifier">
                 description = <"Identifikator, der der identifizierten Organisation zugeordnet ist.">
                 comment = <"Kardinalität für dieses Datenelement wird auf 0..* gesetzt, damit mehr als ein Identifikator aufgezeichnet werden kann. Beachten Sie, dass der ID-Datentyp mehrere Unterkomponenten zum Aufzeichnen des ID-Werts, -Typs, -Ausstellers und -Zuweisers enthält.">
             >
-            ["at0005"] = <
+            ["at0004"] = <
                 text = <"Funktion">
                 description = <"Die Beziehung oder Rolle der Organisation zum Pflegebedürftigen oder Patient.">
                 comment = <"Zum Beispiel: Onkologe, ambulanter Palliativdienst oder informelles Supportnetzwerk.">
             >
-            ["at0006"] = <
+            ["at0005"] = <
                 text = <"Adresse">
                 description = <"Angaben zu einer Adresse der Organisation.">
             >
-            ["at0018"] = <
+            ["at0017"] = <
                 text = <"Zusätzliche Details">
                 description = <"Weitere Angaben zur Organisation.">
             >
-            ["at0020"] = <
+            ["at0019"] = <
                 text = <"Kommentar">
                 description = <"Zusätzlicher Text zu der Organisation, der in anderen Bereichen nicht erfasst wird.">
             >
-            ["at0022"] = <
+            ["at0021"] = <
                 text = <"Muttergesellschaft">
                 description = <"Eine größere Organisation, von der diese Organisation ein Sub- oder Tochterunternehmen ist.">
             >
-            ["at0023"] = <
+            ["at0022"] = <
                 text = <"Elektronische Kommunikation">
                 description = <"Details zu einer oder mehreren Arten der elektronischen Kommunikation für die Organisation.">
             >
@@ -250,47 +250,47 @@ ontology
         >
         ["sv"] = <
             items = <
-            ["at0001"] = <
+            ["at0000"] = <
                 text = <"Organisation">
                 description = <"En organisatorisk entitet som består av en eller flera personer och som har ett särskilt syfte.">
                 comment = <"Exempelvis företag, institution, förening, nätverk, avdelning, samhällsgrupp, vårdgivargrupp, försäkringstagare eller försäkringsgivare, vårdteam, eller grupp som ger vård eller stöd.">
             >
-            ["at0002"] = <
+            ["at0001"] = <
                 text = <"Namn">
                 description = <"Namnet som en organisation är känd under.">
                 comment = <"Exempelvis Akademiska sjukhuset, Sahlgrenska universitetssjukhuset, YNWA Oslo, Karolinska universitetssjukhuset or JB Smith Lawyers.">
             >
-            ["at0003"] = <
+            ["at0002"] = <
                 text = <"Kontaktperson">
                 description = <"Uppgifter om en eller flera kontaktpersoner inom organisationen.">
             >
-            ["at0004"] = <
+            ["at0003"] = <
                 text = <"Identifierare">
                 description = <"Identifierare associerad med organisationen.">
                 comment = <"Förekomsten av identifierare är satt till 0..*, vilket innebär att mer en typ av identifierare kan användas. Observera att det finns möjlighet att använda underliggande id-komponenter som typ, utfärdare och tillståndsgivare.">
             >
-            ["at0005"] = <
+            ["at0004"] = <
                 text = <"Roll">
                 description = <"Organisationens relation till eller roll gentemot vårdtagaren.">
                 comment = <"Exempelvis onkolog, palliativ hemsjukvård eller informell stödorganisation.">
             >
-            ["at0006"] = <
+            ["at0005"] = <
                 text = <"Adress">
                 description = <"Organisationens adressuppgifter.">
             >
-            ["at0018"] = <
+            ["at0017"] = <
                 text = <"Ytterligare detaljer">
                 description = <"Ytterligare uppgifter om organisationen.">
             >
-            ["at0020"] = <
+            ["at0019"] = <
                 text = <"Kommentar">
                 description = <"Kommentarer avseende organisationen som inte beskrivs i övriga datafält.">
             >
-            ["at0022"] = <
+            ["at0021"] = <
                 text = <"Överordnad organisation">
                 description = <"Den större organisation som denna organisation är en del i.">
             >
-            ["at0023"] = <
+            ["at0022"] = <
                 text = <"Elektronisk kommunikation">
                 description = <"Ett eller flera elektroniska kommunikationssätt som organisationen använder.">
             >
@@ -298,47 +298,47 @@ ontology
         >
         ["nb"] = <
             items = <
-            ["at0001"] = <
+            ["at0000"] = <
                 text = <"Organisasjon">
                 description = <"En entitet som består av ett eller flere mennesker med et bestemt formål.">
                 comment = <"For eksempel: Et firma, institusjon, selskap, forening, nettverk, avdeling, gruppe i nærmiljøet, forsikringsselskap, behandlingsteam eller en gruppe av naboer som opptrer som støtte.">
             >
-            ["at0002"] = <
+            ["at0001"] = <
                 text = <"Navn">
                 description = <"Ustrukturert navn for organisasjonen.">
                 comment = <"For eksempel: \"Haukeland Sykehus\", \"Årstad hjemmesykepleie\", \"YNWA Oslo\" eller \"JB Smith advokater\".">
             >
-            ["at0003"] = <
+            ["at0002"] = <
                 text = <"Kontaktperson">
                 description = <"Detaljer om én eller flere personer i organisasjonen.">
             >
-            ["at0004"] = <
+            ["at0003"] = <
                 text = <"Identifikator">
                 description = <"Identifikator for organisasjonen.">
                 comment = <"Forekomster for dette dataelementet er satt til 0..* for å tillate at mer enn én identifikator kan registreres. Merk at ID-datatypen inneholder flere underkomponenter for registrering av ID-verdi, type, utsteder og tilordnet.">
             >
-            ["at0005"] = <
+            ["at0004"] = <
                 text = <"Rolle">
                 description = <"Forholdet eller rollen organisasjonen har til individet som pasientjournalen omhandler.">
                 comment = <"For eksempel: onkolog; palliativ hjemmetjeneste; eller uformelt støttenettverk.">
             >
-            ["at0006"] = <
+            ["at0005"] = <
                 text = <"Adresse">
                 description = <"Detaljer om organisasjonens adresse.">
             >
-            ["at0018"] = <
+            ["at0017"] = <
                 text = <"Ytterligere detaljer">
                 description = <"Ytterligere strukturerte detaljer om organisasjonen.">
             >
-            ["at0020"] = <
+            ["at0019"] = <
                 text = <"Kommentar">
                 description = <"Ytterligere fritekst om organisasjonen som ikke er registrert i andre felt.">
             >
-            ["at0022"] = <
+            ["at0021"] = <
                 text = <"Overordnet organisasjon">
                 description = <"En større organisasjon som denne organisasjonen er en del av.">
             >
-            ["at0023"] = <
+            ["at0022"] = <
                 text = <"Elektronisk kommunikasjon">
                 description = <"Detaljer om én eller flere former for elektronisk kommunikasjon med organisasjonen.">
             >
@@ -346,47 +346,47 @@ ontology
         >
         ["en"] = <
             items = <
-            ["at0001"] = <
+            ["at0000"] = <
                 text = <"Organisation">
                 description = <"An entity comprising one or more people and having a particular purpose.">
                 comment = <"For example: a company, institution, association, network, department, community group, healthcare practice group, payer/insurer, care team, or a group of neighbours who provide care or support.">
             >
-            ["at0002"] = <
+            ["at0001"] = <
                 text = <"Name">
                 description = <"The unstructured name or label for the organisation.">
                 comment = <"For example: 'Royal Children's Hospital'; 'ABC District Nursing Service'; 'YNWA Oslo' or 'JB Smith Lawyers'.">
             >
-            ["at0003"] = <
+            ["at0002"] = <
                 text = <"Contact person">
                 description = <"Details about one or more people within the organisation.">
             >
-            ["at0004"] = <
+            ["at0003"] = <
                 text = <"Identifier">
                 description = <"Identifier associated with the organisation.">
                 comment = <"Occurrences for this data element is set to 0..* to allow for more than one Identifier to be recorded. Note that the ID data type contains multiple subcomponents for recording the ID value, type, issuer and assigner.">
             >
-            ["at0005"] = <
+            ["at0004"] = <
                 text = <"Role">
                 description = <"The relationship or role of the organisation to the individual or subject of care.">
                 comment = <"For example: oncologist; palliative care home nursing service; or informal support network.">
             >
-            ["at0006"] = <
+            ["at0005"] = <
                 text = <"Address">
                 description = <"Details about an address for the organisation.">
             >
-            ["at0018"] = <
+            ["at0017"] = <
                 text = <"Additional details">
                 description = <"Additional details about the organisation.">
             >
-            ["at0020"] = <
+            ["at0019"] = <
                 text = <"Comment">
                 description = <"Additional narrative about the organisation not captured in other fields.">
             >
-            ["at0022"] = <
+            ["at0021"] = <
                 text = <"Parent organisation">
                 description = <"A larger organisation of which this organisation is a child or subsidiary.">
             >
-            ["at0023"] = <
+            ["at0022"] = <
                 text = <"Electronic communication">
                 description = <"Details about one or more types of electronic communication for the organisation.">
             >
@@ -394,47 +394,47 @@ ontology
         >
         ["fr"] = <
             items = <
-            ["at0001"] = <
+            ["at0000"] = <
                 text = <"Organisation">
                 description = <"Entité composée d’une ou de plusieurs personnes et ayant un objectif particulier.">
                 comment = <"Par exemple : une entreprise, une institution, une association, un réseau, un service, un groupe communautaire, un groupe de praticiens de santé, un payeur/assureur, une équipe soignante ou un groupe de voisins qui fournissent des soins ou un soutien.">
             >
-            ["at0002"] = <
+            ["at0001"] = <
                 text = <"Nom">
                 description = <"Nom ou libellé non structuré de l'organisation.">
                 comment = <"Par exemple : « Royal Children's Hospital » ; « ABC District Nursing Service » ; « YNWA Oslo » ou « JB Smith Lawyers ».">
             >
-            ["at0003"] = <
+            ["at0002"] = <
                 text = <"Personne de contact">
                 description = <"Informations concernant une ou plusieurs personnes au sein de l'organisation.">
             >
-            ["at0004"] = <
+            ["at0003"] = <
                 text = <"Identifiant">
                 description = <"Identifiant associé à l'établissement.">
                 comment = <"Le nombre d'occurrences pour cet élément de données est défini à 0..* afin de permettre l'enregistrement de plusieurs identifiants. Il convient de noter que le type de données « ID » contient plusieurs sous-composants permettant d'enregistrer la valeur de l'identifiant, son type, son émetteur et son attributaire.">
             >
-            ["at0005"] = <
+            ["at0004"] = <
                 text = <"Rôle">
                 description = <"La relation ou le rôle de l'organisation vis-à-vis de la personne ou du sujet pris en charge.">
                 comment = <"Par exemple : oncologue ; service de soins palliatifs à domicile ; ou réseau de soutien informel.">
             >
-            ["at0006"] = <
+            ["at0005"] = <
                 text = <"Adresse">
                 description = <"Informations relatives à l'adresse de l'organisme.">
             >
-            ["at0018"] = <
+            ["at0017"] = <
                 text = <"Détails supplémentaires">
                 description = <"Détails supplémentaires sur l'établissement.">
             >
-            ["at0020"] = <
+            ["at0019"] = <
                 text = <"Commentaire">
                 description = <"Informations supplémentaires sur l'établissement qui ne sont pas reprises dans d'autres champs.">
             >
-            ["at0022"] = <
+            ["at0021"] = <
                 text = <"Organisation mère">
                 description = <"Une organisation plus grande dont cette organisation est une filiale ou une entité dépendante.">
             >
-            ["at0023"] = <
+            ["at0022"] = <
                 text = <"Communication électronique">
                 description = <"Informations relatives à un ou plusieurs types de communication électronique utilisés par l'établissement.">
             >

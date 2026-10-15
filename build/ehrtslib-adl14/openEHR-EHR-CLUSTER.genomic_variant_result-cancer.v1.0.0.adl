@@ -5,7 +5,7 @@ specialize
     openEHR-EHR-CLUSTER.genomic_variant_result.v1
 
 concept
-    [at0001.1]    -- Genomic variant result (cancer)
+    [at0000.1]    -- Genomic variant result (cancer)
 
 language
     original_language = <[ISO_639-1::en]>
@@ -47,60 +47,60 @@ description
     lifecycle_state = <"unmanaged">
 
 definition
-    CLUSTER[at0001.1] matches {
+    CLUSTER[at0000.1] matches {
         /items matches {
-            ELEMENT[at0000.1] occurrences matches {0..1} matches {
+            ELEMENT[at0.1] occurrences matches {0..1} matches {
                 value matches {
-                    DV_CODED_TEXT[at0000.10] matches {
+                    DV_CODED_TEXT[at0.10] matches {
                         defining_code matches {
-                            [local::at0000.1, at0000.2, at0000.3, at0000.4, at0000.5]
+                            [local::at0001, at0002, at0003, at0004, at0005]
                         }
                     }
-                    DV_TEXT[at0000.11]
+                    DV_TEXT[at0.11]
                 }
             }
-            ELEMENT[at0000.2] occurrences matches {0..1} matches {
+            ELEMENT[at0.2] occurrences matches {0..1} matches {
                 value matches {
-                    DV_CODED_TEXT[at0000.12] matches {
+                    DV_CODED_TEXT[at0.12] matches {
                         defining_code matches {
-                            [local::at0000.10, at0000.11, at0000.12, at0000.13, at0000.14, at0000.15, at0000.16]
-                        }
-                    }
-                }
-            }
-            ELEMENT[at0000.3] occurrences matches {0..1} matches {
-                value matches {
-                    DV_CODED_TEXT[at0000.13] matches {
-                        defining_code matches {
-                            [local::at0000.20, at0000.21, at0000.22, at0000.23, at0000.24, at0000.25, at0000.26, at0000.27, at0000.28, at0000.29, at0000.30]
+                            [local::at0006, at0007, at0008, at0009, at0010, at0011, at0012]
                         }
                     }
                 }
             }
-            ELEMENT[at0000.4] occurrences matches {0..1} matches {
+            ELEMENT[at0.3] occurrences matches {0..1} matches {
                 value matches {
-                    DV_COUNT[at0000.14] matches {
+                    DV_CODED_TEXT[at0.13] matches {
+                        defining_code matches {
+                            [local::at0.20, at0.21, at0.22, at0.23, at0.24, at0.25, at0.26, at0.27, at0.28, at0.29, at0.30]
+                        }
+                    }
+                }
+            }
+            ELEMENT[at0.4] occurrences matches {0..1} matches {
+                value matches {
+                    DV_COUNT[at0.14] matches {
                         magnitude matches {|>0|}
                     }
-                    DV_TEXT[at0000.15]
+                    DV_TEXT[at0.15]
                 }
             }
-            ELEMENT[at0000.5] occurrences matches {0..1} matches {
+            ELEMENT[at0.5] occurrences matches {0..1} matches {
                 value matches {
-                    DV_TEXT[at0000.16]
+                    DV_TEXT[at0.16]
                 }
             }
-            ELEMENT[at0000.6] occurrences matches {0..1} matches {
+            ELEMENT[at0.6] occurrences matches {0..1} matches {
                 value matches {
-                    DV_CODED_TEXT[at0000.17] matches {
+                    DV_CODED_TEXT[at0.17] matches {
                         defining_code matches {
                             [ac0.4]
                         }
                     }
-                    DV_TEXT[at0000.18]
+                    DV_TEXT[at0.18]
                 }
             }
-            allow_archetype CLUSTER[at0000.7] occurrences matches {0..*} matches {
+            allow_archetype CLUSTER[at0.7] occurrences matches {0..*} matches {
                 include
                     archetype_id/value matches {/openEHR-EHR-CLUSTER\.variant_clinical_implication(-[a-zA-Z0-9_]+)*\.v1\..*/}
             }
@@ -111,83 +111,83 @@ ontology
     term_definitions = <
             ["en"] = <
                 items = <
-                ["at0001.1"] = <
+                ["at0000.1"] = <
                     text = <"Genomic variant result (cancer)">
                     description = <"Results and annotations for a genomic variant found in a cancer sequencing test, including somatic classification systems.">
                 >
-                ["at0000.1"] = <
+                ["at0.1"] = <
                     text = <"Genetic origin">
                     description = <"Whether the variant is somatic, germline, likely somatic, likely germline, or unknown. Aligns with FHIR Genomics Observation.component:genomic-allele-origin.">
                 >
-                ["at0000.2"] = <
+                ["at0.2"] = <
                     text = <"ASCO/AMP clinical significance tier">
                     description = <"Somatic clinical significance according to ASCO/AMP/CAP tiering (Tier I–IV). Complements parent ACMG classification which targets germline pathogenicity.">
                 >
-                ["at0000.3"] = <
+                ["at0.3"] = <
                     text = <"ESCAT therapeutic relevance">
                     description = <"ESMO Scale for Clinical Actionability of molecular Targets (ESCAT) tier for therapeutic decision support.">
                 >
-                ["at0000.4"] = <
+                ["at0.4"] = <
                     text = <"Exon number">
                     description = <"Exon number affected by the variant (general; parent Fusion exon remains for fusion-specific context).">
                 >
-                ["at0000.5"] = <
+                ["at0.5"] = <
                     text = <"Karyotype (ISCN)">
                     description = <"ISCN karyotype string describing chromosomal rearrangement or CNV notation.">
                 >
-                ["at0000.6"] = <
+                ["at0.6"] = <
                     text = <"Molecular consequence">
                     description = <"Predicted molecular consequence using Sequence Ontology (e.g. missense_variant, stop_gained). Aligns with FHIR Genomics Observation.component:molecular-consequence.">
                 >
-                ["at0000.7"] = <
+                ["at0.7"] = <
                     text = <"Clinical implication">
                     description = <"Slot for diagnostic and/or therapeutic implication clusters linked to this variant.">
                 >
-                ["at0.1"] = <
+                ["at0001"] = <
                     text = <"Somatic">
                     description = <"Variant acquired in somatic (non-germline) tissue.">
                 >
-                ["at0.2"] = <
+                ["at0002"] = <
                     text = <"Germline">
                     description = <"Variant present in germline.">
                 >
-                ["at0.3"] = <
+                ["at0003"] = <
                     text = <"Likely somatic">
                     description = <"Variant assessed as likely somatic.">
                 >
-                ["at0.4"] = <
+                ["at0004"] = <
                     text = <"Likely germline">
                     description = <"Variant assessed as likely germline.">
                 >
-                ["at0.5"] = <
+                ["at0005"] = <
                     text = <"Unknown origin">
                     description = <"Genetic origin not determined.">
                 >
-                ["at0.10"] = <
+                ["at0006"] = <
                     text = <"Tier I-A">
                     description = <"Strong clinical significance: FDA-approved therapy / guideline recommendation.">
                 >
-                ["at0.11"] = <
+                ["at0007"] = <
                     text = <"Tier I-B">
                     description = <"Strong clinical significance: professional society recommendation.">
                 >
-                ["at0.12"] = <
+                ["at0008"] = <
                     text = <"Tier I-C">
                     description = <"Strong clinical significance: expert consensus or well-powered study.">
                 >
-                ["at0.13"] = <
+                ["at0009"] = <
                     text = <"Tier I-D">
                     description = <"Strong clinical significance: preclinical evidence.">
                 >
-                ["at0.14"] = <
+                ["at0010"] = <
                     text = <"Tier II">
                     description = <"Potential clinical significance: investigational or other tumour type.">
                 >
-                ["at0.15"] = <
+                ["at0011"] = <
                     text = <"Tier III">
                     description = <"Unknown clinical significance (somatic VUS equivalent).">
                 >
-                ["at0.16"] = <
+                ["at0012"] = <
                     text = <"Tier IV">
                     description = <"Benign or likely benign / passenger mutation.">
                 >
@@ -255,83 +255,83 @@ ontology
             >
             ["sv"] = <
                 items = <
-                ["at0001.1"] = <
+                ["at0000.1"] = <
                     text = <"Genetiskt variantresultat (cancer)">
                     description = <"Resultat och annoteringar för en genomisk variant i cancersekvensering, inklusive somatiska klassificeringssystem.">
                 >
-                ["at0000.1"] = <
+                ["at0.1"] = <
                     text = <"Genetiskt ursprung">
                     description = <"Om varianten är somatisk, germline, troligen somatisk, troligen germline eller okänd.">
                 >
-                ["at0000.2"] = <
+                ["at0.2"] = <
                     text = <"ASCO/AMP klinisk signifikans-tier">
                     description = <"Somatisk klinisk signifikans enligt ASCO/AMP/CAP (Tier I–IV). Komplement till förälderns ACMG-klassificering.">
                 >
-                ["at0000.3"] = <
+                ["at0.3"] = <
                     text = <"ESCAT behandlingsrelevans">
                     description = <"ESMO ESCAT-nivå för terapeutiskt beslutsstöd.">
                 >
-                ["at0000.4"] = <
+                ["at0.4"] = <
                     text = <"Exonnummer">
                     description = <"Exonnummer som påverkas av varianten.">
                 >
-                ["at0000.5"] = <
+                ["at0.5"] = <
                     text = <"Karyotyp (ISCN)">
                     description = <"ISCN-karyotypsträng för kromosomavvikelse eller CNV-notation.">
                 >
-                ["at0000.6"] = <
+                ["at0.6"] = <
                     text = <"Molekylär konsekvens">
                     description = <"Förutsagd molekylär konsekvens enligt Sequence Ontology.">
                 >
-                ["at0000.7"] = <
+                ["at0.7"] = <
                     text = <"Klinisk implikation">
                     description = <"Plats för diagnostiska och/eller terapeutiska implikationskluster kopplade till varianten.">
                 >
-                ["at0.1"] = <
+                ["at0001"] = <
                     text = <"Somatisk">
                     description = <"Variant förvärvad i somatisk vävnad.">
                 >
-                ["at0.2"] = <
+                ["at0002"] = <
                     text = <"Germline">
                     description = <"Variant i germline.">
                 >
-                ["at0.3"] = <
+                ["at0003"] = <
                     text = <"Troligen somatisk">
                     description = <"Variant bedömd som troligen somatisk.">
                 >
-                ["at0.4"] = <
+                ["at0004"] = <
                     text = <"Troligen germline">
                     description = <"Variant bedömd som troligen germline.">
                 >
-                ["at0.5"] = <
+                ["at0005"] = <
                     text = <"Okänt ursprung">
                     description = <"Genetiskt ursprung ej fastställt.">
                 >
-                ["at0.10"] = <
+                ["at0006"] = <
                     text = <"Tier I-A">
                     description = <"Stark klinisk signifikans: FDA-godkänd behandling / riktlinjerek.">
                 >
-                ["at0.11"] = <
+                ["at0007"] = <
                     text = <"Tier I-B">
                     description = <"Stark klinisk signifikans: professionell riktlinjerek.">
                 >
-                ["at0.12"] = <
+                ["at0008"] = <
                     text = <"Tier I-C">
                     description = <"Stark klinisk signifikans: expertkonsensus / välpowrad studie.">
                 >
-                ["at0.13"] = <
+                ["at0009"] = <
                     text = <"Tier I-D">
                     description = <"Stark klinisk signifikans: preklinisk evidens.">
                 >
-                ["at0.14"] = <
+                ["at0010"] = <
                     text = <"Tier II">
                     description = <"Potentiell klinisk signifikans: investigationell eller annan tumörtyp.">
                 >
-                ["at0.15"] = <
+                ["at0011"] = <
                     text = <"Tier III">
                     description = <"Okänd klinisk signifikans (somatisk VUS-ekvivalent).">
                 >
-                ["at0.16"] = <
+                ["at0012"] = <
                     text = <"Tier IV">
                     description = <"Benign eller troligen benign / passager-mutation.">
                 >

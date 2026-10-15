@@ -5,7 +5,7 @@ specialize
     openEHR-EHR-CLUSTER.genomic_copy_number_variant.v1
 
 concept
-    [at0001.1]    -- Genomic copy number variant (cancer)
+    [at0000.1]    -- Genomic copy number variant (cancer)
 
 language
     original_language = <[ISO_639-1::en]>
@@ -47,11 +47,11 @@ description
     lifecycle_state = <"unmanaged">
 
 definition
-    CLUSTER[at0001.1] matches {
-        /items[at0006]/value matches {
-            DV_CODED_TEXT[at9008.1] matches {
+    CLUSTER[at0000.1] matches {
+        /items[at0005]/value matches {
+            DV_CODED_TEXT[at9007.1] matches {
                 defining_code matches {
-                    [local::at0007, at0008, at0000.1, at0000.2]
+                    [local::at0006, at0007, at0.1, at0.2]
                 }
             }
         }
@@ -61,11 +61,11 @@ ontology
     term_definitions = <
             ["en"] = <
                 items = <
-                ["at0001.1"] = <
+                ["at0000.1"] = <
                     text = <"Genomic copy number variant (cancer)">
                     description = <"CNV description with extended change-type value set for cancer reporting.">
                 >
-                ["at9008.1"] = <
+                ["at9007.1"] = <
                     text = <"Copy number change type value">
                     description = <"Coded value for copy number change type including amplification and homozygous deletion.">
                 >
@@ -85,11 +85,11 @@ ontology
             >
             ["sv"] = <
                 items = <
-                ["at0001.1"] = <
+                ["at0000.1"] = <
                     text = <"Genetisk variant – kopietal (cancer)">
                     description = <"CNV-beskrivning med utökad värdemängd för cancerapportering.">
                 >
-                ["at9008.1"] = <
+                ["at9007.1"] = <
                     text = <"Kopietalsändringstyp värde">
                     description = <"Kodad kopietalsändringstyp inklusive amplifiering och homozygot deletion.">
                 >

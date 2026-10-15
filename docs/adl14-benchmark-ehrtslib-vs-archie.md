@@ -1,5 +1,20 @@
 # ADL2 → ADL 1.4 benchmark: Ehrtslib vs Archie fork
 *Generated 2026-10-15 (Europe/Stockholm). Ehrtslib stack #114–#117 (local branches). Archie fork `feature/adl2-to-adl14-downconverter`.*
+## Re-run 2026-10-15 21:59 (Europe/Stockholm): spec-correct code offset
+
+Ehrtslib PR #126 and Archie fork PR #2 both map `id1` → `at0000` (ADL2 spec; inverse of Archie `ADL14NodeIDConverter.convertCode`).
+
+| Archetype | Ehrtslib parse14 | Archie fork parse14 | at-code sets equal |
+|---|---|---|---|
+| genomic_copy_number_variant-cancer | OK, 0 errors | OK, 0 errors | yes |
+| genomic_variant_result-cancer | OK, 0 errors | OK, 0 errors | yes |
+| organisation (CKM) | OK, 0 errors | OK, 0 errors | yes |
+| variant_clinical_implication | OK, 0 errors | OK, 0 errors | yes |
+
+The organisation round trip (CKM 1.4 → Archie ADL2 → 1.4) reproduces every CKM at-code. It also adds `at8999`–`at9003`, which come from Archie's synthetic `id9000+` node ids; both tools produce these.
+
+The tables below are from the earlier run (off-by-one mapping).
+
 ## Summary
 ### `openEHR-EHR-CLUSTER.genomic_copy_number_variant-cancer.v1.0.0.adl`
 | Check | Ehrtslib | Archie |
