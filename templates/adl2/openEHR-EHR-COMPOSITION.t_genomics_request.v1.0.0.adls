@@ -26,15 +26,15 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"Swedish RCC genomics service request / referral (Genomikremiss). Managed Response composition with service_request and problem_diagnosis (ICD-10).">
-			use = <"Scaffold for referral_id, clinical question (frågeställning), and diagnosis. Narrow value sets in OPT/Better.">
-			keywords = <"genomics", "request", "referral", "RCC">
+			purpose = <"Swedish RCC genomics service request / referral (T2 Genomikremiss). Managed Response composition: request + service_request (remiss_id, frågeställning / clinical indication, service name) and problem_diagnosis (ICD-10). Receiving organisation optional under service_request protocol.">
+			use = <"Narrow frågeställning value set in OPT/Better (valuesets/fragestallning). Mirror remiss_id into report protocol Requester order identifier when fulfilling.">
+			keywords = <"genomics", "request", "referral", "RCC", "remiss">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
-			purpose = <"Svensk RCC genomikremiss.">
-			use = <"Ställning för remiss_id, frågeställning och diagnos.">
+			purpose = <"Svensk RCC genomikremiss (T2). Managed Response: request + tjänstebegäran (remiss_id, frågeställning) och problem_diagnosis (ICD-10).">
+			use = <"Begränsa frågeställning i OPT/Better. Spegla remiss_id till rapportens Requester order identifier vid svar.">
 			keywords = <"genomik", "remiss", "RCC">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
@@ -46,8 +46,8 @@ description
 definition
 	COMPOSITION[id1.1] matches {	-- Genomics request
 		content matches {
-			use_archetype INSTRUCTION[id0.1, openEHR-EHR-INSTRUCTION.service_request.v1] occurrences matches {1}
-			use_archetype EVALUATION[id0.2, openEHR-EHR-EVALUATION.problem_diagnosis.v1] occurrences matches {0..*}
+			use_archetype INSTRUCTION[id0.1, openEHR-EHR-INSTRUCTION.t_genomics_service_request.v1] occurrences matches {1}
+			use_archetype EVALUATION[id0.2, openEHR-EHR-EVALUATION.t_genomics_problem_diagnosis.v1] occurrences matches {0..*}
 		}
 	}
 
@@ -59,12 +59,12 @@ terminology
 				description = <"Request / referral for genomic testing.">
 			>
 			["id0.1"] = <
-				text = <"Service request">
-				description = <"Genomic test service request including clinical question.">
+				text = <"Genomic service request">
+				description = <"Service request for genomic analysis including clinical question and order identifier.">
 			>
 			["id0.2"] = <
-				text = <"Problem / diagnosis">
-				description = <"Referring diagnosis (typically ICD-10).">
+				text = <"Referring diagnosis">
+				description = <"Problem / diagnosis motivating the request (typically ICD-10).">
 			>
 		>
 		["sv"] = <
@@ -73,12 +73,81 @@ terminology
 				description = <"Remiss / begäran om genomisk analys.">
 			>
 			["id0.1"] = <
-				text = <"Tjänstebegäran">
-				description = <"Begäran om genomisk analys inklusive frågeställning.">
+				text = <"Genomisk tjänstebegäran">
+				description = <"Tjänstebegäran om genomisk analys inklusive frågeställning och remiss-id.">
 			>
 			["id0.2"] = <
-				text = <"Problem / diagnos">
-				description = <"Remitterande diagnos (typiskt ICD-10).">
+				text = <"Remitterande diagnos">
+				description = <"Problem / diagnos som motiverar remissen (typiskt ICD-10).">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-INSTRUCTION.t_genomics_service_request.v1.0.0
+
+specialize
+	openEHR-EHR-INSTRUCTION.service_request.v1
+
+definition
+	INSTRUCTION[id1.1] matches {	-- Genomic service request
+		/protocol[id9]/items matches {
+			ELEMENT[id11] occurrences matches {1}
+			use_archetype CLUSTER[id143.1, openEHR-EHR-CLUSTER.organisation.v1] occurrences matches {0..1}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Genomic service request">
+				description = <"Request for genomic laboratory service.">
+			>
+			["id143.1"] = <
+				text = <"Receiving laboratory / organisation">
+				description = <"Organisation expected to fulfil the request (HSA).">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Genomisk tjänstebegäran">
+				description = <"Begäran om genomisk laboratorietjänst.">
+			>
+			["id143.1"] = <
+				text = <"Mottagande laboratorium / organisation">
+				description = <"Organisation som förväntas utföra begäran (HSA).">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-EVALUATION.t_genomics_problem_diagnosis.v1.0.0
+
+specialize
+	openEHR-EHR-EVALUATION.problem_diagnosis.v1
+
+definition
+	EVALUATION[id1.1] matches {	-- Referring diagnosis
+		/data[id2]/items matches {
+			ELEMENT[id3] occurrences matches {1}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Referring diagnosis">
+				description = <"Diagnosis or problem motivating the genomic request.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Remitterande diagnos">
+				description = <"Diagnos eller problem som motiverar den genomiska remissen.">
 			>
 		>
 	>

@@ -26,16 +26,16 @@ description
 	details = <
 		["en"] = <
 			language = <[ISO_639-1::en]>
-			purpose = <"Swedish RCC cancer genomics result report (Konfigurationsunderlag genomik). Event Assessment composition wrapping laboratory_test_result with specimen, assay, genomic variants (cancer specialisation), analytes (TMB/MSI/HRD/cellularity), and laboratory organisation.">
-			use = <"Scaffold — constrain further in Better Template Designer / OPT after ADL2→1.4 conversion. Slot includes use local drafts where CKM gaps exist.">
-			keywords = <"genomics", "cancer", "report", "RCC", "molecular pathology">
+			purpose = <"Swedish RCC cancer genomics result report (Konfigurationsunderlag genomik / T1 Genomikrapport). Event Assessment composition: report-result wrapping laboratory_test_result with specimen (+ anatomical_location, specimen_processing), receiving organisation, sequencing_assay (+ device), genomic_variant_result-cancer (+ CNV-cancer, clinical implication, presence, translocation, substitution), and TMB/MSI/HRD/tumour-cellularity analytes. Request linkage via protocol Test request details / Requester order identifier.">
+			use = <"Fill slots per inventory. Genomic findings and sequencing_assay follow CKM Molecular Pathology Report placement (Test result / Testing details) even where current laboratory_test_result.v1.2.8 slot regexes list only analyte|panel and device — see docs/template-oet-gaps.md. Narrow value sets in Better/OPT after ADL2→1.4.">
+			keywords = <"genomics", "cancer", "report", "RCC", "molecular pathology", "TMB", "MSI", "HRD">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
-			purpose = <"Svensk RCC cancergenomikrapport (Konfigurationsunderlag genomik).">
-			use = <"Ställning — begränsa vidare i Better / OPT efter ADL2→1.4.">
-			keywords = <"genomik", "cancer", "rapport", "RCC">
+			purpose = <"Svensk RCC cancergenomikrapport (Konfigurationsunderlag genomik / T1 Genomikrapport). Event Assessment: report-result med laboratorieresultat, prov, organisation, sekvenseringsassay, cancer-varianter och TMB/MSI/HRD.">
+			use = <"Fyll slotar enligt inventering. Se docs/template-oet-gaps.md för slot-/OET-luckor. Begränsa värdemängder i Better/OPT efter ADL2→1.4.">
+			keywords = <"genomik", "cancer", "rapport", "RCC", "TMB", "MSI", "HRD">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
 	>
@@ -46,7 +46,7 @@ description
 definition
 	COMPOSITION[id1.1] matches {	-- Genomics cancer report
 		content matches {
-			use_archetype OBSERVATION[id0.1, openEHR-EHR-OBSERVATION.laboratory_test_result.v1] occurrences matches {1}
+			use_archetype OBSERVATION[id0.1, openEHR-EHR-OBSERVATION.t_genomics_lab_result.v1] occurrences matches {1}
 		}
 	}
 
@@ -58,8 +58,8 @@ terminology
 				description = <"Result report for cancer genomic testing (Swedish RCC).">
 			>
 			["id0.1"] = <
-				text = <"Laboratory test result">
-				description = <"Genomic laboratory test result including specimens, assay, variants and analytes.">
+				text = <"Genomic laboratory test result">
+				description = <"Laboratory test result constrained for cancer genomics: specimens, assay, variants and biomarkers.">
 			>
 		>
 		["sv"] = <
@@ -68,8 +68,475 @@ terminology
 				description = <"Resultatrapport för cancergenomisk testning (RCC).">
 			>
 			["id0.1"] = <
-				text = <"Laboratorieresultat">
-				description = <"Genomiskt laboratorieresultat med prover, analys, varianter och analyter.">
+				text = <"Genomiskt laboratorieresultat">
+				description = <"Laboratorieresultat begränsat för cancergenomik: prover, assay, varianter och biomarkörer.">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-OBSERVATION.t_genomics_lab_result.v1.0.0
+
+specialize
+	openEHR-EHR-OBSERVATION.laboratory_test_result.v1
+
+definition
+	OBSERVATION[id1.1] matches {	-- Genomic laboratory test result
+		/data[id2]/events[id3]/data[id4]/items matches {
+			use_archetype CLUSTER[id66.1, openEHR-EHR-CLUSTER.t_specimen_genomics.v1] occurrences matches {1..*}
+			use_archetype CLUSTER[id98.1, openEHR-EHR-CLUSTER.t_analyte_tmb.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id98.2, openEHR-EHR-CLUSTER.t_analyte_msi.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id98.3, openEHR-EHR-CLUSTER.t_analyte_hrd.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id98.4, openEHR-EHR-CLUSTER.t_analyte_tumour_cellularity.v1] occurrences matches {0..*}
+			use_archetype CLUSTER[id98.5, openEHR-EHR-CLUSTER.t_gvr_cancer.v1] occurrences matches {0..*}
+		}
+		/protocol[id5]/items matches {
+			use_archetype CLUSTER[id18.1, openEHR-EHR-CLUSTER.organisation.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id111.1, openEHR-EHR-CLUSTER.t_sequencing_assay.v1] occurrences matches {0..*}
+			use_archetype CLUSTER[id111.2, openEHR-EHR-CLUSTER.device.v1] occurrences matches {0..*}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Genomic laboratory test result">
+				description = <"Laboratory test result for cancer genomic analysis.">
+			>
+			["id66.1"] = <
+				text = <"Specimen">
+				description = <"Source and/or extracted specimen (parent–child via Parent specimen identifier).">
+			>
+			["id98.1"] = <
+				text = <"TMB">
+				description = <"Tumor mutational burden analyte (mut/Mb).">
+			>
+			["id98.2"] = <
+				text = <"MSI">
+				description = <"Microsatellite instability status analyte.">
+			>
+			["id98.3"] = <
+				text = <"HRD">
+				description = <"Homologous recombination deficiency score / interpretation analyte.">
+			>
+			["id98.4"] = <
+				text = <"Tumour cellularity">
+				description = <"Pathologist and/or bioinformatic tumour cellularity / fraction.">
+			>
+			["id98.5"] = <
+				text = <"Genomic variant result (cancer)">
+				description = <"Cancer genomic finding with ASCO/AMP, ESCAT, origin, and clinical implications.">
+			>
+			["id18.1"] = <
+				text = <"Receiving laboratory">
+				description = <"Laboratory organisation (HSA identifiers).">
+			>
+			["id111.1"] = <
+				text = <"Sequencing assay">
+				description = <"Study / assay metadata (sequencing type, kit, nucleic acid, device).">
+			>
+			["id111.2"] = <
+				text = <"Sequencing / panel device">
+				description = <"Device or panel product when not nested under sequencing_assay.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Genomiskt laboratorieresultat">
+				description = <"Laboratorieresultat för cancergenomisk analys.">
+			>
+			["id66.1"] = <
+				text = <"Prov">
+				description = <"Ursprungs- och/eller extraherat prov (förälder–barn via föräldraprovidentitet).">
+			>
+			["id98.1"] = <
+				text = <"TMB">
+				description = <"Tumörmutationsbörda (mut/Mb).">
+			>
+			["id98.2"] = <
+				text = <"MSI">
+				description = <"Mikrosatellitinstabilitetsstatus.">
+			>
+			["id98.3"] = <
+				text = <"HRD">
+				description = <"Homolog rekombinationsbrist – poäng / tolkning.">
+			>
+			["id98.4"] = <
+				text = <"Tumörcellshalt">
+				description = <"Patologens och/eller bioinformatisk tumörcellshalt / fraktion.">
+			>
+			["id98.5"] = <
+				text = <"Genetiskt variantresultat (cancer)">
+				description = <"Cancergenomiskt fynd med ASCO/AMP, ESCAT, ursprung och kliniska implikationer.">
+			>
+			["id18.1"] = <
+				text = <"Mottagande laboratorium">
+				description = <"Laboratorieorganisation (HSA-identiteter).">
+			>
+			["id111.1"] = <
+				text = <"Sekvenseringsassay">
+				description = <"Studie-/assaymetadata (sekvenseringstyp, kit, nukleinsyra, enhet).">
+			>
+			["id111.2"] = <
+				text = <"Sekvenserings-/panelenhet">
+				description = <"Enhet eller panelprodukt när den inte nästlas under sequencing_assay.">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-CLUSTER.t_specimen_genomics.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.specimen.v1
+
+definition
+	CLUSTER[id1.1] matches {	-- Specimen (genomics)
+		/items matches {
+			use_archetype CLUSTER[id14.1, openEHR-EHR-CLUSTER.anatomical_location.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id84.1, openEHR-EHR-CLUSTER.specimen_processing.v1] occurrences matches {0..*}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Specimen">
+				description = <"Laboratory specimen for genomic testing.">
+			>
+			["id14.1"] = <
+				text = <"Anatomical location">
+				description = <"Body site and laterality of collection.">
+			>
+			["id84.1"] = <
+				text = <"Specimen processing">
+				description = <"Fixation and other processing (e.g. FFPE); in Additional details slot.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Prov">
+				description = <"Laboratorieprov för genomisk analys.">
+			>
+			["id14.1"] = <
+				text = <"Anatomisk lokalisation">
+				description = <"Kroppsplats och lateralitet vid provtagning.">
+			>
+			["id84.1"] = <
+				text = <"Provbearbetning">
+				description = <"Fixering och annan bearbetning (t.ex. FFPE); i Additional details-slot.">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-CLUSTER.t_gvr_cancer.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1
+
+definition
+	CLUSTER[id1.1] matches {	-- Genomic variant result (cancer) filled
+		/items matches {
+			use_archetype CLUSTER[id46.1, openEHR-EHR-CLUSTER.genomic_copy_number_variant-cancer.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.2, openEHR-EHR-CLUSTER.genomic_substitution_variant.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.3, openEHR-EHR-CLUSTER.genomic_deletion_variant.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.4, openEHR-EHR-CLUSTER.genomic_insertion_variant.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.5, openEHR-EHR-CLUSTER.genomic_deletion_insertion_variant.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id0.7.1, openEHR-EHR-CLUSTER.variant_clinical_implication.v1] occurrences matches {0..*}
+			use_archetype CLUSTER[id99.1, openEHR-EHR-CLUSTER.genetic_variant_presence.v0] occurrences matches {0..1}
+			use_archetype CLUSTER[id99.2, openEHR-EHR-CLUSTER.translocation_variant.v0] occurrences matches {0..1}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Genomic variant result (cancer)">
+				description = <"Cancer genomic finding with nested structured variant and implications.">
+			>
+			["id46.1"] = <
+				text = <"Copy number variant (cancer)">
+				description = <"CNV with Gain/Loss/Amplification/Homozygous deletion.">
+			>
+			["id46.2"] = <
+				text = <"Substitution variant">
+				description = <"SNV / substitution structured detail.">
+			>
+			["id46.3"] = <
+				text = <"Deletion variant">
+				description = <"Deletion structured detail.">
+			>
+			["id46.4"] = <
+				text = <"Insertion variant">
+				description = <"Insertion structured detail.">
+			>
+			["id46.5"] = <
+				text = <"Deletion-insertion variant">
+				description = <"Indel structured detail.">
+			>
+			["id0.7.1"] = <
+				text = <"Clinical implication">
+				description = <"Diagnostic and/or therapeutic implication for this variant.">
+			>
+			["id99.1"] = <
+				text = <"Genetic variant presence">
+				description = <"Detected / not detected (draft archetype).">
+			>
+			["id99.2"] = <
+				text = <"Translocation / fusion structure">
+				description = <"Structural detail for rearrangements (draft; REVIEWSUSPENDED on CKM).">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Genetiskt variantresultat (cancer)">
+				description = <"Cancergenomiskt fynd med nästlad strukturerad variant och implikationer.">
+			>
+			["id46.1"] = <
+				text = <"Kopietalsvariant (cancer)">
+				description = <"CNV med Gain/Loss/Amplifiering/Homozygot deletion.">
+			>
+			["id46.2"] = <
+				text = <"Substitutionsvariant">
+				description = <"SNV / substitution – strukturerad detalj.">
+			>
+			["id46.3"] = <
+				text = <"Deletionsvariant">
+				description = <"Deletion – strukturerad detalj.">
+			>
+			["id46.4"] = <
+				text = <"Insertionsvariant">
+				description = <"Insertion – strukturerad detalj.">
+			>
+			["id46.5"] = <
+				text = <"Deletions-insertionsvariant">
+				description = <"Indel – strukturerad detalj.">
+			>
+			["id0.7.1"] = <
+				text = <"Klinisk implikation">
+				description = <"Diagnostisk och/eller terapeutisk implikation för varianten.">
+			>
+			["id99.1"] = <
+				text = <"Genetisk variantförekomst">
+				description = <"Påvisad / ej påvisad (utkastarketyp).">
+			>
+			["id99.2"] = <
+				text = <"Translokation / fusionsstruktur">
+				description = <"Strukturdetalj för rearrangemang (utkast).">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-CLUSTER.t_sequencing_assay.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.sequencing_assay.v0
+
+definition
+	CLUSTER[id1.1] matches {	-- Sequencing assay filled
+		/items matches {
+			use_archetype CLUSTER[id37.1, openEHR-EHR-CLUSTER.device.v1] occurrences matches {0..*}
+			use_archetype CLUSTER[id39.1, openEHR-EHR-CLUSTER.reference_sequence.v1] occurrences matches {0..1}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Sequencing assay">
+				description = <"Genomic study / assay metadata.">
+			>
+			["id37.1"] = <
+				text = <"Sequencing device / panel">
+				description = <"Instrument or kit/panel product used for sequencing.">
+			>
+			["id39.1"] = <
+				text = <"Reference genome">
+				description = <"Reference sequence used for alignment (e.g. GRCh38).">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Sekvenseringsassay">
+				description = <"Genomisk studie-/assaymetadata.">
+			>
+			["id37.1"] = <
+				text = <"Sekvenseringsenhet / panel">
+				description = <"Instrument eller kit/panelprodukt för sekvensering.">
+			>
+			["id39.1"] = <
+				text = <"Referensgenom">
+				description = <"Referenssekvens för alignment (t.ex. GRCh38).">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-CLUSTER.t_analyte_tmb.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.laboratory_test_analyte.v1
+
+definition
+	CLUSTER[id1.1] matches {	-- TMB
+		/items[id25]/value matches {
+			DV_TEXT[id9002.1] matches {
+				value matches {"TMB", "Tumor mutational burden", "Tumour mutational burden", "Tumörmutationsbörda"}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"TMB">
+				description = <"Tumor mutational burden laboratory analyte.">
+			>
+			["id9002.1"] = <
+				text = <"Analyte name">
+				description = <"Fixed to TMB / Tumor mutational burden.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"TMB">
+				description = <"Tumörmutationsbörda – laboratorieanalyt.">
+			>
+			["id9002.1"] = <
+				text = <"Analytnamn">
+				description = <"Låst till TMB / Tumörmutationsbörda.">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-CLUSTER.t_analyte_msi.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.laboratory_test_analyte.v1
+
+definition
+	CLUSTER[id1.1] matches {	-- MSI
+		/items[id25]/value matches {
+			DV_TEXT[id9002.1] matches {
+				value matches {"MSI", "Microsatellite instability", "Mikrosatellitinstabilitet"}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"MSI">
+				description = <"Microsatellite instability laboratory analyte.">
+			>
+			["id9002.1"] = <
+				text = <"Analyte name">
+				description = <"Fixed to MSI / Microsatellite instability.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"MSI">
+				description = <"Mikrosatellitinstabilitet – laboratorieanalyt.">
+			>
+			["id9002.1"] = <
+				text = <"Analytnamn">
+				description = <"Låst till MSI / Mikrosatellitinstabilitet.">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-CLUSTER.t_analyte_hrd.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.laboratory_test_analyte.v1
+
+definition
+	CLUSTER[id1.1] matches {	-- HRD
+		/items[id25]/value matches {
+			DV_TEXT[id9002.1] matches {
+				value matches {"HRD", "Homologous recombination deficiency", "Homolog rekombinationsbrist", "HRD score"}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"HRD">
+				description = <"Homologous recombination deficiency laboratory analyte.">
+			>
+			["id9002.1"] = <
+				text = <"Analyte name">
+				description = <"Fixed to HRD / Homologous recombination deficiency.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"HRD">
+				description = <"Homolog rekombinationsbrist – laboratorieanalyt.">
+			>
+			["id9002.1"] = <
+				text = <"Analytnamn">
+				description = <"Låst till HRD / Homolog rekombinationsbrist.">
+			>
+		>
+	>
+
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-CLUSTER.t_analyte_tumour_cellularity.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.laboratory_test_analyte.v1
+
+definition
+	CLUSTER[id1.1] matches {	-- Tumour cellularity
+		/items[id25]/value matches {
+			DV_TEXT[id9002.1] matches {
+				value matches {"Tumour cellularity", "Tumor cellularity", "Tumörcellshalt", "Tumour fraction", "Tumor fraction", "Tumörfraktion", "Bioinformatic tumour fraction", "Bioinformatisk tumörfraktion"}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Tumour cellularity">
+				description = <"Pathologist or bioinformatic tumour cellularity / fraction.">
+			>
+			["id9002.1"] = <
+				text = <"Analyte name">
+				description = <"Constrained to tumour cellularity / fraction labels.">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Tumörcellshalt">
+				description = <"Patologens eller bioinformatisk tumörcellshalt / fraktion.">
+			>
+			["id9002.1"] = <
+				text = <"Analytnamn">
+				description = <"Begränsat till tumörcellshalt / fraktion-etiketter.">
 			>
 		>
 	>

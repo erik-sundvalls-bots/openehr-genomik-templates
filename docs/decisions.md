@@ -73,3 +73,6 @@ CKM-sökning 2026-10-15: **0 träffar** för ASCO/AMP/ESCAT. GMS `mtbp_classific
 
 ## 7. Repo
 Privat: `https://github.com/erik-sundvalls-bots/openehr-genomik-templates` (gh som `erik-sundvalls-bots`).
+
+## 8. T1/T2 filled (2026-10-15 kväll)
+ADL2 templates filled with nested `template_overlay` slot fills (not skeletons). See `docs/template-coverage.md` and `docs/template-oet-gaps.md`. Archie parse2 OK. Specialised drafts down-converted under `build/archie-adl14/` / `build/ehrtslib-adl14/`. Template→OET for Better still open.

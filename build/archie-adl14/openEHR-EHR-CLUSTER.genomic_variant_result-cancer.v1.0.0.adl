@@ -1,0 +1,396 @@
+archetype (adl_version=1.4; rm_release=1.1.0; generated)
+    openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1
+
+specialize
+    openEHR-EHR-CLUSTER.genomic_variant_result.v1
+
+
+concept
+    [at0001.1]    -- Genomic variant result (cancer)
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+                ["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Erik Sundvall / RCC Genomik (draft)">
+        ["organisation"] = <"Regionala cancercentrum i samverkan">
+        ["email"] = <"erik.sundvall@regionstockholm.se">
+        ["date"] = <"2026-10-15">
+    >
+    lifecycle_state = <"unmanaged">
+    custodian_namespace = <"se.rcc">
+    custodian_organisation = <"Regionala cancercentrum i samverkan">
+    licence = <"Creative Commons Attribution-ShareAlike 4.0 International">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Specialisation of genomic_variant_result for somatic cancer reporting (Swedish RCC Konfigurationsunderlag genomik). Adds genetic origin, ASCO/AMP clinical significance tier, ESCAT therapeutic relevance, exon number, ISCN karyotype, and Sequence Ontology molecular consequence. Local draft pending CKM Genomics forum proposal.">
+            keywords = <"genomic", "cancer", "somatic", "ASCO", "AMP", "ESCAT", "genetic origin", "ISCN", "exon", "molecular consequence">
+            use = <"Use in cancer genomic result reports where both germline ACMG (parent) and somatic ASCO/AMP + ESCAT classifications may apply. Prefer coded value sets from valuesets/asco_tier.json, escat_tier.json, genetiskt_ursprung.json, molecular_consequence.json.">
+            misuse = <"Do not use for pure germline reporting where only ACMG is required — use the parent archetype. Do not treat ASCO/AMP tier as a substitute for ACMG pathogenicity.">
+            copyright = <"© Regionala cancercentrum i samverkan / openEHR Foundation (parent)">
+        >
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Specialisering av genomic_variant_result för somatisk cancerapportering (RCC Konfigurationsunderlag genomik). Lägger till genetiskt ursprung, ASCO/AMP-tier, ESCAT, exonnummer, ISCN-karyotyp och SO molecular consequence.">
+            keywords = <"genomik", "cancer", "somatisk", "ASCO", "AMP", "ESCAT", "genetiskt ursprung", "ISCN", "exon">
+            use = <"Används i cancergenomiska resultatrapporter där både ACMG (förälder) och ASCO/AMP + ESCAT kan behövas.">
+            misuse = <"Använd inte för ren germline-rapportering där endast ACMG krävs.">
+            copyright = <"© Regionala cancercentrum i samverkan / openEHR Foundation (förälder)">
+        >
+    >
+
+definition
+    CLUSTER[at0001.1] matches {    -- Genomic variant result (cancer)
+        /items matches {
+            ELEMENT[at0000.1] occurrences matches {0..1} matches {    -- Genetic origin
+                value matches {
+                    DV_CODED_TEXT[at0000.10] matches {
+                        defining_code matches {[local::at0.1, at0.2, at0.3, at0.4, at0.5]}
+                    }
+                    DV_TEXT[at0000.11]
+                }
+            }
+            ELEMENT[at0000.2] occurrences matches {0..1} matches {    -- ASCO/AMP clinical significance tier
+                value matches {
+                    DV_CODED_TEXT[at0000.12] matches {
+                        defining_code matches {[local::at0.10, at0.11, at0.12, at0.13, at0.14, at0.15, at0.16]}
+                    }
+                }
+            }
+            ELEMENT[at0000.3] occurrences matches {0..1} matches {    -- ESCAT therapeutic relevance
+                value matches {
+                    DV_CODED_TEXT[at0000.13] matches {
+                        defining_code matches {[local::at0.20, at0.21, at0.22, at0.23, at0.24, at0.25, at0.26, at0.27, at0.28, at0.29, at0.30]}
+                    }
+                }
+            }
+            ELEMENT[at0000.4] occurrences matches {0..1} matches {    -- Exon number
+                value matches {
+                    DV_COUNT[at0000.14] matches {
+                        magnitude matches {|>0|}
+                    }
+                    DV_TEXT[at0000.15]
+                }
+            }
+            ELEMENT[at0000.5] occurrences matches {0..1} matches {    -- Karyotype (ISCN)
+                value matches {
+                    DV_TEXT[at0000.16]
+                }
+            }
+            ELEMENT[at0000.6] occurrences matches {0..1} matches {    -- Molecular consequence
+                value matches {
+                    DV_CODED_TEXT[at0000.17] matches {
+                        defining_code matches {[ac0.4]}    -- Molecular consequence (SO)
+                    }
+                    DV_TEXT[at0000.18]
+                }
+            }
+            allow_archetype CLUSTER[at0000.7] occurrences matches {0..*} matches {    -- Clinical implication
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.variant_clinical_implication(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+ontology
+    term_definitions = <
+        ["en"] = <
+            items = <
+            ["at0001.1"] = <
+                text = <"Genomic variant result (cancer)">
+                description = <"Results and annotations for a genomic variant found in a cancer sequencing test, including somatic classification systems.">
+            >
+            ["at0000.1"] = <
+                text = <"Genetic origin">
+                description = <"Whether the variant is somatic, germline, likely somatic, likely germline, or unknown. Aligns with FHIR Genomics Observation.component:genomic-allele-origin.">
+            >
+            ["at0000.2"] = <
+                text = <"ASCO/AMP clinical significance tier">
+                description = <"Somatic clinical significance according to ASCO/AMP/CAP tiering (Tier I–IV). Complements parent ACMG classification which targets germline pathogenicity.">
+            >
+            ["at0000.3"] = <
+                text = <"ESCAT therapeutic relevance">
+                description = <"ESMO Scale for Clinical Actionability of molecular Targets (ESCAT) tier for therapeutic decision support.">
+            >
+            ["at0000.4"] = <
+                text = <"Exon number">
+                description = <"Exon number affected by the variant (general; parent Fusion exon remains for fusion-specific context).">
+            >
+            ["at0000.5"] = <
+                text = <"Karyotype (ISCN)">
+                description = <"ISCN karyotype string describing chromosomal rearrangement or CNV notation.">
+            >
+            ["at0000.6"] = <
+                text = <"Molecular consequence">
+                description = <"Predicted molecular consequence using Sequence Ontology (e.g. missense_variant, stop_gained). Aligns with FHIR Genomics Observation.component:molecular-consequence.">
+            >
+            ["at0000.7"] = <
+                text = <"Clinical implication">
+                description = <"Slot for diagnostic and/or therapeutic implication clusters linked to this variant.">
+            >
+            ["at0.1"] = <
+                text = <"Somatic">
+                description = <"Variant acquired in somatic (non-germline) tissue.">
+            >
+            ["at0.2"] = <
+                text = <"Germline">
+                description = <"Variant present in germline.">
+            >
+            ["at0.3"] = <
+                text = <"Likely somatic">
+                description = <"Variant assessed as likely somatic.">
+            >
+            ["at0.4"] = <
+                text = <"Likely germline">
+                description = <"Variant assessed as likely germline.">
+            >
+            ["at0.5"] = <
+                text = <"Unknown origin">
+                description = <"Genetic origin not determined.">
+            >
+            ["at0.10"] = <
+                text = <"Tier I-A">
+                description = <"Strong clinical significance: FDA-approved therapy / guideline recommendation.">
+            >
+            ["at0.11"] = <
+                text = <"Tier I-B">
+                description = <"Strong clinical significance: professional society recommendation.">
+            >
+            ["at0.12"] = <
+                text = <"Tier I-C">
+                description = <"Strong clinical significance: expert consensus or well-powered study.">
+            >
+            ["at0.13"] = <
+                text = <"Tier I-D">
+                description = <"Strong clinical significance: preclinical evidence.">
+            >
+            ["at0.14"] = <
+                text = <"Tier II">
+                description = <"Potential clinical significance: investigational or other tumour type.">
+            >
+            ["at0.15"] = <
+                text = <"Tier III">
+                description = <"Unknown clinical significance (somatic VUS equivalent).">
+            >
+            ["at0.16"] = <
+                text = <"Tier IV">
+                description = <"Benign or likely benign / passenger mutation.">
+            >
+            ["at0.20"] = <
+                text = <"ESCAT Tier I-A">
+                description = <"Ready for routine use — RCT evidence.">
+            >
+            ["at0.21"] = <
+                text = <"ESCAT Tier I-B">
+                description = <"Ready for routine use — single-arm trial.">
+            >
+            ["at0.22"] = <
+                text = <"ESCAT Tier I-C">
+                description = <"Ready for routine use — basket trial.">
+            >
+            ["at0.23"] = <
+                text = <"ESCAT Tier II-A">
+                description = <"Investigational — retrospective evidence.">
+            >
+            ["at0.24"] = <
+                text = <"ESCAT Tier II-B">
+                description = <"Investigational — response without survival data.">
+            >
+            ["at0.25"] = <
+                text = <"ESCAT Tier III-A">
+                description = <"Hypothetical — evidence from other tumour type.">
+            >
+            ["at0.26"] = <
+                text = <"ESCAT Tier III-B">
+                description = <"Hypothetical — similar molecular alteration.">
+            >
+            ["at0.27"] = <
+                text = <"ESCAT Tier IV-A">
+                description = <"Preclinical — in vitro/vivo evidence.">
+            >
+            ["at0.28"] = <
+                text = <"ESCAT Tier IV-B">
+                description = <"Preclinical — in silico prediction.">
+            >
+            ["at0.29"] = <
+                text = <"ESCAT Tier V">
+                description = <"Combination — response without clinical benefit.">
+            >
+            ["at0.30"] = <
+                text = <"ESCAT Tier X">
+                description = <"No evidence for actionability.">
+            >
+            ["ac0.1"] = <
+                text = <"Genetic origin">
+                description = <"Value set for genetic / allele origin.">
+            >
+            ["ac0.2"] = <
+                text = <"ASCO/AMP clinical significance tier">
+                description = <"Local placeholder value set; bind to published ASCO/AMP/CAP codes when available.">
+            >
+            ["ac0.3"] = <
+                text = <"ESCAT therapeutic relevance">
+                description = <"Local placeholder value set for ESCAT tiers.">
+            >
+            ["ac0.4"] = <
+                text = <"Molecular consequence (SO)">
+                description = <"Bind to Sequence Ontology molecular consequence terms (see valuesets/molecular_consequence.json).">
+            >
+            >
+        >
+        ["sv"] = <
+            items = <
+            ["at0001.1"] = <
+                text = <"Genetiskt variantresultat (cancer)">
+                description = <"Resultat och annoteringar för en genomisk variant i cancersekvensering, inklusive somatiska klassificeringssystem.">
+            >
+            ["at0000.1"] = <
+                text = <"Genetiskt ursprung">
+                description = <"Om varianten är somatisk, germline, troligen somatisk, troligen germline eller okänd.">
+            >
+            ["at0000.2"] = <
+                text = <"ASCO/AMP klinisk signifikans-tier">
+                description = <"Somatisk klinisk signifikans enligt ASCO/AMP/CAP (Tier I–IV). Komplement till förälderns ACMG-klassificering.">
+            >
+            ["at0000.3"] = <
+                text = <"ESCAT behandlingsrelevans">
+                description = <"ESMO ESCAT-nivå för terapeutiskt beslutsstöd.">
+            >
+            ["at0000.4"] = <
+                text = <"Exonnummer">
+                description = <"Exonnummer som påverkas av varianten.">
+            >
+            ["at0000.5"] = <
+                text = <"Karyotyp (ISCN)">
+                description = <"ISCN-karyotypsträng för kromosomavvikelse eller CNV-notation.">
+            >
+            ["at0000.6"] = <
+                text = <"Molekylär konsekvens">
+                description = <"Förutsagd molekylär konsekvens enligt Sequence Ontology.">
+            >
+            ["at0000.7"] = <
+                text = <"Klinisk implikation">
+                description = <"Plats för diagnostiska och/eller terapeutiska implikationskluster kopplade till varianten.">
+            >
+            ["at0.1"] = <
+                text = <"Somatisk">
+                description = <"Variant förvärvad i somatisk vävnad.">
+            >
+            ["at0.2"] = <
+                text = <"Germline">
+                description = <"Variant i germline.">
+            >
+            ["at0.3"] = <
+                text = <"Troligen somatisk">
+                description = <"Variant bedömd som troligen somatisk.">
+            >
+            ["at0.4"] = <
+                text = <"Troligen germline">
+                description = <"Variant bedömd som troligen germline.">
+            >
+            ["at0.5"] = <
+                text = <"Okänt ursprung">
+                description = <"Genetiskt ursprung ej fastställt.">
+            >
+            ["at0.10"] = <
+                text = <"Tier I-A">
+                description = <"Stark klinisk signifikans: FDA-godkänd behandling / riktlinjerek.">
+            >
+            ["at0.11"] = <
+                text = <"Tier I-B">
+                description = <"Stark klinisk signifikans: professionell riktlinjerek.">
+            >
+            ["at0.12"] = <
+                text = <"Tier I-C">
+                description = <"Stark klinisk signifikans: expertkonsensus / välpowrad studie.">
+            >
+            ["at0.13"] = <
+                text = <"Tier I-D">
+                description = <"Stark klinisk signifikans: preklinisk evidens.">
+            >
+            ["at0.14"] = <
+                text = <"Tier II">
+                description = <"Potentiell klinisk signifikans: investigationell eller annan tumörtyp.">
+            >
+            ["at0.15"] = <
+                text = <"Tier III">
+                description = <"Okänd klinisk signifikans (somatisk VUS-ekvivalent).">
+            >
+            ["at0.16"] = <
+                text = <"Tier IV">
+                description = <"Benign eller troligen benign / passager-mutation.">
+            >
+            ["at0.20"] = <
+                text = <"ESCAT Tier I-A">
+                description = <"Redo för rutin — RCT-evidens.">
+            >
+            ["at0.21"] = <
+                text = <"ESCAT Tier I-B">
+                description = <"Redo för rutin — single-arm-studie.">
+            >
+            ["at0.22"] = <
+                text = <"ESCAT Tier I-C">
+                description = <"Redo för rutin — basket-studie.">
+            >
+            ["at0.23"] = <
+                text = <"ESCAT Tier II-A">
+                description = <"Investigationell — retrospektiv evidens.">
+            >
+            ["at0.24"] = <
+                text = <"ESCAT Tier II-B">
+                description = <"Investigationell — respons utan överlevnadsdata.">
+            >
+            ["at0.25"] = <
+                text = <"ESCAT Tier III-A">
+                description = <"Hypotetisk — evidens från annan tumörtyp.">
+            >
+            ["at0.26"] = <
+                text = <"ESCAT Tier III-B">
+                description = <"Hypotetisk — liknande molekylär förändring.">
+            >
+            ["at0.27"] = <
+                text = <"ESCAT Tier IV-A">
+                description = <"Preklinisk — in vitro/vivo-evidens.">
+            >
+            ["at0.28"] = <
+                text = <"ESCAT Tier IV-B">
+                description = <"Preklinisk — in silico-prediktion.">
+            >
+            ["at0.29"] = <
+                text = <"ESCAT Tier V">
+                description = <"Kombination — respons utan klinisk nytta.">
+            >
+            ["at0.30"] = <
+                text = <"ESCAT Tier X">
+                description = <"Ingen evidens för åtgärdbarhet.">
+            >
+            ["ac0.1"] = <
+                text = <"Genetiskt ursprung">
+                description = <"Värdemängd för genetiskt / alleliskt ursprung.">
+            >
+            ["ac0.2"] = <
+                text = <"ASCO/AMP klinisk signifikans-tier">
+                description = <"Lokal platshållarvärdemängd; bind till publicerade ASCO/AMP/CAP-koder när tillgängliga.">
+            >
+            ["ac0.3"] = <
+                text = <"ESCAT behandlingsrelevans">
+                description = <"Lokal platshållarvärdemängd för ESCAT-nivåer.">
+            >
+            ["ac0.4"] = <
+                text = <"Molekylär konsekvens (SO)">
+                description = <"Bind till Sequence Ontology molecular consequence-termer.">
+            >
+            >
+        >
+    >
