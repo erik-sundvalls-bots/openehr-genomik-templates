@@ -1,0 +1,793 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=80b7cd2c-11f8-429f-80a4-5c341a5b816f; build_uid=a700a9b2-39d0-4c48-938e-5173ac39140a)
+    openEHR-EHR-CLUSTER.sequencing_assay.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Aurelie Tomczak">
+                ["organisation"] = <"Institute of Pathology, University Hospital Heidelberg, Uniklinikum Heidelberg">
+                ["email"] = <"au.tomczak@yahoo.com, aurelie.tomczak@med.uni-heidelberg.de">
+            >
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Liv Laugen, Vebjørn Arntzen">
+                ["organisation"] = <"​Oslo University Hospital, Norway">
+                ["email"] = <"liv.laugen@ous-hf.no, varntzen@ous-hf.no">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Aurelie Tomczak">
+        ["organisation"] = <"Institute of Pathology, University Hospital Heidelberg">
+        ["email"] = <"au.tomczak@yahoo.com">
+        ["date"] = <"2019-06-24">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Simon Schumacher, HiGHmed, Germany", "Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Gideon Giacomelli, Charité Berlin, Germany", "Florian Kaercher, Charité Berlin, Germany", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Francesca Frexia, CRS4 - Center for advanced studies, research and development in Sardinia, Italy", "Cecilia Mascia, CRS4, Italy (openEHR Editor)", "Paolo Uva, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Sequencing assay definition adapted from Ontology for Biomedical Investigations term. Available from: http://purl.obolibrary.org/obo/OBI_0600047">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"DF6286EF2822D432D92AE88D5CC61E1B">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Zur detaillierten Darstellung der Sequenzierungsanalyse an einer Probe inklusive der Aufzählung aller untersuchten Gene bei einer Panelsequenzierung.">
+            keywords = <"Sequenzierung", "Genomics", "Assay", "Panel", "Pathologie", "Sequenzierungsanalyse", "Panelsequenzierung", "Gene", "Probe">
+            use = <"Zur detaillierten Darstellung der Sequenzierungsanalyse an einer Probe inklusive der Aufzählung aller untersuchten Gene bei einer Panelsequenzierung.
+
+Eine oder mehrere Instanzen dieses Archetyps können im SLOT \"Testdaten\" in \"OBSERVATION.laboratory_test_result\" verschachtelt sein.">
+            misuse = <"*Used only to document the analysis protocol but not to document the results of the sequence analysis. The results are documented with the archetype 'CLUSTER.genomic_variant_result'. (en)">
+            copyright = <"© HiGHmed, openEHR Foundation">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere detaljer om en gensekvensanalyse / genanalyse, inkludert en liste over alle testede gener dersom en genpaneltest ble utført.">
+            keywords = <"Sekvensere", "Genomikk", "Assay", "Panel", "Patologi", "Sekvenseringsanalyse", "Panelsekvensering", "Gen", "DNA", "Probe", "Nuklotid", "Nestegenerasjonssekvensering">
+            use = <"Bruk for å registrere detaljer om en gensekvensanalyse /genanalyse, inkludert en liste over alle testede gener hvis en genpaneltest ble utført.
+
+En eller flere forekomster av denne arketypen kan nøstes i SLOTet \"Undersøkelsesdetaljer\" i arketypen \"OBSERVATION.laboratory_test_result\" (Laboratorieresultat).">
+            misuse = <"*Used only to document the analysis protocol but not to document the results of the sequence analysis. The results are documented with the archetype 'CLUSTER.genomic_variant_result'. (en)">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details of the performed sequencing analysis including a list of all tested genes if panel sequencing was performed.">
+            keywords = <"Sequencing", "Genomics", "Panel", "Assay", "Pathology", "Sequencing analysis", "Panel sequencing", "Gene", "Specimen">
+            use = <"Use to record details of the performed sequencing analysis including a list of all tested genes if panel sequencing was performed.
+
+One or more instances of this archetype may be nested within the 'Testing details' SLOT in the OBSERVATION.laboratory_test_result.">
+            misuse = <"Used only to document the analysis protocol but not to document the results of the sequence analysis. The results are documented with the archetype 'CLUSTER.genomic_variant_result'.">
+            copyright = <"© HiGHmed, openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Sequencing assay
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {1} matches {    -- Sequencing type
+                value matches {
+                    DV_TEXT[id9002]
+                }
+            }
+            allow_archetype CLUSTER[id37] matches {    -- Sequencing device
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            allow_archetype CLUSTER[id40] matches {    -- Bioinformatic analysis
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.knowledge_base_reference(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            allow_archetype CLUSTER[id39] occurrences matches {0..1} matches {    -- Reference genome
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Kit name
+                value matches {
+                    DV_TEXT[id9003]
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Nucleic acid
+                value matches {
+                    DV_TEXT[id9004]
+                    DV_CODED_TEXT[id9005] matches {
+                        defining_code matches {[ac9000]}    -- Nucleic acid (synthesised)
+                    }
+                }
+            }
+            CLUSTER[id7] matches {    -- Tested Gene
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id8] occurrences matches {1} matches {    -- Gene symbol
+                        value matches {
+                            DV_CODED_TEXT[id9006]
+                        }
+                    }
+                    allow_archetype CLUSTER[id26] matches {    -- Gene reference sequence
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                }
+            }
+            CLUSTER[id31] matches {    -- Tested Region
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id32] occurrences matches {1} matches {    -- Chromosome label
+                        value matches {
+                            DV_TEXT[id9007]
+                            DV_CODED_TEXT[id9008] matches {
+                                defining_code matches {[ac9001]}    -- Chromosome label (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id33] occurrences matches {0..1} matches {    -- Start
+                        value matches {
+                            DV_COUNT[id9009]
+                        }
+                    }
+                    ELEMENT[id34] occurrences matches {0..1} matches {    -- End
+                        value matches {
+                            DV_COUNT[id9010]
+                        }
+                    }
+                    allow_archetype CLUSTER[id36] matches {    -- Reference sequence of region
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id27] matches {    -- Extensions
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            ELEMENT[id38] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    DV_TEXT[id9011]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["id1"] = <
+                text = <"*Sequencing assay(en)">
+                description = <"*An assay that uses sequencing technology to infer the sequence of a nucleic acid (DNA, RNA). (en)">
+            >
+            ["id2"] = <
+                text = <"*Sequencing type (en)">
+                description = <"Technologie, die zur Sequenzierung benutzt wurde.">
+                comment = <"*For example: WES, WGS, Gene panel, RNA sequencing, Fusion panel.
+
+Coding with an external terminology is preferred, where possible. (en)">
+            >
+            ["id3"] = <
+                text = <"Kit Name">
+                description = <"Name des Kits, das für das Experiment benutzt wurde.">
+            >
+            ["id4"] = <
+                text = <"Nukleinsäure">
+                description = <"Der Nukleinsäuretyp, z.B. DNA, RNA oder cf-DNA, der zur Sequenzierung verwendet wird.">
+            >
+            ["id7"] = <
+                text = <"Getestete Gene">
+                description = <"Liste aller getesteten Gene, wenn eine Panel-Sequenzierung durchgeführt wurde.">
+            >
+            ["id8"] = <
+                text = <"Gensymbol">
+                description = <"Das offizielle Gensymbol, das von der HGNC genehmigt wurde und eine Kurzform des Gennamens ist.">
+            >
+            ["at23"] = <
+                text = <"DNA">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"RNA">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"cf-DNA">
+                description = <"">
+            >
+            ["id26"] = <
+                text = <"Referenzsequenz des Gens">
+                description = <"Strukturierte Details zur Referenzsequenz des Gens.">
+            >
+            ["id27"] = <
+                text = <"Erweiterungen">
+                description = <"Zusätzliche Details, die aufgezeichnet werden sollen.">
+            >
+            ["id31"] = <
+                text = <"Getestete Region">
+                description = <"Liste aller getesteten Regionen, wenn eine Panel-Sequenzierung durchgeführt wurde.">
+            >
+            ["id32"] = <
+                text = <"Chromosomale Lokalisation">
+                description = <"Chromosomale Lokalisation der getesteten Region.">
+            >
+            ["id33"] = <
+                text = <"Start">
+                description = <"Startposition der getesteten Region.">
+            >
+            ["id34"] = <
+                text = <"Ende">
+                description = <"Endposition der getesteten Region.">
+            >
+            ["id36"] = <
+                text = <"Referenzsequenz der Region">
+                description = <"Strukturierte Details zur Referenzsequenz der Region.">
+            >
+            ["id37"] = <
+                text = <"*Sequencing device (en)">
+                description = <"*The technology platform used to perform nucleic acid sequencing. (en)">
+            >
+            ["id38"] = <
+                text = <"Kommentar">
+                description = <"Kommentar zum Sequenzierungsassay, der nicht in anderen Feldern erfasst wurde.">
+            >
+            ["id39"] = <
+                text = <"Referenzgenom">
+                description = <"Strukturierte Details zur spezifischen Version der human sequence assembly, die für die Annotation verwendet wird.">
+                comment = <"Beispiel: 'GCF_000001405.38'.
+
+Source name: 'NCBI'.
+Accession number: 'GCF_000001405'.
+Version number: 'GCF_000001405.38'.
+URL: 'https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.38/'.">
+            >
+            ["id40"] = <
+                text = <"Bioinformatic analysis workflow">
+                description = <"Strukturierte Details zum bioinformatischen Analyseworkflow oder zum verwendeten Protokoll.">
+            >
+            ["at65"] = <
+                text = <"*Chromosome 1 (en)">
+                description = <"*Chromosome 1. (en)">
+            >
+            ["at66"] = <
+                text = <"*Chromosome 2 (en)">
+                description = <"*Chromosome 2. (en)">
+            >
+            ["at67"] = <
+                text = <"*Chromosome 3 (en)">
+                description = <"*Chromosome 3. (en)">
+            >
+            ["at68"] = <
+                text = <"*Chromosome 4 (en)">
+                description = <"*Chromosome 4. (en)">
+            >
+            ["at69"] = <
+                text = <"*Chromosome 5 (en)">
+                description = <"*Chromosome 5. (en)">
+            >
+            ["at70"] = <
+                text = <"*Chromosome 6 (en)">
+                description = <"*Chromosome 6. (en)">
+            >
+            ["at71"] = <
+                text = <"*Chromosome 7 (en)">
+                description = <"*Chromosome 7. (en)">
+            >
+            ["at72"] = <
+                text = <"*Chromosome 8 (en)">
+                description = <"*Chromosome 8. (en)">
+            >
+            ["at73"] = <
+                text = <"*Chromosome 9 (en)">
+                description = <"*Chromosome 9. (en)">
+            >
+            ["at74"] = <
+                text = <"*Chromosome 10 (en)">
+                description = <"*Chromosome 10. (en)">
+            >
+            ["at75"] = <
+                text = <"*Chromosome 11 (en)">
+                description = <"*Chromosome 11. (en)">
+            >
+            ["at76"] = <
+                text = <"*Chromosome 12 (en)">
+                description = <"*Chromosome 12. (en)">
+            >
+            ["at77"] = <
+                text = <"*Chromosome 13 (en)">
+                description = <"*Chromosome 13. (en)">
+            >
+            ["at78"] = <
+                text = <"*Chromosome 14 (en)">
+                description = <"*Chromosome 14. (en)">
+            >
+            ["at79"] = <
+                text = <"*Chromosome 15 (en)">
+                description = <"*Chromosome 15. (en)">
+            >
+            ["at80"] = <
+                text = <"*Chromosome 16 (en)">
+                description = <"*Chromosome 16. (en)">
+            >
+            ["at81"] = <
+                text = <"*Chromosome 17 (en)">
+                description = <"*Chromosome 17. (en)">
+            >
+            ["at82"] = <
+                text = <"*Chromosome 18 (en)">
+                description = <"*Chromosome 18. (en)">
+            >
+            ["at83"] = <
+                text = <"*Chromosome 19 (en)">
+                description = <"*Chromosome 19. (en)">
+            >
+            ["at84"] = <
+                text = <"*Chromosome 20 (en)">
+                description = <"*Chromosome 20. (en)">
+            >
+            ["at85"] = <
+                text = <"*Chromosome 21 (en)">
+                description = <"*Chromosome 21. (en)">
+            >
+            ["at86"] = <
+                text = <"*Chromosome 22 (en)">
+                description = <"*Chromosome 22. (en)">
+            >
+            ["at87"] = <
+                text = <"*Chromosome X (en)">
+                description = <"*Chromosome X. (en)">
+            >
+            ["at88"] = <
+                text = <"*Chromosome Y (en)">
+                description = <"*Chromosome Y. (en)">
+            >
+            ["ac9000"] = <
+                text = <"Nukleinsäure (synthesised)">
+                description = <"Der Nukleinsäuretyp, z.B. DNA, RNA oder cf-DNA, der zur Sequenzierung verwendet wird. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Chromosomale Lokalisation (synthesised)">
+                description = <"Chromosomale Lokalisation der getesteten Region. (synthesised)">
+            >
+        >
+        ["nb"] = <
+            ["id1"] = <
+                text = <"*Sequencing assay (en)">
+                description = <"*An assay that uses sequencing technology to infer the sequence of a nucleic acid (DNA, RNA). (en)">
+            >
+            ["id2"] = <
+                text = <"*Sequencing type (en)">
+                description = <"Teknologi brukt til gensekvensanalysen.">
+                comment = <"*For example: WES, WGS, Gene panel, RNA sequencing, Fusion panel.
+
+Coding with an external terminology is preferred, where possible. (en)">
+            >
+            ["id3"] = <
+                text = <"Navn på Kit">
+                description = <"Navnet på kitet som ble brukt til eksperimentet.">
+            >
+            ["id4"] = <
+                text = <"Nukleinsyre">
+                description = <"Type nukleinsyre som er brukt til sekvensanalysen, f.eks. DNA, RNA eller cf-DNA.">
+            >
+            ["id7"] = <
+                text = <"Testede gener">
+                description = <"Liste over alle gener som ble testet hvis det ble utført en genpaneltest.">
+            >
+            ["id8"] = <
+                text = <"Gensymbol">
+                description = <"Det offisielle gensymbolet godkjent av HGNC, som er en kortform for gennavnet.">
+            >
+            ["at23"] = <
+                text = <"DNA">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"RNA">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"cfDNA">
+                description = <"">
+            >
+            ["id26"] = <
+                text = <"Referansesekvens for genet">
+                description = <"Strukturerte detaljer om referansesekvensen til genet.">
+            >
+            ["id27"] = <
+                text = <"Tilleggsinformasjon">
+                description = <"Ytterligere informasjon som ikke er registrert andre steder.">
+            >
+            ["id31"] = <
+                text = <"Testet genregion">
+                description = <"Liste over alle de testede regionene hvis det ble utført en genpaneltest.">
+            >
+            ["id32"] = <
+                text = <"Kromosomal lokalisasjon">
+                description = <"Lokalisasjonen til kromosomet i den testede regionen.">
+            >
+            ["id33"] = <
+                text = <"Start">
+                description = <"Startposisjon for det testede området.">
+            >
+            ["id34"] = <
+                text = <"Slutt">
+                description = <"Sluttposisjonen til det testede området.">
+            >
+            ["id36"] = <
+                text = <"Referansesekvens for regionen">
+                description = <"Strukturerte detaljer om referansesekvensen til regionen.">
+            >
+            ["id37"] = <
+                text = <"*Sequencing device (en)">
+                description = <"*The technology platform used to perform nucleic acid sequencing. (en)">
+            >
+            ["id38"] = <
+                text = <"Kommentar">
+                description = <"Ytterligere fritekst om analyseresultatet som ikke fanges opp av andre elementer.">
+            >
+            ["id39"] = <
+                text = <"Referansegenom">
+                description = <"* Strukturerte detaljer om den spesifikke versjonen av XXXXXXXXX som er brukt for kommentar.">
+                comment = <"*For eksempel:
+
+Navn på kilde: 'NCBI'.
+Accession number: 'GCF_000001405'.
+Versjonsnummer: 'GCF_000001405.38'.
+URL: 'https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.38/'.">
+            >
+            ["id40"] = <
+                text = <"Bioinformatisk analyseprosess">
+                description = <"Strukturerte detaljer om den bioinformatiske analyseprosessen eller protokollen som er brukt.">
+            >
+            ["at65"] = <
+                text = <"*Chromosome 1 (en)">
+                description = <"*Chromosome 1. (en)">
+            >
+            ["at66"] = <
+                text = <"*Chromosome 2 (en)">
+                description = <"*Chromosome 2. (en)">
+            >
+            ["at67"] = <
+                text = <"*Chromosome 3 (en)">
+                description = <"*Chromosome 3. (en)">
+            >
+            ["at68"] = <
+                text = <"*Chromosome 4 (en)">
+                description = <"*Chromosome 4. (en)">
+            >
+            ["at69"] = <
+                text = <"*Chromosome 5 (en)">
+                description = <"*Chromosome 5. (en)">
+            >
+            ["at70"] = <
+                text = <"*Chromosome 6 (en)">
+                description = <"*Chromosome 6. (en)">
+            >
+            ["at71"] = <
+                text = <"*Chromosome 7 (en)">
+                description = <"*Chromosome 7. (en)">
+            >
+            ["at72"] = <
+                text = <"*Chromosome 8 (en)">
+                description = <"*Chromosome 8. (en)">
+            >
+            ["at73"] = <
+                text = <"*Chromosome 9 (en)">
+                description = <"*Chromosome 9. (en)">
+            >
+            ["at74"] = <
+                text = <"*Chromosome 10 (en)">
+                description = <"*Chromosome 10. (en)">
+            >
+            ["at75"] = <
+                text = <"*Chromosome 11 (en)">
+                description = <"*Chromosome 11. (en)">
+            >
+            ["at76"] = <
+                text = <"*Chromosome 12 (en)">
+                description = <"*Chromosome 12. (en)">
+            >
+            ["at77"] = <
+                text = <"*Chromosome 13 (en)">
+                description = <"*Chromosome 13. (en)">
+            >
+            ["at78"] = <
+                text = <"*Chromosome 14 (en)">
+                description = <"*Chromosome 14. (en)">
+            >
+            ["at79"] = <
+                text = <"*Chromosome 15 (en)">
+                description = <"*Chromosome 15. (en)">
+            >
+            ["at80"] = <
+                text = <"*Chromosome 16 (en)">
+                description = <"*Chromosome 16. (en)">
+            >
+            ["at81"] = <
+                text = <"*Chromosome 17 (en)">
+                description = <"*Chromosome 17. (en)">
+            >
+            ["at82"] = <
+                text = <"*Chromosome 18 (en)">
+                description = <"*Chromosome 18. (en)">
+            >
+            ["at83"] = <
+                text = <"*Chromosome 19 (en)">
+                description = <"*Chromosome 19. (en)">
+            >
+            ["at84"] = <
+                text = <"*Chromosome 20 (en)">
+                description = <"*Chromosome 20. (en)">
+            >
+            ["at85"] = <
+                text = <"*Chromosome 21 (en)">
+                description = <"*Chromosome 21. (en)">
+            >
+            ["at86"] = <
+                text = <"*Chromosome 22 (en)">
+                description = <"*Chromosome 22. (en)">
+            >
+            ["at87"] = <
+                text = <"*Chromosome X (en)">
+                description = <"*Chromosome X. (en)">
+            >
+            ["at88"] = <
+                text = <"*Chromosome Y (en)">
+                description = <"*Chromosome Y. (en)">
+            >
+            ["ac9000"] = <
+                text = <"Nukleinsyre (synthesised)">
+                description = <"Type nukleinsyre som er brukt til sekvensanalysen, f.eks. DNA, RNA eller cf-DNA. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Kromosomal lokalisasjon (synthesised)">
+                description = <"Lokalisasjonen til kromosomet i den testede regionen. (synthesised)">
+            >
+        >
+        ["en"] = <
+            ["id1"] = <
+                text = <"Sequencing assay">
+                description = <"An assay that uses sequencing technology to infer the sequence of a nucleic acid (DNA, RNA).">
+            >
+            ["id2"] = <
+                text = <"Sequencing type">
+                description = <"Name of the technology used for sequencing analysis.">
+                comment = <"For example: WES, WGS, Gene panel, RNA sequencing, Fusion panel.
+
+Coding with an external terminology is preferred, where possible.">
+            >
+            ["id3"] = <
+                text = <"Kit name">
+                description = <"Name of the kit used for the experiment.">
+                comment = <"For example Oncomine Comprehensive Panel V3.">
+            >
+            ["id4"] = <
+                text = <"Nucleic acid">
+                description = <"Type of nucleic acid used for sequencing, e.g. DNA, RNA or cf-DNA.">
+            >
+            ["id7"] = <
+                text = <"Tested Gene">
+                description = <"List of all tested genes, if panel sequencing was performed.">
+            >
+            ["id8"] = <
+                text = <"Gene symbol">
+                description = <"The official gene symbol approved by the HGNC, which is a short abbreviated form of the gene name.">
+            >
+            ["at23"] = <
+                text = <"DNA">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"RNA">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"cf-DNA">
+                description = <"">
+            >
+            ["id26"] = <
+                text = <"Gene reference sequence">
+                description = <"Structured details on the reference sequence of the gene.">
+                comment = <"This slot is repeating to allow the description of the reference sequence using different vocabularies as source (e.g., RefSeq and Ensembl)">
+            >
+            ["id27"] = <
+                text = <"Extensions">
+                description = <"Additional details to be captured.">
+            >
+            ["id31"] = <
+                text = <"Tested Region">
+                description = <"If panel sequencing was performed, this cluster is used to report the region(s) of interest for sequencing studies as one genomic range that identifies the parts of the reference sequence that are sequenced.">
+            >
+            ["id32"] = <
+                text = <"Chromosome label">
+                description = <"The chromosome of the tested region.">
+            >
+            ["id33"] = <
+                text = <"Start">
+                description = <"Start position of the tested region.">
+            >
+            ["id34"] = <
+                text = <"End">
+                description = <"End position of the tested region.">
+            >
+            ["id36"] = <
+                text = <"Reference sequence of region">
+                description = <"Structured details on the reference sequence of the region.">
+            >
+            ["id37"] = <
+                text = <"Sequencing device">
+                description = <"The technology platform used to perform nucleic acid sequencing.">
+            >
+            ["id38"] = <
+                text = <"Comment">
+                description = <"Comment on the sequencing assay that was not captured in other fields.">
+            >
+            ["id39"] = <
+                text = <"Reference genome">
+                description = <"Structured details about the specific version of the human sequence assembly used for annotation.">
+                comment = <"For example: 'GCF_000001405.38'.
+
+Source name: 'NCBI'.
+Accession number: 'GCF_000001405'.
+Version number: 'GCF_000001405.38'.
+URL: 'https://www.ncbi.nlm.nih.gov/assembly/GCF_000001405.38/'.">
+            >
+            ["id40"] = <
+                text = <"Bioinformatic analysis">
+                description = <"Structured details about the bioinformatic analysis workflow steps or the protocols that is used (e.g., devices, software, pipelines).">
+                comment = <"This slot can be used to record tools used to perform the different steps of the analysis (e.g., alignment, annotation, filtration, preprocessing, QC, variant calling) or whole pipelines. 
+
+
+Alignment, Annotation, Filtration, Preprocessing, QC, Variant Calling">
+            >
+            ["at65"] = <
+                text = <"Chromosome 1">
+                description = <"Chromosome 1.">
+            >
+            ["at66"] = <
+                text = <"Chromosome 2">
+                description = <"Chromosome 2.">
+            >
+            ["at67"] = <
+                text = <"Chromosome 3">
+                description = <"Chromosome 3.">
+            >
+            ["at68"] = <
+                text = <"Chromosome 4">
+                description = <"Chromosome 4.">
+            >
+            ["at69"] = <
+                text = <"Chromosome 5">
+                description = <"Chromosome 5.">
+            >
+            ["at70"] = <
+                text = <"Chromosome 6">
+                description = <"Chromosome 6.">
+            >
+            ["at71"] = <
+                text = <"Chromosome 7">
+                description = <"Chromosome 7.">
+            >
+            ["at72"] = <
+                text = <"Chromosome 8">
+                description = <"Chromosome 8.">
+            >
+            ["at73"] = <
+                text = <"Chromosome 9">
+                description = <"Chromosome 9.">
+            >
+            ["at74"] = <
+                text = <"Chromosome 10">
+                description = <"Chromosome 10.">
+            >
+            ["at75"] = <
+                text = <"Chromosome 11">
+                description = <"Chromosome 11.">
+            >
+            ["at76"] = <
+                text = <"Chromosome 12">
+                description = <"Chromosome 12.">
+            >
+            ["at77"] = <
+                text = <"Chromosome 13">
+                description = <"Chromosome 13.">
+            >
+            ["at78"] = <
+                text = <"Chromosome 14">
+                description = <"Chromosome 14.">
+            >
+            ["at79"] = <
+                text = <"Chromosome 15">
+                description = <"Chromosome 15.">
+            >
+            ["at80"] = <
+                text = <"Chromosome 16">
+                description = <"Chromosome 16.">
+            >
+            ["at81"] = <
+                text = <"Chromosome 17">
+                description = <"Chromosome 17.">
+            >
+            ["at82"] = <
+                text = <"Chromosome 18">
+                description = <"Chromosome 18.">
+            >
+            ["at83"] = <
+                text = <"Chromosome 19">
+                description = <"Chromosome 19.">
+            >
+            ["at84"] = <
+                text = <"Chromosome 20">
+                description = <"Chromosome 20.">
+            >
+            ["at85"] = <
+                text = <"Chromosome 21">
+                description = <"Chromosome 21.">
+            >
+            ["at86"] = <
+                text = <"Chromosome 22">
+                description = <"Chromosome 22.">
+            >
+            ["at87"] = <
+                text = <"Chromosome X">
+                description = <"Chromosome X.">
+            >
+            ["at88"] = <
+                text = <"Chromosome Y">
+                description = <"Chromosome Y.">
+            >
+            ["ac9000"] = <
+                text = <"Nucleic acid (synthesised)">
+                description = <"Type of nucleic acid used for sequencing, e.g. DNA, RNA or cf-DNA. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Chromosome label (synthesised)">
+                description = <"The chromosome of the tested region. (synthesised)">
+            >
+        >
+    >
+    term_bindings = <
+        ["LOINC"] = <
+            ["id8"] = <http://LOINC.org/ver/2.80/id/48018-6>
+            ["at65"] = <http://LOINC.org/ver/2.80/id/LA21254-0>
+            ["at66"] = <http://LOINC.org/ver/2.80/id/LA21255-7>
+            ["at67"] = <http://LOINC.org/ver/2.80/id/LA21256-5>
+            ["at68"] = <http://LOINC.org/ver/2.80/id/LA21257-3>
+            ["at69"] = <http://LOINC.org/ver/2.80/id/LA21258-1>
+            ["at70"] = <http://LOINC.org/ver/2.80/id/LA21259-9>
+            ["at71"] = <http://LOINC.org/ver/2.80/id/LA21260-7>
+            ["at72"] = <http://LOINC.org/ver/2.80/id/LA21261-5>
+            ["at73"] = <http://LOINC.org/ver/2.80/id/LA21262-3>
+            ["at74"] = <http://LOINC.org/ver/2.80/id/LA21263-1>
+            ["at75"] = <http://LOINC.org/ver/2.80/id/LA21264-9>
+            ["at76"] = <http://LOINC.org/ver/2.80/id/LA21265-6>
+            ["at77"] = <http://LOINC.org/ver/2.80/id/LA21266-4>
+            ["at78"] = <http://LOINC.org/ver/2.80/id/LA21267-2>
+            ["at79"] = <http://LOINC.org/ver/2.80/id/LA21268-0>
+            ["at80"] = <http://LOINC.org/ver/2.80/id/LA21269-8>
+            ["at81"] = <http://LOINC.org/ver/2.80/id/LA21270-6>
+            ["at82"] = <http://LOINC.org/ver/2.80/id/LA21271-4>
+            ["at83"] = <http://LOINC.org/ver/2.80/id/LA21272-2>
+            ["at84"] = <http://LOINC.org/ver/2.80/id/LA21273-0>
+            ["at85"] = <http://LOINC.org/ver/2.80/id/LA21274-8>
+            ["at86"] = <http://LOINC.org/ver/2.80/id/LA21275-5>
+            ["at87"] = <http://LOINC.org/ver/2.80/id/LA21276-3>
+            ["at88"] = <http://LOINC.org/ver/2.80/id/LA21277-1>
+        >
+    >
+    value_sets = <
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at65", "at66", "at67", "at68", "at69", "at70", "at71", "at72", "at73", "at74", "at75", "at76", "at77", "at78", "at79", "at80", "at81", "at82", "at83", "at84", "at85", "at86", "at87", "at88">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at23", "at24", "at25">
+        >
+    >
