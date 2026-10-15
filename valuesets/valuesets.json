@@ -1,0 +1,1070 @@
+{
+  "code_systems": {
+    "snomed": {
+      "uri": "http://snomed.info/sct",
+      "name": "SNOMED CT"
+    },
+    "so": {
+      "uri": "http://www.sequenceontology.org",
+      "name": "Sequence Ontology",
+      "note": "FHIR Genomics IG often uses http://www.sequenceontology.org"
+    },
+    "hl7_genomic_study_method": {
+      "uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs",
+      "name": "HL7 Genomics genomic-study-method-type"
+    },
+    "hl7_genomic_study_type": {
+      "uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "name": "HL7 Genomics genomic-study-type"
+    },
+    "hl7_v2_specimen": {
+      "uri": "http://terminology.hl7.org/CodeSystem/v2-0487",
+      "name": "HL7 v2 Specimen Type"
+    },
+    "local_fragestallning": {
+      "uri": "https://cancercentrum.se/terminology/fragestallning",
+      "name": "Local: Frågeställning (RCC/NAG CG draft)",
+      "note": "No SNOMED binding yet"
+    },
+    "local_asco_tier": {
+      "uri": "https://cancercentrum.se/terminology/asco-amp-tier",
+      "name": "AMP/ASCO/CAP 2017 Tier (local pending SNOMED)",
+      "note": "HL7 IG mentions variant-pathogenicity; SNOMED GAP"
+    },
+    "local_escat": {
+      "uri": "https://cancercentrum.se/terminology/escat-tier",
+      "name": "ESMO ESCAT Tier (local)",
+      "note": "No SNOMED codes"
+    },
+    "hl7_allele_origin": {
+      "uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-allele-origin-cs",
+      "name": "HL7 genomic allele origin (approx)"
+    }
+  },
+  "valuesets": {
+    "fragestallning": {
+      "variable": "frågeställning",
+      "fhir": "ServiceRequest.reasonCode",
+      "systems": [
+        "local_fragestallning"
+      ],
+      "codes": [
+        {
+          "code": "1",
+          "display_sv": "Primärdiagnostik",
+          "description": "Bekräfta molekylär diagnos eller subtyp av cancer vid nydiagnos.",
+          "system": "local_fragestallning"
+        },
+        {
+          "code": "2",
+          "display_sv": "Behandlingssvarsprediktion",
+          "description": "Förutsäga om en specifik behandling förväntas fungera baserat på tumörens genetik.",
+          "system": "local_fragestallning"
+        },
+        {
+          "code": "3",
+          "display_sv": "Behandlingsmonitorering",
+          "description": "Följa behandlingssvar över tid via upprepad provtagning (ej MRD-specifik).",
+          "system": "local_fragestallning"
+        },
+        {
+          "code": "4",
+          "display_sv": "Återfallsdetektion (MRD)",
+          "description": "Upptäcka minimal residual disease (MRD) eller tidigt återfall efter behandling.",
+          "system": "local_fragestallning"
+        },
+        {
+          "code": "5",
+          "display_sv": "Resistensfrågeställning",
+          "description": "Förklara varför en pågående behandling upphört att fungera.",
+          "system": "local_fragestallning"
+        },
+        {
+          "code": "6",
+          "display_sv": "Farmakogenomik",
+          "description": "Läkemedelsrespons och dosering baserat på patientens genetiska profil (ej tumörgenomik).",
+          "system": "local_fragestallning"
+        },
+        {
+          "code": "7",
+          "display_sv": "Ärftlig cancer / onkogenetik",
+          "description": "Utredning av ärftlig cancerpredisposition och/eller screening för individer med ökad genetisk risk. Inkluderar tidigare \"Screening (predisposition)\".",
+          "system": "local_fragestallning"
+        },
+        {
+          "code": "8",
+          "display_sv": "Övrigt",
+          "description": "Annan klinisk frågeställning som ej ryms i ovanstående kategorier.",
+          "system": "local_fragestallning"
+        }
+      ]
+    },
+    "provtyp": {
+      "variable": "provtyp",
+      "fhir": "Specimen.type",
+      "systems": [
+        "snomed",
+        "hl7_v2_specimen"
+      ],
+      "codes": [
+        {
+          "hl7_v2": "BLDV",
+          "display_en": "Blood venous",
+          "display_sv": "Venöst blod",
+          "snomed": "53130003",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "MAR",
+          "display_en": "Marrow",
+          "display_sv": "Benmärg",
+          "snomed": "396997002",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "TISS",
+          "display_en": "Tissue",
+          "display_sv": "Vävnad",
+          "snomed": "119376003",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "TUMOR",
+          "display_en": "Tumor",
+          "display_sv": "Tumörvävnad",
+          "snomed": "258435002",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "PLR",
+          "display_en": "Pleural fluid",
+          "display_sv": "Pleuravätska",
+          "snomed": "418564007",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "FGA",
+          "display_en": "Fluid, Abdomen",
+          "display_sv": "Bukvätska / Ascitesvätska",
+          "snomed": "309201001",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "CSF",
+          "display_en": "Cerebrospinal fluid",
+          "display_sv": "Cerebrospinalvätska",
+          "snomed": "258450006",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "BON",
+          "display_en": "Bone",
+          "display_sv": "Ben",
+          "snomed": "430268003",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "SKN",
+          "display_en": "Skin",
+          "display_sv": "Hud",
+          "snomed": "119325001",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "BIFL",
+          "display_en": "Bile Fluid",
+          "display_sv": "Galla",
+          "snomed": "119341000",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "CVM",
+          "display_en": "Cervical Mucus",
+          "display_sv": "Cervixsekret",
+          "snomed": "122577006",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "UR",
+          "display_en": "Urine",
+          "display_sv": "Urin",
+          "snomed": "122575003",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        },
+        {
+          "hl7_v2": "STL",
+          "display_en": "Stool = Fecal",
+          "display_sv": "Avföring / Feces",
+          "snomed": "119339001",
+          "snomed_status": "✓ OK",
+          "system_primary": "snomed"
+        }
+      ]
+    },
+    "fixeringsmetod": {
+      "variable": "fixeringsmetod",
+      "fhir": "Specimen.processing.procedure",
+      "systems": [
+        "snomed"
+      ],
+      "codes": [
+        {
+          "snomed": null,
+          "display_en": "Formalin-Fixed Paraffin-Embedded",
+          "display_sv": "Formalinfixerad paraffinbäddad vävnad",
+          "system": "snomed"
+        },
+        {
+          "snomed": null,
+          "display_en": "Fresh (unfixed, incl. frozen)",
+          "display_sv": "Färsk/ofixerad vävnad (inkl. fryst)",
+          "system": "snomed"
+        },
+        {
+          "snomed": null,
+          "display_en": "Other",
+          "display_sv": "Annat",
+          "system": "snomed"
+        }
+      ],
+      "note": "Procedure concept 787378005; list values lack specific SNOMED codes in draft"
+    },
+    "provtagningsteknik": {
+      "variable": "provtagningsteknik",
+      "fhir": "Specimen.collection.method",
+      "systems": [
+        "snomed"
+      ],
+      "codes": [
+        {
+          "snomed": "118292001",
+          "display_en": "Resection (procedure)",
+          "display_sv": "Resektion / Resektat",
+          "ngs_quality": "🟢 Utmärkt",
+          "comment": "Resektion innebär att en del av eller ett helt organ tas bort, ex. en lob av en lunga eller ett kolorektalt segment. Ger rikligt material med utmärkt DNA-utbyte. Resektatet är det kirurgiska preparatet - stor mängd, bäst för NGS.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "65801008",
+          "display_en": "Excision (procedure)",
+          "display_sv": "Excision",
+          "ngs_quality": "🟢 Utmärkt",
+          "comment": "Excision innebär att en avgränsad förändring tas bort i sin helhet, ex. hudförändring, lymfkörtel eller bröstfibroadenom. Skilj från resektion (organexcision). Oftast stora mängder material men risk för över- och underfixering som kan nedsätta analyskvalietet.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "9911007",
+          "display_en": "Core needle biopsy",
+          "display_sv": "Grovnålsbiopsi (core needle)",
+          "ngs_quality": "🟢 Bra",
+          "comment": "Grovnålsbiopsi ger en vävnadscylinder - histologiskt välbevarat. Oftast tillräcklig kvantitet men begränsningar när det finns simultant behov av immunhistokemi.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "68660007",
+          "display_en": "Punch biopsy",
+          "display_sv": "Stansbiopsi",
+          "ngs_quality": "🟢 Bra",
+          "comment": "Litet men histologiskt välbevarat prov. Vanlig vid hudtumörer. Fungerar väl för NGS.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "56241004",
+          "display_en": "Bone marrow biopsy",
+          "display_sv": "Benmärgsbiopsi",
+          "ngs_quality": "🟢 Utmärkt",
+          "comment": "Standardmetod för hematologiska maligniteter. Ger rikligt material med hög tumörcellshalt. Utmärkt för NGS-panel, karyotypering och FISH.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "178255001",
+          "display_en": "Needle core biopsy (procedure)",
+          "display_sv": "Mellannålsbiopsi",
+          "ngs_quality": "🟢 Bra",
+          "comment": "Mellannålsbiopsi ger vävnadscylinder - bättre representativitet än FNA. Används vid bröst, prostata, lever. God kvalitet och tillräcklig mängd i de flesta fall.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "80783008",
+          "display_en": "Percutaneous needle biopsy",
+          "display_sv": "Transtorakalbiopsi / Perkutan biopsi",
+          "ngs_quality": "🟡 Varierande",
+          "comment": "CT-styrd biopsi av t.ex. lunglesion eller levertumör. Litet material - tumörcellshalten kritisk för NGS.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "274036004",
+          "display_en": "Biopsy of bone (procedure)",
+          "display_sv": "Benbiopsi",
+          "ngs_quality": "🟡 Varierande",
+          "comment": "Provtagning från ben för solida tumörer - skilj från benmärgsbiopsi (hematologi). Kräver dekalcificering som kan påverka DNA-kvaliteten.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "86273004",
+          "display_en": "Biopsy",
+          "display_sv": "Biopsi (ej specificerad)",
+          "ngs_quality": "🟡 Varierande",
+          "comment": "Använd mer specifik term om möjligt. \"Biopsi NOS\" används när tekniken ej är känd.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "14766002",
+          "display_en": "Aspiration",
+          "display_sv": "Aspirationscytologi (FNA)",
+          "ngs_quality": "🟡 Begränsat",
+          "comment": "Föredragen primärterm framför \"finnålsaspirat\". Stor variation vad gäller mängd och tumörcellsandel. Litet cellprov - ofta otillräckligt för NGS utan cellblock. De flesta kliniker använder \"aspirationscytologi\" i första hand.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "48635004",
+          "display_en": "Fine needle biopsy",
+          "display_sv": "Finnålsaspirat / FNA",
+          "ngs_quality": "🟡 Begränsat",
+          "comment": "Alternativ term för aspirationscytologi. Kvalitet oftast god men stor variation i kvantitet.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "129300006",
+          "display_en": "Puncture procedure",
+          "display_sv": "Vätskeprov (pleura / ascites)",
+          "ngs_quality": "🟡 Varierande",
+          "comment": "Pleuravätska och ascitesvätska - cytologiskt prov. Föreslås att grupperas under \"Cytologi\" tillsammans med cellblock. T.ex. torakocentos, paracentos.",
+          "system": "snomed"
+        },
+        {
+          "snomed": null,
+          "display_en": "Cell block method",
+          "display_sv": "Cytologi - cellblock",
+          "system": "local",
+          "gap": "SNOMED saknas"
+        },
+        {
+          "snomed": "274315006",
+          "display_en": "Smear technique",
+          "display_sv": "Cytologiutstryk",
+          "ngs_quality": "🔴 Begränsat",
+          "comment": "OBS: \"Smears/utstryk\" är ett begrepp som primärt används vid cervix-screening. Vid cancergenomik bör \"Aspirationscytologi\" användas som primärterm. Cytologiutstryk ger cellprov utan histologi - oftast otillräckligt för NGS.",
+          "system": "snomed"
+        },
+        {
+          "snomed": "396540005",
+          "display_en": "Phlebotomy",
+          "display_sv": "Blodprov (venöst)",
+          "ngs_quality": "🟢 Bra (för ctDNA)",
+          "comment": "Venöst blodprov för ctDNA/liquid biopsy (plasma) ELLER för germline-DNA-extraktion (helblod). Används som normal-DNA i tumör/normal-analys (paired sequencing).",
+          "system": "snomed"
+        }
+      ]
+    },
+    "extraherat_material": {
+      "variable": "extraherat_material",
+      "fhir": "Specimen.type (nivå 2)",
+      "systems": [
+        "snomed"
+      ],
+      "codes": [
+        {
+          "code": "DNA",
+          "display_sv": "DNA",
+          "snomed": "258566005",
+          "comment": "258566005 | Deoxyribonucleic acid specimen.",
+          "system": "snomed"
+        },
+        {
+          "code": "RNA",
+          "display_sv": "RNA",
+          "snomed": "441673008",
+          "comment": "441673008 | RNA specimen.",
+          "system": "snomed"
+        },
+        {
+          "code": "ctDNA",
+          "display_sv": "Cirkulerande tumör-DNA (ctDNA)",
+          "snomed": null,
+          "comment": "Beräknas utifrån Provtyp=Plasma + Extraherat=DNA. Ingen specifik SNOMED CT-kod finns.",
+          "system": "local"
+        },
+        {
+          "code": "ctRNA",
+          "display_sv": "Cirkulerande tumör-RNA (ctRNA)",
+          "snomed": null,
+          "comment": "Beräknas utifrån Provtyp=Plasma + Extraherat=RNA.",
+          "system": "local"
+        },
+        {
+          "code": "cfDNA",
+          "display_sv": "Cell-free DNA (cfDNA)",
+          "snomed": null,
+          "comment": "Generisk cell-fritt DNA - bredare term än ctDNA.",
+          "system": "local"
+        }
+      ]
+    },
+    "analysmetod": {
+      "variable": "analysmetod",
+      "fhir": "GenomicStudy extension:method",
+      "systems": [
+        "snomed",
+        "hl7_genomic_study_method"
+      ],
+      "codes": [
+        {
+          "term": "NGS targeted panel",
+          "display": "sequence-analysis-of-select-exons,",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        },
+        {
+          "term": "WES, WGS",
+          "display": "sequence-analysis-of-the-entire-coding-region,",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        },
+        {
+          "term": "ngs-mps",
+          "display": "ngs-mps,",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        },
+        {
+          "term": "ISH (in situ hybridisering)",
+          "display": "fish (ISH)",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        },
+        {
+          "term": "PCR",
+          "display": "PCR",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        },
+        {
+          "term": "Sanger",
+          "display": "bi-directional-sanger-sequence-analysis.",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        },
+        {
+          "term": "karyotyping",
+          "display": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        },
+        {
+          "term": "mlpa",
+          "display": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        },
+        {
+          "term": "Metyleringsanalys",
+          "display": "methylation-analysis",
+          "snomed": null,
+          "system": "hl7_genomic_study_method"
+        }
+      ],
+      "note": "Primary clinical list; full FHIR IG list in sheet as reference"
+    },
+    "analystyp": {
+      "variable": "analystyp",
+      "fhir": "Procedure.code / Genomic Study Type",
+      "systems": [
+        "hl7_genomic_study_type"
+      ],
+      "codes": [
+        {
+          "code": "alt-splc",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Alternative splicing detection",
+          "definition": "Identification of multiple different processed mRNA transcripts from the same DNA template",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "chromatin",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Chromatin conformation",
+          "definition": "Analysis of the spacial organization of chromatin within a cell",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "cnv",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "CNV detection",
+          "definition": "Detection of a change in the number of copies of a defined region of genomic DNA sequence resulting in structural variation when compared to the reference sequence",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "epi-alt-hist",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Epigenetic Alterations - histone modifications",
+          "definition": "Detection of biochemical modifications covalently bound to the N-terminal tail of a histone protein. These modifications may alter chromatin compaction and gene expression",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "epi-alt-dna",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Epigenetic Alterations -DNA methylation",
+          "definition": "Detection of the presence of an additional methyl group on a DNA nucleobase, which may alter gene transcription",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "fam-var-segr",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Familial variant segregation",
+          "definition": "Determining if a variant identified in an individual is present in other family members",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "func-var",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Functional variation detection",
+          "definition": "Detection of sequence variants which may alter gene expression or gene product function when compared to the reference sequence",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "gene-expression",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Gene expression profiling",
+          "definition": "Measurement and characterization of activity from all gene products",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "post-trans-mod",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Post-translational Modification Identification",
+          "definition": "Detection of biochemical modifications covalently bound to the amino acid monomers of a processed protein",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "snp",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "SNP Detection",
+          "definition": "Determination of which nucleotide is base present at a known variable location of the genomic sequence",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "str",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "STR count",
+          "definition": "Quantification of the number of sequential microsatellite units in a repetitive sequence region",
+          "system": "hl7_genomic_study_type"
+        },
+        {
+          "code": "struc-var",
+          "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+          "display_en": "Structural variation detection",
+          "definition": "Detection of deletions, insertions, or rearrangements of DNA segments compared to the reference sequence",
+          "system": "hl7_genomic_study_type"
+        }
+      ]
+    },
+    "produktnamn": {
+      "variable": "panel_produktnamn",
+      "fhir": "Device.deviceName.name",
+      "systems": [],
+      "codes": [
+        {
+          "product": "GMS560",
+          "type": "NGS bred panel",
+          "manufacturer": "GMS / Genomic Medicine Sweden",
+          "comment": "Nationell bred panel för cancergenomik i Sverige (500+ gener)"
+        },
+        {
+          "product": "Actionable Insights Tumor Panel",
+          "type": "NGS",
+          "manufacturer": "Thermo Fisher Scientific",
+          "comment": "Ion Torrent-baserad"
+        },
+        {
+          "product": "Ion AmpliSeq CLv2",
+          "type": "NGS",
+          "manufacturer": "Thermo Fisher Scientific",
+          "comment": "Ion Torrent-baserad"
+        },
+        {
+          "product": "Oncomine Focus",
+          "type": "NGS",
+          "manufacturer": "Thermo Fisher Scientific",
+          "comment": "Ion S5-baserad"
+        },
+        {
+          "product": "Oncomine Solid Tumour DNA",
+          "type": "NGS",
+          "manufacturer": "Thermo Fisher Scientific",
+          "comment": "Ion Torrent-baserad"
+        },
+        {
+          "product": "HaloPlex custom",
+          "type": "NGS",
+          "manufacturer": "Agilent Technologies",
+          "comment": "Custom hybridisering"
+        },
+        {
+          "product": "Archer Solid Tumor",
+          "type": "NGS",
+          "manufacturer": "Archer / Invivoscribe",
+          "comment": "RNA/DNA fusion-panel"
+        },
+        {
+          "product": "TruSight Tumor 15",
+          "type": "NGS",
+          "manufacturer": "Illumina",
+          "comment": "Amplikon-baserad"
+        },
+        {
+          "product": "Pyroseq",
+          "type": "Allelspecifik",
+          "manufacturer": "Qiagen / Biotage",
+          "comment": "Pyrosequencing-metod"
+        },
+        {
+          "product": "Entrogen",
+          "type": "Allelspecifik",
+          "manufacturer": "Entrogen",
+          "comment": "Allelspecifik PCR"
+        },
+        {
+          "product": "Therascreen",
+          "type": "Allelspecifik",
+          "manufacturer": "Qiagen",
+          "comment": "Real-time PCR"
+        }
+      ],
+      "note": "Open list — labs extend locally"
+    },
+    "variationstyp": {
+      "variable": "variationstyp",
+      "fhir": "Observation.component:coding-change-type",
+      "systems": [
+        "so"
+      ],
+      "codes": [
+        {
+          "so": "SO:0001483",
+          "display_en": "SNV (single_nucleotide_variant)",
+          "snv": true,
+          "cnv": false,
+          "fusion": false,
+          "comment": "Enstaka basbyte",
+          "system": "so"
+        },
+        {
+          "so": "SO:0000667",
+          "display_en": "insertion",
+          "snv": true,
+          "cnv": false,
+          "fusion": false,
+          "comment": "Liten insertion (< 50 bp)",
+          "system": "so"
+        },
+        {
+          "so": "SO:0000159",
+          "display_en": "deletion",
+          "snv": true,
+          "cnv": true,
+          "fusion": true,
+          "comment": "Används i tre kontexter - se kommentar i flik Coding Change Type",
+          "system": "so"
+        },
+        {
+          "so": "SO:1000032",
+          "display_en": "indel",
+          "snv": true,
+          "cnv": false,
+          "fusion": false,
+          "comment": "Kombination insertion + deletion",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001629",
+          "display_en": "splice_site_variant",
+          "snv": true,
+          "cnv": false,
+          "fusion": true,
+          "comment": "Kan även uppstå vid fusioner",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001019",
+          "display_en": "copy_number_variation",
+          "snv": false,
+          "cnv": true,
+          "fusion": false,
+          "comment": "Generisk CNV-term",
+          "system": "so"
+        },
+        {
+          "so": "SO:1000035",
+          "display_en": "duplication",
+          "snv": false,
+          "cnv": true,
+          "fusion": true,
+          "comment": "Genduplikation eller tandem-dup som skapar fusion",
+          "system": "so"
+        },
+        {
+          "so": "SO:0000159",
+          "display_en": "deletion",
+          "snv": false,
+          "cnv": true,
+          "fusion": false,
+          "comment": "Homozygot loss i CNV-kontext",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001537",
+          "display_en": "structural_variant",
+          "snv": false,
+          "cnv": false,
+          "fusion": true,
+          "comment": "Generisk strukturell variant",
+          "system": "so"
+        },
+        {
+          "so": "SO:0000199",
+          "display_en": "translocation",
+          "snv": false,
+          "cnv": false,
+          "fusion": true,
+          "comment": "Inter-kromosomal - t(9;22), BCR::ABL1",
+          "system": "so"
+        },
+        {
+          "so": "SO:1000036",
+          "display_en": "inversion",
+          "snv": false,
+          "cnv": false,
+          "fusion": true,
+          "comment": "Intra-kromosomal - inv(2)(p21p23), EML4::ALK",
+          "system": "so"
+        },
+        {
+          "so": "SO:1000035",
+          "display_en": "duplication",
+          "snv": false,
+          "cnv": false,
+          "fusion": true,
+          "comment": "Tandem-duplikation som skapar fusion",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001784",
+          "display_en": "complex_structural_alteration",
+          "snv": false,
+          "cnv": false,
+          "fusion": true,
+          "comment": "Multipla breakpoints",
+          "system": "so"
+        }
+      ]
+    },
+    "molecular_consequence": {
+      "variable": "molecular_consequence",
+      "fhir": "Observation.component:molecular-consequence",
+      "systems": [
+        "so",
+        "snomed"
+      ],
+      "codes": [
+        {
+          "so": "SO:0001583",
+          "display_en": "missense_variant",
+          "snomed": "1306850007",
+          "snomed_sv": "missense-variant",
+          "comment": "Aminosyrubyte. Ex: p.T790M, p.V600E, p.G12C. Vanligaste kliniska varianten.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001587",
+          "display_en": "stop_gained",
+          "snomed": "327671006",
+          "snomed_sv": "nonsense-variant (stop gained)",
+          "comment": "Förtida stoppkodon = trunkerat protein. Ex: p.Arg248*. Kallas ibland nonsense.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001589",
+          "display_en": "frameshift_variant",
+          "snomed": "325753009",
+          "snomed_sv": "frameshift-variant",
+          "comment": "Läsramsförskjutning. Ex: p.Val600fs. Orsakas av ins/del ej delbar med 3.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001819",
+          "display_en": "synonymous_variant",
+          "snomed": "1306861004",
+          "snomed_sv": "synonymous-variant",
+          "comment": "Tyst mutation - aminosyran förändras ej. Kliniskt sällan relevant men rapporteras.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0002012",
+          "display_en": "start_lost",
+          "snomed": null,
+          "snomed_sv": "",
+          "comment": "Startkodon förloras - protein kan ej initieras. Kliniskt relevant.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001578",
+          "display_en": "stop_lost",
+          "snomed": null,
+          "snomed_sv": "",
+          "comment": "Stoppkodon förloras - förlängt protein. Kliniskt relevant.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001821",
+          "display_en": "inframe_insertion",
+          "snomed": null,
+          "snomed_sv": "",
+          "comment": "In-frame insertion - aminosyra(or) läggs till utan läsramsförskjutning. Ex: FLT3-ITD.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001822",
+          "display_en": "inframe_deletion",
+          "snomed": null,
+          "snomed_sv": "",
+          "comment": "In-frame deletion - aminosyra(or) tas bort. Ex: EGFR exon19-deletion på proteinnivå.",
+          "system": "so"
+        }
+      ]
+    },
+    "kopietaltyp": {
+      "variable": "kopietaltyp",
+      "fhir": "Observation.component:copy-number-change-type",
+      "systems": [
+        "so"
+      ],
+      "codes": [
+        {
+          "so": "SO:0001742",
+          "display": "Gain (ökat kopieantal)  copy_number_gain",
+          "condition": "> 2 kopior",
+          "snomed": null,
+          "clinical": "Polysomi, trisomi, låg amplifiering. Ex: +7 i gliom.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001743",
+          "display": "Loss (minskat kopieantal)  copy_number_loss",
+          "condition": "< 2 kopior",
+          "snomed": null,
+          "clinical": "Ex: del(9p) i ALL.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0001742",
+          "display": "Amplification",
+          "condition": "> 4-6 kopior (tröskel labspecifik)",
+          "snomed": null,
+          "clinical": "Hög kopietalsökning. Ex: ERBB2-amplifiering i bröstcancer, MYC-amp.",
+          "system": "so"
+        },
+        {
+          "so": "SO:0002210",
+          "display": "Deletion (homozygot)  presence_absence_variation",
+          "condition": "0 kopior",
+          "snomed": null,
+          "clinical": "Båda alleler deleterade. Ex: CDKN2A homozygot deletion.",
+          "system": "so"
+        }
+      ],
+      "note": "gain vs amplification distinguished by antal_kopior, both SO:0001742"
+    },
+    "genetiskt_ursprung": {
+      "variable": "genetiskt_ursprung",
+      "fhir": "Observation.component:genomic-allele-origin",
+      "systems": [
+        "snomed",
+        "hl7_allele_origin"
+      ],
+      "codes": [
+        {
+          "code": "somatic",
+          "display_en": "Somatic",
+          "snomed": "719428005",
+          "system": "snomed"
+        },
+        {
+          "code": "germline",
+          "display_en": "Germline",
+          "snomed": "261101003",
+          "system": "snomed"
+        },
+        {
+          "code": "likely_somatic",
+          "display_en": "Likely somatic",
+          "snomed": null,
+          "system": "hl7_allele_origin"
+        },
+        {
+          "code": "likely_germline",
+          "display_en": "Likely germline",
+          "snomed": null,
+          "system": "hl7_allele_origin"
+        },
+        {
+          "code": "unknown",
+          "display_en": "Unknown",
+          "snomed": null,
+          "system": "hl7_allele_origin"
+        }
+      ]
+    },
+    "asco_tier": {
+      "variable": "klinisk_signifikans_asco",
+      "fhir": "Observation.component:somatic-clinical-significance",
+      "systems": [
+        "local_asco_tier"
+      ],
+      "codes": [
+        {
+          "code": "Tier I-A",
+          "display_en": "Strong clinical significance FDA-approved therapy / guideline recommendation",
+          "display_sv": "Stark klinisk signifikans FDA-godkänd behandling / riktlinjerek.",
+          "system": "local_asco_tier"
+        },
+        {
+          "code": "Tier I-B",
+          "display_en": "Strong clinical significance Professional society recommendation",
+          "display_sv": "Stark klinisk signifikans Professionell riktlinjerek.",
+          "system": "local_asco_tier"
+        },
+        {
+          "code": "Tier I-C",
+          "display_en": "Strong clinical significance Expert consensus or well-powered study",
+          "display_sv": "Stark klinisk signifikans Expertkonsensus / välpowrad studie",
+          "system": "local_asco_tier"
+        },
+        {
+          "code": "Tier I-D",
+          "display_en": "Strong clinical significance Preclinical evidence",
+          "display_sv": "Stark klinisk signifikans Preklinisk evidens",
+          "system": "local_asco_tier"
+        },
+        {
+          "code": "Tier II",
+          "display_en": "Potential clinical significance Investigational or other tumor type",
+          "display_sv": "Potentiell klinisk signifikans Investigationell eller annan tumörtyp",
+          "system": "local_asco_tier"
+        },
+        {
+          "code": "Tier III",
+          "display_en": "Unknown clinical significance VUS equivalent for somatic",
+          "display_sv": "Okänd klinisk signifikans Somatisk VUS-ekvivalent",
+          "system": "local_asco_tier"
+        },
+        {
+          "code": "Tier IV",
+          "display_en": "Benign or likely benign Passenger mutation",
+          "display_sv": "Benign eller troligen benign Passager-mutation",
+          "system": "local_asco_tier"
+        }
+      ],
+      "gap": "No SNOMED CT codes; open question EMA/TLV vs FDA"
+    },
+    "escat_tier": {
+      "variable": "behandlingsrelevans_escat",
+      "fhir": "Observation.component:therapeutic-actionability",
+      "systems": [
+        "local_escat"
+      ],
+      "codes": [
+        {
+          "tier": "Tier I",
+          "sub_tier": "A",
+          "code": "Tier I-A",
+          "display_en": "Ready for routine use - RCT evidence",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier I",
+          "sub_tier": "B",
+          "code": "Tier I-B",
+          "display_en": "Ready for routine use - Single-arm trial",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier I",
+          "sub_tier": "C",
+          "code": "Tier I-C",
+          "display_en": "Ready for routine use - Basket trial",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier II",
+          "sub_tier": "A",
+          "code": "Tier II-A",
+          "display_en": "Investigational - Retrospective evidence",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier II",
+          "sub_tier": "B",
+          "code": "Tier II-B",
+          "display_en": "Investigational - Response without survival data",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier III",
+          "sub_tier": "A",
+          "code": "Tier III-A",
+          "display_en": "Hypothetical - Evidence from other tumor type",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier III",
+          "sub_tier": "B",
+          "code": "Tier III-B",
+          "display_en": "Hypothetical - Similar molecular alteration",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier IV",
+          "sub_tier": "A",
+          "code": "Tier IV-A",
+          "display_en": "Preclinical - In vitro/vivo evidence",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier IV",
+          "sub_tier": "B",
+          "code": "Tier IV-B",
+          "display_en": "Preclinical - In silico prediction",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier V",
+          "sub_tier": null,
+          "code": "Tier V",
+          "display_en": "Combination - Response without clinical benefit",
+          "system": "local_escat"
+        },
+        {
+          "tier": "Tier X",
+          "sub_tier": null,
+          "code": "Tier X",
+          "display_en": "No evidence for actionability",
+          "system": "local_escat"
+        }
+      ]
+    }
+  },
+  "source": "Konfigurationsunderlag genomik.xlsx (RCC i samverkan / NAG CancerGenomik consultation draft)"
+}

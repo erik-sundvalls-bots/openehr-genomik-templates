@@ -1,0 +1,28 @@
+# CKM archetypes used (Phase 1)
+
+| Archetype ID | CID | Status | Rev | Role | Local ADL | CKM URL |
+|---|---|---|---|---|---|---|
+| `openEHR-EHR-CLUSTER.anatomical_location.v1` | 1013.1.587 | PUBLISHED | 1.5.1 | Body site + laterality | `archetypes/ckm/openEHR-EHR-CLUSTER.anatomical_location.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.587 |
+| `openEHR-EHR-CLUSTER.device.v1` | 1013.1.17 | PUBLISHED | 1.1.6 | Panel/device | `archetypes/ckm/openEHR-EHR-CLUSTER.device.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.17 |
+| `openEHR-EHR-CLUSTER.genetic_variant_presence.v0` | 1013.1.4446 | DRAFT | 0.0.1-alpha | Detected/not detected | `archetypes/ckm/openEHR-EHR-CLUSTER.genetic_variant_presence.v0.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.4446 |
+| `openEHR-EHR-CLUSTER.genomic_copy_number_variant.v1` | 1013.1.3750 | PUBLISHED | 1.1.0 | CNV structured variant | `archetypes/ckm/openEHR-EHR-CLUSTER.genomic_copy_number_variant.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3750 |
+| `openEHR-EHR-CLUSTER.genomic_deletion_insertion_variant.v1` | 1013.1.3753 | PUBLISHED | 1.0.3 | Indel | `archetypes/ckm/openEHR-EHR-CLUSTER.genomic_deletion_insertion_variant.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3753 |
+| `openEHR-EHR-CLUSTER.genomic_deletion_variant.v1` | 1013.1.3751 | PUBLISHED | 1.0.3 | Deletion | `archetypes/ckm/openEHR-EHR-CLUSTER.genomic_deletion_variant.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3751 |
+| `openEHR-EHR-CLUSTER.genomic_duplication_variant.v1` | 1013.1.3752 | PUBLISHED | 1.0.3 | Duplication | `archetypes/ckm/openEHR-EHR-CLUSTER.genomic_duplication_variant.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3752 |
+| `openEHR-EHR-CLUSTER.genomic_insertion_variant.v1` | 1013.1.3754 | PUBLISHED | 1.0.3 | Insertion | `archetypes/ckm/openEHR-EHR-CLUSTER.genomic_insertion_variant.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3754 |
+| `openEHR-EHR-CLUSTER.genomic_inversion_variant.v1` | 1013.1.4898 | PUBLISHED | 1.0.4 | Inversion | `archetypes/ckm/openEHR-EHR-CLUSTER.genomic_inversion_variant.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.4898 |
+| `openEHR-EHR-CLUSTER.genomic_substitution_variant.v1` | 1013.1.3757 | PUBLISHED | 1.0.4 | SNV substitution | `archetypes/ckm/openEHR-EHR-CLUSTER.genomic_substitution_variant.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3757 |
+| `openEHR-EHR-CLUSTER.genomic_variant_result.v1` | 1013.1.3759 | PUBLISHED | 1.1.1 | Core variant finding + annotations | `archetypes/ckm/openEHR-EHR-CLUSTER.genomic_variant_result.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3759 |
+| `openEHR-EHR-CLUSTER.knowledge_base_reference.v1` | 1013.1.3748 | PUBLISHED | 1.0.1 | External KB reference | `archetypes/ckm/openEHR-EHR-CLUSTER.knowledge_base_reference.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3748 |
+| `openEHR-EHR-CLUSTER.laboratory_test_analyte.v1` | 1013.1.2881 | PUBLISHED | 1.2.3 | TMB/MSI/HRD/cellularity analytes | `archetypes/ckm/openEHR-EHR-CLUSTER.laboratory_test_analyte.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.2881 |
+| `openEHR-EHR-CLUSTER.organisation.v1` | 1013.1.371 | PUBLISHED | 1.0.4 | Lab/org HSA | `archetypes/ckm/openEHR-EHR-CLUSTER.organisation.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.371 |
+| `openEHR-EHR-CLUSTER.reference_sequence.v1` | 1013.1.3762 | PUBLISHED | 1.0.9 | Reference genome/transcript | `archetypes/ckm/openEHR-EHR-CLUSTER.reference_sequence.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3762 |
+| `openEHR-EHR-CLUSTER.sequencing_assay.v0` | 1013.1.4256 | TEAMREVIEW | 0.0.1-alpha | Study/assay metadata + kit | `archetypes/ckm/openEHR-EHR-CLUSTER.sequencing_assay.v0.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.4256 |
+| `openEHR-EHR-CLUSTER.specimen.v1` | 1013.1.331 | PUBLISHED | 1.1.3 | Specimen L1/L2 | `archetypes/ckm/openEHR-EHR-CLUSTER.specimen.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.331 |
+| `openEHR-EHR-CLUSTER.specimen_processing.v1` | 1013.1.358 | PUBLISHED | 1.0.1 | Fixation/processing | `archetypes/ckm/openEHR-EHR-CLUSTER.specimen_processing.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.358 |
+| `openEHR-EHR-CLUSTER.translocation_variant.v0` | 1013.1.3758 | REVIEWSUSPENDED | 0.0.1-alpha | Fusion/translocation structure | `archetypes/ckm/openEHR-EHR-CLUSTER.translocation_variant.v0.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.3758 |
+| `openEHR-EHR-COMPOSITION.report-result.v1` | 1013.1.1324 | PUBLISHED | 1.1.0 | Result report root | `archetypes/ckm/openEHR-EHR-COMPOSITION.report-result.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.1324 |
+| `openEHR-EHR-COMPOSITION.request.v1` | 1013.1.18 | PUBLISHED | 1.1.4 | Request composition root | `archetypes/ckm/openEHR-EHR-COMPOSITION.request.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.18 |
+| `openEHR-EHR-EVALUATION.problem_diagnosis.v1` | 1013.1.169 | PUBLISHED | 1.7.4 | ICD-10 diagnosis | `archetypes/ckm/openEHR-EHR-EVALUATION.problem_diagnosis.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.169 |
+| `openEHR-EHR-INSTRUCTION.service_request.v1` | 1013.1.614 | REASSESS_DRAFT | 1.1.3-alpha | Remiss / service request | `archetypes/ckm/openEHR-EHR-INSTRUCTION.service_request.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.614 |
+| `openEHR-EHR-OBSERVATION.laboratory_test_result.v1` | 1013.1.2191 | PUBLISHED | 1.2.8 | Lab/genomic report observation | `archetypes/ckm/openEHR-EHR-OBSERVATION.laboratory_test_result.v1.adl` | https://ckm.openehr.org/ckm/archetypes/1013.1.2191 |

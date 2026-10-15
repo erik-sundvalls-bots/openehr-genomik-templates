@@ -1,0 +1,40 @@
+{
+  "variable": "genetiskt_ursprung",
+  "fhir": "Observation.component:genomic-allele-origin",
+  "systems": [
+    "snomed",
+    "hl7_allele_origin"
+  ],
+  "codes": [
+    {
+      "code": "somatic",
+      "display_en": "Somatic",
+      "snomed": "719428005",
+      "system": "snomed"
+    },
+    {
+      "code": "germline",
+      "display_en": "Germline",
+      "snomed": "261101003",
+      "system": "snomed"
+    },
+    {
+      "code": "likely_somatic",
+      "display_en": "Likely somatic",
+      "snomed": null,
+      "system": "hl7_allele_origin"
+    },
+    {
+      "code": "likely_germline",
+      "display_en": "Likely germline",
+      "snomed": null,
+      "system": "hl7_allele_origin"
+    },
+    {
+      "code": "unknown",
+      "display_en": "Unknown",
+      "snomed": null,
+      "system": "hl7_allele_origin"
+    }
+  ]
+}

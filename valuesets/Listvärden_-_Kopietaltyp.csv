@@ -1,0 +1,33 @@
+  Tillåtna listvärden - Kopietaltyp  ·  Observation.component:copy-number-change-type,,,,,,,
+"Klinisk tolkningsnivå av CNV-förändringen. CNV beskrivs av TRE fält: antal_kopior (Integer) + kopietaltyp (Code) + gen/målregion. 
+",,,,,,,
+SO-Kod,Benämning,Villkor (kopieantal),SNOMED CT,Klinisk betydelse,,,
+SO:0001742,"Gain (ökat kopieantal)
+
+copy_number_gain",> 2 kopior,,"Polysomi, trisomi, låg amplifiering. Ex: +7 i gliom.",,,
+SO:0001743,"Loss (minskat kopieantal)
+
+copy_number_loss",< 2 kopior,,Ex: del(9p) i ALL.,,,
+SO:0001742,Amplification,> 4-6 kopior (tröskel labspecifik),"
+12645001 | genamplifiering |
+","Hög kopietalsökning. Ex: ERBB2-amplifiering i bröstcancer, MYC-amp.",,,
+SO:0002210,"Deletion (homozygot)
+
+presence_absence_variation",0 kopior,,Båda alleler deleterade. Ex: CDKN2A homozygot deletion.,,,
+"gain vs amplification skiljs åt via antal_kopior-fältet - inte via kopietaltyp-koden (båda har SO:0001742). gain = 3-4 kopior. amplification = >4-6 kopior (tröskel labspecifik). 
+",,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,

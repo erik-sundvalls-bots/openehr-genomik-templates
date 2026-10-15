@@ -1,0 +1,53 @@
+  Tillåtna listvärden - ASCO Tier  ·  Klinisk signifikans somatiska cancervarianter,,,,,,,,,
+Standard: Li MM et al. J Mol Diagn. 2017;19(1):4-23. Används för klassificering av somatiska varianter i cancerdiagnostik. ,,,,,,,,,
+Tier,Beskrivning (EN),,,,Kommentar,,,,
+Tier I-A,Strong clinical significance - FDA-approved biomarker,,,,,,,,
+Tier I-B,Strong clinical significance - Professional guidelines,,,,,,,,
+Tier I-C,Strong clinical significance - Expert consensus,,,,,,,,
+Tier I-D,Strong clinical significance - Preclinical evidence,,,,,,,,
+Tier II,Potential clinical significance,,,,,,,,
+Tier III,Unknown clinical significance,,,,,,,,
+Tier IV,Benign/Likely benign,,,,,,,,
+ Listvärden - ASCO Tier (AMP/ASCO/CAP 2017) - Klinisk signifikans somatiska varianter,,,,,,,,,
+"Tillåtna listvärden - ASCO Tier (klinisk signifikans somatiska cancervarianter)
+Används för klassificering av somatiska varianter i cancerdiagnostik. Standard: Li MM et al. J Mol Diagn. 2017;19(1):4-23. 
+
+OBS öppen fråga (NAG CG): EMA/TLV/NT-rådet som möjlig primär referens framför FDA för svensk kontext ",,,,,,,,,
+"Kodsystem: HL7 Genomics Reporting IG CodeSystem (variant-pathogenicity-impact-cs). 
+SNOMED CT: GAP inga SNOMED CT-koder finns for ASCO Tier-klassificering.",,,,,,,,,
+Tier-värde,Beskrivning (EN),Klinisk innebörd (SV),SNOMED CT,Kommentar,,,,,
+Tier I-A,"Strong clinical significance
+FDA-approved therapy / guideline recommendation","Stark klinisk signifikans
+FDA-godkänd behandling / riktlinjerek.","
+Saknas i SNOMED CT",FDA-/EMA-godkänd indikation. Högsta evidensnivå. Direkt behandlingsvägledande.,ÖPPEN FRÅGA (NAG CG): Fråga om EMA / TLV / NT-rådet som primär referens framför FDA i svensk kontext. Beslut tas i kommande NAG CG-möte.,,,,
+Tier I-B,"Strong clinical significance
+Professional society recommendation","Stark klinisk signifikans
+Professionell riktlinjerek.","
+Saknas i SNOMED CT",Rekommendation från t.ex. ESMO/NCCN/SVF. Stark evidens.,,,,,
+Tier I-C,"Strong clinical significance
+Expert consensus or well-powered study","Stark klinisk signifikans
+Expertkonsensus / välpowrad studie","
+Saknas i SNOMED CT",Inkl. samma tumörtyp men annan behandlingssetting.,,,,,
+Tier I-D,"Strong clinical significance
+Preclinical evidence","Stark klinisk signifikans
+Preklinisk evidens","
+Saknas i SNOMED CT",Nyare tillägg. Prekliniska data med hög biologisk plausibilitet.,,,,,
+Tier II,"Potential clinical significance
+Investigational or other tumor type","Potentiell klinisk signifikans
+Investigationell eller annan tumörtyp","
+Saknas i SNOMED CT",Relevant för kliniska studier. Evidens från annan diagnos.,,,,,
+Tier III,"Unknown clinical significance
+VUS equivalent for somatic","Okänd klinisk signifikans
+Somatisk VUS-ekvivalent","
+Saknas i SNOMED CT",Inte tillräcklig evidens for klassificering. Uppföljning kan behövas.,,,,,
+Tier IV,"Benign or likely benign
+Passenger mutation","Benign eller troligen benign
+Passager-mutation","
+Saknas i SNOMED CT",Sannolikt utan klinisk relevans. Förekommer i normalbefolkning.,,,,,
+GAP-notering: ASCO Tier saknar SNOMED CT-koder. HL7 Genomics IG CodeSystem används som primär kodkälla. Begäran till SNOMED International kan övervägas.,,,,,,,,,
+,,,,,,,,,
+  Referens: Li MM et al. Standards and Guidelines for the Interpretation and Reporting of Sequence Variants in Cancer. J Mol Diagn. 2017;19(1):4-23. https://pubmed.ncbi.nlm.nih.gov/27993330/,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,

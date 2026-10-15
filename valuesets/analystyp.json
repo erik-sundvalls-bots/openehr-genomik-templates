@@ -1,0 +1,93 @@
+{
+  "variable": "analystyp",
+  "fhir": "Procedure.code / Genomic Study Type",
+  "systems": [
+    "hl7_genomic_study_type"
+  ],
+  "codes": [
+    {
+      "code": "alt-splc",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Alternative splicing detection",
+      "definition": "Identification of multiple different processed mRNA transcripts from the same DNA template",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "chromatin",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Chromatin conformation",
+      "definition": "Analysis of the spacial organization of chromatin within a cell",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "cnv",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "CNV detection",
+      "definition": "Detection of a change in the number of copies of a defined region of genomic DNA sequence resulting in structural variation when compared to the reference sequence",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "epi-alt-hist",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Epigenetic Alterations - histone modifications",
+      "definition": "Detection of biochemical modifications covalently bound to the N-terminal tail of a histone protein. These modifications may alter chromatin compaction and gene expression",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "epi-alt-dna",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Epigenetic Alterations -DNA methylation",
+      "definition": "Detection of the presence of an additional methyl group on a DNA nucleobase, which may alter gene transcription",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "fam-var-segr",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Familial variant segregation",
+      "definition": "Determining if a variant identified in an individual is present in other family members",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "func-var",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Functional variation detection",
+      "definition": "Detection of sequence variants which may alter gene expression or gene product function when compared to the reference sequence",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "gene-expression",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Gene expression profiling",
+      "definition": "Measurement and characterization of activity from all gene products",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "post-trans-mod",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Post-translational Modification Identification",
+      "definition": "Detection of biochemical modifications covalently bound to the amino acid monomers of a processed protein",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "snp",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "SNP Detection",
+      "definition": "Determination of which nucleotide is base present at a known variable location of the genomic sequence",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "str",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "STR count",
+      "definition": "Quantification of the number of sequential microsatellite units in a repetitive sequence region",
+      "system": "hl7_genomic_study_type"
+    },
+    {
+      "code": "struc-var",
+      "system_uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs",
+      "display_en": "Structural variation detection",
+      "definition": "Detection of deletions, insertions, or rearrangements of DNA segments compared to the reference sequence",
+      "system": "hl7_genomic_study_type"
+    }
+  ]
+}

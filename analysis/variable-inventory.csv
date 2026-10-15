@@ -1,0 +1,215 @@
+block,variable,description,cardinality,datatype,valueset_key,in_form,fhir_resource,fhir_element,fhir_profile,profile_url,openehr_archetype,openehr_path,rm_type,gap_flag,mapping_note,ckm_url,comment
+PATIENT,patient_id,Unik identifierare för patient,1..1,UUID,,,Patient,.id,SE Base Patient,,EHR subject / demographics,subject (COMPOSITION),PARTY_PROXY,out_of_scope_demographics,"Patient identity is EHR subject, not template content",,"Ej tillämpligt
+Identifierare - ej terminologi"
+PATIENT,personnummer,Svenskt personnummer eller samordningsnummer,1..1,String,,,Patient,.identifier,SE Base Patient,https://hl7.se/fhir/ig/base/,EHR subject identifier,subject.identifiers,DV_IDENTIFIER,out_of_scope_demographics,Personnummer via demographic / identity service,,"Ej tillämpligt
+HSA/personnummer - ej terminologi"
+ORGANISATION,organisation_id,Unik identifierare för organisation,1..1,UUID,,,Organization,.id,SE Base Organization,,openEHR-EHR-CLUSTER.organisation.v1,/items[at0001] Identifier (or COMPOSITION.composer/other_participations),DV_IDENTIFIER,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.371,"Ej tillämpligt
+Identifierare - ej terminologi"
+ORGANISATION,hsa_id,HSA-ID för rapporterande enhet (sjukhus),0..1,String,,,Organization,.identifier,SE Base Organization,,openEHR-EHR-CLUSTER.organisation.v1,/items[at0001] Identifier (type=HSA),DV_IDENTIFIER,covered,Bind identifier type to HSA,https://ckm.openehr.org/ckm/archetypes/1013.1.371,"Ej tillämpligt
+HSA-ID - ej SNOMED CT"
+ORGANISATION,enhet_hsa_id,HSA-ID för enhet under sjukhus,0..1,String,,,Organization,.partOf.identifier,SE Base Organization,,openEHR-EHR-CLUSTER.organisation.v1,partOf / nested organisation,DV_IDENTIFIER,partial,May need two organisation clusters (hospital + unit),https://ckm.openehr.org/ckm/archetypes/1013.1.371,"Ej tillämpligt
+HSA-ID - ej SNOMED CT"
+REMISS,remiss_id,Unik identifierare för remiss/beställning,1..1,UUID,,,ServiceRequest,.id,Standard FHIR R4,https://hl7.org/fhir/R4/servicerequest.html,openEHR-EHR-INSTRUCTION.service_request.v1,INSTRUCTION.uid / protocol identifiers; also lab_result protocol Requester order identifier at0062,DV_IDENTIFIER,covered,Prefer service_request in request composition; mirror id in report,https://ckm.openehr.org/ckm/archetypes/1013.1.614,"Ej tillämpligt
+Identifierare - ej terminologi"
+REMISS,diagnos,ICD-10-kod (treställig) för aktuell cancerdiagnos,1..1,Code,,Ja,GenomicStudy,.reasonCode,genomic-report,,openEHR-EHR-EVALUATION.problem_diagnosis.v1,/data[at0001]/items[at0002] Problem/Diagnosis name — ICD-10,DV_CODED_TEXT,covered,Or lab_result Clinical information / reason; ICD-10 binding,https://ckm.openehr.org/ckm/archetypes/1013.1.169,"Ej tillämpligt
+ICD-10 används i Sverige"
+REMISS,frågeställning,"Föreslagna listvärden → Listvärden - Frågeställning
+Klinisk frågeställning - syfte med analysen. Flerval tillåtet (1..*). OBS: Anders 2.1: utökat från 5 till 9 kategorier + flerval.",1..*,Code,fragestallning,Ja,ServiceRequest,.reasonCode,Standard FHIR R4,https://hl7.org/fhir/R4/servicerequest.html,openEHR-EHR-INSTRUCTION.service_request.v1,Service name / Reason for request (coded),DV_CODED_TEXT,partial,Local value set; no SNOMED yet — see valuesets/fragestallning,https://ckm.openehr.org/ckm/archetypes/1013.1.614,"Separata ServiceRequest per frågeställning rekommenderas
+Saknar SNOMED CT-bindning."
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),prov_id,Unik identifierare för ursprungsprov,1..1,Identifier,,,Specimen,.identifier,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,openEHR-EHR-CLUSTER.specimen.v1,/items[at0001] Laboratory specimen identifier OR /items[at0088] External identifier,DV_IDENTIFIER,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.331,"SAMPLE eller specimen-ID i VCF-header
+Ej tillämpligt
+Identifierare - ej terminologi
+PAD (patologisk anatomisk diagnos)=sjukvårdsspråk för prov-ID för prover inom patologin. Detta ID kan vara en om svaret lämnas på samma remiss som kom med materialet eller vara en för frågeställning och en annan för material."
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),pad_nummer,Provets administrativa PAD-nummer,1..1,Identifier,,Ja,Specimen,.accessionIdentifier,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,openEHR-EHR-CLUSTER.specimen.v1,/items[at0001] Laboratory specimen identifier (PAD),DV_IDENTIFIER,covered,PAD = lab accession id,https://ckm.openehr.org/ckm/archetypes/1013.1.331,"Ej tillämpligt
+Identifierare - ej terminologi"
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),provtyp,"Föreslagna listvärden → Listvärden - Provtyp
+Typ av biologiskt material. Listvärden: Provtyp (HL7 v2 specimenType)",1..1,Code,provtyp,Ja,Specimen,.type,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,openEHR-EHR-CLUSTER.specimen.v1,/items[at0029] Specimen type,DV_CODED_TEXT,covered,SNOMED preferred; HL7 v2 in mapping annotation,https://ckm.openehr.org/ckm/archetypes/1013.1.331,✓ OK
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),fixeringsmetod,"Metod för fixering av vävnadsprov. 
+Föreslagna listvärden → Listvärden - Fixeringsmetod",0..1,Code,fixeringsmetod,Ja,Specimen,.processing,Standard FHIR R4,,openEHR-EHR-CLUSTER.specimen_processing.v1,Processing details / processing procedure (in specimen Processing slot at0068),DV_CODED_TEXT,partial,Confirm exact path in specimen_processing; FFPE list incomplete SNOMED,https://ckm.openehr.org/ckm/archetypes/1013.1.358,"Saknar terminologibindning för specifika metoder 
+SNOMED CT 787378005"
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),provtagningsteknik,"Föreslagna listvärden → Listvärden - provtagningsteknik
+Teknik som användes för att ta provet.",0..1,Code,provtagningsteknik,Ja,Specimen,.collection.method,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,openEHR-EHR-CLUSTER.specimen.v1,/items[at0007] Collection method,DV_CODED_TEXT,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.331,"Separerat från provtyp (Specimen.type). Provtagningsteknik = HUR provet togs. Provtyp = VAD provet är. Standard: SNOMED CT under 17636008 (Specimen collection). Se Listvärden - Provtagningsteknik.
+✓ SNOMED CT
+SNOMED CT-hierarki 17636008 (Specimen collection)"
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),provtagningsdatum,Datum när prov togs från patient,1..1,Date,,Ja,Specimen,.collection.collectedDateTime,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,openEHR-EHR-CLUSTER.specimen.v1,/items[at0015] Collection date/time,DV_DATE_TIME,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.331,"VCF: ##fileDate
+Datum är en datatyp (dateTime), ej ett SNOMED CT-koncept. FHIR-elementnamnet .collection.collectedDateTime ger semantiken. 399445004 finns som SNOMED CT-koncept för 'provtagningsdatum' men behövs kanske inte i FHIR-kontexten??"
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),kropplats,Bodysite/bodystructure - SNOMED CT-kod för anatomisk lokal,0..1,Code,,Ja,Specimen,.collection.bodySite,Standard FHIR R4,https://hl7.org/fhir/R4/condition.html,openEHR-EHR-CLUSTER.anatomical_location.v1,specimen /items[at0013] Structured source site → anatomical_location Body site,DV_CODED_TEXT,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.587,"VCF: ##sampleDiseaseType
+Delvis
+SNOMED CT noteras men specifik värdemängd ej definierad. Behöver mappning."
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),lateralitet,Anatomisk sida för lokaliserad provtagning.,0..1,Code,,Ja,Specimen,.collection.bodySite.extension,Standard FHIR R4,https://hl7.org/fhir/R4/bodystructure.html,openEHR-EHR-CLUSTER.anatomical_location.v1,anatomical_location Laterality,DV_CODED_TEXT,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.587,"SNOMED CT
+SNOMED CT 182353008 (lateralitet) korrekt angiven."
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),tumörcellshalt_patolog,Tumörcellshalt bedömd visuellt av patolog på H&E-snitt före extraktion. Avgör om provet är tillräckligt för NGS. Kopplad till Specimen nivå 1.,0..1,Decimal,,Ja,Observation,.valueQuantity,Standard FHIR R4,https://hl7.org/fhir/R4/observation.html,openEHR-EHR-CLUSTER.laboratory_test_analyte.v1 OR specimen Additional details,Analyte name=tumour cellularity (pathologist); result = DV_PROPORTION/QUANTITY,DV_PROPORTION,partial,No dedicated element in specimen.v1 — use analyte or Extension/Additional details CLUSTER,https://ckm.openehr.org/ckm/archetypes/1013.1.2881,Saknas i SNOMED CT som generisk (observable entity). LOINC-alternativ finns men ej i bruk i Sverige. Ny begäran rekommenderas.
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),tumörcellshalt_bioinformatisk,Tumor purity beräknad bioinformatiskt från VAF/CNV-data efter sekvensering. Mer precis än visuell bedömning.,0..1,Decimal,,Nej,Observation,.valueQuantity,Standard FHIR R4,https://hl7.org/fhir/R4/observation.html,openEHR-EHR-CLUSTER.laboratory_test_analyte.v1,Separate analyte result (bioinformatic tumour fraction),DV_PROPORTION,partial,Same gap pattern,https://ckm.openehr.org/ckm/archetypes/1013.1.2881,"Observation.code: - ingen generisk SNOMED CT-kod for tumörcellshalt bioinformatisk. Kopplad till DiagnosticReport (ej Specimen). 
+Saknas i SNOMED CT. LOINC-alternativ finns men ej i bruk i Sverige."
+PROVMATERIAL - NIVÅ 2 (Extraherat material),extraherat_prov_id,Unik identifierare för extraherat prov,1..1,Identifier,,,Specimen,.identifier,Standard FHIR R4,,openEHR-EHR-CLUSTER.specimen.v1,Child specimen; /items[at0003] Parent specimen identifier,DV_IDENTIFIER,covered,Parent-child specimen pattern,https://ckm.openehr.org/ckm/archetypes/1013.1.331,"Ej tillämpligt
+Identifierare - ej terminologi"
+PROVMATERIAL - NIVÅ 2 (Extraherat material),extraherat_material,"Föreslagna listvärden → Listvärden - Extraherat material
+Typ av extraherat genetiskt material.",1..1,Code,extraherat_material,Ja,Specimen,.type,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,openEHR-EHR-CLUSTER.specimen.v1 + openEHR-EHR-CLUSTER.sequencing_assay.v0,Child Specimen type OR sequencing_assay Nucleic acid at0003,DV_CODED_TEXT,covered,ctDNA/ctRNA SNOMED GAP,https://ckm.openehr.org/ckm/archetypes/1013.1.331,"Delvis
+SNOMED CT  täcker kanske  DNA och RNA
+ctDNA/ctRNA saknar koder."
+DIAGNOSTISK RAPPORT,rapport_id,Unikt ID för rapporten,1..1,Identifier,,,DiagnosticReport,.identifier,genomic-report,,openEHR-EHR-OBSERVATION.laboratory_test_result.v1,/protocol[at0004]/items[at0068] Laboratory internal identifier; COMPOSITION.uid,DV_IDENTIFIER,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.2191,"Ej tillämpligt
+Identifierare - ej terminologi"
+DIAGNOSTISK RAPPORT,rapport_status,Status på rapport. Listvärden: final/preliminary/amended/corrected,1..1,Code,,,DiagnosticReport,.status,genomic-report,,openEHR-EHR-OBSERVATION.laboratory_test_result.v1,/data…/items[at0073] Overall test status,DV_CODED_TEXT,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.2191,"Ej tillämpligt
+FHIR-statuskoder - ej SNOMED CT"
+DIAGNOSTISK RAPPORT,rapport_typ,"Typ av rapport (initial / amended / corrected)
+
+Typ av rapport - LOINC 81247-9 (ej i bruk i Sverige)",1..1,CodeableConcept,,,DiagnosticReport,.code,genomic-report,,openEHR-EHR-OBSERVATION.laboratory_test_result.v1,/data…/items[at0005] Test name,DV_CODED_TEXT,covered,Default e.g. 'Cancer genomic report',https://ckm.openehr.org/ckm/archetypes/1013.1.2191,"Observation.code: 118205009 | fynd som rör molekylära sekvensdata (finding) | Swedish alternative to LOINC 81247-9 (ej i bruk i Sverige). Används som DiagnosticReport.code för genomikrapport.
+✓ SNOMED CT
+118205009 | fynd som rör molekylära sekvensdata (finding) | Används som svensk alternativbindning till LOINC 81247-9 som ej är i bruk i Sverige."
+DIAGNOSTISK RAPPORT,patient_ref,Referens till Patient,1..1,Reference,,,DiagnosticReport,.subject,genomic-report,,COMPOSITION.subject,subject,PARTY_PROXY,out_of_scope_demographics,Same as PATIENT,,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,analysdatum,Datum när analysen genomfördes,1..1,DateTime,,Ja,DiagnosticReport,.effectiveDateTime,genomic-report,,openEHR-EHR-OBSERVATION.laboratory_test_result.v1,EVENT time / Analysis performed time on analyte,DV_DATE_TIME,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.2191,"Ej tillämpligt
+Datum - ej terminologi"
+DIAGNOSTISK RAPPORT,svarsdatum,Datum när rapport färdigställdes och skickades,1..1,Instant,,Ja,DiagnosticReport,.issued,genomic-report,,openEHR-EHR-OBSERVATION.laboratory_test_result.v1,COMPOSITION.context.start_time / Overall test status timestamp; issued ≈ context,DV_DATE_TIME,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.2191,"Ej tillämpligt
+Datum - ej terminologi"
+DIAGNOSTISK RAPPORT,laboratorium_ref,Referens till laboratorium (Organisation med HSA-ID),1..*,Reference,,,DiagnosticReport,.performer,genomic-report,,openEHR-EHR-CLUSTER.organisation.v1,lab_result protocol Receiving laboratory at0017 OR COMPOSITION participations,CLUSTER.organisation,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.371,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,prover_ref,Array av analyserade Specimen (nivå 1 och 2),0..*,Reference,,,DiagnosticReport,.specimen[],genomic-report,,openEHR-EHR-CLUSTER.specimen.v1,Nested specimen clusters (not FHIR refs),CLUSTER,covered,openEHR embeds specimens; FHIR refs are mapping concern,https://ckm.openehr.org/ckm/archetypes/1013.1.331,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,fynd_ref,Array av alla genomiska fynd (Observations),0..*,Reference,,,DiagnosticReport,.result[],genomic-report,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,Multiple genomic_variant_result in Test result slot at0097,CLUSTER,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,remiss_ref,Referens till remiss/beställning (ServiceRequest),1..*,Reference,,,DiagnosticReport,.basedOn[],genomic-report,,openEHR-EHR-OBSERVATION.laboratory_test_result.v1,protocol Test request details / Requester order identifier,DV_IDENTIFIER / LINK,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.2191,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,studiemetadata_ref,Länk till studiemetadata (GenomicStudy/Procedure),0..1,Reference,,,DiagnosticReport,.extension:genomic-study-reference,genomic-report,,openEHR-EHR-CLUSTER.sequencing_assay.v0,protocol Testing details at0110 → sequencing_assay,CLUSTER,partial,sequencing_assay still TEAMREVIEW,https://ckm.openehr.org/ckm/archetypes/1013.1.4256,"Ej tillämpligt
+Referens - ej terminologi"
+STUDIEMETADATA (GenomicStudy),studie_id,Identifierare för sekvenseringsstudien,1..1,Identifier,,,Procedure (GenomicStudy),.identifier,genomic-study,,openEHR-EHR-CLUSTER.sequencing_assay.v0,Identifier via device/assay Extensions or lab internal id,DV_IDENTIFIER,gap,No dedicated GenomicStudy id in sequencing_assay — may need Extension or protocol id,https://ckm.openehr.org/ckm/archetypes/1013.1.4256,"Ej tillämpligt
+Identifierare - ej terminologi"
+STUDIEMETADATA (GenomicStudy),studie_status,"Status på sekvenseringsstudien (completed / in-progress)
+
+Status. Listvärden: completed/in-progress/stopped",1..1,Code,,,Procedure,.status,genomic-study,,openEHR-EHR-OBSERVATION.laboratory_test_result.v1,Overall test status (study-level),DV_CODED_TEXT,partial,Reuse overall status or Action ISM if managed,https://ckm.openehr.org/ckm/archetypes/1013.1.2191,"Ej tillämpligt
+FHIR-statuskoder - ej SNOMED CT"
+STUDIEMETADATA (GenomicStudy),sekvenseringsdatum,Datum när sekvenseringen kördes,1..1,Date,,,Procedure,.performedDateTime,genomic-study,https://hl7.org/fhir/uv/genomics-reporting/,openEHR-EHR-CLUSTER.sequencing_assay.v0 / lab_result,EVENT time or Extension,DV_DATE_TIME,partial,,https://ckm.openehr.org/ckm/archetypes/1013.1.4256,"VCF: ##fileDate
+Saknar terminologibindning."
+STUDIEMETADATA (GenomicStudy),klinisk_kontext_ref,Varför görs analysen - referens till Condition/ServiceRequest,0..*,Reference,,,Procedure,.reasonReference,genomic-study,,openEHR-EHR-EVALUATION.problem_diagnosis.v1,LINK / reason; or Clinical information provided,LINK / DV_TEXT,partial,,https://ckm.openehr.org/ckm/archetypes/1013.1.169,"Ej tillämpligt
+Referens - ej terminologi"
+STUDIEMETADATA (GenomicStudy),analysmetod,"Föreslagna listvärden → Listvärden - Analysmetod
+Analysmetod anger övergripande teknikkategori. OBS: Anders 4.1a: FISH → ISH (in situ hybridisering) - metodneutral term. OBS: Anders 4.1b: Metylerin...",1..1,Code,analysmetod,,Procedure,.extension[genomic-study-analysis].method,genomic-study,https://hl7.org/fhir/uv/genomics-reporting/,openEHR-EHR-CLUSTER.sequencing_assay.v0,/items[at0001] Sequencing type,DV_CODED_TEXT,partial,Map HL7 method codes; SNOMED where available,https://ckm.openehr.org/ckm/archetypes/1013.1.4256,"HL7 Genomics IG CodeSystem finns
+63181000052104 | Listvärden analysmetod laboratoriemedicin |"
+STUDIEMETADATA (GenomicStudy),analystyp,"Föreslagna listvärden → Listvärden - Analystyp
+Typ av sekvensering/analys.",1..1,Code,analystyp,Nej,Procedure,.code / extension[analystype],genomic-study,https://hl7.org/fhir/uv/genomics-reporting/,openEHR-EHR-CLUSTER.sequencing_assay.v0,Sequencing type / Extensions (snp/cnv/struc-var/func-var),DV_CODED_TEXT,gap,"Auto-derived in INCA; may be template annotation not stored, or Extension",https://ckm.openehr.org/ckm/archetypes/1013.1.4256,HL7 Genomics IG CodeSystem finns
+DEVICE / PANEL,panel_produktnamn,"Föreslagna listvärden → Listvärden - Produktnamn
+Kommersiellt namn på analyspaket/panel. Listvärden: Produktnamn",1..1,String,produktnamn,,Device,.deviceName.name,Standard FHIR R4,https://hl7.org/fhir/R4/device.html,openEHR-EHR-CLUSTER.device.v1 via openEHR-EHR-CLUSTER.sequencing_assay.v0,sequencing_assay Kit name at0002 OR device Name,DV_TEXT,covered,Open product list,https://ckm.openehr.org/ckm/archetypes/1013.1.4256,"VCF: ##IonReporterWorkflowName
+Ej tillämpligt
+Produktnamn (fritext) - ej terminologi"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),fynd_id,Unik identifierare för genomiskt fynd,1..1,Identifier,,,Observation,.identifier,variant,https://hl7.org/fhir/uv/genomics-reporting/,openEHR-EHR-CLUSTER.genomic_variant_result.v1,ENTRY/CLUSTER identifier via feeder_audit or Additional details; Observation.identifier ≈ uid,DV_IDENTIFIER,partial,Use feeder_audit.original_content or Additional details,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Observation.code (block-nivå): 
+SNV/Indel: 471281007 | punktmutation (finding) |
+Fusion: 43245005 | genrearrangering (finding) |
+CNV: 12645001 | genamplifiering (finding) | (amplification) eller saknas kod för generisk CNV. LOINC 69548-6 (genetisk variant) ej i bruk i Sverige."
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),fynd_status,Status. Listvärden: final/preliminary/amended,1..1,Code,,,Observation,.status,variant,,openEHR-EHR-OBSERVATION.laboratory_test_result.v1 / analyte,Result status at0005 on containing analyte or overall,DV_CODED_TEXT,partial,Per-variant status may need Additional details,https://ckm.openehr.org/ckm/archetypes/1013.1.2191,"Ej tillämpligt
+FHIR-statuskoder - ej SNOMED CT"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),patient_ref,Referens till patient,1..1,Reference,,,Observation,.subject,variant,,COMPOSITION.subject,subject,PARTY_PROXY,out_of_scope_demographics,Same as PATIENT,,"Ej tillämpligt
+Referens - ej terminologi"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),prov_ref,Referens till extraherat material (Specimen nivå 2),1..1,Reference,,,Observation,.specimen,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,/items[at0070] Specimen identifier,DV_TEXT/IDENTIFIER,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Ej tillämpligt
+Referens - ej terminologi"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),laboratorium_ref,HSA-ID för analysutförande laboratorium,1..1,Reference,,,Observation,.performer,variant,,openEHR-EHR-CLUSTER.organisation.v1,performer / protocol,CLUSTER.organisation,covered,Per-finding performer if needed,https://ckm.openehr.org/ckm/archetypes/1013.1.371,"Ej tillämpligt
+Referens - ej terminologi"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),förekomst,"Om variant är påvisad eller inte. 
+
+
+
+Listvärden:",1..1,Code,,Ja,Observation,.valueCodeableConcept,variant,,openEHR-EHR-CLUSTER.genetic_variant_presence.v0 OR gvr Functional impact / genotype,Finding at0002 (Detected/Not detected) OR genotype/allelic state,DV_CODED_TEXT,partial,presence archetype is DRAFT; SNOMED 260373001 Påvisad used in underlag example,https://ckm.openehr.org/ckm/archetypes/1013.1.4446,"VCF: FILTER=PASS (påvisad)
+SNOMED CT
+260415000 | inte påvisad |
+260373001 | påvisad |
+82334004 | obestämbar |"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),genetiskt_ursprung,"Om varianten är somatisk (tumörspecifik) eller germline (ärftlig)
+
+Föreslagna listvärden → Listvärden - Genetiskt ursprung",0..1,Code,genetiskt_ursprung,Nej,Observation,.component:genomic-allele-origin,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,Additional details OR Allelic state (imperfect) — GAP for somatic/germline,DV_CODED_TEXT,gap,No dedicated genomic allele origin element in gvr.v1; propose Extension/specialisation or map to Additional details,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Germline/somatic som generiska qualifier values verkar 
+saknas i SNOMED CT"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),studerad_gen,Gen där fynd påvisats - HGNC-gennamn,1..*,CodeableConcept,,Ja,Observation,.component:gene-studied,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,/items[at0019]/items[at0020] Gene symbol (+ Gene name),DV_TEXT / DV_CODED_TEXT,covered,HGNC; for fusion use two Gene clusters + Part of fusion,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Fusion: två gene-studied-komponenter
+HGNC är standard för gennamn"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),variationstyp,"Typ av genomisk förändring - anger både kategorin (SNV / CNV / Fusion) och den specifika DNA-förändringen (deletion / insertion / translokation...).
+Föreslagna listvärden → Listvärden - Variationstyp",1..1,Code,variationstyp,Ja,Observation,.component:coding-change-type,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1 Structured variant choice,Choice of genomic_*_variant archetype OR Additional details coded SO,DV_CODED_TEXT / archetype choice,partial,SO coding-change-type is FHIR field; in openEHR the structured variant archetype encodes type; may also store SO code in Additional details,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,Ett FHIR-fält (coding-change-type) täcker båda nivåerna: bred kategorisering (SNV/CNV/Fusion) och specifik DNA-förändring. Seq. Ontology-koder. Gäller alla variantblock.
+VARIANTFYND - SNV OCH INDEL,dna_förändring,"HGVS c.-notation - standardiserad beskrivning av DNA-förändringen
+
+HGVS-notation för DNA-nivåförändring (t.ex. c.1799T>A)",1..1,String,,Ja,Observation,.component:genomic-hgvs,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,/items[at0011] DNA change (HGVS) and/or /items[at0101] Variant (genomic HGVS),DV_TEXT,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Konstrueras från CHROM:POS:REF:ALT
+HGVS-notation (sträng)"
+VARIANTFYND - SNV OCH INDEL,protein_förändring,"HGVS p.-notation - standardiserad beskrivning av proteinförändringen
+
+HGVS-notation för proteinförändring (t.ex. p.Val600Glu)",0..1,String,,Ja,Observation,.component:protein-hgvs,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,/items[at0012] Amino acid change,DV_TEXT,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"VCF: INFO:Protein
+HGVS-notation (sträng)"
+VARIANTFYND - SNV OCH INDEL,molecular_consequence,"Funktionell effekt av varianten på proteinnivå
+
+Föreslagna listvärden → Listvärden_MolecularConsequence",0..1,Code,molecular_consequence,Nej,Observation,.component:molecular-consequence,genomic-report,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,/items[at0013] Amino acid change type (local codes missense/frameshift…) OR Additional details SO,DV_CODED_TEXT,partial,Archetype local list ≈ SO molecular consequence; prefer SO binding in template,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"SO:0001583→1306850007, SO:0001587→327671006 m.fl.
+Delvis
+5 SO-typer har SNOMED CT-mappning. splice_region/UTR/intergenic saknar koder."
+VARIANTFYND - SNV OCH INDEL,allelisk_frekvens,"VAF - andel muterade alleler i provet (0.0–1.0)
+
+Variant Allele Frequency (VAF)",0..1,Quantity,,Ja,Observation,.component:allelic-frequency.valueQuantity,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,/items[at0047] Allele frequency,DV_PROPORTION / DV_QUANTITY,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Observation.code: Ingår i HL7 IG component:allelic-frequency - komponentnamnet definierar VAD som mäts. 
+SNOMED CT ej nödvändigt? Observation.component.valueQuantity = VAF 0.0-1.0.
+Numeriskt värde - ej terminologi"
+VARIANTFYND - SNV OCH INDEL,exonnummer,Exon-nummer (kritiskt för t.ex. EGFR exon 19/21),0..1,Integer,,Ja,Observation,.extension:exon-number,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,DNA region name / Fusion exon at0059 / Additional details,DV_COUNT / DV_TEXT,partial,No dedicated exon number for SNV — use DNA region name or Additional details,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Observation.code?
+Numeriskt - ej terminologi"
+CNV-FYND (Kopietalförändring),målregion_gen,"Gen, hel kromosom eller kromosomregion som analyseras",1..1,String,,Ja,Observation,.component:gene-studied,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,Gene symbol at0020,DV_TEXT,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"VCF: FUNC=[{'gene':'GENNAMN'}]
+HGNC/kromosomsträng"
+CNV-FYND (Kopietalförändring),antal_kopior,Absolut antal genkopior (range 0-10),1..1,Decimal,,Ja,Observation,.component:copy-number,variant,,openEHR-EHR-CLUSTER.genomic_copy_number_variant.v1,/items[at0003] Total copy number,DV_COUNT / DV_QUANTITY,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.3750,"Observation.code: Ingår i HL7 IG component:copy-number - komponentnamnet definierar VAD som mäts. 
+SNOMED CT ej nödvändigt? Observation.component.valueQuantity = antal kopior ex. 8."
+CNV-FYND (Kopietalförändring),kopietaltyp,"Klinisk klassificering av kopietalförändring
+
+Typ av CNV-förändring. 
+Föreslagna listvärden →Listvärden - Kopietaltyp",1..1,Code,kopietaltyp,Ja,Observation,.component:copy-number-change-type,variant,,openEHR-EHR-CLUSTER.genomic_copy_number_variant.v1 + gvr Functional impact,/items[at0005] Copy number change type (Gain/Loss only!) + Functional impact for amp/hom del,DV_CODED_TEXT,gap,Archetype only Gain/Loss; amplification/homozygous deletion need Functional impact or specialised value set — SO codes in underlag,https://ckm.openehr.org/ckm/archetypes/1013.1.3750,"Delvis
+SO-koder och delvis SNOMED CT-mappning"
+CNV-FYND (Kopietalförändring),karyotyp_iscn,"Cytogenetisk notation (ISCN 2024)
+
+Cytogenetisk notation enligt ISCN 2024",0..1,String,,Ja,Observation,.component:cytogenomic-nomenclature,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,Additional details / Variant text,DV_TEXT,partial,No dedicated ISCN element,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Observation.code? Hittar ej i snomed-CT
+
+ISCN-notation - internationell standard, ej SNOMED CT"
+FUSIONSFYND (Rearrangemang),fusionspartner_1,"Gen 1 i fusionen (HGNC-namn)
+
+HGNC-namn för första fusionspartner",1..1,Code,,Ja,Observation,.component:gene-studied[0],variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1 + openEHR-EHR-CLUSTER.translocation_variant.v0,Gene cluster ×2 with Part of fusion=First/Second; translocation_variant for structure,DV_CODED_TEXT,partial,translocation_variant REVIEWSUSPENDED; gvr supports Part of fusion,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Värdesystem HGNC
+Ej tillämpligt
+HGNC-gennamn - ej SNOMED CT"
+FUSIONSFYND (Rearrangemang),fusionspartner_2,"Gen 2 i fusionen (HGNC-namn)
+
+HGNC-namn för andra fusionspartner",1..1,Code,,Ja,Observation,.component:gene-studied[1],variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,"Second Gene cluster, Part of fusion=Second",DV_CODED_TEXT,partial,Same,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Array med två gene-studied
+Ej tillämpligt
+HGNC-gennamn - ej SNOMED CT"
+FUSIONSFYND (Rearrangemang),karyotyp_iscn,"Cytogenetisk notation (ISCN 2024)
+
+Cytogenetisk notation för fusion",0..1,String,,Ja,Observation,.component:cytogenomic-nomenclature,variant,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,Additional details / Variant text (ISCN),DV_TEXT,partial,Same ISCN gap,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Ej tillämpligt
+ISCN-notation - ej SNOMED CT"
+DIAGNOSTISK IMPLIKATION,impl_diag_id,Unikt ID,1..1,Identifier,,,Observation,.identifier,diagnostic-implication,,Separate EVALUATION or linked OBSERVATION,feeder_audit / uid,DV_IDENTIFIER,gap,Diagnostic implication as separate entry vs cluster — open design,,"Ej tillämpligt
+Identifierare - ej terminologi"
+DIAGNOSTISK IMPLIKATION,impl_diag_status,Status. Listvärden: final/preliminary,1..1,Code,,,Observation,.status,diagnostic-implication,,Same entry status,Result status,DV_CODED_TEXT,gap,,,"Ej tillämpligt
+FHIR-statuskoder - ej SNOMED CT"
+DIAGNOSTISK IMPLIKATION,variant_ref,Referens till variant,1..1,Reference,,,Observation,.derivedFrom,diagnostic-implication,,LINK to variant CLUSTER/entry,LINKs,LINK,partial,openEHR LINK vs FHIR derivedFrom,,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK IMPLIKATION,patogenicitet,"Patogenicitet enligt ACMG/AMP. 
+Listvärden: Pathogenic/Likely pathogenic/VUS/Likely benign/Benign",0..1,Code,,Ja,Observation,.component:clinical-significance,diagnostic-implication,https://hl7.org/fhir/uv/genomics-reporting/,openEHR-EHR-CLUSTER.genomic_variant_result.v1,/items[at0058] ACMG classification,DV_CODED_TEXT,partial,ACMG germline scale; underlag may want somatic scale — clarify,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,"Delvis
+SNOMED CT har Pathogenic/Benign. VUS och likely-varianter saknar SNOMED CT-koder."
+DIAGNOSTISK IMPLIKATION,klinisk_signifikans_asco,"Föreslagna listvärden → Listvärden - ASCO Tier
+
+Klinisk signifikans somatisk cancer. Listvärden: ASCO Tier",0..1,Code,asco_tier,Ja,Observation,.component:somatic-clinical-significance,diagnostic-implication,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,Functional impact Impact at0054 OR Additional details — ASCO Tier,DV_CODED_TEXT,gap,No ASCO/AMP Tier in CKM; ACMG ≠ ASCO. Need specialised CLUSTER or local value set on Functional impact,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,ASCO Tier-klassifikation - inga SNOMED CT-koder.
+TERAPEUTISK IMPLIKATION,impl_ter_id,Unikt ID,1..1,Identifier,,,Observation,.identifier,therapeutic-implication,,Therapeutic implication entry,uid,DV_IDENTIFIER,gap,,,"Ej tillämpligt
+Identifierare - ej terminologi"
+TERAPEUTISK IMPLIKATION,variant_ref,Referens till variant,1..1,Reference,,,Observation,.derivedFrom,therapeutic-implication,,LINK to variant,LINKs,LINK,partial,,,"Ej tillämpligt
+Referens - ej terminologi"
+TERAPEUTISK IMPLIKATION,behandlingsrelevans_escat,"Behandlingsrelevans enligt ESMO ESCAT. 
+Föreslagna listvärden → Listvärden: ESCAT Tier",0..1,Code,escat_tier,Ja,Observation,.component:therapeutic-actionability,therapeutic-implication,,openEHR-EHR-CLUSTER.genomic_variant_result.v1,Functional impact / Additional details — ESCAT,DV_CODED_TEXT,gap,No ESCAT archetype,https://ckm.openehr.org/ckm/archetypes/1013.1.3759,ESCAT Tier - ESMO-klassifikation utan SNOMED CT-bindning.
+KOMPLEX BIOMARKÖR - TMB (Tumor Mutational Burden),tmb_värde,"TMB - antal mutationer per megabas
+
+Tumor Mutational Burden (mutations/Megabas)",1..1,Quantity,,Ja,Observation,.valueQuantity,genomic-finding,,openEHR-EHR-CLUSTER.laboratory_test_analyte.v1,Analyte name=TMB; result DV_QUANTITY (mut/Mb),DV_QUANTITY,covered,"Pattern: lab analyte, not genomic_variant_result",https://ckm.openehr.org/ckm/archetypes/1013.1.2881,"Observation.code: LOINC 94076-7 (TMB) -- ej i bruk i Sverige. GAP i SNOMED CT. Observation.valueQuantity = mutations/Mb.
+Ej tillämpligt
+Numeriskt värde - ej terminologi"
+KOMPLEX BIOMARKÖR - TMB (Tumor Mutational Burden),tmb_tolkning,"Klinisk klassificering av TMB (Hög / Låg)
+
+Klinisk tolkning. Listvärden: High/Medium/Low",1..1,Code,,,Observation,.interpretation.coding,genomic-finding,,openEHR-EHR-CLUSTER.laboratory_test_analyte.v1,Result interpretation / comment coded,DV_CODED_TEXT,partial,May use DV_ORDINAL or coded comment,https://ckm.openehr.org/ckm/archetypes/1013.1.2881,"Observation.code: GAP i SNOMED CT -- ingen TMB-tolkningskod finns. LOINC 94077-5 finns men ej i bruk i Sverige. Observation.interpretation = High/Medium/Low.
+Delvis
+High/Medium/Low saknar SNOMED CT. LOINC 94077-5 finns men ej i bruk i Sverige."
+KOMPLEX BIOMARKÖR - TMB (Tumor Mutational Burden),tmb_variant_ref,Länk till alla räknade varianter,1..*,Reference,,,Observation,.derivedFrom[],genomic-finding,,LINKs to contributing variants,LINKs,LINK,partial,,,"Ej tillämpligt
+Referens - ej terminologi"
+KOMPLEX BIOMARKÖR - MSI (Microsatellite Instability),msi_status,"MSI-status (MSI-H / MSI-L / MSS)
+
+MSI-status. Listvärden: MSI-H / MSI-L / MSS",1..1,Code,,Ja,Observation,.valueCodeableConcept,genomic-finding,,openEHR-EHR-CLUSTER.laboratory_test_analyte.v1,Analyte name=MSI; coded result (MSI-H/MSS/…),DV_CODED_TEXT,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.2881,"Observation.code: GAP i SNOMED CT -- ingen generisk MSI-observationskod. LOINC 81695-9 finns men ej i bruk i Sverige. Observation.valueCodeableConcept = MSI-H/MSI-L/MSS.
+Delvis
+SNOMED CT 1255344007 (MSI-H) finns. MSI-L och MSS behöver verifieras."
+KOMPLEX BIOMARKÖR - HRD (Homologous Recombination Deficiency),hrd_score,"HRD - Homologous Recombination Deficiency-score
+
+HRD total score",1..1,Quantity,,Ja,Observation,.valueQuantity,genomic-finding,,openEHR-EHR-CLUSTER.laboratory_test_analyte.v1,Analyte name=HRD score; DV_QUANTITY,DV_QUANTITY,covered,,https://ckm.openehr.org/ckm/archetypes/1013.1.2881,"Observation.code: GAP i SNOMED CT -- ingen HRD-score-observationskod. Observation.valueQuantity = numeriskt HRD-score ex. 42.
+Ej tillämpligt
+Numeriskt - ej terminologi"
+KOMPLEX BIOMARKÖR - HRD (Homologous Recombination Deficiency),hrd_tolkning,"Klinisk klassificering av HRD (Positiv / Negativ)
+
+Klinisk tolkning. Listvärden: Positive/Negative",1..1,Code,,,Observation,.interpretation,genomic-finding,,openEHR-EHR-CLUSTER.laboratory_test_analyte.v1,Coded interpretation,DV_CODED_TEXT,partial,,https://ckm.openehr.org/ckm/archetypes/1013.1.2881,"Observation.code: GAP i SNOMED CT -- ingen HRD-tolkningskod. Observation.interpretation = Positiv/Negativ/Ej analyserat.
+Delvis
+HRD-tolkning saknar SNOMED CT-kod."

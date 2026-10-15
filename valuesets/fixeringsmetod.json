@@ -1,0 +1,28 @@
+{
+  "variable": "fixeringsmetod",
+  "fhir": "Specimen.processing.procedure",
+  "systems": [
+    "snomed"
+  ],
+  "codes": [
+    {
+      "snomed": null,
+      "display_en": "Formalin-Fixed Paraffin-Embedded",
+      "display_sv": "Formalinfixerad paraffinbäddad vävnad",
+      "system": "snomed"
+    },
+    {
+      "snomed": null,
+      "display_en": "Fresh (unfixed, incl. frozen)",
+      "display_sv": "Färsk/ofixerad vävnad (inkl. fryst)",
+      "system": "snomed"
+    },
+    {
+      "snomed": null,
+      "display_en": "Other",
+      "display_sv": "Annat",
+      "system": "snomed"
+    }
+  ],
+  "note": "Procedure concept 787378005; list values lack specific SNOMED codes in draft"
+}

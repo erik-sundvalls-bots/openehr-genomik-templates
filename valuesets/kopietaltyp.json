@@ -1,0 +1,42 @@
+{
+  "variable": "kopietaltyp",
+  "fhir": "Observation.component:copy-number-change-type",
+  "systems": [
+    "so"
+  ],
+  "codes": [
+    {
+      "so": "SO:0001742",
+      "display": "Gain (ökat kopieantal)  copy_number_gain",
+      "condition": "> 2 kopior",
+      "snomed": null,
+      "clinical": "Polysomi, trisomi, låg amplifiering. Ex: +7 i gliom.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001743",
+      "display": "Loss (minskat kopieantal)  copy_number_loss",
+      "condition": "< 2 kopior",
+      "snomed": null,
+      "clinical": "Ex: del(9p) i ALL.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001742",
+      "display": "Amplification",
+      "condition": "> 4-6 kopior (tröskel labspecifik)",
+      "snomed": null,
+      "clinical": "Hög kopietalsökning. Ex: ERBB2-amplifiering i bröstcancer, MYC-amp.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0002210",
+      "display": "Deletion (homozygot)  presence_absence_variation",
+      "condition": "0 kopior",
+      "snomed": null,
+      "clinical": "Båda alleler deleterade. Ex: CDKN2A homozygot deletion.",
+      "system": "so"
+    }
+  ],
+  "note": "gain vs amplification distinguished by antal_kopior, both SO:0001742"
+}

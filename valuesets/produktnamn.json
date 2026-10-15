@@ -1,0 +1,74 @@
+{
+  "variable": "panel_produktnamn",
+  "fhir": "Device.deviceName.name",
+  "systems": [],
+  "codes": [
+    {
+      "product": "GMS560",
+      "type": "NGS bred panel",
+      "manufacturer": "GMS / Genomic Medicine Sweden",
+      "comment": "Nationell bred panel för cancergenomik i Sverige (500+ gener)"
+    },
+    {
+      "product": "Actionable Insights Tumor Panel",
+      "type": "NGS",
+      "manufacturer": "Thermo Fisher Scientific",
+      "comment": "Ion Torrent-baserad"
+    },
+    {
+      "product": "Ion AmpliSeq CLv2",
+      "type": "NGS",
+      "manufacturer": "Thermo Fisher Scientific",
+      "comment": "Ion Torrent-baserad"
+    },
+    {
+      "product": "Oncomine Focus",
+      "type": "NGS",
+      "manufacturer": "Thermo Fisher Scientific",
+      "comment": "Ion S5-baserad"
+    },
+    {
+      "product": "Oncomine Solid Tumour DNA",
+      "type": "NGS",
+      "manufacturer": "Thermo Fisher Scientific",
+      "comment": "Ion Torrent-baserad"
+    },
+    {
+      "product": "HaloPlex custom",
+      "type": "NGS",
+      "manufacturer": "Agilent Technologies",
+      "comment": "Custom hybridisering"
+    },
+    {
+      "product": "Archer Solid Tumor",
+      "type": "NGS",
+      "manufacturer": "Archer / Invivoscribe",
+      "comment": "RNA/DNA fusion-panel"
+    },
+    {
+      "product": "TruSight Tumor 15",
+      "type": "NGS",
+      "manufacturer": "Illumina",
+      "comment": "Amplikon-baserad"
+    },
+    {
+      "product": "Pyroseq",
+      "type": "Allelspecifik",
+      "manufacturer": "Qiagen / Biotage",
+      "comment": "Pyrosequencing-metod"
+    },
+    {
+      "product": "Entrogen",
+      "type": "Allelspecifik",
+      "manufacturer": "Entrogen",
+      "comment": "Allelspecifik PCR"
+    },
+    {
+      "product": "Therascreen",
+      "type": "Allelspecifik",
+      "manufacturer": "Qiagen",
+      "comment": "Real-time PCR"
+    }
+  ],
+  "note": "Open list — labs extend locally"
+}

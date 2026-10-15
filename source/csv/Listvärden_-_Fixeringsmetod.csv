@@ -1,0 +1,11 @@
+Tillåtna listvärden - Fixeringsmetod  ·  Specimen.processing.procedure  ·  SNOMED CT / fritext,,,
+"Fixeringsmetod = HUR provet preparerades innan DNA-extraktion. Påverkar direkt kvalitet och utbyte av DNA/RNA (t.ex. är FFPE-DNA är fragmenterat och modifierat på ett sätt som kan påverka analys-resultat).
+
+787378005 | fixering av prov |",,,
+SNOMED CT,Term (EN),Svensk benämning,SNOMED-status
+,Formalin-Fixed Paraffin-Embedded,Formalinfixerad paraffinbäddad vävnad,
+,"Fresh (unfixed, incl. frozen)",Färsk/ofixerad vävnad (inkl. fryst),
+,Other,Annat,
+,,,
+SNOMED CT: 787378005 (Fixering av prov) är väl etablerad.. Fält är 0..1 (valfritt) — relevant framför allt för solida tumörer.,,,
+,,,

@@ -1,0 +1,86 @@
+{
+  "variable": "behandlingsrelevans_escat",
+  "fhir": "Observation.component:therapeutic-actionability",
+  "systems": [
+    "local_escat"
+  ],
+  "codes": [
+    {
+      "tier": "Tier I",
+      "sub_tier": "A",
+      "code": "Tier I-A",
+      "display_en": "Ready for routine use - RCT evidence",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier I",
+      "sub_tier": "B",
+      "code": "Tier I-B",
+      "display_en": "Ready for routine use - Single-arm trial",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier I",
+      "sub_tier": "C",
+      "code": "Tier I-C",
+      "display_en": "Ready for routine use - Basket trial",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier II",
+      "sub_tier": "A",
+      "code": "Tier II-A",
+      "display_en": "Investigational - Retrospective evidence",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier II",
+      "sub_tier": "B",
+      "code": "Tier II-B",
+      "display_en": "Investigational - Response without survival data",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier III",
+      "sub_tier": "A",
+      "code": "Tier III-A",
+      "display_en": "Hypothetical - Evidence from other tumor type",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier III",
+      "sub_tier": "B",
+      "code": "Tier III-B",
+      "display_en": "Hypothetical - Similar molecular alteration",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier IV",
+      "sub_tier": "A",
+      "code": "Tier IV-A",
+      "display_en": "Preclinical - In vitro/vivo evidence",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier IV",
+      "sub_tier": "B",
+      "code": "Tier IV-B",
+      "display_en": "Preclinical - In silico prediction",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier V",
+      "sub_tier": null,
+      "code": "Tier V",
+      "display_en": "Combination - Response without clinical benefit",
+      "system": "local_escat"
+    },
+    {
+      "tier": "Tier X",
+      "sub_tier": null,
+      "code": "Tier X",
+      "display_en": "No evidence for actionability",
+      "system": "local_escat"
+    }
+  ]
+}

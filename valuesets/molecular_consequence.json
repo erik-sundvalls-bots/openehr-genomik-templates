@@ -1,0 +1,74 @@
+{
+  "variable": "molecular_consequence",
+  "fhir": "Observation.component:molecular-consequence",
+  "systems": [
+    "so",
+    "snomed"
+  ],
+  "codes": [
+    {
+      "so": "SO:0001583",
+      "display_en": "missense_variant",
+      "snomed": "1306850007",
+      "snomed_sv": "missense-variant",
+      "comment": "Aminosyrubyte. Ex: p.T790M, p.V600E, p.G12C. Vanligaste kliniska varianten.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001587",
+      "display_en": "stop_gained",
+      "snomed": "327671006",
+      "snomed_sv": "nonsense-variant (stop gained)",
+      "comment": "Förtida stoppkodon = trunkerat protein. Ex: p.Arg248*. Kallas ibland nonsense.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001589",
+      "display_en": "frameshift_variant",
+      "snomed": "325753009",
+      "snomed_sv": "frameshift-variant",
+      "comment": "Läsramsförskjutning. Ex: p.Val600fs. Orsakas av ins/del ej delbar med 3.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001819",
+      "display_en": "synonymous_variant",
+      "snomed": "1306861004",
+      "snomed_sv": "synonymous-variant",
+      "comment": "Tyst mutation - aminosyran förändras ej. Kliniskt sällan relevant men rapporteras.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0002012",
+      "display_en": "start_lost",
+      "snomed": null,
+      "snomed_sv": "",
+      "comment": "Startkodon förloras - protein kan ej initieras. Kliniskt relevant.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001578",
+      "display_en": "stop_lost",
+      "snomed": null,
+      "snomed_sv": "",
+      "comment": "Stoppkodon förloras - förlängt protein. Kliniskt relevant.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001821",
+      "display_en": "inframe_insertion",
+      "snomed": null,
+      "snomed_sv": "",
+      "comment": "In-frame insertion - aminosyra(or) läggs till utan läsramsförskjutning. Ex: FLT3-ITD.",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001822",
+      "display_en": "inframe_deletion",
+      "snomed": null,
+      "snomed_sv": "",
+      "comment": "In-frame deletion - aminosyra(or) tas bort. Ex: EGFR exon19-deletion på proteinnivå.",
+      "system": "so"
+    }
+  ]
+}

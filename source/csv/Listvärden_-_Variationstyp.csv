@@ -1,0 +1,22 @@
+Tillåtna listvärden - Variationstyp / Coding Change Type  ·  Observation.component:coding-change-type  ·  Sequence Ontology (SO),,,,,
+"FHIR-fältet coding-change-type används för att ange typen av genomisk förändring. Det fyller två syften: (1) Bred kategorisering - anger om det är en SNV, CNV, strukturell variant eller fusion. (2) Specifik DNA-förändring - anger exakt vad som hänt (deletion, insertion, translokation...). Samma FHIR-komponent används i alla variantblock (SNV/Indel, CNV, Fusion).",,,,,
+SO-kod,Term (SO - engelska),SNV / Indel,CNV,Fusion / Struct.,Kommentar / Klinisk kontext
+① SNV / Indel - Punktmutationer och små insertioner/deletioner,,,,,
+SO:0001483,SNV (single_nucleotide_variant),✓,,,Enstaka basbyte
+SO:0000667,insertion,✓,,,Liten insertion (< 50 bp)
+SO:0000159,deletion,✓,✓,✓,Används i tre kontexter - se kommentar i flik Coding Change Type
+SO:1000032,indel,✓,,,Kombination insertion + deletion
+SO:0001629,splice_site_variant,✓,,(✓),Kan även uppstå vid fusioner
+② CNV - Kopietalsvariationer,,,,,
+SO:0001019,copy_number_variation,,✓,,Generisk CNV-term
+SO:1000035,duplication,,✓,✓,Genduplikation eller tandem-dup som skapar fusion
+SO:0000159,deletion,,✓,,Homozygot loss i CNV-kontext
+③ Fusion / Strukturell variant - Rearrangemang,,,,,
+SO:0001537,structural_variant,,,✓,Generisk strukturell variant
+SO:0000199,translocation,,,✓,"Inter-kromosomal - t(9;22), BCR::ABL1"
+SO:1000036,inversion,,,✓,"Intra-kromosomal - inv(2)(p21p23), EML4::ALK"
+SO:1000035,duplication,,,✓,Tandem-duplikation som skapar fusion
+SO:0001784,complex_structural_alteration,,,✓,Multipla breakpoints
+,,,,,
+,,,,,
+"Relation till molecular_consequence: coding_change_type anger VAD som hänt i DNA. molecular_consequence anger EFFEKTEN på proteinet (missense, frameshift etc.) och beräknas automatiskt av annotationsverktyg (VEP/Annovar) - se separat flik.",,,,,

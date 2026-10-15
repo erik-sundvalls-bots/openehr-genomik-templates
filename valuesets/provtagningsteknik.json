@@ -1,0 +1,128 @@
+{
+  "variable": "provtagningsteknik",
+  "fhir": "Specimen.collection.method",
+  "systems": [
+    "snomed"
+  ],
+  "codes": [
+    {
+      "snomed": "118292001",
+      "display_en": "Resection (procedure)",
+      "display_sv": "Resektion / Resektat",
+      "ngs_quality": "🟢 Utmärkt",
+      "comment": "Resektion innebär att en del av eller ett helt organ tas bort, ex. en lob av en lunga eller ett kolorektalt segment. Ger rikligt material med utmärkt DNA-utbyte. Resektatet är det kirurgiska preparatet - stor mängd, bäst för NGS.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "65801008",
+      "display_en": "Excision (procedure)",
+      "display_sv": "Excision",
+      "ngs_quality": "🟢 Utmärkt",
+      "comment": "Excision innebär att en avgränsad förändring tas bort i sin helhet, ex. hudförändring, lymfkörtel eller bröstfibroadenom. Skilj från resektion (organexcision). Oftast stora mängder material men risk för över- och underfixering som kan nedsätta analyskvalietet.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "9911007",
+      "display_en": "Core needle biopsy",
+      "display_sv": "Grovnålsbiopsi (core needle)",
+      "ngs_quality": "🟢 Bra",
+      "comment": "Grovnålsbiopsi ger en vävnadscylinder - histologiskt välbevarat. Oftast tillräcklig kvantitet men begränsningar när det finns simultant behov av immunhistokemi.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "68660007",
+      "display_en": "Punch biopsy",
+      "display_sv": "Stansbiopsi",
+      "ngs_quality": "🟢 Bra",
+      "comment": "Litet men histologiskt välbevarat prov. Vanlig vid hudtumörer. Fungerar väl för NGS.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "56241004",
+      "display_en": "Bone marrow biopsy",
+      "display_sv": "Benmärgsbiopsi",
+      "ngs_quality": "🟢 Utmärkt",
+      "comment": "Standardmetod för hematologiska maligniteter. Ger rikligt material med hög tumörcellshalt. Utmärkt för NGS-panel, karyotypering och FISH.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "178255001",
+      "display_en": "Needle core biopsy (procedure)",
+      "display_sv": "Mellannålsbiopsi",
+      "ngs_quality": "🟢 Bra",
+      "comment": "Mellannålsbiopsi ger vävnadscylinder - bättre representativitet än FNA. Används vid bröst, prostata, lever. God kvalitet och tillräcklig mängd i de flesta fall.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "80783008",
+      "display_en": "Percutaneous needle biopsy",
+      "display_sv": "Transtorakalbiopsi / Perkutan biopsi",
+      "ngs_quality": "🟡 Varierande",
+      "comment": "CT-styrd biopsi av t.ex. lunglesion eller levertumör. Litet material - tumörcellshalten kritisk för NGS.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "274036004",
+      "display_en": "Biopsy of bone (procedure)",
+      "display_sv": "Benbiopsi",
+      "ngs_quality": "🟡 Varierande",
+      "comment": "Provtagning från ben för solida tumörer - skilj från benmärgsbiopsi (hematologi). Kräver dekalcificering som kan påverka DNA-kvaliteten.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "86273004",
+      "display_en": "Biopsy",
+      "display_sv": "Biopsi (ej specificerad)",
+      "ngs_quality": "🟡 Varierande",
+      "comment": "Använd mer specifik term om möjligt. \"Biopsi NOS\" används när tekniken ej är känd.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "14766002",
+      "display_en": "Aspiration",
+      "display_sv": "Aspirationscytologi (FNA)",
+      "ngs_quality": "🟡 Begränsat",
+      "comment": "Föredragen primärterm framför \"finnålsaspirat\". Stor variation vad gäller mängd och tumörcellsandel. Litet cellprov - ofta otillräckligt för NGS utan cellblock. De flesta kliniker använder \"aspirationscytologi\" i första hand.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "48635004",
+      "display_en": "Fine needle biopsy",
+      "display_sv": "Finnålsaspirat / FNA",
+      "ngs_quality": "🟡 Begränsat",
+      "comment": "Alternativ term för aspirationscytologi. Kvalitet oftast god men stor variation i kvantitet.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "129300006",
+      "display_en": "Puncture procedure",
+      "display_sv": "Vätskeprov (pleura / ascites)",
+      "ngs_quality": "🟡 Varierande",
+      "comment": "Pleuravätska och ascitesvätska - cytologiskt prov. Föreslås att grupperas under \"Cytologi\" tillsammans med cellblock. T.ex. torakocentos, paracentos.",
+      "system": "snomed"
+    },
+    {
+      "snomed": null,
+      "display_en": "Cell block method",
+      "display_sv": "Cytologi - cellblock",
+      "system": "local",
+      "gap": "SNOMED saknas"
+    },
+    {
+      "snomed": "274315006",
+      "display_en": "Smear technique",
+      "display_sv": "Cytologiutstryk",
+      "ngs_quality": "🔴 Begränsat",
+      "comment": "OBS: \"Smears/utstryk\" är ett begrepp som primärt används vid cervix-screening. Vid cancergenomik bör \"Aspirationscytologi\" användas som primärterm. Cytologiutstryk ger cellprov utan histologi - oftast otillräckligt för NGS.",
+      "system": "snomed"
+    },
+    {
+      "snomed": "396540005",
+      "display_en": "Phlebotomy",
+      "display_sv": "Blodprov (venöst)",
+      "ngs_quality": "🟢 Bra (för ctDNA)",
+      "comment": "Venöst blodprov för ctDNA/liquid biopsy (plasma) ELLER för germline-DNA-extraktion (helblod). Används som normal-DNA i tumör/normal-analys (paired sequencing).",
+      "system": "snomed"
+    }
+  ]
+}

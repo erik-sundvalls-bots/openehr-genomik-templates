@@ -1,0 +1,57 @@
+{
+  "variable": "frågeställning",
+  "fhir": "ServiceRequest.reasonCode",
+  "systems": [
+    "local_fragestallning"
+  ],
+  "codes": [
+    {
+      "code": "1",
+      "display_sv": "Primärdiagnostik",
+      "description": "Bekräfta molekylär diagnos eller subtyp av cancer vid nydiagnos.",
+      "system": "local_fragestallning"
+    },
+    {
+      "code": "2",
+      "display_sv": "Behandlingssvarsprediktion",
+      "description": "Förutsäga om en specifik behandling förväntas fungera baserat på tumörens genetik.",
+      "system": "local_fragestallning"
+    },
+    {
+      "code": "3",
+      "display_sv": "Behandlingsmonitorering",
+      "description": "Följa behandlingssvar över tid via upprepad provtagning (ej MRD-specifik).",
+      "system": "local_fragestallning"
+    },
+    {
+      "code": "4",
+      "display_sv": "Återfallsdetektion (MRD)",
+      "description": "Upptäcka minimal residual disease (MRD) eller tidigt återfall efter behandling.",
+      "system": "local_fragestallning"
+    },
+    {
+      "code": "5",
+      "display_sv": "Resistensfrågeställning",
+      "description": "Förklara varför en pågående behandling upphört att fungera.",
+      "system": "local_fragestallning"
+    },
+    {
+      "code": "6",
+      "display_sv": "Farmakogenomik",
+      "description": "Läkemedelsrespons och dosering baserat på patientens genetiska profil (ej tumörgenomik).",
+      "system": "local_fragestallning"
+    },
+    {
+      "code": "7",
+      "display_sv": "Ärftlig cancer / onkogenetik",
+      "description": "Utredning av ärftlig cancerpredisposition och/eller screening för individer med ökad genetisk risk. Inkluderar tidigare \"Screening (predisposition)\".",
+      "system": "local_fragestallning"
+    },
+    {
+      "code": "8",
+      "display_sv": "Övrigt",
+      "description": "Annan klinisk frågeställning som ej ryms i ovanstående kategorier.",
+      "system": "local_fragestallning"
+    }
+  ]
+}

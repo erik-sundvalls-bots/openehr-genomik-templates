@@ -1,0 +1,39 @@
+,,,
+"Information till granskare  
+RCC i samverkan (NPO Cancersjukdomar) genom NAG CancerGenomik",,,
+Konfigurationsunderlaget är en Excelfil med två delar: Alla variabler (alla variabler som föreslås ingå i informationsdomänen för genomik) och föreslagna listvärden (Listvärdensflikar per variabel).,,,
+,,,
+FLIK,,,
+Information till granskare ,För vem och varför  - riktad information per roll ,,
+Vägval,Teknisk bakgrund och motivering,,
+Alla variabler,"Förslag till fullständig variabellista – fokusera på kolumnerna Variabelnamn och Beskrivning.
+
+Varje rad = en variabel. 
+
+För variabler med Datatyp = Code anges föreslagna listvärden i separata flikar 
+""Listvärden - x""","Varje flik med listvärden innehåller de föreslagna listvärdena för en specifik variabel. Värden är, så långt det varit möjligt, kodade med internationella standarder (SO, SNOMED CT, HL7 FHIR). Dessa värden implementeras i gränssnittet och valideras i API:t vid integrationer. ",
+Listvärden - Frågeställning,Klinisk frågeställning: varför görs analysen? ,,
+Listvärden - Provtyp,"VAD provet är (biologiskt material). Skilt från Provtagningsteknik (HUR provet togs)
+Uppdaterad: NAG CG rekommenderade Listvärden + SNOMED CT-koder",Föreslagna listvärden för provtyp (vad togs - Specimen.type),
+Listvärden - Provtagningsteknik,HUR provet togs - skilt från Provtyp (VAD togs).,Föreslagna listvärden SNOMED CT-hierarki 17636008 (Specimen collection),
+Listvärden - Extraherat material,"Anger VAD som extraherats ur provet. Används alltid tillsammans med Provtyp (varifrån). Exempel: Provtyp=Benmärg + Extraherat material=DNA
+
+DNA/RNA/ctDNA/ctRNA m.fl.",Föreslagna listvärden för extraherat material (DNA/RNA/ctDNA),
+Listvärden - Analysmetod,"Övergripande teknikkategori för analysen
+HL7 Genomics IG analysmetoder (NGS, WES, WGS, FISH m.fl.)",Föreslagna listvärden för analysmetod (NGS/PCR/ISH etc.),
+"Listvärden - Analystyp
+Behöver ej granskas",Anger typ av genomisk analys på studienivå (hela sekvenseringsstudien). Sätts automatiskt utifrån vilka fyndblock som finns i rapporten. Scope i nuläget: SNP · CNV · Struc-var · Func-var.,"HL7 FHIR Genomics Reporting IG · Genomic Study Type ValueSet
+Sätts automatiskt utifrån vilka fyndblock som finns i rapporten (SNP/CNV/Struc-var/Func-var).Teknisk FHIR-kod hanteras av INCA-plattformen.",
+Listvärden - Produktnamn ,Kommersiellt namn på analyspaket eller NGS-panel. Anger vilka gener som testades,,
+Listvärden - Variationstyp,"Variationstyp anger den primära fyndkategorin. coding_change_type (se separat flik) ger mer specifik klassificering inom varje fyndtyp
+
+Sequence Ontology koder per fyndtyp (SNV/CNV/Fusion)",Föreslagna listvärden för variationstyp (SO-koder per fyndtyp),
+Listvärden - MolecularConsequence,"Funktionell effekt av varianten på proteinivå
+
+Molecular consequence SO-koder + SNOMED CT-mappning",Föreslagna listvärden för molecular_consequence (SO + SNOMED CT-mappning),
+Listvärden - Kopietaltyp,"Klinisk tolkningsnivå av CNV-förändringen
+
+gain/loss/amplification/deletion/LOH",Föreslagna listvärden för kopietaltyp (gain/loss/amplification/deletion),
+Listvärden - Genetiskt ursprung,Germline/Somatic + likely-varianter,Föreslagna listvärden för genetiskt ursprung (germline/somatic),
+Listvärden - ASCO Tier,Klinisk signifikans somatiska cancervarianter,Föreslagna listvärden för ASCO Tier (klinisk signifikans somatiska varianter),
+Listvärden - ESCAT Tier,Behandlingsrelevans enligt ESMO ESCAT,Föreslagna listvärden för ESCAT Tier (behandlingsrelevans),

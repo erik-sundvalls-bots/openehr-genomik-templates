@@ -1,0 +1,217 @@
+block,variable,description,cardinality,datatype,in_form,rule,fhir_resource,fhir_element,fhir_profile,profile_url,comment
+PATIENT,patient_id,Unik identifierare för patient,1..1,UUID,,PK,Patient,.id,SE Base Patient,,"Ej tillämpligt
+Identifierare - ej terminologi"
+PATIENT,personnummer,Svenskt personnummer eller samordningsnummer,1..1,String,,,Patient,.identifier,SE Base Patient,https://hl7.se/fhir/ig/base/,"Ej tillämpligt
+HSA/personnummer - ej terminologi"
+ORGANISATION,organisation_id,Unik identifierare för organisation,1..1,UUID,,PK,Organization,.id,SE Base Organization,,"Ej tillämpligt
+Identifierare - ej terminologi"
+ORGANISATION,hsa_id,HSA-ID för rapporterande enhet (sjukhus),0..1,String,,HSA-ID för vårdgivare,Organization,.identifier,SE Base Organization,,"Ej tillämpligt
+HSA-ID - ej SNOMED CT"
+ORGANISATION,enhet_hsa_id,HSA-ID för enhet under sjukhus,0..1,String,,Enhet under sjukhus,Organization,.partOf.identifier,SE Base Organization,,"Ej tillämpligt
+HSA-ID - ej SNOMED CT"
+REMISS,remiss_id,Unik identifierare för remiss/beställning,1..1,UUID,,PK,ServiceRequest,.id,Standard FHIR R4,https://hl7.org/fhir/R4/servicerequest.html,"Ej tillämpligt
+Identifierare - ej terminologi"
+REMISS,diagnos,ICD-10-kod (treställig) för aktuell cancerdiagnos,1..1,Code,Ja,ICD-10 (treställiga),GenomicStudy,.reasonCode,genomic-report,,"Ej tillämpligt
+ICD-10 används i Sverige"
+REMISS,frågeställning,"Föreslagna listvärden → Listvärden - Frågeställning
+Klinisk frågeställning - syfte med analysen. Flerval tillåtet (1..*). OBS: Anders 2.1: utökat från 5 till 9 kategorier + flerval.",1..*,Code,Ja,Kodat värde,ServiceRequest,.reasonCode,Standard FHIR R4,https://hl7.org/fhir/R4/servicerequest.html,"Separata ServiceRequest per frågeställning rekommenderas
+Saknar SNOMED CT-bindning."
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),prov_id,Unik identifierare för ursprungsprov,1..1,Identifier,,,Specimen,.identifier,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,"SAMPLE eller specimen-ID i VCF-header
+Ej tillämpligt
+Identifierare - ej terminologi
+PAD (patologisk anatomisk diagnos)=sjukvårdsspråk för prov-ID för prover inom patologin. Detta ID kan vara en om svaret lämnas på samma remiss som kom med materialet eller vara en för frågeställning och en annan för material."
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),pad_nummer,Provets administrativa PAD-nummer,1..1,Identifier,Ja,,Specimen,.accessionIdentifier,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,"Ej tillämpligt
+Identifierare - ej terminologi"
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),provtyp,"Föreslagna listvärden → Listvärden - Provtyp
+Typ av biologiskt material. Listvärden: Provtyp (HL7 v2 specimenType)",1..1,Code,Ja,Kodat värde - HL7 v2 specimenType,Specimen,.type,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,✓ OK
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),fixeringsmetod,"Metod för fixering av vävnadsprov. 
+Föreslagna listvärden → Listvärden - Fixeringsmetod",0..1,Code,Ja,"Kodat värde
+SNOMED - CT 787378005 (fixering av prov)",Specimen,.processing,Standard FHIR R4,,"Saknar terminologibindning för specifika metoder 
+SNOMED CT 787378005"
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),provtagningsteknik,"Föreslagna listvärden → Listvärden - provtagningsteknik
+Teknik som användes för att ta provet.",0..1,Code,Ja,SNOMED CT Specimen collection-hierarki (17636008),Specimen,.collection.method,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,"Separerat från provtyp (Specimen.type). Provtagningsteknik = HUR provet togs. Provtyp = VAD provet är. Standard: SNOMED CT under 17636008 (Specimen collection). Se Listvärden - Provtagningsteknik.
+✓ SNOMED CT
+SNOMED CT-hierarki 17636008 (Specimen collection)"
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),provtagningsdatum,Datum när prov togs från patient,1..1,Date,Ja,,Specimen,.collection.collectedDateTime,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,"VCF: ##fileDate
+Datum är en datatyp (dateTime), ej ett SNOMED CT-koncept. FHIR-elementnamnet .collection.collectedDateTime ger semantiken. 399445004 finns som SNOMED CT-koncept för 'provtagningsdatum' men behövs kanske inte i FHIR-kontexten??"
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),kropplats,Bodysite/bodystructure - SNOMED CT-kod för anatomisk lokal,0..1,Code,Ja,SNOMED CT body structure-hierarki,Specimen,.collection.bodySite,Standard FHIR R4,https://hl7.org/fhir/R4/condition.html,"VCF: ##sampleDiseaseType
+Delvis
+SNOMED CT noteras men specifik värdemängd ej definierad. Behöver mappning."
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),lateralitet,Anatomisk sida för lokaliserad provtagning.,0..1,Code,Ja,SNOMED CT 182353008 (lateralitet),Specimen,.collection.bodySite.extension,Standard FHIR R4,https://hl7.org/fhir/R4/bodystructure.html,"SNOMED CT
+SNOMED CT 182353008 (lateralitet) korrekt angiven."
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),tumörcellshalt_patolog,Tumörcellshalt bedömd visuellt av patolog på H&E-snitt före extraktion. Avgör om provet är tillräckligt för NGS. Kopplad till Specimen nivå 1.,0..1,Decimal,Ja,Andel 0.0-1.0 (alternativt procent),Observation,.valueQuantity,Standard FHIR R4,https://hl7.org/fhir/R4/observation.html,Saknas i SNOMED CT som generisk (observable entity). LOINC-alternativ finns men ej i bruk i Sverige. Ny begäran rekommenderas.
+PROVMATERIAL - NIVÅ 1 (Ursprungsprov),tumörcellshalt_bioinformatisk,Tumor purity beräknad bioinformatiskt från VAF/CNV-data efter sekvensering. Mer precis än visuell bedömning.,0..1,Decimal,Nej,Andel 0.0-1.0. Beräknas automatiskt.,Observation,.valueQuantity,Standard FHIR R4,https://hl7.org/fhir/R4/observation.html,"Observation.code: - ingen generisk SNOMED CT-kod for tumörcellshalt bioinformatisk. Kopplad till DiagnosticReport (ej Specimen). 
+Saknas i SNOMED CT. LOINC-alternativ finns men ej i bruk i Sverige."
+PROVMATERIAL - NIVÅ 2 (Extraherat material),extraherat_prov_id,Unik identifierare för extraherat prov,1..1,Identifier,,Referens till nivå 1 via .parent,Specimen,.identifier,Standard FHIR R4,,"Ej tillämpligt
+Identifierare - ej terminologi"
+PROVMATERIAL - NIVÅ 2 (Extraherat material),extraherat_material,"Föreslagna listvärden → Listvärden - Extraherat material
+Typ av extraherat genetiskt material.",1..1,Code,Ja,Kodat värde - lista,Specimen,.type,Standard FHIR R4,https://hl7.org/fhir/R4/specimen.html,"Delvis
+SNOMED CT  täcker kanske  DNA och RNA
+ctDNA/ctRNA saknar koder."
+DIAGNOSTISK RAPPORT,rapport_id,Unikt ID för rapporten,1..1,Identifier,,,DiagnosticReport,.identifier,genomic-report,,"Ej tillämpligt
+Identifierare - ej terminologi"
+DIAGNOSTISK RAPPORT,rapport_status,Status på rapport. Listvärden: final/preliminary/amended/corrected,1..1,Code,,Vi tar alltid emot 'final',DiagnosticReport,.status,genomic-report,,"Ej tillämpligt
+FHIR-statuskoder - ej SNOMED CT"
+DIAGNOSTISK RAPPORT,rapport_typ,"Typ av rapport (initial / amended / corrected)
+
+Typ av rapport - LOINC 81247-9 (ej i bruk i Sverige)",1..1,CodeableConcept,,genetic variant reporting panel,DiagnosticReport,.code,genomic-report,,"Observation.code: 118205009 | fynd som rör molekylära sekvensdata (finding) | Swedish alternative to LOINC 81247-9 (ej i bruk i Sverige). Används som DiagnosticReport.code för genomikrapport.
+✓ SNOMED CT
+118205009 | fynd som rör molekylära sekvensdata (finding) | Används som svensk alternativbindning till LOINC 81247-9 som ej är i bruk i Sverige."
+DIAGNOSTISK RAPPORT,patient_ref,Referens till Patient,1..1,Reference,,,DiagnosticReport,.subject,genomic-report,,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,analysdatum,Datum när analysen genomfördes,1..1,DateTime,Ja,,DiagnosticReport,.effectiveDateTime,genomic-report,,"Ej tillämpligt
+Datum - ej terminologi"
+DIAGNOSTISK RAPPORT,svarsdatum,Datum när rapport färdigställdes och skickades,1..1,Instant,Ja,,DiagnosticReport,.issued,genomic-report,,"Ej tillämpligt
+Datum - ej terminologi"
+DIAGNOSTISK RAPPORT,laboratorium_ref,Referens till laboratorium (Organisation med HSA-ID),1..*,Reference,,Organisation med HSA-ID,DiagnosticReport,.performer,genomic-report,,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,prover_ref,Array av analyserade Specimen (nivå 1 och 2),0..*,Reference,,,DiagnosticReport,.specimen[],genomic-report,,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,fynd_ref,Array av alla genomiska fynd (Observations),0..*,Reference,,,DiagnosticReport,.result[],genomic-report,,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,remiss_ref,Referens till remiss/beställning (ServiceRequest),1..*,Reference,,,DiagnosticReport,.basedOn[],genomic-report,,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK RAPPORT,studiemetadata_ref,Länk till studiemetadata (GenomicStudy/Procedure),0..1,Reference,,,DiagnosticReport,.extension:genomic-study-reference,genomic-report,,"Ej tillämpligt
+Referens - ej terminologi"
+STUDIEMETADATA (GenomicStudy),studie_id,Identifierare för sekvenseringsstudien,1..1,Identifier,,,Procedure (GenomicStudy),.identifier,genomic-study,,"Ej tillämpligt
+Identifierare - ej terminologi"
+STUDIEMETADATA (GenomicStudy),studie_status,"Status på sekvenseringsstudien (completed / in-progress)
+
+Status. Listvärden: completed/in-progress/stopped",1..1,Code,,"Vi tar alltid emot ""completed""",Procedure,.status,genomic-study,,"Ej tillämpligt
+FHIR-statuskoder - ej SNOMED CT"
+STUDIEMETADATA (GenomicStudy),sekvenseringsdatum,Datum när sekvenseringen kördes,1..1,Date,,,Procedure,.performedDateTime,genomic-study,https://hl7.org/fhir/uv/genomics-reporting/,"VCF: ##fileDate
+Saknar terminologibindning."
+STUDIEMETADATA (GenomicStudy),klinisk_kontext_ref,Varför görs analysen - referens till Condition/ServiceRequest,0..*,Reference,,,Procedure,.reasonReference,genomic-study,,"Ej tillämpligt
+Referens - ej terminologi"
+STUDIEMETADATA (GenomicStudy),analysmetod,"Föreslagna listvärden → Listvärden - Analysmetod
+Analysmetod anger övergripande teknikkategori. OBS: Anders 4.1a: FISH → ISH (in situ hybridisering) - metodneutral term. OBS: Anders 4.1b: Metyleringsanalys tillagd i Listvärden. Listvärden: Se Listvärden - Analysmetod.",1..1,Code,,"HL7 Genomics Reporting IG CodeSystem
+Att föredra: SNOMED-CT",Procedure,.extension[genomic-study-analysis].method,genomic-study,https://hl7.org/fhir/uv/genomics-reporting/,"HL7 Genomics IG CodeSystem finns
+63181000052104 | Listvärden analysmetod laboratoriemedicin |"
+STUDIEMETADATA (GenomicStudy),analystyp,"Föreslagna listvärden → Listvärden - Analystyp
+Typ av sekvensering/analys.",1..1,Code,Nej,HL7 Genomics Reporting IG CodeSystem,Procedure,.code / extension[analystype],genomic-study,https://hl7.org/fhir/uv/genomics-reporting/,HL7 Genomics IG CodeSystem finns
+DEVICE / PANEL,panel_produktnamn,"Föreslagna listvärden → Listvärden - Produktnamn
+Kommersiellt namn på analyspaket/panel. Listvärden: Produktnamn",1..1,String,,,Device,.deviceName.name,Standard FHIR R4,https://hl7.org/fhir/R4/device.html,"VCF: ##IonReporterWorkflowName
+Ej tillämpligt
+Produktnamn (fritext) - ej terminologi"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),fynd_id,Unik identifierare för genomiskt fynd,1..1,Identifier,,,Observation,.identifier,variant,https://hl7.org/fhir/uv/genomics-reporting/,"Observation.code (block-nivå): 
+SNV/Indel: 471281007 | punktmutation (finding) |
+Fusion: 43245005 | genrearrangering (finding) |
+CNV: 12645001 | genamplifiering (finding) | (amplification) eller saknas kod för generisk CNV. LOINC 69548-6 (genetisk variant) ej i bruk i Sverige."
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),fynd_status,Status. Listvärden: final/preliminary/amended,1..1,Code,,Vi tar alltid emot 'final',Observation,.status,variant,,"Ej tillämpligt
+FHIR-statuskoder - ej SNOMED CT"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),patient_ref,Referens till patient,1..1,Reference,,,Observation,.subject,variant,,"Ej tillämpligt
+Referens - ej terminologi"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),prov_ref,Referens till extraherat material (Specimen nivå 2),1..1,Reference,,,Observation,.specimen,variant,,"Ej tillämpligt
+Referens - ej terminologi"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),laboratorium_ref,HSA-ID för analysutförande laboratorium,1..1,Reference,,,Observation,.performer,variant,,"Ej tillämpligt
+Referens - ej terminologi"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),förekomst,"Om variant är påvisad eller inte. 
+
+
+
+Listvärden:",1..1,Code,Ja,,Observation,.valueCodeableConcept,variant,,"VCF: FILTER=PASS (påvisad)
+SNOMED CT
+260415000 | inte påvisad |
+260373001 | påvisad |
+82334004 | obestämbar |"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),genetiskt_ursprung,"Om varianten är somatisk (tumörspecifik) eller germline (ärftlig)
+
+Föreslagna listvärden → Listvärden - Genetiskt ursprung",0..1,Code,Nej,,Observation,.component:genomic-allele-origin,variant,,"Germline/somatic som generiska qualifier values verkar 
+saknas i SNOMED CT"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),studerad_gen,Gen där fynd påvisats - HGNC-gennamn,1..*,CodeableConcept,Ja,HGNC,Observation,.component:gene-studied,variant,,"Fusion: två gene-studied-komponenter
+HGNC är standard för gennamn"
+VARIANT - GEMENSAMMA ATTRIBUT (alla fyndtyper),variationstyp,"Typ av genomisk förändring - anger både kategorin (SNV / CNV / Fusion) och den specifika DNA-förändringen (deletion / insertion / translokation...).
+Föreslagna listvärden → Listvärden - Variationstyp",1..1,Code,Ja,IF förekomst=Påvisad,Observation,.component:coding-change-type,variant,,Ett FHIR-fält (coding-change-type) täcker båda nivåerna: bred kategorisering (SNV/CNV/Fusion) och specifik DNA-förändring. Seq. Ontology-koder. Gäller alla variantblock.
+VARIANTFYND - SNV OCH INDEL,dna_förändring,"HGVS c.-notation - standardiserad beskrivning av DNA-förändringen
+
+HGVS-notation för DNA-nivåförändring (t.ex. c.1799T>A)",1..1,String,Ja,,Observation,.component:genomic-hgvs,variant,,"Konstrueras från CHROM:POS:REF:ALT
+HGVS-notation (sträng)"
+VARIANTFYND - SNV OCH INDEL,protein_förändring,"HGVS p.-notation - standardiserad beskrivning av proteinförändringen
+
+HGVS-notation för proteinförändring (t.ex. p.Val600Glu)",0..1,String,Ja,,Observation,.component:protein-hgvs,variant,,"VCF: INFO:Protein
+HGVS-notation (sträng)"
+VARIANTFYND - SNV OCH INDEL,molecular_consequence,"Funktionell effekt av varianten på proteinnivå
+
+Föreslagna listvärden → Listvärden_MolecularConsequence",0..1,Code,Nej,Sequence Ontology + SNOMED CT-mappning,Observation,.component:molecular-consequence,genomic-report,,"SO:0001583→1306850007, SO:0001587→327671006 m.fl.
+Delvis
+5 SO-typer har SNOMED CT-mappning. splice_region/UTR/intergenic saknar koder."
+VARIANTFYND - SNV OCH INDEL,allelisk_frekvens,"VAF - andel muterade alleler i provet (0.0–1.0)
+
+Variant Allele Frequency (VAF)",0..1,Quantity,Ja,Beräknas från FORMAT:AD,Observation,.component:allelic-frequency.valueQuantity,variant,,"Observation.code: Ingår i HL7 IG component:allelic-frequency - komponentnamnet definierar VAD som mäts. 
+SNOMED CT ej nödvändigt? Observation.component.valueQuantity = VAF 0.0-1.0.
+Numeriskt värde - ej terminologi"
+VARIANTFYND - SNV OCH INDEL,exonnummer,Exon-nummer (kritiskt för t.ex. EGFR exon 19/21),0..1,Integer,Ja,,Observation,.extension:exon-number,variant,,"Observation.code?
+Numeriskt - ej terminologi"
+CNV-FYND (Kopietalförändring),målregion_gen,"Gen, hel kromosom eller kromosomregion som analyseras",1..1,String,Ja,HGNC-gennamn eller kromosomnotation,Observation,.component:gene-studied,variant,,"VCF: FUNC=[{'gene':'GENNAMN'}]
+HGNC/kromosomsträng"
+CNV-FYND (Kopietalförändring),antal_kopior,Absolut antal genkopior (range 0-10),1..1,Decimal,Ja,Range 0-10. För hyperdiploidi: modal number,Observation,.component:copy-number,variant,,"Observation.code: Ingår i HL7 IG component:copy-number - komponentnamnet definierar VAD som mäts. 
+SNOMED CT ej nödvändigt? Observation.component.valueQuantity = antal kopior ex. 8."
+CNV-FYND (Kopietalförändring),kopietaltyp,"Klinisk klassificering av kopietalförändring
+
+Typ av CNV-förändring. 
+Föreslagna listvärden →Listvärden - Kopietaltyp",1..1,Code,Ja,Beräknas från antal_kopior + labspecifik tröskel. gain: 3-4 kopior. amplification: >4-6 kopior. loss: <2 kopior. deletion: 0 kopior.,Observation,.component:copy-number-change-type,variant,,"Delvis
+SO-koder och delvis SNOMED CT-mappning"
+CNV-FYND (Kopietalförändring),karyotyp_iscn,"Cytogenetisk notation (ISCN 2024)
+
+Cytogenetisk notation enligt ISCN 2024",0..1,String,Ja,component:cytogenomic-nomenclature,Observation,.component:cytogenomic-nomenclature,variant,,"Observation.code? Hittar ej i snomed-CT
+
+ISCN-notation - internationell standard, ej SNOMED CT"
+FUSIONSFYND (Rearrangemang),fusionspartner_1,"Gen 1 i fusionen (HGNC-namn)
+
+HGNC-namn för första fusionspartner",1..1,Code,Ja,HGNC,Observation,.component:gene-studied[0],variant,,"Värdesystem HGNC
+Ej tillämpligt
+HGNC-gennamn - ej SNOMED CT"
+FUSIONSFYND (Rearrangemang),fusionspartner_2,"Gen 2 i fusionen (HGNC-namn)
+
+HGNC-namn för andra fusionspartner",1..1,Code,Ja,HGNC,Observation,.component:gene-studied[1],variant,,"Array med två gene-studied
+Ej tillämpligt
+HGNC-gennamn - ej SNOMED CT"
+FUSIONSFYND (Rearrangemang),karyotyp_iscn,"Cytogenetisk notation (ISCN 2024)
+
+Cytogenetisk notation för fusion",0..1,String,Ja,Beräknas från kromosom1+kromosom2,Observation,.component:cytogenomic-nomenclature,variant,,"Ej tillämpligt
+ISCN-notation - ej SNOMED CT"
+DIAGNOSTISK IMPLIKATION,impl_diag_id,Unikt ID,1..1,Identifier,,,Observation,.identifier,diagnostic-implication,,"Ej tillämpligt
+Identifierare - ej terminologi"
+DIAGNOSTISK IMPLIKATION,impl_diag_status,Status. Listvärden: final/preliminary,1..1,Code,,Vi tar alltid bara emot 'final',Observation,.status,diagnostic-implication,,"Ej tillämpligt
+FHIR-statuskoder - ej SNOMED CT"
+DIAGNOSTISK IMPLIKATION,variant_ref,Referens till variant,1..1,Reference,,,Observation,.derivedFrom,diagnostic-implication,,"Ej tillämpligt
+Referens - ej terminologi"
+DIAGNOSTISK IMPLIKATION,patogenicitet,"Patogenicitet enligt ACMG/AMP. 
+Listvärden: Pathogenic/Likely pathogenic/VUS/Likely benign/Benign",0..1,Code,Ja,,Observation,.component:clinical-significance,diagnostic-implication,https://hl7.org/fhir/uv/genomics-reporting/,"Delvis
+SNOMED CT har Pathogenic/Benign. VUS och likely-varianter saknar SNOMED CT-koder."
+DIAGNOSTISK IMPLIKATION,klinisk_signifikans_asco,"Föreslagna listvärden → Listvärden - ASCO Tier
+
+Klinisk signifikans somatisk cancer. Listvärden: ASCO Tier",0..1,Code,Ja,,Observation,.component:somatic-clinical-significance,diagnostic-implication,,ASCO Tier-klassifikation - inga SNOMED CT-koder.
+TERAPEUTISK IMPLIKATION,impl_ter_id,Unikt ID,1..1,Identifier,,,Observation,.identifier,therapeutic-implication,,"Ej tillämpligt
+Identifierare - ej terminologi"
+TERAPEUTISK IMPLIKATION,variant_ref,Referens till variant,1..1,Reference,,,Observation,.derivedFrom,therapeutic-implication,,"Ej tillämpligt
+Referens - ej terminologi"
+TERAPEUTISK IMPLIKATION,behandlingsrelevans_escat,"Behandlingsrelevans enligt ESMO ESCAT. 
+Föreslagna listvärden → Listvärden: ESCAT Tier",0..1,Code,Ja,,Observation,.component:therapeutic-actionability,therapeutic-implication,,ESCAT Tier - ESMO-klassifikation utan SNOMED CT-bindning.
+KOMPLEX BIOMARKÖR - TMB (Tumor Mutational Burden),tmb_värde,"TMB - antal mutationer per megabas
+
+Tumor Mutational Burden (mutations/Megabas)",1..1,Quantity,Ja,Enhet: mutations/Mb,Observation,.valueQuantity,genomic-finding,,"Observation.code: LOINC 94076-7 (TMB) -- ej i bruk i Sverige. GAP i SNOMED CT. Observation.valueQuantity = mutations/Mb.
+Ej tillämpligt
+Numeriskt värde - ej terminologi"
+KOMPLEX BIOMARKÖR - TMB (Tumor Mutational Burden),tmb_tolkning,"Klinisk klassificering av TMB (Hög / Låg)
+
+Klinisk tolkning. Listvärden: High/Medium/Low",1..1,Code,,High: ≥10 mutations/Mb,Observation,.interpretation.coding,genomic-finding,,"Observation.code: GAP i SNOMED CT -- ingen TMB-tolkningskod finns. LOINC 94077-5 finns men ej i bruk i Sverige. Observation.interpretation = High/Medium/Low.
+Delvis
+High/Medium/Low saknar SNOMED CT. LOINC 94077-5 finns men ej i bruk i Sverige."
+KOMPLEX BIOMARKÖR - TMB (Tumor Mutational Burden),tmb_variant_ref,Länk till alla räknade varianter,1..*,Reference,,,Observation,.derivedFrom[],genomic-finding,,"Ej tillämpligt
+Referens - ej terminologi"
+KOMPLEX BIOMARKÖR - MSI (Microsatellite Instability),msi_status,"MSI-status (MSI-H / MSI-L / MSS)
+
+MSI-status. Listvärden: MSI-H / MSI-L / MSS",1..1,Code,Ja,SNOMED CT,Observation,.valueCodeableConcept,genomic-finding,,"Observation.code: GAP i SNOMED CT -- ingen generisk MSI-observationskod. LOINC 81695-9 finns men ej i bruk i Sverige. Observation.valueCodeableConcept = MSI-H/MSI-L/MSS.
+Delvis
+SNOMED CT 1255344007 (MSI-H) finns. MSI-L och MSS behöver verifieras."
+KOMPLEX BIOMARKÖR - HRD (Homologous Recombination Deficiency),hrd_score,"HRD - Homologous Recombination Deficiency-score
+
+HRD total score",1..1,Quantity,Ja,,Observation,.valueQuantity,genomic-finding,,"Observation.code: GAP i SNOMED CT -- ingen HRD-score-observationskod. Observation.valueQuantity = numeriskt HRD-score ex. 42.
+Ej tillämpligt
+Numeriskt - ej terminologi"
+KOMPLEX BIOMARKÖR - HRD (Homologous Recombination Deficiency),hrd_tolkning,"Klinisk klassificering av HRD (Positiv / Negativ)
+
+Klinisk tolkning. Listvärden: Positive/Negative",1..1,Code,,,Observation,.interpretation,genomic-finding,,"Observation.code: GAP i SNOMED CT -- ingen HRD-tolkningskod. Observation.interpretation = Positiv/Negativ/Ej analyserat.
+Delvis
+HRD-tolkning saknar SNOMED CT-kod."

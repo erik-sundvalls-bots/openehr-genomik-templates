@@ -1,0 +1,52 @@
+{
+  "variable": "klinisk_signifikans_asco",
+  "fhir": "Observation.component:somatic-clinical-significance",
+  "systems": [
+    "local_asco_tier"
+  ],
+  "codes": [
+    {
+      "code": "Tier I-A",
+      "display_en": "Strong clinical significance FDA-approved therapy / guideline recommendation",
+      "display_sv": "Stark klinisk signifikans FDA-godkänd behandling / riktlinjerek.",
+      "system": "local_asco_tier"
+    },
+    {
+      "code": "Tier I-B",
+      "display_en": "Strong clinical significance Professional society recommendation",
+      "display_sv": "Stark klinisk signifikans Professionell riktlinjerek.",
+      "system": "local_asco_tier"
+    },
+    {
+      "code": "Tier I-C",
+      "display_en": "Strong clinical significance Expert consensus or well-powered study",
+      "display_sv": "Stark klinisk signifikans Expertkonsensus / välpowrad studie",
+      "system": "local_asco_tier"
+    },
+    {
+      "code": "Tier I-D",
+      "display_en": "Strong clinical significance Preclinical evidence",
+      "display_sv": "Stark klinisk signifikans Preklinisk evidens",
+      "system": "local_asco_tier"
+    },
+    {
+      "code": "Tier II",
+      "display_en": "Potential clinical significance Investigational or other tumor type",
+      "display_sv": "Potentiell klinisk signifikans Investigationell eller annan tumörtyp",
+      "system": "local_asco_tier"
+    },
+    {
+      "code": "Tier III",
+      "display_en": "Unknown clinical significance VUS equivalent for somatic",
+      "display_sv": "Okänd klinisk signifikans Somatisk VUS-ekvivalent",
+      "system": "local_asco_tier"
+    },
+    {
+      "code": "Tier IV",
+      "display_en": "Benign or likely benign Passenger mutation",
+      "display_sv": "Benign eller troligen benign Passager-mutation",
+      "system": "local_asco_tier"
+    }
+  ],
+  "gap": "No SNOMED CT codes; open question EMA/TLV vs FDA"
+}

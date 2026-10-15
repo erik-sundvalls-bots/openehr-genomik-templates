@@ -1,0 +1,44 @@
+{
+  "variable": "extraherat_material",
+  "fhir": "Specimen.type (nivå 2)",
+  "systems": [
+    "snomed"
+  ],
+  "codes": [
+    {
+      "code": "DNA",
+      "display_sv": "DNA",
+      "snomed": "258566005",
+      "comment": "258566005 | Deoxyribonucleic acid specimen.",
+      "system": "snomed"
+    },
+    {
+      "code": "RNA",
+      "display_sv": "RNA",
+      "snomed": "441673008",
+      "comment": "441673008 | RNA specimen.",
+      "system": "snomed"
+    },
+    {
+      "code": "ctDNA",
+      "display_sv": "Cirkulerande tumör-DNA (ctDNA)",
+      "snomed": null,
+      "comment": "Beräknas utifrån Provtyp=Plasma + Extraherat=DNA. Ingen specifik SNOMED CT-kod finns.",
+      "system": "local"
+    },
+    {
+      "code": "ctRNA",
+      "display_sv": "Cirkulerande tumör-RNA (ctRNA)",
+      "snomed": null,
+      "comment": "Beräknas utifrån Provtyp=Plasma + Extraherat=RNA.",
+      "system": "local"
+    },
+    {
+      "code": "cfDNA",
+      "display_sv": "Cell-free DNA (cfDNA)",
+      "snomed": null,
+      "comment": "Generisk cell-fritt DNA - bredare term än ctDNA.",
+      "system": "local"
+    }
+  ]
+}

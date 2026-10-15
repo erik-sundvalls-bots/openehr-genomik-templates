@@ -1,0 +1,126 @@
+{
+  "variable": "variationstyp",
+  "fhir": "Observation.component:coding-change-type",
+  "systems": [
+    "so"
+  ],
+  "codes": [
+    {
+      "so": "SO:0001483",
+      "display_en": "SNV (single_nucleotide_variant)",
+      "snv": true,
+      "cnv": false,
+      "fusion": false,
+      "comment": "Enstaka basbyte",
+      "system": "so"
+    },
+    {
+      "so": "SO:0000667",
+      "display_en": "insertion",
+      "snv": true,
+      "cnv": false,
+      "fusion": false,
+      "comment": "Liten insertion (< 50 bp)",
+      "system": "so"
+    },
+    {
+      "so": "SO:0000159",
+      "display_en": "deletion",
+      "snv": true,
+      "cnv": true,
+      "fusion": true,
+      "comment": "Används i tre kontexter - se kommentar i flik Coding Change Type",
+      "system": "so"
+    },
+    {
+      "so": "SO:1000032",
+      "display_en": "indel",
+      "snv": true,
+      "cnv": false,
+      "fusion": false,
+      "comment": "Kombination insertion + deletion",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001629",
+      "display_en": "splice_site_variant",
+      "snv": true,
+      "cnv": false,
+      "fusion": true,
+      "comment": "Kan även uppstå vid fusioner",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001019",
+      "display_en": "copy_number_variation",
+      "snv": false,
+      "cnv": true,
+      "fusion": false,
+      "comment": "Generisk CNV-term",
+      "system": "so"
+    },
+    {
+      "so": "SO:1000035",
+      "display_en": "duplication",
+      "snv": false,
+      "cnv": true,
+      "fusion": true,
+      "comment": "Genduplikation eller tandem-dup som skapar fusion",
+      "system": "so"
+    },
+    {
+      "so": "SO:0000159",
+      "display_en": "deletion",
+      "snv": false,
+      "cnv": true,
+      "fusion": false,
+      "comment": "Homozygot loss i CNV-kontext",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001537",
+      "display_en": "structural_variant",
+      "snv": false,
+      "cnv": false,
+      "fusion": true,
+      "comment": "Generisk strukturell variant",
+      "system": "so"
+    },
+    {
+      "so": "SO:0000199",
+      "display_en": "translocation",
+      "snv": false,
+      "cnv": false,
+      "fusion": true,
+      "comment": "Inter-kromosomal - t(9;22), BCR::ABL1",
+      "system": "so"
+    },
+    {
+      "so": "SO:1000036",
+      "display_en": "inversion",
+      "snv": false,
+      "cnv": false,
+      "fusion": true,
+      "comment": "Intra-kromosomal - inv(2)(p21p23), EML4::ALK",
+      "system": "so"
+    },
+    {
+      "so": "SO:1000035",
+      "display_en": "duplication",
+      "snv": false,
+      "cnv": false,
+      "fusion": true,
+      "comment": "Tandem-duplikation som skapar fusion",
+      "system": "so"
+    },
+    {
+      "so": "SO:0001784",
+      "display_en": "complex_structural_alteration",
+      "snv": false,
+      "cnv": false,
+      "fusion": true,
+      "comment": "Multipla breakpoints",
+      "system": "so"
+    }
+  ]
+}

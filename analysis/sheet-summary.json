@@ -1,0 +1,533 @@
+[
+  {
+    "sheet": "Information till granskare",
+    "safe": "Information_till_granskare",
+    "rows": 35,
+    "cols": 5,
+    "merges": {
+      "A25:C25": {
+        "range": "A25:C25",
+        "value": "Hur du navigerar filen"
+      },
+      "B16:C16": {
+        "range": "B16:C16",
+        "value": "Konfigurationsunderlaget berör er verksamhet på sikt i den mån den utför molekylärgenetisk cancerdiagnostik. Det handlar inte om att ändra hur analyser utförs men väl hur fynd dokumenteras och vidareanvänds.\n\nVi ber er identifiera medarbetare (patologer, kliniska genetiker, molekylärbiologer, bioinformatiker, IT-experter - kan se olika ut inom olika verksamheter) som kan granska remissversionen och lämna svar från er verksamhet. Implementering av den nya datastrukturen sker stegvis och kräver inga omedelbara förändringar i er verksamhet."
+      },
+      "B22:C22": {
+        "range": "B22:C22",
+        "value": "Går dessa värden att få ut från er verksamhet?\n→ Finns informationen i ert system?\n\nÄr det rimligt att kräva denna information vid rapportering?\n→ Är det möjligt att dokumentera detta utan orimlig arbetsinsats?\n\nSaknas någon variabel ni anser är kliniskt viktigt?\n→ Finns information ni producerar idag som inte finns i underlaget?"
+      },
+      "B31:C31": {
+        "range": "B31:C31",
+        "value": "För er med lämplig kompetens har information kring varför olika standarder och kodsystem valts samlats under flik \"Vägval\"."
+      },
+      "A12:C12": {
+        "range": "A12:C12",
+        "value": "Detta underlag definierar vilka variabler, standarder, format och kodverk som föreslås att användas – nödvändig för framtida automatisk dataöverföring av resultat från molekylärgenetiska analyser men även användbara redan nu för att strukturera manuellt inrapporterad data så att den kan slås samman med kommande, automatisk inrapporterad."
+      },
+      "B27:C27": {
+        "range": "B27:C27",
+        "value": "Innehållsförteckning över alla flikar och vad de innehåller."
+      },
+      "B18:C18": {
+        "range": "B18:C18",
+        "value": "Ni har en central roll för att validera de tekniska vägvalen men även för att tydliggöra lokala förutsättningar för kommande arbete. \n\nKonfigurationsunderlaget baseras på HL7 FHIR R4 och Genomics Reporting IG. Den tekniska strukturen möjliggör automatisk dataöverföring från NGP till INCA – FHIR är den gemensamma nämnaren.\n\nGranskning av FHIR-mappningarna och tekniska specifikationer välkomnas. Se även fliken \"Vägval\" för teknisk bakgrund."
+      },
+      "A2:C2": {
+        "range": "A2:C2",
+        "value": "Information till granskare  \nRCC i samverkan (NPO Cancersjukdomar) genom NAG CancerGenomik"
+      },
+      "B21:C21": {
+        "range": "B21:C21",
+        "value": "Går dessa värden att få ut från er verksamhet?\n→ Finns informationen i ert system?\n\nÄr listvärdena begripliga?\n→ Används dessa begrepp i er kliniska vardag?\n\nSaknas några värden som skulle behöva samlas in och följas upp?\n→ Rapporterar ni något idag som inte finns med i listan och som är viktigt att kunna följa upp?"
+      },
+      "B17:C17": {
+        "range": "B17:C17",
+        "value": "Er expertis är central i remissarbetet både för att försäkra att inget missas eller blir fel men även för att ge en bild av hur väl underlaget stämmer överens med hur väl strukturen stämmer överens med hur den kliniska diagnostiken bedrivs idag. \n\nNi behöver inte förstå den tekniska infrastrukturen. Fokusera istället på om listvärdena (analysmetoder, frågeställningar, varianttyper) stämmer med er kliniska verklighet och om några parametrar saknas eller är felaktiga. Svarsformuläret (webbaserat remissvar - se länk ovan) guidar er genom granskningen."
+      },
+      "A20:C20": {
+        "range": "A20:C20",
+        "value": "Ni behöver inte känna till tekniska standarder - er kliniska erfarenhet är det viktiga. "
+      },
+      "A10:C10": {
+        "range": "A10:C10",
+        "value": "Syfte och bakgrund"
+      },
+      "A19:C19": {
+        "range": "A19:C19",
+        "value": "Vad ber vi er granska?"
+      },
+      "A13:C13": {
+        "range": "A13:C13",
+        "value": "Konfigurationsunderlaget är ett resultat av en strukturerad genomgång liknande system som finns eller är under uppbyggnad och avpassad efter nuvarande behov av datadelning och det vi idag vet om kraven för delning framförallt inom EU. Det vi behöver hjälp med är både synpunkter på om ni ser behov av tillägg och förändringar men även om efterfrågad data kan genereras på ett konsekvent och maskinläsbart sätt vid kliniskt rutinarbete för att automatöverföring ska fungera.\n\nDet vi behöver veta är alltså: är den datastruktur och de variabler avpassade efter kliniska behov och praktiska förutsättningar i de laboratorier som genomför analyserna?"
+      },
+      "B29:C29": {
+        "range": "B29:C29",
+        "value": "En flik per variabel med längre värdelistor – klicka igenom och notera synpunkter / tillägg."
+      },
+      "B28:C28": {
+        "range": "B28:C28",
+        "value": "Bekanta dig med frågorna innan du börjar granska flikarna - ha dem tillhands när du klickar igenom listvärdena och variablerna."
+      },
+      "A34:C34": {
+        "range": "A34:C34",
+        "value": null
+      },
+      "A15:C15": {
+        "range": "A15:C15",
+        "value": "För vem och varför  - riktad information per roll "
+      },
+      "B30:C30": {
+        "range": "B30:C30",
+        "value": "Förslag på fullständig variabellista – fokusera på kolumnerna Variabelnamn och Beskrivning."
+      },
+      "A11:C11": {
+        "range": "A11:C11",
+        "value": "RCC i samverkan arbetar för att minska den manuella registreringsbördan för vården. Målet med konfigurationsunderlaget är att skapa förutsättningar för att data från molekylärgenetisk diagnostik ska kunna överföras automatiskt från laboratoriernas system till INCA så fort de tekniska förutsättningar finns på plats. Informationen som samlas blir i INCA åtkomligt för patientbeslut genom den individuella patientöversikten samt för de olika kvalitetsregistren för cancer via en informationsdomän för genomik.   \n\nBåde den automatiska insamlingen och kopplingen till olika funktioner inom INCA kräver en gemensam struktur för hur genomikdata beskrivs och lagras. Datastrukturen skapar också förutsättningar för annan sekundäranvändning nationellt och inom ramen för internationella samarbeten där ett intensivt arbete sker inom ett flertal olika europeiska projekt och initiativ och där EHDS stegvis kommer att ge ytterligare möjligheter. Det är den datastruktur som krävs för dessa olika nyttor som det färdiga konfigurationsunderlaget ska definiera.\n\nInförandet av den nya strukturen sker stegvis. I dag matas data in manuellt vilket ger tydliga begränsningar för vilka parametrar som kan rapporteras in.  Det slutliga målet är att det manuella flödet ersätts helt - när laboratorierna och deras system är redo. Det är för denna användning vi vill ha hjälp med granskning av utvalda kodsystem och variabler."
+      },
+      "A1:C1": {
+        "range": "A1:C1",
+        "value": "Konfigurationsunderlag  - Harmoniserad datamängd cancergenomik"
+      },
+      "B32:C32": {
+        "range": "B32:C32",
+        "value": "Webbaserat svarsformulär - fylls i via länk som delas närmare inpå 24/10."
+      },
+      "B26:C26": {
+        "range": "B26:C26",
+        "value": "Läs syfte och din roll som granskare."
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 27
+  },
+  {
+    "sheet": "Översikt",
+    "safe": "Översikt",
+    "rows": 21,
+    "cols": 4,
+    "merges": {
+      "A3:B3": {
+        "range": "A3:B3",
+        "value": "Konfigurationsunderlaget är en Excelfil med två delar: Alla variabler (alla variabler som föreslås ingå i informationsdomänen för genomik) och föreslagna listvärden (Listvärdensflikar per variabel)."
+      },
+      "A2:B2": {
+        "range": "A2:B2",
+        "value": "Information till granskare  \nRCC i samverkan (NPO Cancersjukdomar) genom NAG CancerGenomik"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 19
+  },
+  {
+    "sheet": "Vägval",
+    "safe": "Vägval",
+    "rows": 26,
+    "cols": 4,
+    "merges": {
+      "A25:C25": {
+        "range": "A25:C25",
+        "value": "Källa: sequenceontology.org  ·  HL7 Genomics Reporting IG v3.0  ·  ClinVar (NCBI)  - använder SO för variantklassificering"
+      },
+      "A11:C11": {
+        "range": "A11:C11",
+        "value": "Varför Sequence Ontology (SO)?  - Kodverk för genetiska förändringar"
+      },
+      "A1:C1": {
+        "range": "A1:C1",
+        "value": "Vägval  - teknisk bakgrund och motivering"
+      },
+      "A6:C6": {
+        "range": "A6:C6",
+        "value": "Varför FHIR? - Teknisk bakgrund och riktning"
+      },
+      "A22:C22": {
+        "range": "A22:C22",
+        "value": "Viktigt att notera  - detta är ett välmotiverat förslag, inte ett slutgiltigt beslut\n\nMotiveringen för SO baseras på att det är det explicit valda kodverket i HL7 Genomics Reporting IG  - den standard detta underlag bygger på. RCC kan inte ensamt avgöra om SO är rätt kodverk för svensk sjukvård i sin helhet. Remissen välkomnar synpunkter från verksamheter med erfarenhet av SNOMED CT eller andra kodverk i klinisk rutin."
+      },
+      "A9:C9": {
+        "range": "A9:C9",
+        "value": "Källor: Reg. EU 2025/327 (EHDS) mars 2025    HL7 Genomics Reporting IG v3.0  (HL7 Genomics Reporting IG v3.0)  E-hälsomyndigheten FHIR-profiler feb 2025  ·  "
+      },
+      "A15:C15": {
+        "range": "A15:C15",
+        "value": "Varför SO och inte SNOMED CT för varianttyper?"
+      },
+      "A4:C4": {
+        "range": "A4:C4",
+        "value": "OBS  - detta är ett remissunderlag, inte ett beslut\n\nDe kodverk och standarder som används i detta underlag är förslag som välkomnar synpunkter. Har er verksamhet erfarenhet av andra kodverk i klinisk rutin  - exempelvis SNOMED CT eller lokala terminologier  - är det värdefullt att lyfta detta i remissvaret. Kodverksval är ett viktigt beslut att förankra kliniskt innan implementering."
+      },
+      "A24:C24": {
+        "range": "A24:C24",
+        "value": "SO används i detta underlag i flikarna: Lisvärden - Variationstyp  ·  Listvärden - MolecularConsequence  · Listvärden - Kopietal"
+      },
+      "A2:C2": {
+        "range": "A2:C2",
+        "value": "Förklaring till tekniska vägval i konfigurationsunderlaget  ·  Kodverk, standarder och motivering"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 19
+  },
+  {
+    "sheet": "Alla variabler",
+    "safe": "Alla_variabler",
+    "rows": 97,
+    "cols": 12,
+    "merges": {},
+    "notes": [],
+    "nonempty_rows": 97
+  },
+  {
+    "sheet": "Listvärden - Frågeställning",
+    "safe": "Listvärden_-_Frågeställning",
+    "rows": 15,
+    "cols": 6,
+    "merges": {
+      "A1:C1": {
+        "range": "A1:C1",
+        "value": "  Tillåtna listvärden - Frågeställning  ·  ServiceRequest.reasonCode"
+      },
+      "A2:C2": {
+        "range": "A2:C2",
+        "value": "Klinisk frågeställning: varför görs analysen? Flerval tillåtet (1..*). "
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 11
+  },
+  {
+    "sheet": "Listvärden - Provtyp",
+    "safe": "Listvärden_-_Provtyp",
+    "rows": 21,
+    "cols": 10,
+    "merges": {
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "Provtyp = VAD provet är (biologiskt material). Skilt från Provtagningsteknik (HUR provet togs). Källa: HL7 v2 specimenType + SNOMED CT-mappning."
+      },
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - Provtyp  ·  Specimen.type"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 16
+  },
+  {
+    "sheet": "Listvärden - Fixeringsmetod",
+    "safe": "Listvärden_-_Fixeringsmetod",
+    "rows": 9,
+    "cols": 4,
+    "merges": {
+      "A1:D1": {
+        "range": "A1:D1",
+        "value": "Tillåtna listvärden - Fixeringsmetod  ·  Specimen.processing.procedure  ·  SNOMED CT / fritext"
+      },
+      "A9:D9": {
+        "range": "A9:D9",
+        "value": null
+      },
+      "A8:C8": {
+        "range": "A8:C8",
+        "value": "SNOMED CT: 787378005 (Fixering av prov) är väl etablerad.. Fält är 0..1 (valfritt) — relevant framför allt för solida tumörer."
+      },
+      "A2:D2": {
+        "range": "A2:D2",
+        "value": "Fixeringsmetod = HUR provet preparerades innan DNA-extraktion. Påverkar direkt kvalitet och utbyte av DNA/RNA (t.ex. är FFPE-DNA är fragmenterat och modifierat på ett sätt som kan påverka analys-resultat).\n\n787378005 | fixering av prov |"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 7
+  },
+  {
+    "sheet": "Listvärden - Provtagningsteknik",
+    "safe": "Listvärden_-_Provtagningsteknik",
+    "rows": 24,
+    "cols": 11,
+    "merges": {
+      "A14:F14": {
+        "range": "A14:F14",
+        "value": "  Cytologi - Vätskebaserade och aspirationsprover"
+      },
+      "A1:F1": {
+        "range": "A1:F1",
+        "value": "Tillåtna listvärden - Provtagningsteknik (Specimen.collection.method)\nHUR provet togs - skilt från Provtyp (VAD togs). SNOMED CT-hierarki 17636008 (Specimen collection).\n2026-04-14: ordning och terminologi uppdaterad"
+      },
+      "A23:F23": {
+        "range": "A23:F23",
+        "value": "\"Benbiopsi\" - SNOMED CT-kod behöver verifieras mot SNOMED-hierarki. SNOMED-kod 274036004 ej verifierad mot svensk SNOMED-version."
+      },
+      "A8:F8": {
+        "range": "A8:F8",
+        "value": "  Biopsier - Nål och specialiserade metoder"
+      },
+      "A3:F3": {
+        "range": "A3:F3",
+        "value": "  Vävnadsprover - Kirurgiska metoder"
+      },
+      "A20:F20": {
+        "range": "A20:F20",
+        "value": "  Liquid biopsy - Blod och cirkulerande DNA"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 22
+  },
+  {
+    "sheet": "Listvärden -Extraherat material",
+    "safe": "Listvärden_-Extraherat_material",
+    "rows": 10,
+    "cols": 10,
+    "merges": {
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "Anger VAD som extraherats ur provet. Används alltid tillsammans med Provtyp (varifrån). Exempel: Provtyp=Benmärg + Extraherat material=DNA → Benmärgs-DNA. ctDNA och ctRNA beräknas automatiskt utifrån Provtyp=Plasma/Blod."
+      },
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - Extraherat material  ·  Specimen.type (nivå 2)"
+      },
+      "A10:G10": {
+        "range": "A10:G10",
+        "value": "  OBS: Extraherat material och Provtyp är separata variabler som används tillsammans. "
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 9
+  },
+  {
+    "sheet": "Listvärden - Analysmetod",
+    "safe": "Listvärden_-_Analysmetod",
+    "rows": 100,
+    "cols": 10,
+    "merges": {
+      "A3:G3": {
+        "range": "A3:G3",
+        "value": "  Kliniskt relevanta analysmetoder - primär lista för inrapportering"
+      },
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "Övergripande teknikkategori för analysen. Flerval tillåtet om flera metoder kombinerats. OBS: ISH = In Situ Hybridization (metodneutral term, ersätter FISH). Källa: HL7 Genomics Reporting IG + SNOMED CT."
+      },
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - Analysmetod  ·  GenomicStudy extension:method  ·  HL7 FHIR Genomics IG"
+      },
+      "A16:G16": {
+        "range": "A16:G16",
+        "value": "  Komplett FHIR HL7 Genomics Reporting IG-lista (referens)"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 99
+  },
+  {
+    "sheet": "Listvärden - Analystyp",
+    "safe": "Listvärden_-_Analystyp",
+    "rows": 39,
+    "cols": 10,
+    "merges": {
+      "A3:G3": {
+        "range": "A3:G3",
+        "value": "INCA/systemet tittar på vilka fyndblock som finns i rapporten och sätter koden automatiskt."
+      },
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "Värdena kommer från HL7 FHIR Genomics Reporting IG v3.0 (Genomic Study Type ValueSet). Genom att använda FHIR-standardiserade koder säkerställs nationellt och internationellt datautbyte. ValueSet: http://hl7.org/fhir/uv/genomics-reporting/ValueSet/genomic-study-type-vs"
+      },
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - Analystyp  ·  Procedure.code  ·  HL7 FHIR Genomics Reporting IG"
+      },
+      "A4:G4": {
+        "range": "A4:G4",
+        "value": null
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 17
+  },
+  {
+    "sheet": "Listvärden - Produktnamn",
+    "safe": "Listvärden_-_Produktnamn",
+    "rows": 26,
+    "cols": 10,
+    "merges": {
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "Kommersiellt namn på analyspaket eller NGS-panel. Anger vilka gener som testades. OBS: Lista är inte fullständig - verksamheterna kompletterar med lokalt använda produkter. \n"
+      },
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - Produktnamn / Panelnamn  ·  Device.deviceName.name"
+      },
+      "A18:G18": {
+        "range": "A18:G18",
+        "value": "  OBS: Listan är inte fullständig. Verksamheterna bör komplettera med ytterligare produkter som används lokalt."
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 15
+  },
+  {
+    "sheet": "Listvärden - Variationstyp",
+    "safe": "Listvärden_-_Variationstyp",
+    "rows": 22,
+    "cols": 6,
+    "merges": {
+      "A2:F2": {
+        "range": "A2:F2",
+        "value": "FHIR-fältet coding-change-type används för att ange typen av genomisk förändring. Det fyller två syften: (1) Bred kategorisering - anger om det är en SNV, CNV, strukturell variant eller fusion. (2) Specifik DNA-förändring - anger exakt vad som hänt (deletion, insertion, translokation...). Samma FHIR-komponent används i alla variantblock (SNV/Indel, CNV, Fusion)."
+      },
+      "A10:F10": {
+        "range": "A10:F10",
+        "value": "② CNV - Kopietalsvariationer"
+      },
+      "A14:F14": {
+        "range": "A14:F14",
+        "value": "③ Fusion / Strukturell variant - Rearrangemang"
+      },
+      "A1:F1": {
+        "range": "A1:F1",
+        "value": "Tillåtna listvärden - Variationstyp / Coding Change Type  ·  Observation.component:coding-change-type  ·  Sequence Ontology (SO)"
+      },
+      "A22:F22": {
+        "range": "A22:F22",
+        "value": "Relation till molecular_consequence: coding_change_type anger VAD som hänt i DNA. molecular_consequence anger EFFEKTEN på proteinet (missense, frameshift etc.) och beräknas automatiskt av annotationsverktyg (VEP/Annovar) - se separat flik."
+      },
+      "A4:F4": {
+        "range": "A4:F4",
+        "value": "① SNV / Indel - Punktmutationer och små insertioner/deletioner"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 20
+  },
+  {
+    "sheet": "Listvärden_MolecularConsequence",
+    "safe": "Listvärden_MolecularConsequence",
+    "rows": 29,
+    "cols": 10,
+    "merges": {
+      "A13:G13": {
+        "range": "A13:G13",
+        "value": "  OBS: splice_site_variant tillhör Listvärden - Coding Change Type (orsak), ej molecular_consequence (effekt)."
+      },
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "Funktionell effekt av varianten på proteinivå. Auto-only: beräknas av annoteringsverktyg (VEP/Annovar) från VCF möjlig?  "
+      },
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - molecular_consequence  ·  Observation.component:molecular-consequence  ·  Sequence Ontology (SO)"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 12
+  },
+  {
+    "sheet": "Listvärden - Kopietaltyp",
+    "safe": "Listvärden_-_Kopietaltyp",
+    "rows": 23,
+    "cols": 8,
+    "merges": {
+      "A2:E2": {
+        "range": "A2:E2",
+        "value": "Klinisk tolkningsnivå av CNV-förändringen. CNV beskrivs av TRE fält: antal_kopior (Integer) + kopietaltyp (Code) + gen/målregion. \n"
+      },
+      "A1:E1": {
+        "range": "A1:E1",
+        "value": "  Tillåtna listvärden - Kopietaltyp  ·  Observation.component:copy-number-change-type"
+      },
+      "A8:E8": {
+        "range": "A8:E8",
+        "value": "gain vs amplification skiljs åt via antal_kopior-fältet - inte via kopietaltyp-koden (båda har SO:0001742). gain = 3-4 kopior. amplification = >4-6 kopior (tröskel labspecifik). \n"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 8
+  },
+  {
+    "sheet": "Listvärden - Genetiskt ursprung",
+    "safe": "Listvärden_-_Genetiskt_ursprung",
+    "rows": 17,
+    "cols": 10,
+    "merges": {
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "Om varianten är somatisk (tumörspecifik) eller germline (nedärvd). NGS = somatic (implicit). OBS: Lokala rutiner varierar - i t.ex. Lund samarbetar specialiteter för att fånga nedärvda varianter även vid vanliga cancerfrågeställningar."
+      },
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - Genetiskt ursprung  ·  Observation.component:genomic-allele-origin  ·  HL7 Genomics IG"
+      },
+      "A9:G9": {
+        "range": "A9:G9",
+        "value": " Regional variation (NAG CG 2026-04-12): \"Varierar mellan orter hur rutiner ser ut. I t.ex. Lund sätts system där olika specialiteter samarbetar för att följa upp genpanelresultat som inger misstanke om nedärvda förändringar, även vid vanliga frågeställningar som bröst- och kolorektalcancer.\""
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 9
+  },
+  {
+    "sheet": "Listvärden - ASCO Tier",
+    "safe": "Listvärden_-_ASCO_Tier",
+    "rows": 28,
+    "cols": 10,
+    "merges": {
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - ASCO Tier  ·  Klinisk signifikans somatiska cancervarianter"
+      },
+      "A11:B11": {
+        "range": "A11:B11",
+        "value": " Listvärden - ASCO Tier (AMP/ASCO/CAP 2017) - Klinisk signifikans somatiska varianter"
+      },
+      "A24:G24": {
+        "range": "A24:G24",
+        "value": "  Referens: Li MM et al. Standards and Guidelines for the Interpretation and Reporting of Sequence Variants in Cancer. J Mol Diagn. 2017;19(1):4-23. https://pubmed.ncbi.nlm.nih.gov/27993330/"
+      },
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "Standard: Li MM et al. J Mol Diagn. 2017;19(1):4-23. Används för klassificering av somatiska varianter i cancerdiagnostik. "
+      },
+      "A13:B13": {
+        "range": "A13:B13",
+        "value": "Kodsystem: HL7 Genomics Reporting IG CodeSystem (variant-pathogenicity-impact-cs). \nSNOMED CT: GAP inga SNOMED CT-koder finns for ASCO Tier-klassificering."
+      },
+      "A22:B22": {
+        "range": "A22:B22",
+        "value": "GAP-notering: ASCO Tier saknar SNOMED CT-koder. HL7 Genomics IG CodeSystem används som primär kodkälla. Begäran till SNOMED International kan övervägas."
+      },
+      "A12:B12": {
+        "range": "A12:B12",
+        "value": "Tillåtna listvärden - ASCO Tier (klinisk signifikans somatiska cancervarianter)\nAnvänds för klassificering av somatiska varianter i cancerdiagnostik. Standard: Li MM et al. J Mol Diagn. 2017;19(1):4-23. \n\nOBS öppen fråga (NAG CG): EMA/TLV/NT-rådet som möjlig primär referens framför FDA för svensk kontext "
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 23
+  },
+  {
+    "sheet": "Listvärden - ESCAT Tier",
+    "safe": "Listvärden_-_ESCAT_Tier",
+    "rows": 18,
+    "cols": 10,
+    "merges": {
+      "A2:G2": {
+        "range": "A2:G2",
+        "value": "ESCAT = ESMO Scale for Clinical Actionability of molecular Targets. Komplement till ASCO Tier - fokuserar på behandlingsindikation snarare än diagnostisk signifikans. Källa: Mosele F et al. Ann Oncol. 2020;31(11):1491-1505."
+      },
+      "A1:G1": {
+        "range": "A1:G1",
+        "value": "  Tillåtna listvärden - ESCAT Tier  ·  Behandlingsrelevans  ·  ESMO Scale for Clinical Actionability"
+      },
+      "A18:G18": {
+        "range": "A18:G18",
+        "value": "  Referens: Mosele F et al. Recommendations for the use of next-generation sequencing (NGS) for patients with metastatic cancers. Ann Oncol. 2020 Nov;31(11):1491-1505. https://www.sciencedirect.com/science/article/pii/S0923753419347374"
+      }
+    },
+    "notes": [],
+    "nonempty_rows": 17
+  }
+]

@@ -1,0 +1,114 @@
+{
+  "variable": "provtyp",
+  "fhir": "Specimen.type",
+  "systems": [
+    "snomed",
+    "hl7_v2_specimen"
+  ],
+  "codes": [
+    {
+      "hl7_v2": "BLDV",
+      "display_en": "Blood venous",
+      "display_sv": "Venöst blod",
+      "snomed": "53130003",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "MAR",
+      "display_en": "Marrow",
+      "display_sv": "Benmärg",
+      "snomed": "396997002",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "TISS",
+      "display_en": "Tissue",
+      "display_sv": "Vävnad",
+      "snomed": "119376003",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "TUMOR",
+      "display_en": "Tumor",
+      "display_sv": "Tumörvävnad",
+      "snomed": "258435002",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "PLR",
+      "display_en": "Pleural fluid",
+      "display_sv": "Pleuravätska",
+      "snomed": "418564007",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "FGA",
+      "display_en": "Fluid, Abdomen",
+      "display_sv": "Bukvätska / Ascitesvätska",
+      "snomed": "309201001",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "CSF",
+      "display_en": "Cerebrospinal fluid",
+      "display_sv": "Cerebrospinalvätska",
+      "snomed": "258450006",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "BON",
+      "display_en": "Bone",
+      "display_sv": "Ben",
+      "snomed": "430268003",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "SKN",
+      "display_en": "Skin",
+      "display_sv": "Hud",
+      "snomed": "119325001",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "BIFL",
+      "display_en": "Bile Fluid",
+      "display_sv": "Galla",
+      "snomed": "119341000",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "CVM",
+      "display_en": "Cervical Mucus",
+      "display_sv": "Cervixsekret",
+      "snomed": "122577006",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "UR",
+      "display_en": "Urine",
+      "display_sv": "Urin",
+      "snomed": "122575003",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    },
+    {
+      "hl7_v2": "STL",
+      "display_en": "Stool = Fecal",
+      "display_sv": "Avföring / Feces",
+      "snomed": "119339001",
+      "snomed_status": "✓ OK",
+      "system_primary": "snomed"
+    }
+  ]
+}

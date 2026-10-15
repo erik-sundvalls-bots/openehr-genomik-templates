@@ -1,0 +1,72 @@
+Konfigurationsunderlag  - Harmoniserad datamängd cancergenomik,,,,
+"Information till granskare  
+RCC i samverkan (NPO Cancersjukdomar) genom NAG CancerGenomik",,,,
+,,,,
+Avsändare,RCC i samverkan (NPO Cancersjukdomar) med hjälp av NAG Cancergenomik och molekylär patologi,,,
+Remissperiod,Slutet av aug – 24/10,,,
+Informationsmöte 8 september kl 12.00-12.55,https://cancercentrum.se/omrcc/kalender/handelser/informationsmotekonfigurationsunderlagcancergenomik.12892.html,Samma information ges vid både tillfälle 1 och 2 ,,
+Informationsmöte 11 september kl 08.00-08.55,https://cancercentrum.se/omrcc/kalender/handelser/informationsmotekonfigurationsunderlagcancergenomik.12934.html,Samma information ges vid både tillfälle 1 och 2 ,,
+Svarsformulär,Sker via webbsvar - länk delas närmare inpå 24/10,,,
+,,,,
+Syfte och bakgrund,,,,
+"RCC i samverkan arbetar för att minska den manuella registreringsbördan för vården. Målet med konfigurationsunderlaget är att skapa förutsättningar för att data från molekylärgenetisk diagnostik ska kunna överföras automatiskt från laboratoriernas system till INCA så fort de tekniska förutsättningar finns på plats. Informationen som samlas blir i INCA åtkomligt för patientbeslut genom den individuella patientöversikten samt för de olika kvalitetsregistren för cancer via en informationsdomän för genomik.   
+
+Både den automatiska insamlingen och kopplingen till olika funktioner inom INCA kräver en gemensam struktur för hur genomikdata beskrivs och lagras. Datastrukturen skapar också förutsättningar för annan sekundäranvändning nationellt och inom ramen för internationella samarbeten där ett intensivt arbete sker inom ett flertal olika europeiska projekt och initiativ och där EHDS stegvis kommer att ge ytterligare möjligheter. Det är den datastruktur som krävs för dessa olika nyttor som det färdiga konfigurationsunderlaget ska definiera.
+
+Införandet av den nya strukturen sker stegvis. I dag matas data in manuellt vilket ger tydliga begränsningar för vilka parametrar som kan rapporteras in.  Det slutliga målet är att det manuella flödet ersätts helt - när laboratorierna och deras system är redo. Det är för denna användning vi vill ha hjälp med granskning av utvalda kodsystem och variabler.",,,,"
+"
+"Detta underlag definierar vilka variabler, standarder, format och kodverk som föreslås att användas – nödvändig för framtida automatisk dataöverföring av resultat från molekylärgenetiska analyser men även användbara redan nu för att strukturera manuellt inrapporterad data så att den kan slås samman med kommande, automatisk inrapporterad.",,,,
+"Konfigurationsunderlaget är ett resultat av en strukturerad genomgång liknande system som finns eller är under uppbyggnad och avpassad efter nuvarande behov av datadelning och det vi idag vet om kraven för delning framförallt inom EU. Det vi behöver hjälp med är både synpunkter på om ni ser behov av tillägg och förändringar men även om efterfrågad data kan genereras på ett konsekvent och maskinläsbart sätt vid kliniskt rutinarbete för att automatöverföring ska fungera.
+
+Det vi behöver veta är alltså: är den datastruktur och de variabler avpassade efter kliniska behov och praktiska förutsättningar i de laboratorier som genomför analyserna?",,,,
+,,,,
+För vem och varför  - riktad information per roll ,,,,
+"Verksamhetschefer
+klinisk patologi / genetik","Konfigurationsunderlaget berör er verksamhet på sikt i den mån den utför molekylärgenetisk cancerdiagnostik. Det handlar inte om att ändra hur analyser utförs men väl hur fynd dokumenteras och vidareanvänds.
+
+Vi ber er identifiera medarbetare (patologer, kliniska genetiker, molekylärbiologer, bioinformatiker, IT-experter - kan se olika ut inom olika verksamheter) som kan granska remissversionen och lämna svar från er verksamhet. Implementering av den nya datastrukturen sker stegvis och kräver inga omedelbara förändringar i er verksamhet.",,,
+"Patologer, 
+kliniska genetiker och molekylärbiologer","Er expertis är central i remissarbetet både för att försäkra att inget missas eller blir fel men även för att ge en bild av hur väl underlaget stämmer överens med hur väl strukturen stämmer överens med hur den kliniska diagnostiken bedrivs idag. 
+
+Ni behöver inte förstå den tekniska infrastrukturen. Fokusera istället på om listvärdena (analysmetoder, frågeställningar, varianttyper) stämmer med er kliniska verklighet och om några parametrar saknas eller är felaktiga. Svarsformuläret (webbaserat remissvar - se länk ovan) guidar er genom granskningen.",,,
+"Bioinformatiker
+/ IT-experter","Ni har en central roll för att validera de tekniska vägvalen men även för att tydliggöra lokala förutsättningar för kommande arbete. 
+
+Konfigurationsunderlaget baseras på HL7 FHIR R4 och Genomics Reporting IG. Den tekniska strukturen möjliggör automatisk dataöverföring från NGP till INCA – FHIR är den gemensamma nämnaren.
+
+Granskning av FHIR-mappningarna och tekniska specifikationer välkomnas. Se även fliken ""Vägval"" för teknisk bakgrund.",,,
+Vad ber vi er granska?,,,,
+Ni behöver inte känna till tekniska standarder - er kliniska erfarenhet är det viktiga. ,,,,
+"✓  Flikarna med föreslagna listvärden
+(Flikarna ""Listvärden - x"") 
+","Går dessa värden att få ut från er verksamhet?
+→ Finns informationen i ert system?
+
+Är listvärdena begripliga?
+→ Används dessa begrepp i er kliniska vardag?
+
+Saknas några värden som skulle behöva samlas in och följas upp?
+→ Rapporterar ni något idag som inte finns med i listan och som är viktigt att kunna följa upp?",,,
+"✓  Fliken med förslag på alla variabler inom informationsdomänen Genomik 
+(Fliken ""Alla variabler"")
+","Går dessa värden att få ut från er verksamhet?
+→ Finns informationen i ert system?
+
+Är det rimligt att kräva denna information vid rapportering?
+→ Är det möjligt att dokumentera detta utan orimlig arbetsinsats?
+
+Saknas någon variabel ni anser är kliniskt viktigt?
+→ Finns information ni producerar idag som inte finns i underlaget?",,,
+,,,,
+,,,,
+Hur du navigerar filen,,,,
+1.  Börja med denna flik,Läs syfte och din roll som granskare.,,,
+2.  Gå till fliken Översikt,Innehållsförteckning över alla flikar och vad de innehåller.,,,
+"3. Läs igenom svarsformuläret ""Svarsformulär remiss""",Bekanta dig med frågorna innan du börjar granska flikarna - ha dem tillhands när du klickar igenom listvärdena och variablerna.,,,
+4.  Granska innehåll i flikarna med listvärden,En flik per variabel med längre värdelistor – klicka igenom och notera synpunkter / tillägg.,,,
+"5.  Granska innehåll i fliken med ""Alla variabler""",Förslag på fullständig variabellista – fokusera på kolumnerna Variabelnamn och Beskrivning.,,,
+6. Ta ställning till informatiska vägval,"För er med lämplig kompetens har information kring varför olika standarder och kodsystem valts samlats under flik ""Vägval"".",,,
+7.  Fyll i svarsformuläret,Webbaserat svarsformulär - fylls i via länk som delas närmare inpå 24/10.,,,
+,,,,
+,,,,
+,,,,

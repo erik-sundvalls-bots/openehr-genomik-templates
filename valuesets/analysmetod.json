@@ -1,0 +1,65 @@
+{
+  "variable": "analysmetod",
+  "fhir": "GenomicStudy extension:method",
+  "systems": [
+    "snomed",
+    "hl7_genomic_study_method"
+  ],
+  "codes": [
+    {
+      "term": "NGS targeted panel",
+      "display": "sequence-analysis-of-select-exons,",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    },
+    {
+      "term": "WES, WGS",
+      "display": "sequence-analysis-of-the-entire-coding-region,",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    },
+    {
+      "term": "ngs-mps",
+      "display": "ngs-mps,",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    },
+    {
+      "term": "ISH (in situ hybridisering)",
+      "display": "fish (ISH)",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    },
+    {
+      "term": "PCR",
+      "display": "PCR",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    },
+    {
+      "term": "Sanger",
+      "display": "bi-directional-sanger-sequence-analysis.",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    },
+    {
+      "term": "karyotyping",
+      "display": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    },
+    {
+      "term": "mlpa",
+      "display": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    },
+    {
+      "term": "Metyleringsanalys",
+      "display": "methylation-analysis",
+      "snomed": null,
+      "system": "hl7_genomic_study_method"
+    }
+  ],
+  "note": "Primary clinical list; full FHIR IG list in sheet as reference"
+}

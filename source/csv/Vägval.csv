@@ -1,0 +1,64 @@
+Vägval  - teknisk bakgrund och motivering,,,
+"Förklaring till tekniska vägval i konfigurationsunderlaget  ·  Kodverk, standarder och motivering",,,
+,,,
+"OBS  - detta är ett remissunderlag, inte ett beslut
+
+De kodverk och standarder som används i detta underlag är förslag som välkomnar synpunkter. Har er verksamhet erfarenhet av andra kodverk i klinisk rutin  - exempelvis SNOMED CT eller lokala terminologier  - är det värdefullt att lyfta detta i remissvaret. Kodverksval är ett viktigt beslut att förankra kliniskt innan implementering.",,,
+,,,
+Varför FHIR? - Teknisk bakgrund och riktning,,,
+EU-nivå  - EHDS,Sverige  - E-hälsomyndigheten,Registernivå  - RCC,
+"EHDS-förordningen (EU 2025/327) trädde i kraft mars 2025.
+
+Kräver att hälsodata kan utbytas mellan EU-länder i standardiserat format. Genomikdata omfattas av regler för sekundär användning (t.ex. kvalitetsregister och forskning) från mars 2031.
+
+FHIR är den valda tekniska standarden.
+
+Sverige deltar i 1+ Million Genomes-initiativet (25 länder) som bygger på samma FHIR-grund.","E-hälsomyndigheten har regeringsuppdrag att bygga nationell digital infrastruktur baserad på FHIR.
+
+FHIR-basprofiler för Sverige publicerades februari 2025.
+
+GMS (Genomic Medicine Sweden) levererar/planerar att leverara genomikanalys nationellt och rapporterar via FHIR till Nationell Genomik Plattform (NGP).","Genom att bygga Informationsdomän Genomik baserat på FHIR redan nu, är Sverige förberett.
+
+Data som samlas in manuellt idag får samma struktur som den automatgenererade data från NGP, men i mer begränsad omfattning.
+
+Ingen ombyggnad krävs när automatflödet etableras.",
+Källor: Reg. EU 2025/327 (EHDS) mars 2025    HL7 Genomics Reporting IG v3.0  (HL7 Genomics Reporting IG v3.0)  E-hälsomyndigheten FHIR-profiler feb 2025  ·  ,,,
+,,,
+Varför Sequence Ontology (SO)?  - Kodverk för genetiska förändringar,,,
+Vad är SO?,Varför SO och inte fritext?,Praktiskt exempel,
+"Sequence Ontology (SO) är ett internationellt kodverk som ger varje typ av genetisk förändring en unik, maskinläsbar kod.
+
+Precis som ICD-10 ger diagnoser ett gemensamt språk  - ger SO genetiska förändringar ett gemensamt språk.
+
+SO underhålls av ett internationellt konsortium och används i HL7 Genomics IG, Ensembl, ClinVar och 1+MG.","Utan SO-koder är ""deletion"" tvetydig:
+→ Liten deletion i DNA (EGFR exon 19)?
+→ Stor kromosomdeletion (del 9p)?
+→ Homozygot deletion av hela genen?
+
+Med SO-kod SO:0000159 + exonnummer + HGVS är det precist och nationellt sökbart.
+
+","Labbsvar: ""EGFR exon 19-deletion påvisad""
+
+I underlaget lagras som:
+→ studerad_gen: EGFR
+→ coding_change_type: SO:0000159 (deletion)
+→ exonnummer: 19
+→ dna_förändring: c.2235_2249del
+→ förekomst: 260373001 (Påvisad, SNOMED CT)
+
+Nationellt sökbart, automatöverförbart, EU-kompatibelt.",
+,,,
+Varför SO och inte SNOMED CT för varianttyper?,,,
+Aspekt,Sequence Ontology (SO)  - valt kodverk,,
+Designat för genetiska förändringar,✓  Hela ontologin är byggd specifikt för detta ändamål,,
+Används explicit i HL7 Genomics IG,✓  SO är standardvalet för coding_change_type i HL7 Genomics Reporting IG  - den standard detta underlag baseras på,,
+Täcker exon-specifika förändringar,"✓  Specifika SO-termer finns för exon_variant, splice_site_variant m.fl.",,
+Vår användning i detta underlag, variationstyp  ·  molecular_consequence  · kopietaltyp,,
+,,,
+"Viktigt att notera  - detta är ett välmotiverat förslag, inte ett slutgiltigt beslut
+
+Motiveringen för SO baseras på att det är det explicit valda kodverket i HL7 Genomics Reporting IG  - den standard detta underlag bygger på. RCC kan inte ensamt avgöra om SO är rätt kodverk för svensk sjukvård i sin helhet. Remissen välkomnar synpunkter från verksamheter med erfarenhet av SNOMED CT eller andra kodverk i klinisk rutin.",,,
+,,,
+SO används i detta underlag i flikarna: Lisvärden - Variationstyp  ·  Listvärden - MolecularConsequence  · Listvärden - Kopietal,,,
+Källa: sequenceontology.org  ·  HL7 Genomics Reporting IG v3.0  ·  ClinVar (NCBI)  - använder SO för variantklassificering,,,
+,,,
