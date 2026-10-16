@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xmlns="openEHR/v1/Template">
+  <id>14a1a911-db87-4159-bdf9-9c79cbbaf60d</id>
+  <name>Genomics request</name>
+  <description>
+    <original_author>
+      <item><key>name</key><value>Erik Sundvall / RCC Genomik (draft)</value></item>
+      <item><key>organisation</key><value>Regionala cancercentrum i samverkan</value></item>
+      <item><key>date</key><value>2026-10-15</value></item>
+    </original_author>
+    <lifecycle_state>unmanaged</lifecycle_state>
+    <details>
+      <purpose>Swedish RCC genomics service request / referral (T2 Genomikremiss). Managed Response composition: request + service_request (remiss_id, frågeställning / clinical indication, service name) and problem_diagnosis (ICD-10). Receiving organisation optional under service_request protocol.</purpose>
+      <use>Narrow frågeställning value set in OPT/Better (valuesets/fragestallning). Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
+      <misuse></misuse>
+    </details>
+  </description>
+  <annotations path="[openEHR-EHR-COMPOSITION.request.v1]/content[openEHR-EHR-INSTRUCTION.service_request.v1]">
+    <items>
+      <item><key>L10n.en</key><value>Genomic service request</value></item>
+      <item><key>L10n.sv</key><value>Genomisk tjänstebegäran</value></item>
+    </items>
+  </annotations>
+  <annotations path="[openEHR-EHR-COMPOSITION.request.v1]/content[openEHR-EHR-EVALUATION.problem_diagnosis.v1]">
+    <items>
+      <item><key>L10n.en</key><value>Referring diagnosis</value></item>
+      <item><key>L10n.sv</key><value>Remitterande diagnos</value></item>
+    </items>
+  </annotations>
+  <definition archetype_id="openEHR-EHR-COMPOSITION.request.v1" concept_name="Request for service" name="Genomics request" xmlns:tem="openEHR/v1/Template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="tem:COMPOSITION">
+    <Content archetype_id="openEHR-EHR-INSTRUCTION.service_request.v1" concept_name="Service request" name="Genomic service request" max="1" min="1" path="/content" xsi:type="tem:INSTRUCTION">
+      <Rule max="1" min="1" path="/protocol[at0008]/items[at0010]"/>
+      <Items archetype_id="openEHR-EHR-CLUSTER.organisation.v1" concept_name="Organisation" max="1" path="/protocol[at0008]/items[at0142]" xsi:type="tem:CLUSTER"/>
+    </Content>
+    <Content archetype_id="openEHR-EHR-EVALUATION.problem_diagnosis.v1" concept_name="Problem/Diagnosis" name="Referring diagnosis" path="/content" xsi:type="tem:EVALUATION"/>
+  </definition>
+</template>
