@@ -46,25 +46,25 @@ description
 definition
     CLUSTER[at0000] matches {
         items cardinality matches {1..*; unordered} matches {
-            ELEMENT[at0001] occurrences matches {0..1} matches {
+            ELEMENT[at9001] occurrences matches {0..1} matches {
                 value matches {
-                    DV_IDENTIFIER[at0002]
+                    DV_IDENTIFIER[at9002]
                 }
             }
-            ELEMENT[at0003] occurrences matches {1..1} matches {
+            ELEMENT[at9003] occurrences matches {1..1} matches {
                 value matches {
-                    DV_CODED_TEXT[at0004] matches {
+                    DV_CODED_TEXT[at9004] matches {
                         defining_code matches {
-                            [local::at0015, at0016]
+                            [local::at9000, at0001]
                         }
                     }
                 }
             }
-            ELEMENT[at0005] occurrences matches {0..1} matches {
+            ELEMENT[at9005] occurrences matches {0..1} matches {
                 value matches {
                     DV_CODED_TEXT[at0006] matches {
                         defining_code matches {
-                            [local::at0017, at0018, at0019, at0020]
+                            [local::at0002, at0003, at0004, at0005]
                         }
                     }
                 }
@@ -97,15 +97,15 @@ ontology
                     text = <"Variant clinical implication">
                     description = <"A diagnostic or therapeutic implication derived from a genomic variant finding.">
                 >
-                ["at0001"] = <
+                ["at9001"] = <
                     text = <"Implication identifier">
                     description = <"Business identifier for this implication entry (FHIR Observation.identifier).">
                 >
-                ["at0003"] = <
+                ["at9003"] = <
                     text = <"Implication type">
                     description = <"Whether this implication is diagnostic or therapeutic.">
                 >
-                ["at0005"] = <
+                ["at9005"] = <
                     text = <"Status">
                     description = <"Lifecycle status of the implication (e.g. preliminary, final, amended).">
                 >
@@ -121,27 +121,27 @@ ontology
                     text = <"Linked variant reference">
                     description = <"Optional explicit link back to the source variant when implications are stored separately.">
                 >
-                ["at0015"] = <
+                ["at9000"] = <
                     text = <"Diagnostic">
                     description = <"Implication affects diagnosis, subtype, or prognosis classification.">
                 >
-                ["at0016"] = <
+                ["at0001"] = <
                     text = <"Therapeutic">
                     description = <"Implication affects treatment choice or eligibility.">
                 >
-                ["at0017"] = <
+                ["at0002"] = <
                     text = <"Preliminary">
                     description = <"Implication is preliminary.">
                 >
-                ["at0018"] = <
+                ["at0003"] = <
                     text = <"Final">
                     description = <"Implication is final.">
                 >
-                ["at0019"] = <
+                ["at0004"] = <
                     text = <"Amended">
                     description = <"Implication has been amended.">
                 >
-                ["at0020"] = <
+                ["at0005"] = <
                     text = <"Cancelled">
                     description = <"Implication cancelled / entered in error.">
                 >
@@ -161,15 +161,15 @@ ontology
                     text = <"Klinisk implikation av variant">
                     description = <"Diagnostisk eller terapeutisk implikation härledd från ett genomiskt variantfynd.">
                 >
-                ["at0001"] = <
+                ["at9001"] = <
                     text = <"Implikationsidentifierare">
                     description = <"Verksamhetsidentifierare för implikationsposten.">
                 >
-                ["at0003"] = <
+                ["at9003"] = <
                     text = <"Implikationstyp">
                     description = <"Om implikationen är diagnostisk eller terapeutisk.">
                 >
-                ["at0005"] = <
+                ["at9005"] = <
                     text = <"Status">
                     description = <"Livscykelstatus för implikationen.">
                 >
@@ -185,27 +185,27 @@ ontology
                     text = <"Länkad variantreferens">
                     description = <"Valfri explicit länk tillbaka till källvarianten.">
                 >
-                ["at0015"] = <
+                ["at9000"] = <
                     text = <"Diagnostisk">
                     description = <"Implikation påverkar diagnos, subtyp eller prognosklassificering.">
                 >
-                ["at0016"] = <
+                ["at0001"] = <
                     text = <"Terapeutisk">
                     description = <"Implikation påverkar behandlingsval eller behörighet.">
                 >
-                ["at0017"] = <
+                ["at0002"] = <
                     text = <"Preliminär">
                     description = <"Implikationen är preliminär.">
                 >
-                ["at0018"] = <
+                ["at0003"] = <
                     text = <"Slutgiltig">
                     description = <"Implikationen är slutgiltig.">
                 >
-                ["at0019"] = <
+                ["at0004"] = <
                     text = <"Ändrad">
                     description = <"Implikationen har ändrats.">
                 >
-                ["at0020"] = <
+                ["at0005"] = <
                     text = <"Makulerad">
                     description = <"Implikationen makulerad / felaktigt registrerad.">
                 >

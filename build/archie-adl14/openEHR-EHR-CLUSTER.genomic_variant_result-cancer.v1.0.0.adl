@@ -53,39 +53,39 @@ description
 definition
     CLUSTER[at0000.1] matches {    -- Genomic variant result (cancer)
         /items matches {
-            ELEMENT[at0.1] occurrences matches {0..1} matches {    -- Somatic
+            ELEMENT[at0.9000] occurrences matches {0..1} matches {    -- Genetic origin
                 value matches {
-                    DV_CODED_TEXT[at0.10] matches {    -- Tier I-A
+                    DV_CODED_TEXT[at0.9005] matches {
                         defining_code matches {[local::at0.1, at0.2, at0.3, at0.4, at0.5]}
                     }
-                    DV_TEXT[at0.11]    -- Tier I-B
+                    DV_TEXT[at0.9006]
                 }
             }
-            ELEMENT[at0.2] occurrences matches {0..1} matches {    -- Germline
+            ELEMENT[at0.9001] occurrences matches {0..1} matches {    -- ASCO/AMP clinical significance tier
                 value matches {
-                    DV_CODED_TEXT[at0.12] matches {    -- Tier I-C
+                    DV_CODED_TEXT[at0.9007] matches {
                         defining_code matches {[local::at0.10, at0.11, at0.12, at0.13, at0.14, at0.15, at0.16]}
                     }
                 }
             }
-            ELEMENT[at0.3] occurrences matches {0..1} matches {    -- Likely somatic
+            ELEMENT[at0.9002] occurrences matches {0..1} matches {    -- ESCAT therapeutic relevance
                 value matches {
-                    DV_CODED_TEXT[at0.13] matches {    -- Tier I-D
+                    DV_CODED_TEXT[at0.9008] matches {
                         defining_code matches {[local::at0.20, at0.21, at0.22, at0.23, at0.24, at0.25, at0.26, at0.27, at0.28, at0.29, at0.30]}
                     }
                 }
             }
-            ELEMENT[at0.4] occurrences matches {0..1} matches {    -- Likely germline
+            ELEMENT[at0.9003] occurrences matches {0..1} matches {    -- Exon number
                 value matches {
-                    DV_COUNT[at0.14] matches {    -- Tier II
+                    DV_COUNT[at0.9009] matches {
                         magnitude matches {|>0|}
                     }
-                    DV_TEXT[at0.15]    -- Tier III
+                    DV_TEXT[at0.9010]
                 }
             }
-            ELEMENT[at0.5] occurrences matches {0..1} matches {    -- Unknown origin
+            ELEMENT[at0.9004] occurrences matches {0..1} matches {    -- Karyotype (ISCN)
                 value matches {
-                    DV_TEXT[at0.16]    -- Tier IV
+                    DV_TEXT[at0.9011]
                 }
             }
             ELEMENT[at0.6] occurrences matches {0..1} matches {    -- Molecular consequence
@@ -111,6 +111,34 @@ ontology
                 text = <"Genomic variant result (cancer)">
                 description = <"Results and annotations for a genomic variant found in a cancer sequencing test, including somatic classification systems.">
             >
+            ["at0.9000"] = <
+                text = <"Genetic origin">
+                description = <"Whether the variant is somatic, germline, likely somatic, likely germline, or unknown. Aligns with FHIR Genomics Observation.component:genomic-allele-origin.">
+            >
+            ["at0.9001"] = <
+                text = <"ASCO/AMP clinical significance tier">
+                description = <"Somatic clinical significance according to ASCO/AMP/CAP tiering (Tier I–IV). Complements parent ACMG classification which targets germline pathogenicity.">
+            >
+            ["at0.9002"] = <
+                text = <"ESCAT therapeutic relevance">
+                description = <"ESMO Scale for Clinical Actionability of molecular Targets (ESCAT) tier for therapeutic decision support.">
+            >
+            ["at0.9003"] = <
+                text = <"Exon number">
+                description = <"Exon number affected by the variant (general; parent Fusion exon remains for fusion-specific context).">
+            >
+            ["at0.9004"] = <
+                text = <"Karyotype (ISCN)">
+                description = <"ISCN karyotype string describing chromosomal rearrangement or CNV notation.">
+            >
+            ["at0.6"] = <
+                text = <"Molecular consequence">
+                description = <"Predicted molecular consequence using Sequence Ontology (e.g. missense_variant, stop_gained). Aligns with FHIR Genomics Observation.component:molecular-consequence.">
+            >
+            ["at0.7"] = <
+                text = <"Clinical implication">
+                description = <"Slot for diagnostic and/or therapeutic implication clusters linked to this variant.">
+            >
             ["at0.1"] = <
                 text = <"Somatic">
                 description = <"Variant acquired in somatic (non-germline) tissue.">
@@ -130,14 +158,6 @@ ontology
             ["at0.5"] = <
                 text = <"Unknown origin">
                 description = <"Genetic origin not determined.">
-            >
-            ["at0.6"] = <
-                text = <"Molecular consequence">
-                description = <"Predicted molecular consequence using Sequence Ontology (e.g. missense_variant, stop_gained). Aligns with FHIR Genomics Observation.component:molecular-consequence.">
-            >
-            ["at0.7"] = <
-                text = <"Clinical implication">
-                description = <"Slot for diagnostic and/or therapeutic implication clusters linked to this variant.">
             >
             ["at0.10"] = <
                 text = <"Tier I-A">
@@ -235,6 +255,34 @@ ontology
                 text = <"Genetiskt variantresultat (cancer)">
                 description = <"Resultat och annoteringar för en genomisk variant i cancersekvensering, inklusive somatiska klassificeringssystem.">
             >
+            ["at0.9000"] = <
+                text = <"Genetiskt ursprung">
+                description = <"Om varianten är somatisk, germline, troligen somatisk, troligen germline eller okänd.">
+            >
+            ["at0.9001"] = <
+                text = <"ASCO/AMP klinisk signifikans-tier">
+                description = <"Somatisk klinisk signifikans enligt ASCO/AMP/CAP (Tier I–IV). Komplement till förälderns ACMG-klassificering.">
+            >
+            ["at0.9002"] = <
+                text = <"ESCAT behandlingsrelevans">
+                description = <"ESMO ESCAT-nivå för terapeutiskt beslutsstöd.">
+            >
+            ["at0.9003"] = <
+                text = <"Exonnummer">
+                description = <"Exonnummer som påverkas av varianten.">
+            >
+            ["at0.9004"] = <
+                text = <"Karyotyp (ISCN)">
+                description = <"ISCN-karyotypsträng för kromosomavvikelse eller CNV-notation.">
+            >
+            ["at0.6"] = <
+                text = <"Molekylär konsekvens">
+                description = <"Förutsagd molekylär konsekvens enligt Sequence Ontology.">
+            >
+            ["at0.7"] = <
+                text = <"Klinisk implikation">
+                description = <"Plats för diagnostiska och/eller terapeutiska implikationskluster kopplade till varianten.">
+            >
             ["at0.1"] = <
                 text = <"Somatisk">
                 description = <"Variant förvärvad i somatisk vävnad.">
@@ -254,14 +302,6 @@ ontology
             ["at0.5"] = <
                 text = <"Okänt ursprung">
                 description = <"Genetiskt ursprung ej fastställt.">
-            >
-            ["at0.6"] = <
-                text = <"Molekylär konsekvens">
-                description = <"Förutsagd molekylär konsekvens enligt Sequence Ontology.">
-            >
-            ["at0.7"] = <
-                text = <"Klinisk implikation">
-                description = <"Plats för diagnostiska och/eller terapeutiska implikationskluster kopplade till varianten.">
             >
             ["at0.10"] = <
                 text = <"Tier I-A">
