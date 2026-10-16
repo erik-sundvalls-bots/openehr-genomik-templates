@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=690722f9-b919-4c4
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -44,6 +51,11 @@ description
         ["MD5-CAM-1.0.1"] = <"C976F7E7EE199950211D76C45FC16EF0">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera detaljer om en deletion-insertionsvariant (indel) jämfört med en genomisk referenssekvens.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Zur Beschreibung der in einer Sequenz beobachteten \"Deletion-insertion variant\" menschlicher DNA.">
@@ -219,6 +231,32 @@ terminology
             ["id9"] = <
                 text = <"Reference sequence">
                 description = <"The sequence file used as a reference to describe this variant.">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Genomisk deletion-insertionsvariant">
+                description = <"En genetisk sekvensförändring hos människa där en eller flera nukleotider, jämfört med en genomisk referenssekvens, ersätts av en eller flera andra nukleotider och som inte är en substitution, inversion eller konversion.">
+            >
+            ["id2"] = <
+                text = <"Startposition">
+                description = <"Position för den deleterade nukleotiden eller den första nukleotiden i det deleterade intervallet.">
+            >
+            ["id4"] = <
+                text = <"Slutposition">
+                description = <"Position för den sista nukleotiden i det deleterade intervallet.">
+            >
+            ["id6"] = <
+                text = <"Deleterad sekvens">
+                description = <"Den deleterade nukleotiden eller sekvensen.">
+            >
+            ["id8"] = <
+                text = <"Insererad sekvens">
+                description = <"Den insererade nukleotiden eller sekvensen.">
+            >
+            ["id9"] = <
+                text = <"Referenssekvens">
+                description = <"Sekvensfilen som används som referens för att beskriva varianten.">
             >
         >
     >

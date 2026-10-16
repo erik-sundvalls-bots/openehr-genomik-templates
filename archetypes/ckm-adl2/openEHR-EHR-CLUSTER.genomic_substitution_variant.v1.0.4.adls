@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=ee5651f0-c1bc-45f
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -44,6 +51,11 @@ description
         ["MD5-CAM-1.0.1"] = <"7940C38BF01B8F27E1AA7BD298C0EDAD">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera detaljer om en substitutionsvariant jämfört med en genomisk referenssekvens.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Zur Beschreibung der in einer Sequenz beobachteten \"Substitution Variante\" menschlicher DNA.">
@@ -193,6 +205,28 @@ terminology
             ["id7"] = <
                 text = <"Reference sequence">
                 description = <"The sequence file used as a reference to describe this variant.">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Genomisk substitutionsvariant">
+                description = <"En genetisk sekvensförändring hos människa där en nukleotid, jämfört med en genomisk referenssekvens, ersätts av en annan nukleotid.">
+            >
+            ["id2"] = <
+                text = <"Substituerad position">
+                description = <"Positionen för den substituerade nukleotiden.">
+            >
+            ["id4"] = <
+                text = <"Referensnukleotid">
+                description = <"Nukleotiden på referenspositionen.">
+            >
+            ["id6"] = <
+                text = <"Ny nukleotid">
+                description = <"Substituerad nukleotid.">
+            >
+            ["id7"] = <
+                text = <"Referenssekvens">
+                description = <"Sekvensfilen som används som referens för att beskriva varianten.">
             >
         >
     >

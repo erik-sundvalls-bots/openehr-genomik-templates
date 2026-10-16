@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=69e173a1-6963-431
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -43,6 +50,11 @@ description
         ["MD5-CAM-1.0.1"] = <"811AEF4A98143C4B70BA9CD97316F80F">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera detaljer om en kopietalsvariant (CNV) jämfört med en genomisk referenssekvens.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Zur Darstellung von Informationen zu der in einer Sequenz beobachteten \"Copy number variant\" menschlicher DNA.">
@@ -257,6 +269,48 @@ terminology
             ["ac9001"] = <
                 text = <"Copy number change type (synthesised)">
                 description = <"Type of sequence alteration. (synthesised)">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Genomisk kopietalsvariant">
+                description = <"En genetisk sekvensförändring hos människa där ett DNA-segment, vanligen större än 1 kilobas (kb), jämfört med en genomisk referenssekvens har deleterats eller duplicerats.">
+            >
+            ["id2"] = <
+                text = <"Start">
+                description = <"Position eller intervall av möjliga positioner för CNV:ns första nukleotid.">
+            >
+            ["id3"] = <
+                text = <"Slut">
+                description = <"Position eller intervall av möjliga positioner för CNV:ns sista nukleotid.">
+            >
+            ["id4"] = <
+                text = <"Totalt kopietal">
+                description = <"Antal förekomster av allelen.">
+            >
+            ["id5"] = <
+                text = <"Referenssekvens">
+                description = <"Sekvensfilen som används som referens för att beskriva varianten.">
+            >
+            ["id6"] = <
+                text = <"Typ av kopietalsförändring">
+                description = <"Typ av sekvensförändring.">
+            >
+            ["at7"] = <
+                text = <"Ökning">
+                description = <"En sekvensförändring där kopietalet för en given region är större än i referenssekvensen.">
+            >
+            ["at8"] = <
+                text = <"Förlust">
+                description = <"En sekvensförändring där kopietalet för en given region är mindre än i referenssekvensen.">
+            >
+            ["at9000"] = <
+                text = <"Kvalificerat reellt tal">
+                description = <"Kvalificerat reellt tal">
+            >
+            ["ac9001"] = <
+                text = <"Typ av kopietalsförändring (syntetiserad)">
+                description = <"Typ av kopietalsförändring (syntetiserad)">
             >
         >
     >

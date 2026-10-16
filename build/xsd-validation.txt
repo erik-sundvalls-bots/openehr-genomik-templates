@@ -1,0 +1,4 @@
+  openEHR-EHR-COMPOSITION.t_genomics_cancer_report.opt: VALID
+  openEHR-EHR-COMPOSITION.t_genomics_request.opt: VALID
+  openEHR-EHR-COMPOSITION.t_genomics_cancer_report.oet: INVALID /workspace/openehr-genomik-templates/build/oet14/openEHR-EHR-COMPOSITION.t_genomics_cancer_report.oet:18:0:ERROR:SCHEMASV:SCHEMAV_ELEMENT_CONTENT: Element '{openEHR/v1/Template}annotations': This element is not expected. Expected is ( {openEHR/v1/Template}definition ).
+  openEHR-EHR-COMPOSITION.t_genomics_request.oet: INVALID /workspace/openehr-genomik-templates/build/oet14/openEHR-EHR-COMPOSITION.t_genomics_request.oet:18:0:ERROR:SCHEMASV:SCHEMAV_ELEMENT_CONTENT: Element '{openEHR/v1/Template}annotations': This element is not expected. Expected is ( {openEHR/v1/Template}definition ).

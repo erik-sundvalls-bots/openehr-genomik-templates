@@ -4,9 +4,12 @@ Total clinical/data variables: **73** (block headers excluded).
 
 ## Gap flags
 
-- `covered`: 34
-- `partial`: 26
-- `gap`: 9
+*Updated 2026-10-16: studie_id/analystyp/analysmetod via `sequencing_assay-genomic_study` draft; value sets bound in T1/T2 overlays.*
+
+- `covered`: 40
+- `partial`: 22
+- `covered_by_local_draft`: 7 (draft specialisations in `archetypes/drafts/`)
+- `gap`: 0
 - `out_of_scope_demographics`: 4
 
 ## Variables per proposed archetype (primary)

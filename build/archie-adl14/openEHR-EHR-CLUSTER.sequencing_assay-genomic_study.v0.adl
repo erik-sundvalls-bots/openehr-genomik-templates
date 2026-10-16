@@ -1,0 +1,320 @@
+archetype (adl_version=1.4; rm_release=1.1.0; generated)
+    openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0
+
+specialize
+    openEHR-EHR-CLUSTER.sequencing_assay.v0
+
+
+concept
+    [at0000.1]    -- Sequencing assay (genomic study)
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Erik Sundvall">
+        ["date"] = <"2026-10-16">
+    >
+    lifecycle_state = <"unmanaged">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Local specialisation of CLUSTER.sequencing_assay adding a genomic study identifier and a coded study type, and offering a coded method type for Sequencing type. Fills the gaps 'studie_id' and 'analystyp' until equivalent elements exist in the CKM archetype.">
+            keywords = <"genomic study", "study type", "sequencing", "GenomicStudy">
+            use = <"Use in place of CLUSTER.sequencing_assay where the study identifier and study type must be recorded, e.g. for mapping to FHIR GenomicStudy.">
+        >
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Lokal specialisering av CLUSTER.sequencing_assay som lägger till studieidentifierare och kodad analystyp samt kodad metodtyp för Sekvenseringstyp. Täcker luckorna 'studie_id' och 'analystyp' tills motsvarande element finns i CKM-arketypen.">
+            keywords = <"genomisk studie", "analystyp", "sekvensering", "GenomicStudy">
+            use = <"Använd i stället för CLUSTER.sequencing_assay när studieidentifierare och analystyp ska registreras, t.ex. för mappning till FHIR GenomicStudy.">
+        >
+    >
+
+definition
+    CLUSTER[at0000.1] matches {    -- Sequencing assay (genomic study)
+        /items[at0001]/value matches {
+            DV_TEXT
+            DV_CODED_TEXT[at0.4] matches {    -- Study method type
+                defining_code matches {[local::at0.30, at0.31, at0.32, at0.33, at0.34, at0.35, at0.36, at0.37, at0.38]}
+            }
+        }
+        /items matches {
+            ELEMENT[at0.1] occurrences matches {0..1} matches {    -- Study identifier
+                value matches {
+                    DV_IDENTIFIER[at0.5]
+                }
+            }
+            ELEMENT[at0.2] occurrences matches {0..*} matches {    -- Study type
+                value matches {
+                    DV_CODED_TEXT[at0.6] matches {
+                        defining_code matches {[local::at0.10, at0.11, at0.12, at0.13, at0.14, at0.15, at0.16, at0.17, at0.18, at0.19, at0.20, at0.21]}
+                    }
+                }
+            }
+        }
+    }
+
+ontology
+    term_definitions = <
+        ["en"] = <
+            items = <
+            ["at0000.1"] = <
+                text = <"Sequencing assay (genomic study)">
+                description = <"Sequencing assay extended with genomic study identifier and study type, aligned with the FHIR Genomics Reporting GenomicStudy profile.">
+            >
+            ["at0.1"] = <
+                text = <"Study identifier">
+                description = <"Identifier of the sequencing/genomic study (FHIR GenomicStudy.identifier).">
+            >
+            ["at0.2"] = <
+                text = <"Study type">
+                description = <"The type of genomic study performed, e.g. SNP detection or CNV detection (FHIR GenomicStudy.type). Multiple occurrences allowed.">
+            >
+            ["at0.4"] = <
+                text = <"Study method type">
+                description = <"Coded method type for the sequencing type (FHIR GenomicStudy.analysis.methodType).">
+            >
+            ["ac0.1"] = <
+                text = <"Genomic study type">
+                description = <"HL7 Genomics Reporting genomic-study-type code system.">
+            >
+            ["ac0.2"] = <
+                text = <"Genomic study method type">
+                description = <"Subset of HL7 Genomics Reporting genomic-study-method-type code system.">
+            >
+            ["at0.10"] = <
+                text = <"Alternative splicing detection">
+                description = <"Identification of multiple different processed mRNA transcripts from the same DNA template">
+            >
+            ["at0.11"] = <
+                text = <"Chromatin conformation">
+                description = <"Analysis of the spacial organization of chromatin within a cell">
+            >
+            ["at0.12"] = <
+                text = <"CNV detection">
+                description = <"Detection of a change in the number of copies of a defined region of genomic DNA sequence resulting in structural variation when compared to the reference sequence">
+            >
+            ["at0.13"] = <
+                text = <"Epigenetic Alterations - histone modifications">
+                description = <"Detection of biochemical modifications covalently bound to the N-terminal tail of a histone protein. These modifications may alter chromatin compaction and gene expression">
+            >
+            ["at0.14"] = <
+                text = <"Epigenetic Alterations -DNA methylation">
+                description = <"Detection of the presence of an additional methyl group on a DNA nucleobase, which may alter gene transcription">
+            >
+            ["at0.15"] = <
+                text = <"Familial variant segregation">
+                description = <"Determining if a variant identified in an individual is present in other family members">
+            >
+            ["at0.16"] = <
+                text = <"Functional variation detection">
+                description = <"Detection of sequence variants which may alter gene expression or gene product function when compared to the reference sequence">
+            >
+            ["at0.17"] = <
+                text = <"Gene expression profiling">
+                description = <"Measurement and characterization of activity from all gene products">
+            >
+            ["at0.18"] = <
+                text = <"Post-translational Modification Identification">
+                description = <"Detection of biochemical modifications covalently bound to the amino acid monomers of a processed protein">
+            >
+            ["at0.19"] = <
+                text = <"SNP Detection">
+                description = <"Determination of which nucleotide is base present at a known variable location of the genomic sequence">
+            >
+            ["at0.20"] = <
+                text = <"STR count">
+                description = <"Quantification of the number of sequential microsatellite units in a repetitive sequence region">
+            >
+            ["at0.21"] = <
+                text = <"Structural variation detection">
+                description = <"Detection of deletions, insertions, or rearrangements of DNA segments compared to the reference sequence">
+            >
+            ["at0.30"] = <
+                text = <"Sequence analysis of select exons (targeted NGS panel)">
+                description = <"HL7 genomic-study-method-type: sequence-analysis-of-select-exons.">
+            >
+            ["at0.31"] = <
+                text = <"Sequence analysis of the entire coding region (WES/WGS)">
+                description = <"HL7 genomic-study-method-type: sequence-analysis-of-the-entire-coding-region.">
+            >
+            ["at0.32"] = <
+                text = <"Next-generation / massively parallel sequencing">
+                description = <"HL7 genomic-study-method-type: ngs-mps.">
+            >
+            ["at0.33"] = <
+                text = <"Fluorescence in situ hybridization (FISH)">
+                description = <"HL7 genomic-study-method-type: fish.">
+            >
+            ["at0.34"] = <
+                text = <"PCR">
+                description = <"HL7 genomic-study-method-type: pcr.">
+            >
+            ["at0.35"] = <
+                text = <"Bi-directional Sanger sequence analysis">
+                description = <"HL7 genomic-study-method-type: bi-directional-sanger-sequence-analysis.">
+            >
+            ["at0.36"] = <
+                text = <"Karyotyping">
+                description = <"HL7 genomic-study-method-type: karyotyping.">
+            >
+            ["at0.37"] = <
+                text = <"Multiplex ligation-dependent probe amplification (MLPA)">
+                description = <"HL7 genomic-study-method-type: mlpa.">
+            >
+            ["at0.38"] = <
+                text = <"Methylation analysis">
+                description = <"HL7 genomic-study-method-type: methylation-analysis.">
+            >
+            >
+        >
+        ["sv"] = <
+            items = <
+            ["at0000.1"] = <
+                text = <"Sekvenseringsanalys (genomisk studie)">
+                description = <"Sekvenseringsanalys utökad med studieidentifierare och studietyp, i linje med FHIR Genomics Reporting-profilen GenomicStudy.">
+            >
+            ["at0.1"] = <
+                text = <"Studieidentifierare">
+                description = <"Identifierare för sekvenserings-/genomikstudien (FHIR GenomicStudy.identifier).">
+            >
+            ["at0.2"] = <
+                text = <"Analystyp">
+                description = <"Typ av genomisk studie, t.ex. SNP-detektion eller CNV-detektion (FHIR GenomicStudy.type). Kan förekomma flera gånger.">
+            >
+            ["at0.4"] = <
+                text = <"Analysmetod">
+                description = <"Kodad metodtyp för sekvenseringstypen (FHIR GenomicStudy.analysis.methodType).">
+            >
+            ["ac0.1"] = <
+                text = <"Genomisk studietyp">
+                description = <"Kodverket genomic-study-type i HL7 Genomics Reporting.">
+            >
+            ["ac0.2"] = <
+                text = <"Genomisk metodtyp">
+                description = <"Delmängd av kodverket genomic-study-method-type i HL7 Genomics Reporting.">
+            >
+            ["at0.10"] = <
+                text = <"Detektion av alternativ splitsning">
+                description = <"Alternative splicing detection (HL7 genomic-study-type: alt-splc).">
+            >
+            ["at0.11"] = <
+                text = <"Kromatinkonformation">
+                description = <"Chromatin conformation (HL7 genomic-study-type: chromatin).">
+            >
+            ["at0.12"] = <
+                text = <"CNV-detektion">
+                description = <"CNV detection (HL7 genomic-study-type: cnv).">
+            >
+            ["at0.13"] = <
+                text = <"Epigenetiska förändringar – histonmodifieringar">
+                description = <"Epigenetic Alterations - histone modifications (HL7 genomic-study-type: epi-alt-hist).">
+            >
+            ["at0.14"] = <
+                text = <"Epigenetiska förändringar – DNA-metylering">
+                description = <"Epigenetic Alterations -DNA methylation (HL7 genomic-study-type: epi-alt-dna).">
+            >
+            ["at0.15"] = <
+                text = <"Familjär variantsegregation">
+                description = <"Familial variant segregation (HL7 genomic-study-type: fam-var-segr).">
+            >
+            ["at0.16"] = <
+                text = <"Detektion av funktionell variation">
+                description = <"Functional variation detection (HL7 genomic-study-type: func-var).">
+            >
+            ["at0.17"] = <
+                text = <"Genuttrycksprofilering">
+                description = <"Gene expression profiling (HL7 genomic-study-type: gene-expression).">
+            >
+            ["at0.18"] = <
+                text = <"Identifiering av posttranslationell modifiering">
+                description = <"Post-translational Modification Identification (HL7 genomic-study-type: post-trans-mod).">
+            >
+            ["at0.19"] = <
+                text = <"SNP-detektion">
+                description = <"SNP Detection (HL7 genomic-study-type: snp).">
+            >
+            ["at0.20"] = <
+                text = <"STR-räkning">
+                description = <"STR count (HL7 genomic-study-type: str).">
+            >
+            ["at0.21"] = <
+                text = <"Detektion av strukturell variation">
+                description = <"Structural variation detection (HL7 genomic-study-type: struc-var).">
+            >
+            ["at0.30"] = <
+                text = <"Sekvensanalys av utvalda exon (riktad NGS-panel)">
+                description = <"HL7 genomic-study-method-type: sequence-analysis-of-select-exons.">
+            >
+            ["at0.31"] = <
+                text = <"Sekvensanalys av hela den kodande regionen (WES/WGS)">
+                description = <"HL7 genomic-study-method-type: sequence-analysis-of-the-entire-coding-region.">
+            >
+            ["at0.32"] = <
+                text = <"Nästa generations / massivt parallell sekvensering">
+                description = <"HL7 genomic-study-method-type: ngs-mps.">
+            >
+            ["at0.33"] = <
+                text = <"Fluorescens in situ-hybridisering (FISH)">
+                description = <"HL7 genomic-study-method-type: fish.">
+            >
+            ["at0.34"] = <
+                text = <"PCR">
+                description = <"HL7 genomic-study-method-type: pcr.">
+            >
+            ["at0.35"] = <
+                text = <"Dubbelriktad Sanger-sekvensanalys">
+                description = <"HL7 genomic-study-method-type: bi-directional-sanger-sequence-analysis.">
+            >
+            ["at0.36"] = <
+                text = <"Karyotypering">
+                description = <"HL7 genomic-study-method-type: karyotyping.">
+            >
+            ["at0.37"] = <
+                text = <"Multiplex ligeringsberoende probamplifiering (MLPA)">
+                description = <"HL7 genomic-study-method-type: mlpa.">
+            >
+            ["at0.38"] = <
+                text = <"Metyleringsanalys">
+                description = <"HL7 genomic-study-method-type: methylation-analysis.">
+            >
+            >
+        >
+    >
+    term_bindings = <
+        ["HL7-genomic-study-type"] = <
+            ["at0.10"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#alt-splc>
+            ["at0.11"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#chromatin>
+            ["at0.12"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#cnv>
+            ["at0.13"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#epi-alt-hist>
+            ["at0.14"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#epi-alt-dna>
+            ["at0.15"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#fam-var-segr>
+            ["at0.16"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#func-var>
+            ["at0.17"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#gene-expression>
+            ["at0.18"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#post-trans-mod>
+            ["at0.19"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#snp>
+            ["at0.20"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#str>
+            ["at0.21"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#struc-var>
+        >
+        ["HL7-genomic-study-method-type"] = <
+            ["at0.30"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#sequence-analysis-of-select-exons>
+            ["at0.31"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#sequence-analysis-of-the-entire-coding-region>
+            ["at0.32"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#ngs-mps>
+            ["at0.33"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#fish>
+            ["at0.34"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#pcr>
+            ["at0.35"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#bi-directional-sanger-sequence-analysis>
+            ["at0.36"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#karyotyping>
+            ["at0.37"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#mlpa>
+            ["at0.38"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs#methylation-analysis>
+        >
+    >

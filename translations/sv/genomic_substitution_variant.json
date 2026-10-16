@@ -1,0 +1,23 @@
+{
+ "_purpose": "För att registrera detaljer om en substitutionsvariant jämfört med en genomisk referenssekvens.",
+ "id1": [
+  "Genomisk substitutionsvariant",
+  "En genetisk sekvensförändring hos människa där en nukleotid, jämfört med en genomisk referenssekvens, ersätts av en annan nukleotid."
+ ],
+ "id2": [
+  "Substituerad position",
+  "Positionen för den substituerade nukleotiden."
+ ],
+ "id4": [
+  "Referensnukleotid",
+  "Nukleotiden på referenspositionen."
+ ],
+ "id6": [
+  "Ny nukleotid",
+  "Substituerad nukleotid."
+ ],
+ "id7": [
+  "Referenssekvens",
+  "Sekvensfilen som används som referens för att beskriva varianten."
+ ]
+}

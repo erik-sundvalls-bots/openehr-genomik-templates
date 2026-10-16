@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=ddb13dc5-5227-48f
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -46,6 +53,11 @@ description
         ["MD5-CAM-1.0.1"] = <"3EE3E8241CADF78346B218FF137A2167">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera fynd och annoteringar för en variant som påvisats hos en individ genom ett sekvenseringstest.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Wird verwendet, um Ergebnisse und Annotationen zu einer im Genom durch einen Sequenzierungstest gefundenen Variante zu berichten.">
@@ -1436,6 +1448,320 @@ If both this element and the 'Structured variant' SLOT are used simultaneously, 
             ["ac9004"] = <
                 text = <"Allelic state (synthesised)">
                 description = <"The level of occurrence of a single DNA marker within a set of chromosomes. (synthesised)">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Genomiskt variantresultat">
+                description = <"Fynd och annoteringar för en variant som påvisats hos en individ genom ett sekvenseringstest.">
+            >
+            ["id2"] = <
+                text = <"Bioinformatiskt analysflöde">
+                description = <"Strukturerade detaljer om det bioinformatiska analysflödet eller protokollet som används.">
+            >
+            ["id3"] = <
+                text = <"Referensgenom">
+                description = <"Strukturerade detaljer om den specifika versionen av den humana sekvensassemblyn som används för annotering.">
+            >
+            ["id9"] = <
+                text = <"Transkript">
+                description = <"Strukturerade detaljer om transkriptet som potentiellt påverkas av varianten.">
+            >
+            ["id10"] = <
+                text = <"Transkriptets referenssekvens">
+                description = <"Strukturerade detaljer om den transkriberade referenssekvensen.">
+            >
+            ["id11"] = <
+                text = <"DNA-regionens namn">
+                description = <"Läsbart namn på den aktuella regionen.">
+            >
+            ["id12"] = <
+                text = <"DNA-förändring">
+                description = <"Beskrivning av variationen på DNA-nivå enligt HGVS-nomenklaturen.">
+            >
+            ["id13"] = <
+                text = <"Aminosyraförändring">
+                description = <"Beskrivning av variationen på proteinnivå enligt HGVS-nomenklaturen.">
+            >
+            ["id14"] = <
+                text = <"Typ av aminosyraförändring">
+                description = <"Kodad typ för den tillhörande aminosyramarkören.">
+            >
+            ["id16"] = <
+                text = <"Predicerad påverkan">
+                description = <"Uppskattning av vilka effekter varianten kan ha på transkriptet.">
+            >
+            ["id17"] = <
+                text = <"Kunskapskälla för predicerad påverkan">
+                description = <"Strukturerade detaljer om referensen som används för att beräkna predicerad påverkan.">
+            >
+            ["id18"] = <
+                text = <"Poäng">
+                description = <"Det beräknade värdet.">
+            >
+            ["id19"] = <
+                text = <"Kvalitativ prediktion">
+                description = <"Läsbar version av den predicerade påverkan.">
+            >
+            ["id20"] = <
+                text = <"Gen">
+                description = <"Strukturerade detaljer om genen som bär varianten.">
+            >
+            ["id21"] = <
+                text = <"Gensymbol">
+                description = <"Den officiella gensymbolen godkänd av HGNC, en kort förkortning av gennamnet.">
+            >
+            ["id22"] = <
+                text = <"Gennamn">
+                description = <"Det fullständiga gennamnet godkänt av HGNC som beskriver genens karaktär eller funktion.">
+            >
+            ["id24"] = <
+                text = <"Bästa transkriptkandidat">
+                description = <"ID för transkriptet med högst predicerad påverkan.">
+            >
+            ["id25"] = <
+                text = <"Konservering">
+                description = <"Strukturerade detaljer om evolutionär konservering.">
+            >
+            ["id26"] = <
+                text = <"Kunskapskälla för konserveringspoäng">
+                description = <"Strukturerade detaljer om referensen som används för att beräkna konserveringspoängen.">
+            >
+            ["id27"] = <
+                text = <"Poäng">
+                description = <"Konserveringspoängen.">
+            >
+            ["id29"] = <
+                text = <"Alleldjup">
+                description = <"Antal läsningar som stöder den rapporterade varianten.">
+            >
+            ["id30"] = <
+                text = <"Detaljer om allelfrekvens i population">
+                description = <"Den relativa frekvensen av en viss allel i populationen.">
+            >
+            ["id31"] = <
+                text = <"Kunskapskälla för allelfrekvens i population">
+                description = <"Strukturerade detaljer om databasen som används för att beräkna allelfrekvensen.">
+            >
+            ["id32"] = <
+                text = <"Allelfrekvens i population">
+                description = <"Allelfrekvensen i populationen.">
+            >
+            ["id40"] = <
+                text = <"Genotyp">
+                description = <"Genotyp kodad som allelvärden.">
+            >
+            ["id41"] = <
+                text = <"Allelstatus">
+                description = <"Förekomstnivån för en enskild DNA-markör inom en uppsättning kromosomer.">
+            >
+            ["id42"] = <
+                text = <"Genotypkvalitet">
+                description = <"Betingad genotypkvalitet, kodad som Phred-kvalitet.">
+            >
+            ["id46"] = <
+                text = <"Strukturerad variant">
+                description = <"Strukturerad beskrivning av den genomiska varianten.">
+            >
+            ["id48"] = <
+                text = <"Allelfrekvens">
+                description = <"Den relativa frekvensen av en allel i ett visst locus.">
+            >
+            ["id53"] = <
+                text = <"Funktionell påverkan">
+                description = <"Tolkning av variationen kopplad till en specifik artikel.">
+            >
+            ["id54"] = <
+                text = <"Källa">
+                description = <"Referens till den specifika forskningsartikeln.">
+            >
+            ["id55"] = <
+                text = <"Påverkan">
+                description = <"Ord eller fras som beskriver den rapporterade påverkan av den specifika varianten.">
+            >
+            ["id57"] = <
+                text = <"Kopietalsöverlapp">
+                description = <"Andelen av genregionen som täcks av kopietalet.">
+            >
+            ["id58"] = <
+                text = <"Del av fusion">
+                description = <"Anger om genen ingår i en fusionsgen och om den är första eller andra delen av fusionsgenen.">
+            >
+            ["id59"] = <
+                text = <"ACMG-klassificering">
+                description = <"Klinisk signifikans enligt ACMG:s rekommendationer.">
+            >
+            ["id60"] = <
+                text = <"Fusionsexon">
+                description = <"Numret på exonet som ingår i fusionen.">
+            >
+            ["id61"] = <
+                text = <"Läsdjup">
+                description = <"Totalt antal läsningar mappade på denna specifika position.">
+            >
+            ["id62"] = <
+                text = <"VCF-kvalitetsfilter">
+                description = <"Strukturerade detaljer om kvalitetsfilter som tillämpats på data.">
+            >
+            ["id63"] = <
+                text = <"Filternamn">
+                description = <"Kvalitetsfiltrets namn.">
+            >
+            ["id64"] = <
+                text = <"Beskrivning">
+                description = <"Utökad beskrivning av kvalitetsfiltret.">
+            >
+            ["id65"] = <
+                text = <"Filter godkänt">
+                description = <"Passerade varianten kvalitetsfiltret?">
+            >
+            ["id68"] = <
+                text = <"Strängbiaskvot">
+                description = <"Kvoten för strängbias.">
+            >
+            ["id69"] = <
+                text = <"p-värde för strängbias">
+                description = <"Phred-skalat p-värde för strängbias.">
+            >
+            ["id70"] = <
+                text = <"Genotypsannolikhet">
+                description = <"Kommaseparerad lista med log10-skalade genotypsannolikheter för alla möjliga genotyper, givet referens- och alternativa alleler.">
+            >
+            ["id71"] = <
+                text = <"Providentifierare">
+                description = <"Identifiering av provet som använts för det genomiska resultatet.">
+            >
+            ["at72"] = <
+                text = <"Patogen">
+                description = <"Patogen variant.">
+            >
+            ["at73"] = <
+                text = <"Sannolikt patogen">
+                description = <"Sannolikt patogen variant.">
+            >
+            ["at74"] = <
+                text = <"Oklar signifikans">
+                description = <"Variant av oklar signifikans.">
+            >
+            ["at75"] = <
+                text = <"Sannolikt benign">
+                description = <"Sannolikt benign variant.">
+            >
+            ["at76"] = <
+                text = <"Benign">
+                description = <"Benign variant.">
+            >
+            ["at77"] = <
+                text = <"Heteroplasmisk">
+                description = <"Heteroplasmisk.">
+            >
+            ["at78"] = <
+                text = <"Homoplasmisk">
+                description = <"Homoplasmisk.">
+            >
+            ["at79"] = <
+                text = <"Homozygot">
+                description = <"Homozygot.">
+            >
+            ["at80"] = <
+                text = <"Heterozygot">
+                description = <"Heterozygot.">
+            >
+            ["at81"] = <
+                text = <"Hemizygot">
+                description = <"Hemizygot.">
+            >
+            ["at86"] = <
+                text = <"Vildtyp">
+                description = <"Sekvensen på en given position är identisk med referenssekvensen.">
+            >
+            ["at87"] = <
+                text = <"Deletion">
+                description = <"En deletion i aminosyrasekvensen.">
+            >
+            ["at88"] = <
+                text = <"Duplikation">
+                description = <"En duplikation i aminosyrasekvensen.">
+            >
+            ["at89"] = <
+                text = <"Läsramsförskjutning">
+                description = <"En läsramsförskjutning i aminosyrasekvensen.">
+            >
+            ["at90"] = <
+                text = <"Initierande metionin">
+                description = <"En variant som påverkar translationens startkodon.">
+            >
+            ["at91"] = <
+                text = <"Insertion">
+                description = <"En insertion i aminosyrasekvensen.">
+            >
+            ["at92"] = <
+                text = <"Insertion och deletion">
+                description = <"En insertion/deletion i aminosyrasekvensen.">
+            >
+            ["at93"] = <
+                text = <"Missense">
+                description = <"En aminosyra ersätts av en annan aminosyra.">
+            >
+            ["at94"] = <
+                text = <"Nonsens">
+                description = <"En aminosyra ersätts av ett translationellt stoppkodon (terminationskodon).">
+            >
+            ["at95"] = <
+                text = <"Tyst">
+                description = <"En variant i DNA-sekvensen som inte ändrar aminosyrasekvensen i det kodade proteinet.">
+            >
+            ["at96"] = <
+                text = <"Stoppkodonmutation">
+                description = <"En variant som påverkar translationens stoppkodon.">
+            >
+            ["at97"] = <
+                text = <"Första">
+                description = <"Första delen av en fusionsgen.">
+            >
+            ["at98"] = <
+                text = <"Andra">
+                description = <"Andra delen av en fusionsgen.">
+            >
+            ["id99"] = <
+                text = <"Ytterligare detaljer">
+                description = <"Ytterligare detaljer som ska registreras.">
+            >
+            ["id100"] = <
+                text = <"Avstånd från splitsningsställe">
+                description = <"Avstånd i nukleotider mellan mutationen och exon–intron-gränsen.">
+            >
+            ["id101"] = <
+                text = <"RNA-förändring">
+                description = <"Beskrivning av variationen på RNA-nivå enligt HGVS-nomenklaturen.">
+            >
+            ["id102"] = <
+                text = <"Variant">
+                description = <"Beskrivning av variationen på genomisk nivå enligt HGVS-nomenklaturen.">
+            >
+            ["id103"] = <
+                text = <"Variantidentifiering">
+                description = <"Referens till en specifik variation registrerad i en extern biologisk variationsdatabas.">
+            >
+            ["ac9000"] = <
+                text = <"Typ av aminosyraförändring (syntetiserad)">
+                description = <"Typ av aminosyraförändring (syntetiserad)">
+            >
+            ["at9001"] = <
+                text = <"Kvalificerat reellt tal">
+                description = <"Kvalificerat reellt tal">
+            >
+            ["ac9002"] = <
+                text = <"Del av fusion (syntetiserad)">
+                description = <"Del av fusion (syntetiserad)">
+            >
+            ["ac9003"] = <
+                text = <"ACMG-klassificering (syntetiserad)">
+                description = <"ACMG-klassificering (syntetiserad)">
+            >
+            ["ac9004"] = <
+                text = <"Allelstatus (syntetiserad)">
+                description = <"Allelstatus (syntetiserad)">
             >
         >
     >

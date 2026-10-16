@@ -31,4 +31,24 @@ All 5 "succeeded" with no exception, but every output is invalid ADL 1.4. Archie
 There is still **no working automatic ADL2 → 1.4 path** on the box (Archie can't, Ehrtslib produces invalid ADL). Options:
 - (a) fix Ehrtslib (G1–G7)
 - (b) write a small Archie-based Java down-converter (AOM2 → AOM1.4 serializer)
-- (c) hand-maintain 1.4 versions of the 3 drafts and build T1/T2 as OETs in Better Template Designer.
+- (c) hand-maintain 1.4 versions of the 3 drafts and build T1/T2 as OETs in a graphical template designer.
+
+## New gaps found 2026-10-16 (genomics value-set bindings) — not yet filed
+
+Draft issue texts for Erik to file (nothing has been posted):
+
+### A. ADL2 tokenizer rejects `#` (and likely `?`) inside ODIN URI values
+- Input: `["at0.10"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#alt-splc>` in `term_bindings`.
+- Ehrtslib: `Unexpected character '#'` from `parser/adl2_tokenizer.ts`; the whole archetype fails to load, so templates using it lose that archetype ("no published base archetype in chain").
+- Archie: parses and validates.
+- Expected: URI values in ODIN accept full RFC 3986 syntax, including fragment and query.
+- Workaround in `tools/build.sh`: the copy given to Ehrtslib has bindings containing `#` removed. As a result the OPT 1.4 has no HL7 study type/method bindings, though the codes and texts are still there.
+
+### B. Differential path through `description` attribute not resolved (INSTRUCTION activities)
+- Input (T2 overlay on service_request): `/activities[id2]/description[id10]/items[id63]/value matches { DV_CODED_TEXT[id9006.1] ... }`.
+- Ehrtslib warns `differential path /items[id63]/value not found in parent`. The leading `/activities[id2]/description[id10]` segment appears to be lost, probably because `description` is also an ADL section keyword. The constraint is dropped from the OPT, but the at0.x terms are kept.
+- Archie: flattens and validates correctly.
+
+### C. OET 1.4 has no export for local coded-text redefinitions
+- `value constraint at /items[at0029] has no OET equivalent; kept only in the OPT export` (specimen type, collection method, fixation method).
+- The OPT is complete. The OET lacks these value sets. That may be acceptable, since OET textConstraint cannot carry new local codes. Document this in ADL_SUPPORT.md.

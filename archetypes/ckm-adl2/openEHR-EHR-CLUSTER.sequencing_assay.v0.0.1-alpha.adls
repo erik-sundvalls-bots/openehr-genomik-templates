@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=80b7cd2c-11f8-429
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -43,6 +50,11 @@ description
         ["MD5-CAM-1.0.1"] = <"DF6286EF2822D432D92AE88D5CC61E1B">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera detaljer om den utförda sekvenseringsanalysen, inklusive en lista över alla testade gener om panelsekvensering utförts.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Zur detaillierten Darstellung der Sequenzierungsanalyse an einer Probe inklusive der Aufzählung aller untersuchten Gene bei einer Panelsequenzierung.">
@@ -749,6 +761,192 @@ Alignment, Annotation, Filtration, Preprocessing, QC, Variant Calling">
             ["ac9001"] = <
                 text = <"Chromosome label (synthesised)">
                 description = <"The chromosome of the tested region. (synthesised)">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Sekvenseringsanalys">
+                description = <"En analys som använder sekvenseringsteknik för att bestämma sekvensen hos en nukleinsyra (DNA, RNA).">
+            >
+            ["id2"] = <
+                text = <"Sekvenseringstyp">
+                description = <"Namn på tekniken som används för sekvenseringsanalysen.">
+            >
+            ["id3"] = <
+                text = <"Kitnamn">
+                description = <"Namn på kitet som används i experimentet.">
+            >
+            ["id4"] = <
+                text = <"Nukleinsyra">
+                description = <"Typ av nukleinsyra som används för sekvensering, t.ex. DNA, RNA eller cf-DNA.">
+            >
+            ["id7"] = <
+                text = <"Testad gen">
+                description = <"Lista över alla testade gener, om panelsekvensering utförts.">
+            >
+            ["id8"] = <
+                text = <"Gensymbol">
+                description = <"Den officiella gensymbolen godkänd av HGNC, en kort förkortning av gennamnet.">
+            >
+            ["at23"] = <
+                text = <"DNA">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"RNA">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"cf-DNA">
+                description = <"">
+            >
+            ["id26"] = <
+                text = <"Genens referenssekvens">
+                description = <"Strukturerade detaljer om genens referenssekvens.">
+            >
+            ["id27"] = <
+                text = <"Tillägg">
+                description = <"Ytterligare detaljer som ska registreras.">
+            >
+            ["id31"] = <
+                text = <"Testad region">
+                description = <"Om panelsekvensering utförts används detta kluster för att rapportera de regioner som sekvenserats, som ett genomiskt intervall som anger vilka delar av referenssekvensen som sekvenserats.">
+            >
+            ["id32"] = <
+                text = <"Kromosometikett">
+                description = <"Kromosomen för den testade regionen.">
+            >
+            ["id33"] = <
+                text = <"Start">
+                description = <"Startposition för den testade regionen.">
+            >
+            ["id34"] = <
+                text = <"Slut">
+                description = <"Slutposition för den testade regionen.">
+            >
+            ["id36"] = <
+                text = <"Regionens referenssekvens">
+                description = <"Strukturerade detaljer om regionens referenssekvens.">
+            >
+            ["id37"] = <
+                text = <"Sekvenseringsinstrument">
+                description = <"Teknikplattformen som används för nukleinsyrasekvensering.">
+            >
+            ["id38"] = <
+                text = <"Kommentar">
+                description = <"Kommentar om sekvenseringsanalysen som inte fångats i andra fält.">
+            >
+            ["id39"] = <
+                text = <"Referensgenom">
+                description = <"Strukturerade detaljer om den specifika versionen av den humana sekvensassemblyn som används för annotering.">
+            >
+            ["id40"] = <
+                text = <"Bioinformatisk analys">
+                description = <"Strukturerade detaljer om stegen i det bioinformatiska analysflödet eller protokollen som används (t.ex. instrument, mjukvara, pipelines).">
+            >
+            ["at65"] = <
+                text = <"Kromosom 1">
+                description = <"Kromosom 1.">
+            >
+            ["at66"] = <
+                text = <"Kromosom 2">
+                description = <"Kromosom 2.">
+            >
+            ["at67"] = <
+                text = <"Kromosom 3">
+                description = <"Kromosom 3.">
+            >
+            ["at68"] = <
+                text = <"Kromosom 4">
+                description = <"Kromosom 4.">
+            >
+            ["at69"] = <
+                text = <"Kromosom 5">
+                description = <"Kromosom 5.">
+            >
+            ["at70"] = <
+                text = <"Kromosom 6">
+                description = <"Kromosom 6.">
+            >
+            ["at71"] = <
+                text = <"Kromosom 7">
+                description = <"Kromosom 7.">
+            >
+            ["at72"] = <
+                text = <"Kromosom 8">
+                description = <"Kromosom 8.">
+            >
+            ["at73"] = <
+                text = <"Kromosom 9">
+                description = <"Kromosom 9.">
+            >
+            ["at74"] = <
+                text = <"Kromosom 10">
+                description = <"Kromosom 10.">
+            >
+            ["at75"] = <
+                text = <"Kromosom 11">
+                description = <"Kromosom 11.">
+            >
+            ["at76"] = <
+                text = <"Kromosom 12">
+                description = <"Kromosom 12.">
+            >
+            ["at77"] = <
+                text = <"Kromosom 13">
+                description = <"Kromosom 13.">
+            >
+            ["at78"] = <
+                text = <"Kromosom 14">
+                description = <"Kromosom 14.">
+            >
+            ["at79"] = <
+                text = <"Kromosom 15">
+                description = <"Kromosom 15.">
+            >
+            ["at80"] = <
+                text = <"Kromosom 16">
+                description = <"Kromosom 16.">
+            >
+            ["at81"] = <
+                text = <"Kromosom 17">
+                description = <"Kromosom 17.">
+            >
+            ["at82"] = <
+                text = <"Kromosom 18">
+                description = <"Kromosom 18.">
+            >
+            ["at83"] = <
+                text = <"Kromosom 19">
+                description = <"Kromosom 19.">
+            >
+            ["at84"] = <
+                text = <"Kromosom 20">
+                description = <"Kromosom 20.">
+            >
+            ["at85"] = <
+                text = <"Kromosom 21">
+                description = <"Kromosom 21.">
+            >
+            ["at86"] = <
+                text = <"Kromosom 22">
+                description = <"Kromosom 22.">
+            >
+            ["at87"] = <
+                text = <"Kromosom X">
+                description = <"Kromosom X.">
+            >
+            ["at88"] = <
+                text = <"Kromosom Y">
+                description = <"Kromosom Y.">
+            >
+            ["ac9000"] = <
+                text = <"Nukleinsyra (syntetiserad)">
+                description = <"Nukleinsyra (syntetiserad)">
+            >
+            ["ac9001"] = <
+                text = <"Kromosometikett (syntetiserad)">
+                description = <"Kromosometikett (syntetiserad)">
             >
         >
     >

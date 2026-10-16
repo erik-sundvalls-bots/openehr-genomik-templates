@@ -11,7 +11,7 @@ language
 			language = <[ISO_639-1::sv]>
 			author = <
 				["name"] = <"Erik Sundvall / RCC Genomik (draft)">
-				["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+				["organisation"] = <"Regionala cancercentrum i samverkan">
 			>
 		>
 	>
@@ -240,7 +240,39 @@ terminology
 			>
 			["ac0.4"] = <
 				text = <"Molecular consequence (SO)">
-				description = <"Bind to Sequence Ontology molecular consequence terms (see valuesets/molecular_consequence.json).">
+				description = <"Sequence Ontology (SO) molecular consequence terms used in cancer genomics reporting (valuesets/molecular_consequence.json); local codes bound to SO and, where available, SNOMED CT.">
+			>
+			["at0.40"] = <
+				text = <"missense_variant">
+				description = <"A sequence variant that changes one or more bases, resulting in a different amino acid sequence but where the length is preserved. (SO:0001583)">
+			>
+			["at0.41"] = <
+				text = <"stop_gained">
+				description = <"A sequence variant whereby at least one base of a codon is changed, resulting in a premature stop codon, leading to a shortened transcript. (SO:0001587)">
+			>
+			["at0.42"] = <
+				text = <"frameshift_variant">
+				description = <"A sequence variant which causes a disruption of the translational reading frame, because the number of nucleotides inserted or deleted is not a multiple of three. (SO:0001589)">
+			>
+			["at0.43"] = <
+				text = <"synonymous_variant">
+				description = <"A sequence variant where there is no resulting change to the encoded amino acid. (SO:0001819)">
+			>
+			["at0.44"] = <
+				text = <"start_lost">
+				description = <"A codon variant that changes at least one base of the canonical start codon. (SO:0002012)">
+			>
+			["at0.45"] = <
+				text = <"stop_lost">
+				description = <"A sequence variant where at least one base of the terminator codon (stop) is changed, resulting in an elongated transcript. (SO:0001578)">
+			>
+			["at0.46"] = <
+				text = <"inframe_insertion">
+				description = <"An inframe non synonymous variant that inserts bases into in the coding sequence. (SO:0001821)">
+			>
+			["at0.47"] = <
+				text = <"inframe_deletion">
+				description = <"An inframe non synonymous variant that deletes bases from the coding sequence. (SO:0001822)">
 			>
 		>
 		["sv"] = <
@@ -384,6 +416,58 @@ terminology
 				text = <"Molekylär konsekvens (SO)">
 				description = <"Bind till Sequence Ontology molecular consequence-termer.">
 			>
+			["at0.40"] = <
+				text = <"Missense-variant">
+				description = <"Sekvensvariant som ändrar en eller flera baser och ger en annan aminosyrasekvens med bibehållen längd. (SO:0001583)">
+			>
+			["at0.41"] = <
+				text = <"Nonsensvariant (stop gained)">
+				description = <"Sekvensvariant där minst en bas i ett kodon ändras så att ett förtida stoppkodon uppstår och transkriptet förkortas. (SO:0001587)">
+			>
+			["at0.42"] = <
+				text = <"Läsramsförskjutningsvariant">
+				description = <"Sekvensvariant som bryter den translationella läsramen eftersom antalet insererade eller deleterade nukleotider inte är en multipel av tre. (SO:0001589)">
+			>
+			["at0.43"] = <
+				text = <"Synonym variant">
+				description = <"Sekvensvariant som inte ändrar den kodade aminosyran. (SO:0001819)">
+			>
+			["at0.44"] = <
+				text = <"Förlust av startkodon">
+				description = <"Kodonvariant som ändrar minst en bas i det kanoniska startkodonet. (SO:0002012)">
+			>
+			["at0.45"] = <
+				text = <"Förlust av stoppkodon">
+				description = <"Sekvensvariant där minst en bas i stoppkodonet ändras så att transkriptet förlängs. (SO:0001578)">
+			>
+			["at0.46"] = <
+				text = <"Insertion i läsram">
+				description = <"Icke-synonym variant i läsram som infogar baser i den kodande sekvensen. (SO:0001821)">
+			>
+			["at0.47"] = <
+				text = <"Deletion i läsram">
+				description = <"Icke-synonym variant i läsram som tar bort baser från den kodande sekvensen. (SO:0001822)">
+			>
+		>
+	>
+	term_bindings = <
+		["SO"] = <
+			["at0.40"] = <http://purl.obolibrary.org/obo/SO_0001583>
+			["at0.41"] = <http://purl.obolibrary.org/obo/SO_0001587>
+			["at0.42"] = <http://purl.obolibrary.org/obo/SO_0001589>
+			["at0.43"] = <http://purl.obolibrary.org/obo/SO_0001819>
+			["at0.44"] = <http://purl.obolibrary.org/obo/SO_0002012>
+			["at0.45"] = <http://purl.obolibrary.org/obo/SO_0001578>
+			["at0.46"] = <http://purl.obolibrary.org/obo/SO_0001821>
+			["at0.47"] = <http://purl.obolibrary.org/obo/SO_0001822>
+		>
+		["SNOMED-CT"] = <
+			["at0.40"] = <http://snomed.info/id/1306850007>
+			["at0.41"] = <http://snomed.info/id/327671006>
+			["at0.42"] = <http://snomed.info/id/325753009>
+			["at0.43"] = <http://snomed.info/id/1306861004>
+			["at0.1"] = <http://snomed.info/id/719428005>
+			["at0.2"] = <http://snomed.info/id/261101003>
 		>
 	>
 	value_sets = <
@@ -401,6 +485,6 @@ terminology
 		>
 		["ac0.4"] = <
 			id = <"ac0.4">
-			members = <>
+			members = <"at0.40", "at0.41", "at0.42", "at0.43", "at0.44", "at0.45", "at0.46", "at0.47">
 		>
 	>

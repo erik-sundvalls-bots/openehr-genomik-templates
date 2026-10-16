@@ -1,0 +1,35 @@
+{
+ "_purpose": "För att registrera detaljer om en genetisk translokationsvariant.",
+ "id1": [
+  "Genetisk translokationsvariant",
+  "Translokationsvariant."
+ ],
+ "id4": [
+  "Brytpunktsposition 1",
+  "Position för första brytpunkten relativt början av \\\"Kromosom 1\\\"."
+ ],
+ "id5": [
+  "Brytpunktsposition 2",
+  "Position för andra brytpunkten relativt början av \\\"Kromosom 2\\\"."
+ ],
+ "id6": [
+  "Sträng 1",
+  "Värdet \\\"+\\\" anger att kromosomsegmentet vid andra brytpunkten är kopplat till kromosomsegmentet vid första brytpunkten till höger om \\\"Brytpunktsposition 1\\\". Värdet \\\"-\\\" anger att det är kopplat till vänster om \\\"Brytpunktsposition 1\\\"."
+ ],
+ "id7": [
+  "Sträng 2",
+  "Värdet \\\"+\\\" anger att kromosomsegmentet vid första brytpunkten är kopplat till kromosomsegmentet vid andra brytpunkten till höger om \\\"Brytpunktsposition 2\\\". Värdet \\\"-\\\" anger att det är kopplat till vänster om \\\"Brytpunktsposition 2\\\"."
+ ],
+ "id8": [
+  "Referenssekvens 1",
+  "Kromosom för första brytpunkten."
+ ],
+ "id9": [
+  "Referenssekvens 2",
+  "Kromosom för andra brytpunkten."
+ ],
+ "id10": [
+  "HGVS-term",
+  "Beskrivning av varianten enligt rekommendationerna i den accepterade HGVS-nomenklaturens utvidgning ISCN."
+ ]
+}

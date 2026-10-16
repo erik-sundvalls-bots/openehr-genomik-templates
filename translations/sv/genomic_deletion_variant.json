@@ -1,0 +1,23 @@
+{
+ "_purpose": "För att registrera detaljer om en deletionsvariant jämfört med en genomisk referenssekvens.",
+ "id1": [
+  "Genomisk deletionsvariant",
+  "En genetisk sekvensförändring hos människa där en eller flera nukleotider, jämfört med en genomisk referenssekvens, saknas (är deleterade)."
+ ],
+ "id2": [
+  "Startposition",
+  "Position för den deleterade nukleotiden eller den första nukleotiden i det deleterade intervallet."
+ ],
+ "id6": [
+  "Slutposition",
+  "Position för den sista nukleotiden i det deleterade intervallet."
+ ],
+ "id9": [
+  "Deleterad sekvens",
+  "Den deleterade nukleotiden eller sekvensen."
+ ],
+ "id10": [
+  "Referenssekvens",
+  "Sekvensfilen som används som referens för att beskriva varianten."
+ ]
+}

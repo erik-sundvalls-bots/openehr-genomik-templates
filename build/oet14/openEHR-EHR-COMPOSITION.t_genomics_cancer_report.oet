@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template xmlns="openEHR/v1/Template">
-  <id>8c91aa76-baf1-46dc-b631-fddd990f5b3b</id>
+  <id>ada51439-1818-40c7-88db-0a9003798f2f</id>
   <name>Genomics cancer report</name>
   <description>
     <original_author>
@@ -11,7 +11,7 @@
     <lifecycle_state>unmanaged</lifecycle_state>
     <details>
       <purpose>Swedish RCC cancer genomics result report (Konfigurationsunderlag genomik / T1 Genomikrapport). Event Assessment composition: report-result wrapping laboratory_test_result with specimen (+ anatomical_location, specimen_processing), receiving organisation, sequencing_assay (+ device), genomic_variant_result-cancer (+ CNV-cancer, clinical implication, presence, translocation, substitution), and TMB/MSI/HRD/tumour-cellularity analytes. Request linkage via protocol Test request details / Requester order identifier.</purpose>
-      <use>Fill slots per inventory. Genomic findings and sequencing_assay follow CKM Molecular Pathology Report placement (Test result / Testing details) even where current laboratory_test_result.v1.2.8 slot regexes list only analyte|panel and device — see docs/template-oet-gaps.md. Narrow value sets in Better/OPT after ADL2→1.4.</use>
+      <use>Fill slots per inventory. Genomic findings and sequencing_assay follow CKM Molecular Pathology Report placement (Test result / Testing details) even where current laboratory_test_result.v1.2.8 slot regexes list only analyte|panel and device — see docs/template-oet-gaps.md. Value sets from valuesets/ are bound in the overlays (specimen type, collection method, fixation, study type/method).</use>
       <misuse></misuse>
     </details>
   </description>
@@ -45,7 +45,7 @@
       <item><key>L10n.sv</key><value>Sekvenserings-/panelenhet</value></item>
     </items>
   </annotations>
-  <annotations path="[openEHR-EHR-COMPOSITION.report-result.v1]/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[openEHR-EHR-CLUSTER.sequencing_assay.v0]/items[openEHR-EHR-CLUSTER.device.v1 and name/value='Sequencing device / panel']">
+  <annotations path="[openEHR-EHR-COMPOSITION.report-result.v1]/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0]/items[openEHR-EHR-CLUSTER.device.v1 and name/value='Sequencing device / panel']">
     <items>
       <item><key>L10n.en</key><value>Sequencing device / panel</value></item>
       <item><key>L10n.sv</key><value>Sekvenseringsenhet / panel</value></item>
@@ -57,11 +57,23 @@
       <item><key>L10n.sv</key><value>Genomiskt laboratorieresultat</value></item>
     </items>
   </annotations>
+  <annotations path="[openEHR-EHR-COMPOSITION.report-result.v1]/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.specimen.v1]/items[openEHR-EHR-CLUSTER.specimen_processing.v1]">
+    <items>
+      <item><key>L10n.en</key><value>Specimen processing (genomics)</value></item>
+      <item><key>L10n.sv</key><value>Provbearbetning (genomik)</value></item>
+    </items>
+  </annotations>
+  <annotations path="[openEHR-EHR-COMPOSITION.report-result.v1]/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0]">
+    <items>
+      <item><key>L10n.en</key><value>Sequencing assay</value></item>
+      <item><key>L10n.sv</key><value>Sekvenseringsassay</value></item>
+    </items>
+  </annotations>
   <definition archetype_id="openEHR-EHR-COMPOSITION.report-result.v1" concept_name="Result report" name="Genomics cancer report" xmlns:tem="openEHR/v1/Template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="tem:COMPOSITION">
     <Content archetype_id="openEHR-EHR-OBSERVATION.laboratory_test_result.v1" concept_name="Laboratory test result" name="Genomic laboratory test result" max="1" min="1" path="/content" xsi:type="tem:OBSERVATION">
       <Items archetype_id="openEHR-EHR-CLUSTER.specimen.v1" concept_name="Specimen" min="1" path="/data[at0001]/events[at0002]/data[at0003]/items[at0065]" xsi:type="tem:CLUSTER">
         <Items archetype_id="openEHR-EHR-CLUSTER.anatomical_location.v1" concept_name="Anatomical location" max="1" path="/items[at0013]" xsi:type="tem:CLUSTER"/>
-        <Items archetype_id="openEHR-EHR-CLUSTER.specimen_processing.v1" concept_name="Specimen processing" path="/items[at0083]" xsi:type="tem:CLUSTER"/>
+        <Items archetype_id="openEHR-EHR-CLUSTER.specimen_processing.v1" concept_name="Specimen processing" name="Specimen processing (genomics)" path="/items[at0083]" xsi:type="tem:CLUSTER"/>
       </Items>
       <Items archetype_id="openEHR-EHR-CLUSTER.laboratory_test_analyte.v1" concept_name="Laboratory analyte result" name="TMB" max="1" path="/data[at0001]/events[at0002]/data[at0003]/items[at0097]" xsi:type="tem:CLUSTER">
         <Rule path="/items[at0024]"><constraint xsi:type="tem:textConstraint"><includedValues>TMB</includedValues><includedValues>Tumor mutational burden</includedValues><includedValues>Tumour mutational burden</includedValues><includedValues>Tumörmutationsbörda</includedValues></constraint></Rule>
@@ -86,7 +98,7 @@
         <Items archetype_id="openEHR-EHR-CLUSTER.variant_clinical_implication.v1" concept_name="Variant clinical implication" path="/items[at0.7]" xsi:type="tem:CLUSTER"/>
       </Items>
       <Items archetype_id="openEHR-EHR-CLUSTER.organisation.v1" concept_name="Organisation" max="1" path="/protocol[at0004]/items[at0017]" xsi:type="tem:CLUSTER"/>
-      <Items archetype_id="openEHR-EHR-CLUSTER.sequencing_assay.v0" concept_name="Sequencing assay" path="/protocol[at0004]/items[at0110]" xsi:type="tem:CLUSTER">
+      <Items archetype_id="openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0" concept_name="Sequencing assay (genomic study)" name="Sequencing assay" path="/protocol[at0004]/items[at0110]" xsi:type="tem:CLUSTER">
         <Items archetype_id="openEHR-EHR-CLUSTER.device.v1" concept_name="Medical device" path="/items[at0036]" xsi:type="tem:CLUSTER"/>
         <Items archetype_id="openEHR-EHR-CLUSTER.reference_sequence.v1" concept_name="Reference sequence" max="1" path="/items[at0038]" xsi:type="tem:CLUSTER"/>
       </Items>

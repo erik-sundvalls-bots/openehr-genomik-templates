@@ -14,13 +14,13 @@
 | 1 | Templateantal | **Både T1 Genomikrapport och T2 Genomikremiss** |
 | 2 | Luckor | **Lokala specialiseringar** i `archetypes/drafts/` **och** forumfärdiga förslag i `docs/forum-proposals/` (Erik publicerar själv — botten postar **inte**) |
 | 3 | Utkastarketyper | **OK** att använda `sequencing_assay.v0`, `translocation_variant.v0`, `service_request.v1`, `genetic_variant_presence.v0` |
-| 4 | Format / verktyg | Modellera i **ADL2**, konvertera till **ADL 1.4** efteråt. Java/Archie OK. **Kör inte EHRbase** — validering sker i Better-produkter på Karolinska |
+| 4 | Format / verktyg | Modellera i **ADL2**, konvertera till **ADL 1.4** efteråt. Java/Archie OK. **Kör inte EHRbase** — validering sker i målmiljöns CDR/mallverktyg |
 | 5 | Språk | **Engelska** som original/tekniskt språk + **svensk översättning** för export. Preferera ADL2-funktioner som stödjer detta |
 
 Övriga fas 1-frågor (implikationer-design, SO-URI, lokala URI:er, patient/organisation) hanteras i utkast/forumförslag tills vidare; implikationer i fas 2 modelleras som **CLUSTER under variant** (se beslut 2.1 nedan).
 
 ### 2.1 Implikationer (arbetshypotes fas 2)
-Kluster inuti varianten (`CLUSTER.variant_clinical_implication`) — enklast för T1 v1 och tillräckligt för FHIR-spårbarhet via Implication identifier. Utvärdera EVALUATION senare om Better-/FHIRconnect-behov kräver egna poster.
+Kluster inuti varianten (`CLUSTER.variant_clinical_implication`) — enklast för T1 v1 och tillräckligt för FHIR-spårbarhet via Implication identifier. Utvärdera EVALUATION senare om CDR-/FHIRconnect-behov kräver egna poster.
 
 ## 3. Templateuppsättning (beslutad)
 
@@ -45,7 +45,7 @@ Verktyg: `/workspace/tools/archie` → `archie-convert-0.1.0.jar` (kommandon `pa
 Erik är författare till [ehrtslib](https://github.com/ErikSundvall/ehrtslib) (TypeScript/Deno) som har `ADL14Serializer` (2→1.4) och OPT/OET-stöd. Efter Archie-vägen: prova samma nedkonvertering/validering och dokumentera luckor i `docs/ehrtslib-gaps.md`. **Blockera inte** huvudspåret på Ehrtslib.
 
 ### 4.4 Validering
-- Box: Archie parse2 för ADL2; senare Better på Karolinska för OPT/data.
+- Box: Archie parse2 för ADL2; senare målmiljöns CDR för OPT/data.
 - **Ingen EHRbase** på boxen (beslut 4).
 
 ## 5. Luckor och lokala specialiseringar
@@ -64,15 +64,28 @@ CKM-sökning 2026-10-15: **0 träffar** för ASCO/AMP/ESCAT. GMS `mtbp_classific
 ### 5.3 Forumförslag (ej publicerade)
 `docs/forum-proposals/01`–`05` — ASCO+ESCAT vs ACMG; genetiskt ursprung; CNV Gain/Loss; implikationer; övrigt (exon/ISCN/SO).
 
-## 6. Kvarvarande öppna frågor
-6. Kodverk: SO som primär för variationstyp/konsekvens/kopietal — URI (`http://www.sequenceontology.org` vs IG-variant)?
-7. Lokala värdemängder (ASCO, ESCAT, frågeställning, …): namnrymd `https://cancercentrum.se/terminology/...` som platshållare?
-8. Patient via EHR-subject; HSA-id i `organisation` — bekräfta.
-9. När ska Erik posta forumförslagen?
-10. Preferens för Better Template Designer vs handskriven OET efter ADL2→1.4?
+## 6. Kvarvarande öppna frågor (med rekommendation)
+
+| # | Fråga | Alternativ | Rekommendation |
+|---|-------|-----------|----------------|
+| 6 | **SO-URI** i term_bindings | (a) OBO PURL `http://purl.obolibrary.org/obo/SO_0001583`; (b) FHIR-system `http://www.sequenceontology.org/` + kod `SO:0001583`; (c) `http://identifiers.org/so/SO:0001583` | **(a)** i ADL (en kod-URI per term; används nu i `genomic_variant_result-cancer`). I FHIR-mappningen används (b), som Genomics Reporting IG anger. Mappningen a↔b är mekanisk. |
+| 7 | **Namnrymd för lokala värdemängder** (ASCO, ESCAT, frågeställning, cellblock …) | (a) organisationsägd HTTPS-namnrymd, t.ex. `https://<ägare>/fhir/CodeSystem/<namn>`; (b) `urn:oid:` under ägarens OID; (c) inga externa bindningar, endast lokala at-koder | **(a)** när ägaren (den nationella genomik-/cancerorganisationen) har bekräftat basadressen. Tills dess **(c)**: värdemängderna finns redan som lokala at-koder, och inga platshållar-URI:er läggs in i ADL. |
+| 8 | Patient via EHR-subject; HSA-id i `organisation` | – | Behåll. Bekräftas med mottagande system. |
+| 9 | När ska forumförslagen 01–07 postas? | – | Gärna 07 (översättningar) först. Det är minst kontroversiellt och ger granskare för resten. |
+| 10 | Grafiskt mallverktyg vs genererad OET | (a) importera genererad OPT direkt; (b) importera OET och efterbearbeta i mallverktyg | **(a)** för test. OPT:n är komplett och XSD-giltig, medan OET:n saknar lokala kodade värdemängder (Ehrtslib-gap C). |
+| 11 | **Studie-/analystyp-luckan**: lokal specialisering vs CKM-ändring | (a) behåll `sequencing_assay-genomic_study` lokalt; (b) föreslå ändring i CKM (förslag 07 §2) | **(a)+(b)**: använd lokalt nu och föreslå i CKM. |
+| 12 | Frågeställning bunden som stängd lista (endast kodat) | (a) stängd lista; (b) kodat + fritext | **(a)** enligt konfigurationsunderlaget, där "Övrigt" täcker resten. |
 
 ## 7. Repo
 Privat: `https://github.com/erik-sundvalls-bots/openehr-genomik-templates` (gh som `erik-sundvalls-bots`).
 
 ## 8. T1/T2 filled (2026-10-15 kväll)
-ADL2 templates filled with nested `template_overlay` slot fills (not skeletons). See `docs/template-coverage.md` and `docs/template-oet-gaps.md`. Archie parse2 OK. Specialised drafts down-converted under `build/archie-adl14/` / `build/ehrtslib-adl14/`. Template→OET for Better still open.
+ADL2 templates filled with nested `template_overlay` slot fills (not skeletons). See `docs/template-coverage.md` and `docs/template-oet-gaps.md`. Archie parse2 OK. Specialised drafts down-converted under `build/archie-adl14/` / `build/ehrtslib-adl14/`. Template→OET for target-CDR still open.
+
+## 9. Luckor stängda 2026-10-16
+- `studie_id`, `analystyp` (+ `analysmetod`) är modellerade i en ny lokal specialisering, `archetypes/drafts/openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0.0.1.adls`. Den är bunden till HL7 genomic-study-type / method-type. T1-overlayn `t_sequencing_assay` specialiserar nu denna.
+- `ac0.4` (Molecular consequence) har fått 8 SO-termer med bindning till SO, och till SNOMED CT där sådan finns.
+- CNV-cancer: Amplification och Homozygous deletion är nu specialiseringar av Gain/Loss (`at7.1`, `at8.1`). Den tidigare lösningen, som lade till nya koder i en omdefinierad värdemängd, var ogiltig ADL2 (VALUESET_REDEFINITION_ERROR).
+- Värdemängder från `valuesets/` är bundna i T1/T2-overlays. Se tabellen i `template-coverage.md`.
+- Svenska översättningar har lagts in lokalt i 10 CKM ADL2-kopior (`translations/sv/`, `tools/add_sv_translation.py`). CKM-förslag i `forum-proposals/07`.
+- `tools/build.sh` bygger om allt och validerar (Archie full validering, Ehrtslib OPT/OET, ADL 1.4 via båda verktygen, XSD).

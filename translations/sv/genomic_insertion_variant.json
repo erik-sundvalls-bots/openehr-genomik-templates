@@ -1,0 +1,23 @@
+{
+ "_purpose": "För att registrera detaljer om en insertionsvariant jämfört med en genomisk referenssekvens.",
+ "id1": [
+  "Genomisk insertionsvariant",
+  "En genetisk sekvensförändring hos människa där en eller flera nukleotider, jämfört med den genomiska referenssekvensen, har infogats och där insertionen inte är en kopia av sekvensen omedelbart 5'."
+ ],
+ "id2": [
+  "Startposition",
+  "Positionen för den första av de två flankerande nukleotiderna."
+ ],
+ "id4": [
+  "Slutposition",
+  "Positionen för den sista av de två flankerande nukleotiderna."
+ ],
+ "id7": [
+  "Insererad sekvens",
+  "Den insererade nukleotiden eller sekvensen."
+ ],
+ "id8": [
+  "Referenssekvens",
+  "Sekvensfilen som används som referens för att beskriva varianten."
+ ]
+}

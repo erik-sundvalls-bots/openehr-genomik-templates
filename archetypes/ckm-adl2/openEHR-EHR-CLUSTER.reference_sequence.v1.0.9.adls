@@ -82,7 +82,7 @@ description
     >
 
 definition
-    CLUSTER[id19] occurrences matches {1..*} matches {    -- Reference sequence
+    CLUSTER[id1] matches {    -- Reference sequence
         items cardinality matches {3..*} matches {
             ELEMENT[id49] occurrences matches {0..1} matches {    -- Reference genome assembly
                 value matches {
@@ -123,7 +123,7 @@ definition
 terminology
     term_definitions = <
         ["de"] = <
-            ["id19"] = <
+            ["id1"] = <
                 text = <"Reference sequence">
                 description = <"Eine Datei mit Sequenzdaten, die als Referenz zur Beschreibung genetischer Varianten, die in einer analysierten Sequenz vorhanden sind, verwendet wird.">
             >
@@ -254,7 +254,7 @@ terminology
             >
         >
         ["sv"] = <
-            ["id19"] = <
+            ["id1"] = <
                 text = <"Referenssekvens">
                 description = <"En sekvensfil som används som referens för att beskriva genetiska varianter som finns i en analyserad sekvens.">
             >
@@ -385,7 +385,7 @@ terminology
             >
         >
         ["nb"] = <
-            ["id19"] = <
+            ["id1"] = <
                 text = <"Referansesekvens">
                 description = <"En sekvensfil som er brukt som en referanse for å beskrive varianter som er funnet i en analysert sekvens.">
             >
@@ -516,7 +516,7 @@ terminology
             >
         >
         ["en"] = <
-            ["id19"] = <
+            ["id1"] = <
                 text = <"Reference sequence">
                 description = <"A sequence file that is used as a reference to describe genetic variants that are present in an analysed sequence.">
             >

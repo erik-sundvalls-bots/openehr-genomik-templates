@@ -1,5 +1,5 @@
-import { parseAdl } from "/workspace/tools/ehrtslib/parser/parse_adl.ts";
-import { ADL14Serializer } from "/workspace/tools/ehrtslib/generation/adl14_serializer.ts";
+import { parseAdl } from "../../ehrtslib/parser/parse_adl.ts";
+import { ADL14Serializer } from "../../ehrtslib/generation/adl14_serializer.ts";
 const out = Deno.args[0];
 for (const f of Deno.args.slice(1)) {
   const name = f.split("/").pop()!;

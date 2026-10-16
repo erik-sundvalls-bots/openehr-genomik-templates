@@ -25,7 +25,7 @@
       <keywords>referral</keywords>
       <keywords>RCC</keywords>
       <keywords>remiss</keywords>
-      <use>Narrow frågeställning value set in OPT/Better (valuesets/fragestallning). Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
+      <use>Frågeställning is bound to local codes from valuesets/fragestallning.json in the service_request overlay. Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
       <copyright>© Regionala cancercentrum i samverkan</copyright>
     </details>
     <details>
@@ -39,7 +39,7 @@
       <keywords>genomik</keywords>
       <keywords>remiss</keywords>
       <keywords>RCC</keywords>
-      <use>Begränsa frågeställning i OPT/Better. Spegla remiss_id till rapportens Requester order identifier vid svar.</use>
+      <use>Frågeställning är bunden till lokala koder (valuesets/fragestallning.json). Spegla remiss_id till rapportens Requester order identifier vid svar.</use>
       <copyright>© Regionala cancercentrum i samverkan</copyright>
     </details>
   </description>
@@ -2017,6 +2017,38 @@
           <items id="text">Eligibility guidance</items>
           <items id="description">Advice from the requester to the receiver about the individual's eligibility for the requested service.</items>
         </term_definitions>
+        <term_definitions code="at0.1">
+          <items id="text">Primary diagnostics</items>
+          <items id="description">Local request question code 1.</items>
+        </term_definitions>
+        <term_definitions code="at0.2">
+          <items id="text">Prediction of treatment response</items>
+          <items id="description">Local request question code 2.</items>
+        </term_definitions>
+        <term_definitions code="at0.3">
+          <items id="text">Treatment monitoring</items>
+          <items id="description">Local request question code 3.</items>
+        </term_definitions>
+        <term_definitions code="at0.4">
+          <items id="text">Relapse detection (MRD)</items>
+          <items id="description">Local request question code 4.</items>
+        </term_definitions>
+        <term_definitions code="at0.5">
+          <items id="text">Resistance question</items>
+          <items id="description">Local request question code 5.</items>
+        </term_definitions>
+        <term_definitions code="at0.6">
+          <items id="text">Pharmacogenomics</items>
+          <items id="description">Local request question code 6.</items>
+        </term_definitions>
+        <term_definitions code="at0.7">
+          <items id="text">Hereditary cancer / oncogenetics</items>
+          <items id="description">Local request question code 7.</items>
+        </term_definitions>
+        <term_definitions code="at0.8">
+          <items id="text">Other</items>
+          <items id="description">Local request question code 8.</items>
+        </term_definitions>
       </children>
       <children xsi:type="C_ARCHETYPE_ROOT">
         <rm_type_name>EVALUATION</rm_type_name>
@@ -3167,6 +3199,38 @@
         <items id="text">Eligibility guidance</items>
         <items id="description">Advice from the requester to the receiver about the individual's eligibility for the requested service.</items>
       </items>
+      <items code="at0.1">
+        <items id="text">Primary diagnostics</items>
+        <items id="description">Local request question code 1.</items>
+      </items>
+      <items code="at0.2">
+        <items id="text">Prediction of treatment response</items>
+        <items id="description">Local request question code 2.</items>
+      </items>
+      <items code="at0.3">
+        <items id="text">Treatment monitoring</items>
+        <items id="description">Local request question code 3.</items>
+      </items>
+      <items code="at0.4">
+        <items id="text">Relapse detection (MRD)</items>
+        <items id="description">Local request question code 4.</items>
+      </items>
+      <items code="at0.5">
+        <items id="text">Resistance question</items>
+        <items id="description">Local request question code 5.</items>
+      </items>
+      <items code="at0.6">
+        <items id="text">Pharmacogenomics</items>
+        <items id="description">Local request question code 6.</items>
+      </items>
+      <items code="at0.7">
+        <items id="text">Hereditary cancer / oncogenetics</items>
+        <items id="description">Local request question code 7.</items>
+      </items>
+      <items code="at0.8">
+        <items id="text">Other</items>
+        <items id="description">Local request question code 8.</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
@@ -3304,6 +3368,38 @@
       <items code="at0158">
         <items id="text">*Eligibility guidance (en)</items>
         <items id="description">*Advice from the requester to the receiver about the individual's eligibility for the requested service. (en)</items>
+      </items>
+      <items code="at0.1">
+        <items id="text">Primärdiagnostik</items>
+        <items id="description">Local request question code 1.</items>
+      </items>
+      <items code="at0.2">
+        <items id="text">Behandlingssvarsprediktion</items>
+        <items id="description">Local request question code 2.</items>
+      </items>
+      <items code="at0.3">
+        <items id="text">Behandlingsmonitorering</items>
+        <items id="description">Local request question code 3.</items>
+      </items>
+      <items code="at0.4">
+        <items id="text">Återfallsdetektion (MRD)</items>
+        <items id="description">Local request question code 4.</items>
+      </items>
+      <items code="at0.5">
+        <items id="text">Resistensfrågeställning</items>
+        <items id="description">Local request question code 5.</items>
+      </items>
+      <items code="at0.6">
+        <items id="text">Farmakogenomik</items>
+        <items id="description">Local request question code 6.</items>
+      </items>
+      <items code="at0.7">
+        <items id="text">Ärftlig cancer / onkogenetik</items>
+        <items id="description">Local request question code 7.</items>
+      </items>
+      <items code="at0.8">
+        <items id="text">Övrigt</items>
+        <items id="description">Local request question code 8.</items>
       </items>
     </term_definitions>
   </component_ontologies>

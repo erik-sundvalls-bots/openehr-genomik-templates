@@ -28,7 +28,7 @@
       <keywords>TMB</keywords>
       <keywords>MSI</keywords>
       <keywords>HRD</keywords>
-      <use>Fill slots per inventory. Genomic findings and sequencing_assay follow CKM Molecular Pathology Report placement (Test result / Testing details) even where current laboratory_test_result.v1.2.8 slot regexes list only analyte|panel and device — see docs/template-oet-gaps.md. Narrow value sets in Better/OPT after ADL2→1.4.</use>
+      <use>Fill slots per inventory. Genomic findings and sequencing_assay follow CKM Molecular Pathology Report placement (Test result / Testing details) even where current laboratory_test_result.v1.2.8 slot regexes list only analyte|panel and device — see docs/template-oet-gaps.md. Value sets from valuesets/ are bound in the overlays (specimen type, collection method, fixation, study type/method).</use>
       <copyright>© Regionala cancercentrum i samverkan</copyright>
     </details>
     <details>
@@ -46,7 +46,7 @@
       <keywords>TMB</keywords>
       <keywords>MSI</keywords>
       <keywords>HRD</keywords>
-      <use>Fyll slotar enligt inventering. Se docs/template-oet-gaps.md för slot-/OET-luckor. Begränsa värdemängder i Better/OPT efter ADL2→1.4.</use>
+      <use>Fyll slotar enligt inventering. Se docs/template-oet-gaps.md för slot-/OET-luckor. Värdemängder från valuesets/ är bundna i overlays.</use>
       <copyright>© Regionala cancercentrum i samverkan</copyright>
     </details>
   </description>
@@ -504,7 +504,7 @@
                               </existence>
                               <match_negated>false</match_negated>
                               <children xsi:type="C_COMPLEX_OBJECT">
-                                <rm_type_name>DV_TEXT</rm_type_name>
+                                <rm_type_name>DV_CODED_TEXT</rm_type_name>
                                 <occurrences>
                                   <lower_included>true</lower_included>
                                   <upper_included>true</upper_included>
@@ -514,6 +514,51 @@
                                   <upper>1</upper>
                                 </occurrences>
                                 <node_id></node_id>
+                                <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                                  <rm_attribute_name>defining_code</rm_attribute_name>
+                                  <existence>
+                                    <lower_included>true</lower_included>
+                                    <upper_included>true</upper_included>
+                                    <lower_unbounded>false</lower_unbounded>
+                                    <upper_unbounded>false</upper_unbounded>
+                                    <lower>1</lower>
+                                    <upper>1</upper>
+                                  </existence>
+                                  <match_negated>false</match_negated>
+                                  <children xsi:type="C_CODE_PHRASE">
+                                    <rm_type_name>CODE_PHRASE</rm_type_name>
+                                    <occurrences>
+                                      <lower_included>true</lower_included>
+                                      <upper_included>true</upper_included>
+                                      <lower_unbounded>false</lower_unbounded>
+                                      <upper_unbounded>false</upper_unbounded>
+                                      <lower>1</lower>
+                                      <upper>1</upper>
+                                    </occurrences>
+                                    <node_id></node_id>
+                                    <terminology_id>
+                                      <value>local</value>
+                                    </terminology_id>
+                                    <code_list>at0.1</code_list>
+                                    <code_list>at0.2</code_list>
+                                    <code_list>at0.3</code_list>
+                                    <code_list>at0.4</code_list>
+                                    <code_list>at0.5</code_list>
+                                    <code_list>at0.6</code_list>
+                                    <code_list>at0.7</code_list>
+                                    <code_list>at0.8</code_list>
+                                    <code_list>at0.9</code_list>
+                                    <code_list>at0.10</code_list>
+                                    <code_list>at0.11</code_list>
+                                    <code_list>at0.12</code_list>
+                                    <code_list>at0.13</code_list>
+                                    <code_list>at0.14</code_list>
+                                    <code_list>at0.15</code_list>
+                                    <code_list>at0.16</code_list>
+                                    <code_list>at0.17</code_list>
+                                    <code_list>at0.18</code_list>
+                                  </children>
+                                </attributes>
                               </children>
                             </attributes>
                           </children>
@@ -845,7 +890,7 @@
                               </existence>
                               <match_negated>false</match_negated>
                               <children xsi:type="C_COMPLEX_OBJECT">
-                                <rm_type_name>DV_TEXT</rm_type_name>
+                                <rm_type_name>DV_CODED_TEXT</rm_type_name>
                                 <occurrences>
                                   <lower_included>true</lower_included>
                                   <upper_included>true</upper_included>
@@ -855,6 +900,48 @@
                                   <upper>1</upper>
                                 </occurrences>
                                 <node_id></node_id>
+                                <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                                  <rm_attribute_name>defining_code</rm_attribute_name>
+                                  <existence>
+                                    <lower_included>true</lower_included>
+                                    <upper_included>true</upper_included>
+                                    <lower_unbounded>false</lower_unbounded>
+                                    <upper_unbounded>false</upper_unbounded>
+                                    <lower>1</lower>
+                                    <upper>1</upper>
+                                  </existence>
+                                  <match_negated>false</match_negated>
+                                  <children xsi:type="C_CODE_PHRASE">
+                                    <rm_type_name>CODE_PHRASE</rm_type_name>
+                                    <occurrences>
+                                      <lower_included>true</lower_included>
+                                      <upper_included>true</upper_included>
+                                      <lower_unbounded>false</lower_unbounded>
+                                      <upper_unbounded>false</upper_unbounded>
+                                      <lower>1</lower>
+                                      <upper>1</upper>
+                                    </occurrences>
+                                    <node_id></node_id>
+                                    <terminology_id>
+                                      <value>local</value>
+                                    </terminology_id>
+                                    <code_list>at0.30</code_list>
+                                    <code_list>at0.31</code_list>
+                                    <code_list>at0.32</code_list>
+                                    <code_list>at0.33</code_list>
+                                    <code_list>at0.34</code_list>
+                                    <code_list>at0.35</code_list>
+                                    <code_list>at0.36</code_list>
+                                    <code_list>at0.37</code_list>
+                                    <code_list>at0.38</code_list>
+                                    <code_list>at0.39</code_list>
+                                    <code_list>at0.40</code_list>
+                                    <code_list>at0.41</code_list>
+                                    <code_list>at0.42</code_list>
+                                    <code_list>at0.43</code_list>
+                                    <code_list>at0.44</code_list>
+                                  </children>
+                                </attributes>
                               </children>
                             </attributes>
                           </children>
@@ -1724,6 +1811,57 @@
                               <lower>0</lower>
                             </occurrences>
                             <node_id>at0000</node_id>
+                            <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                              <rm_attribute_name>name</rm_attribute_name>
+                              <existence>
+                                <lower_included>true</lower_included>
+                                <upper_included>true</upper_included>
+                                <lower_unbounded>false</lower_unbounded>
+                                <upper_unbounded>false</upper_unbounded>
+                                <lower>1</lower>
+                                <upper>1</upper>
+                              </existence>
+                              <match_negated>false</match_negated>
+                              <children xsi:type="C_COMPLEX_OBJECT">
+                                <rm_type_name>DV_TEXT</rm_type_name>
+                                <occurrences>
+                                  <lower_included>true</lower_included>
+                                  <upper_included>true</upper_included>
+                                  <lower_unbounded>false</lower_unbounded>
+                                  <upper_unbounded>false</upper_unbounded>
+                                  <lower>1</lower>
+                                  <upper>1</upper>
+                                </occurrences>
+                                <node_id></node_id>
+                                <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                                  <rm_attribute_name>value</rm_attribute_name>
+                                  <existence>
+                                    <lower_included>true</lower_included>
+                                    <upper_included>true</upper_included>
+                                    <lower_unbounded>false</lower_unbounded>
+                                    <upper_unbounded>false</upper_unbounded>
+                                    <lower>1</lower>
+                                    <upper>1</upper>
+                                  </existence>
+                                  <match_negated>false</match_negated>
+                                  <children xsi:type="C_PRIMITIVE_OBJECT">
+                                    <rm_type_name>STRING</rm_type_name>
+                                    <occurrences>
+                                      <lower_included>true</lower_included>
+                                      <upper_included>true</upper_included>
+                                      <lower_unbounded>false</lower_unbounded>
+                                      <upper_unbounded>false</upper_unbounded>
+                                      <lower>1</lower>
+                                      <upper>1</upper>
+                                    </occurrences>
+                                    <node_id></node_id>
+                                    <item xsi:type="C_STRING">
+                                      <list>Specimen processing</list>
+                                    </item>
+                                  </children>
+                                </attributes>
+                              </children>
+                            </attributes>
                             <attributes xsi:type="C_MULTIPLE_ATTRIBUTE">
                               <rm_attribute_name>items</rm_attribute_name>
                               <existence>
@@ -1830,7 +1968,7 @@
                                   </existence>
                                   <match_negated>false</match_negated>
                                   <children xsi:type="C_COMPLEX_OBJECT">
-                                    <rm_type_name>DV_TEXT</rm_type_name>
+                                    <rm_type_name>DV_CODED_TEXT</rm_type_name>
                                     <occurrences>
                                       <lower_included>true</lower_included>
                                       <upper_included>true</upper_included>
@@ -1840,6 +1978,36 @@
                                       <upper>1</upper>
                                     </occurrences>
                                     <node_id></node_id>
+                                    <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                                      <rm_attribute_name>defining_code</rm_attribute_name>
+                                      <existence>
+                                        <lower_included>true</lower_included>
+                                        <upper_included>true</upper_included>
+                                        <lower_unbounded>false</lower_unbounded>
+                                        <upper_unbounded>false</upper_unbounded>
+                                        <lower>1</lower>
+                                        <upper>1</upper>
+                                      </existence>
+                                      <match_negated>false</match_negated>
+                                      <children xsi:type="C_CODE_PHRASE">
+                                        <rm_type_name>CODE_PHRASE</rm_type_name>
+                                        <occurrences>
+                                          <lower_included>true</lower_included>
+                                          <upper_included>true</upper_included>
+                                          <lower_unbounded>false</lower_unbounded>
+                                          <upper_unbounded>false</upper_unbounded>
+                                          <lower>1</lower>
+                                          <upper>1</upper>
+                                        </occurrences>
+                                        <node_id></node_id>
+                                        <terminology_id>
+                                          <value>local</value>
+                                        </terminology_id>
+                                        <code_list>at0.1</code_list>
+                                        <code_list>at0.2</code_list>
+                                        <code_list>at0.3</code_list>
+                                      </children>
+                                    </attributes>
                                   </children>
                                 </attributes>
                               </children>
@@ -2227,6 +2395,22 @@
                             <term_definitions code="at0097">
                               <items id="text">End date/time</items>
                               <items id="description">The date and time when the process activity ended.</items>
+                            </term_definitions>
+                            <term_definitions code="">
+                              <items id="text">Fixation method</items>
+                              <items id="description">Coded fixation / preservation method.</items>
+                            </term_definitions>
+                            <term_definitions code="at0.1">
+                              <items id="text">Formalin-Fixed Paraffin-Embedded</items>
+                              <items id="description">Fixation / preservation method.</items>
+                            </term_definitions>
+                            <term_definitions code="at0.2">
+                              <items id="text">Fresh (unfixed, incl. frozen)</items>
+                              <items id="description">Fixation / preservation method.</items>
+                            </term_definitions>
+                            <term_definitions code="at0.3">
+                              <items id="text">Other</items>
+                              <items id="description">Fixation / preservation method.</items>
                             </term_definitions>
                           </children>
                           <children xsi:type="C_COMPLEX_OBJECT">
@@ -2884,6 +3068,138 @@
                         <term_definitions code="at0100">
                           <items id="text">Storage details</items>
                           <items id="description">Structured details about the storage of the specimen.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.1">
+                          <items id="text">Blood venous</items>
+                          <items id="description">HL7 v2 0487: BLDV.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.2">
+                          <items id="text">Marrow</items>
+                          <items id="description">HL7 v2 0487: MAR.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.3">
+                          <items id="text">Tissue</items>
+                          <items id="description">HL7 v2 0487: TISS.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.4">
+                          <items id="text">Tumor</items>
+                          <items id="description">HL7 v2 0487: TUMOR.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.5">
+                          <items id="text">Pleural fluid</items>
+                          <items id="description">HL7 v2 0487: PLR.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.6">
+                          <items id="text">Fluid, Abdomen</items>
+                          <items id="description">HL7 v2 0487: FGA.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.7">
+                          <items id="text">Cerebrospinal fluid</items>
+                          <items id="description">HL7 v2 0487: CSF.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.8">
+                          <items id="text">Bone</items>
+                          <items id="description">HL7 v2 0487: BON.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.9">
+                          <items id="text">Skin</items>
+                          <items id="description">HL7 v2 0487: SKN.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.10">
+                          <items id="text">Bile Fluid</items>
+                          <items id="description">HL7 v2 0487: BIFL.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.11">
+                          <items id="text">Cervical Mucus</items>
+                          <items id="description">HL7 v2 0487: CVM.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.12">
+                          <items id="text">Urine</items>
+                          <items id="description">HL7 v2 0487: UR.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.13">
+                          <items id="text">Stool = Fecal</items>
+                          <items id="description">HL7 v2 0487: STL.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.14">
+                          <items id="text">DNA</items>
+                          <items id="description">Extracted material.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.15">
+                          <items id="text">RNA</items>
+                          <items id="description">Extracted material.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.16">
+                          <items id="text">Circulating tumour DNA (ctDNA)</items>
+                          <items id="description">Extracted material.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.17">
+                          <items id="text">Circulating tumour RNA (ctRNA)</items>
+                          <items id="description">Extracted material.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.18">
+                          <items id="text">Cell-free DNA (cfDNA)</items>
+                          <items id="description">Extracted material.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.30">
+                          <items id="text">Resection (procedure)</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.31">
+                          <items id="text">Excision (procedure)</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.32">
+                          <items id="text">Core needle biopsy</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.33">
+                          <items id="text">Punch biopsy</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.34">
+                          <items id="text">Bone marrow biopsy</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.35">
+                          <items id="text">Needle core biopsy (procedure)</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.36">
+                          <items id="text">Percutaneous needle biopsy</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.37">
+                          <items id="text">Biopsy of bone (procedure)</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.38">
+                          <items id="text">Biopsy</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.39">
+                          <items id="text">Aspiration</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.40">
+                          <items id="text">Fine needle biopsy</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.41">
+                          <items id="text">Puncture procedure</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.42">
+                          <items id="text">Cell block method</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.43">
+                          <items id="text">Smear technique</items>
+                          <items id="description">Collection technique.</items>
+                        </term_definitions>
+                        <term_definitions code="at0.44">
+                          <items id="text">Phlebotomy</items>
+                          <items id="description">Collection technique.</items>
                         </term_definitions>
                       </children>
                       <children xsi:type="C_COMPLEX_OBJECT">
@@ -3783,7 +4099,7 @@
                           <items id="text">Accredited</items>
                           <items id="description">Indicates whether the analytical method used for this analyte is accredited.</items>
                         </term_definitions>
-                        <term_definitions code="at9001">
+                        <term_definitions code="">
                           <items id="text">Analyte name</items>
                           <items id="description">Fixed to TMB / Tumor mutational burden.</items>
                         </term_definitions>
@@ -4493,7 +4809,7 @@
                           <items id="text">Accredited</items>
                           <items id="description">Indicates whether the analytical method used for this analyte is accredited.</items>
                         </term_definitions>
-                        <term_definitions code="at9001">
+                        <term_definitions code="">
                           <items id="text">Analyte name</items>
                           <items id="description">Fixed to MSI / Microsatellite instability.</items>
                         </term_definitions>
@@ -5204,7 +5520,7 @@
                           <items id="text">Accredited</items>
                           <items id="description">Indicates whether the analytical method used for this analyte is accredited.</items>
                         </term_definitions>
-                        <term_definitions code="at9001">
+                        <term_definitions code="">
                           <items id="text">Analyte name</items>
                           <items id="description">Fixed to HRD / Homologous recombination deficiency.</items>
                         </term_definitions>
@@ -5918,7 +6234,7 @@
                           <items id="text">Accredited</items>
                           <items id="description">Indicates whether the analytical method used for this analyte is accredited.</items>
                         </term_definitions>
-                        <term_definitions code="at9001">
+                        <term_definitions code="">
                           <items id="text">Analyte name</items>
                           <items id="description">Constrained to tumour cellularity / fraction labels.</items>
                         </term_definitions>
@@ -6394,8 +6710,8 @@
                                         </terminology_id>
                                         <code_list>at0006</code_list>
                                         <code_list>at0007</code_list>
-                                        <code_list>at0.1</code_list>
-                                        <code_list>at0.2</code_list>
+                                        <code_list>at0006.1</code_list>
+                                        <code_list>at0007.1</code_list>
                                       </children>
                                     </attributes>
                                   </children>
@@ -6491,11 +6807,11 @@
                               <items id="text">Copy number change type value</items>
                               <items id="description">Coded value for copy number change type including amplification and homozygous deletion.</items>
                             </term_definitions>
-                            <term_definitions code="at0.1">
+                            <term_definitions code="at0006.1">
                               <items id="text">Amplification</items>
                               <items id="description">High-level copy number gain (typically &gt;4–6 copies; laboratory-specific threshold). SO:0001742 used clinically for amplification events such as ERBB2 or MYC.</items>
                             </term_definitions>
-                            <term_definitions code="at0.2">
+                            <term_definitions code="at0007.1">
                               <items id="text">Homozygous deletion</items>
                               <items id="description">Both alleles deleted (0 copies). Aligns with SO:0002210 presence_absence_variation / homozygous deletion (e.g. CDKN2A).</items>
                             </term_definitions>
@@ -9996,7 +10312,7 @@
                               <lower>0</lower>
                               <upper>1</upper>
                             </occurrences>
-                            <node_id>at0.1</node_id>
+                            <node_id>at0.9000</node_id>
                             <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                               <rm_attribute_name>value</rm_attribute_name>
                               <existence>
@@ -10044,11 +10360,11 @@
                                     <terminology_id>
                                       <value>local</value>
                                     </terminology_id>
-                                    <code_list>at0103</code_list>
-                                    <code_list>at0104</code_list>
-                                    <code_list>at0105</code_list>
-                                    <code_list>at0106</code_list>
-                                    <code_list>at0107</code_list>
+                                    <code_list>at0.1</code_list>
+                                    <code_list>at0.2</code_list>
+                                    <code_list>at0.3</code_list>
+                                    <code_list>at0.4</code_list>
+                                    <code_list>at0.5</code_list>
                                   </children>
                                 </attributes>
                               </children>
@@ -10076,7 +10392,7 @@
                               <lower>0</lower>
                               <upper>1</upper>
                             </occurrences>
-                            <node_id>at0.2</node_id>
+                            <node_id>at0.9001</node_id>
                             <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                               <rm_attribute_name>value</rm_attribute_name>
                               <existence>
@@ -10124,13 +10440,13 @@
                                     <terminology_id>
                                       <value>local</value>
                                     </terminology_id>
-                                    <code_list>at0108</code_list>
-                                    <code_list>at0109</code_list>
-                                    <code_list>at0110</code_list>
-                                    <code_list>at0111</code_list>
-                                    <code_list>at0112</code_list>
-                                    <code_list>at0113</code_list>
-                                    <code_list>at0114</code_list>
+                                    <code_list>at0.10</code_list>
+                                    <code_list>at0.11</code_list>
+                                    <code_list>at0.12</code_list>
+                                    <code_list>at0.13</code_list>
+                                    <code_list>at0.14</code_list>
+                                    <code_list>at0.15</code_list>
+                                    <code_list>at0.16</code_list>
                                   </children>
                                 </attributes>
                               </children>
@@ -10146,7 +10462,7 @@
                               <lower>0</lower>
                               <upper>1</upper>
                             </occurrences>
-                            <node_id>at0.3</node_id>
+                            <node_id>at0.9002</node_id>
                             <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                               <rm_attribute_name>value</rm_attribute_name>
                               <existence>
@@ -10220,7 +10536,7 @@
                               <lower>0</lower>
                               <upper>1</upper>
                             </occurrences>
-                            <node_id>at0.4</node_id>
+                            <node_id>at0.9003</node_id>
                             <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                               <rm_attribute_name>value</rm_attribute_name>
                               <existence>
@@ -10301,7 +10617,7 @@
                               <lower>0</lower>
                               <upper>1</upper>
                             </occurrences>
-                            <node_id>at0.5</node_id>
+                            <node_id>at0.9004</node_id>
                             <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                               <rm_attribute_name>value</rm_attribute_name>
                               <existence>
@@ -10385,6 +10701,14 @@
                                     <terminology_id>
                                       <value>local</value>
                                     </terminology_id>
+                                    <code_list>at0.40</code_list>
+                                    <code_list>at0.41</code_list>
+                                    <code_list>at0.42</code_list>
+                                    <code_list>at0.43</code_list>
+                                    <code_list>at0.44</code_list>
+                                    <code_list>at0.45</code_list>
+                                    <code_list>at0.46</code_list>
+                                    <code_list>at0.47</code_list>
                                   </children>
                                 </attributes>
                               </children>
@@ -10484,7 +10808,7 @@
                                   <lower>0</lower>
                                   <upper>1</upper>
                                 </occurrences>
-                                <node_id>at0001</node_id>
+                                <node_id>at9001</node_id>
                                 <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                                   <rm_attribute_name>value</rm_attribute_name>
                                   <existence>
@@ -10520,7 +10844,7 @@
                                   <lower>1</lower>
                                   <upper>1</upper>
                                 </occurrences>
-                                <node_id>at0003</node_id>
+                                <node_id>at9003</node_id>
                                 <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                                   <rm_attribute_name>value</rm_attribute_name>
                                   <existence>
@@ -10568,8 +10892,8 @@
                                         <terminology_id>
                                           <value>local</value>
                                         </terminology_id>
-                                        <code_list>at0015</code_list>
-                                        <code_list>at0016</code_list>
+                                        <code_list>at9000</code_list>
+                                        <code_list>at0001</code_list>
                                       </children>
                                     </attributes>
                                   </children>
@@ -10585,7 +10909,7 @@
                                   <lower>0</lower>
                                   <upper>1</upper>
                                 </occurrences>
-                                <node_id>at0005</node_id>
+                                <node_id>at9005</node_id>
                                 <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                                   <rm_attribute_name>value</rm_attribute_name>
                                   <existence>
@@ -10633,10 +10957,10 @@
                                         <terminology_id>
                                           <value>local</value>
                                         </terminology_id>
-                                        <code_list>at0017</code_list>
-                                        <code_list>at0018</code_list>
-                                        <code_list>at0019</code_list>
-                                        <code_list>at0020</code_list>
+                                        <code_list>at0002</code_list>
+                                        <code_list>at0003</code_list>
+                                        <code_list>at0004</code_list>
+                                        <code_list>at0005</code_list>
                                       </children>
                                     </attributes>
                                   </children>
@@ -10792,15 +11116,15 @@
                               <items id="text">Clinical implication</items>
                               <items id="description">Diagnostic and/or therapeutic implication for this variant.</items>
                             </term_definitions>
-                            <term_definitions code="at0001">
+                            <term_definitions code="at9001">
                               <items id="text">Implication identifier</items>
                               <items id="description">Business identifier for this implication entry (FHIR Observation.identifier).</items>
                             </term_definitions>
-                            <term_definitions code="at0003">
+                            <term_definitions code="at9003">
                               <items id="text">Implication type</items>
                               <items id="description">Whether this implication is diagnostic or therapeutic.</items>
                             </term_definitions>
-                            <term_definitions code="at0005">
+                            <term_definitions code="at9005">
                               <items id="text">Status</items>
                               <items id="description">Lifecycle status of the implication (e.g. preliminary, final, amended).</items>
                             </term_definitions>
@@ -10816,27 +11140,27 @@
                               <items id="text">Linked variant reference</items>
                               <items id="description">Optional explicit link back to the source variant when implications are stored separately.</items>
                             </term_definitions>
-                            <term_definitions code="at0015">
+                            <term_definitions code="at9000">
                               <items id="text">Diagnostic</items>
                               <items id="description">Implication affects diagnosis, subtype, or prognosis classification.</items>
                             </term_definitions>
-                            <term_definitions code="at0016">
+                            <term_definitions code="at0001">
                               <items id="text">Therapeutic</items>
                               <items id="description">Implication affects treatment choice or eligibility.</items>
                             </term_definitions>
-                            <term_definitions code="at0017">
+                            <term_definitions code="at0002">
                               <items id="text">Preliminary</items>
                               <items id="description">Implication is preliminary.</items>
                             </term_definitions>
-                            <term_definitions code="at0018">
+                            <term_definitions code="at0003">
                               <items id="text">Final</items>
                               <items id="description">Implication is final.</items>
                             </term_definitions>
-                            <term_definitions code="at0019">
+                            <term_definitions code="at0004">
                               <items id="text">Amended</items>
                               <items id="description">Implication has been amended.</items>
                             </term_definitions>
-                            <term_definitions code="at0020">
+                            <term_definitions code="at0005">
                               <items id="text">Cancelled</items>
                               <items id="description">Implication cancelled / entered in error.</items>
                             </term_definitions>
@@ -11156,23 +11480,23 @@
                           <items id="text">Genomic variant result (cancer)</items>
                           <items id="description">Cancer genomic finding with ASCO/AMP, ESCAT, origin, and clinical implications.</items>
                         </term_definitions>
-                        <term_definitions code="at0.1">
+                        <term_definitions code="at0.9000">
                           <items id="text">Genetic origin</items>
                           <items id="description">Whether the variant is somatic, germline, likely somatic, likely germline, or unknown. Aligns with FHIR Genomics Observation.component:genomic-allele-origin.</items>
                         </term_definitions>
-                        <term_definitions code="at0.2">
+                        <term_definitions code="at0.9001">
                           <items id="text">ASCO/AMP clinical significance tier</items>
                           <items id="description">Somatic clinical significance according to ASCO/AMP/CAP tiering (Tier I–IV). Complements parent ACMG classification which targets germline pathogenicity.</items>
                         </term_definitions>
-                        <term_definitions code="at0.3">
+                        <term_definitions code="at0.9002">
                           <items id="text">ESCAT therapeutic relevance</items>
                           <items id="description">ESMO Scale for Clinical Actionability of molecular Targets (ESCAT) tier for therapeutic decision support.</items>
                         </term_definitions>
-                        <term_definitions code="at0.4">
+                        <term_definitions code="at0.9003">
                           <items id="text">Exon number</items>
                           <items id="description">Exon number affected by the variant (general; parent Fusion exon remains for fusion-specific context).</items>
                         </term_definitions>
-                        <term_definitions code="at0.5">
+                        <term_definitions code="at0.9004">
                           <items id="text">Karyotype (ISCN)</items>
                           <items id="description">ISCN karyotype string describing chromosomal rearrangement or CNV notation.</items>
                         </term_definitions>
@@ -11184,51 +11508,51 @@
                           <items id="text">Clinical implication</items>
                           <items id="description">Diagnostic and/or therapeutic implication for this variant.</items>
                         </term_definitions>
-                        <term_definitions code="at0103">
+                        <term_definitions code="at0.1">
                           <items id="text">Somatic</items>
                           <items id="description">Variant acquired in somatic (non-germline) tissue.</items>
                         </term_definitions>
-                        <term_definitions code="at0104">
+                        <term_definitions code="at0.2">
                           <items id="text">Germline</items>
                           <items id="description">Variant present in germline.</items>
                         </term_definitions>
-                        <term_definitions code="at0105">
+                        <term_definitions code="at0.3">
                           <items id="text">Likely somatic</items>
                           <items id="description">Variant assessed as likely somatic.</items>
                         </term_definitions>
-                        <term_definitions code="at0106">
+                        <term_definitions code="at0.4">
                           <items id="text">Likely germline</items>
                           <items id="description">Variant assessed as likely germline.</items>
                         </term_definitions>
-                        <term_definitions code="at0107">
+                        <term_definitions code="at0.5">
                           <items id="text">Unknown origin</items>
                           <items id="description">Genetic origin not determined.</items>
                         </term_definitions>
-                        <term_definitions code="at0108">
+                        <term_definitions code="at0.10">
                           <items id="text">Tier I-A</items>
                           <items id="description">Strong clinical significance: FDA-approved therapy / guideline recommendation.</items>
                         </term_definitions>
-                        <term_definitions code="at0109">
+                        <term_definitions code="at0.11">
                           <items id="text">Tier I-B</items>
                           <items id="description">Strong clinical significance: professional society recommendation.</items>
                         </term_definitions>
-                        <term_definitions code="at0110">
+                        <term_definitions code="at0.12">
                           <items id="text">Tier I-C</items>
                           <items id="description">Strong clinical significance: expert consensus or well-powered study.</items>
                         </term_definitions>
-                        <term_definitions code="at0111">
+                        <term_definitions code="at0.13">
                           <items id="text">Tier I-D</items>
                           <items id="description">Strong clinical significance: preclinical evidence.</items>
                         </term_definitions>
-                        <term_definitions code="at0112">
+                        <term_definitions code="at0.14">
                           <items id="text">Tier II</items>
                           <items id="description">Potential clinical significance: investigational or other tumour type.</items>
                         </term_definitions>
-                        <term_definitions code="at0113">
+                        <term_definitions code="at0.15">
                           <items id="text">Tier III</items>
                           <items id="description">Unknown clinical significance (somatic VUS equivalent).</items>
                         </term_definitions>
-                        <term_definitions code="at0114">
+                        <term_definitions code="at0.16">
                           <items id="text">Tier IV</items>
                           <items id="description">Benign or likely benign / passenger mutation.</items>
                         </term_definitions>
@@ -11276,31 +11600,43 @@
                           <items id="text">ESCAT Tier X</items>
                           <items id="description">No evidence for actionability.</items>
                         </term_definitions>
-                        <term_definitions code="at0045.1">
-                          <items id="text">Copy number variant (cancer)</items>
-                          <items id="description">CNV with Gain/Loss/Amplification/Homozygous deletion.</items>
+                        <term_definitions code="at0.40">
+                          <items id="text">missense_variant</items>
+                          <items id="description">A sequence variant that changes one or more bases, resulting in a different amino acid sequence but where the length is preserved. (SO:0001583)</items>
                         </term_definitions>
-                        <term_definitions code="at0045.2">
-                          <items id="text">Substitution variant</items>
-                          <items id="description">SNV / substitution structured detail.</items>
+                        <term_definitions code="at0.41">
+                          <items id="text">stop_gained</items>
+                          <items id="description">A sequence variant whereby at least one base of a codon is changed, resulting in a premature stop codon, leading to a shortened transcript. (SO:0001587)</items>
                         </term_definitions>
-                        <term_definitions code="at0045.3">
-                          <items id="text">Deletion variant</items>
-                          <items id="description">Deletion structured detail.</items>
+                        <term_definitions code="at0.42">
+                          <items id="text">frameshift_variant</items>
+                          <items id="description">A sequence variant which causes a disruption of the translational reading frame, because the number of nucleotides inserted or deleted is not a multiple of three. (SO:0001589)</items>
                         </term_definitions>
-                        <term_definitions code="at0045.4">
-                          <items id="text">Insertion variant</items>
-                          <items id="description">Insertion structured detail.</items>
+                        <term_definitions code="at0.43">
+                          <items id="text">synonymous_variant</items>
+                          <items id="description">A sequence variant where there is no resulting change to the encoded amino acid. (SO:0001819)</items>
                         </term_definitions>
-                        <term_definitions code="at0045.5">
+                        <term_definitions code="at0.44">
+                          <items id="text">start_lost</items>
+                          <items id="description">A codon variant that changes at least one base of the canonical start codon. (SO:0002012)</items>
+                        </term_definitions>
+                        <term_definitions code="at0.45">
+                          <items id="text">stop_lost</items>
+                          <items id="description">A sequence variant where at least one base of the terminator codon (stop) is changed, resulting in an elongated transcript. (SO:0001578)</items>
+                        </term_definitions>
+                        <term_definitions code="at0.46">
+                          <items id="text">inframe_insertion</items>
+                          <items id="description">An inframe non synonymous variant that inserts bases into in the coding sequence. (SO:0001821)</items>
+                        </term_definitions>
+                        <term_definitions code="at0.47">
+                          <items id="text">inframe_deletion</items>
+                          <items id="description">An inframe non synonymous variant that deletes bases from the coding sequence. (SO:0001822)</items>
+                        </term_definitions>
+                        <term_definitions code="at0045.0">
                           <items id="text">Deletion-insertion variant</items>
                           <items id="description">Indel structured detail.</items>
                         </term_definitions>
-                        <term_definitions code="at0098.1">
-                          <items id="text">Genetic variant presence</items>
-                          <items id="description">Detected / not detected (draft archetype).</items>
-                        </term_definitions>
-                        <term_definitions code="at0098.2">
+                        <term_definitions code="at0098.0">
                           <items id="text">Translocation / fusion structure</items>
                           <items id="description">Structural detail for rearrangements (draft; REVIEWSUSPENDED on CKM).</items>
                         </term_definitions>
@@ -12419,7 +12755,7 @@
                   <upper_unbounded>true</upper_unbounded>
                   <lower>0</lower>
                 </occurrences>
-                <node_id>at0000</node_id>
+                <node_id>at0000.1</node_id>
                 <attributes xsi:type="C_MULTIPLE_ATTRIBUTE">
                   <rm_attribute_name>items</rm_attribute_name>
                   <existence>
@@ -12464,6 +12800,54 @@
                           <upper>1</upper>
                         </occurrences>
                         <node_id></node_id>
+                      </children>
+                      <children xsi:type="C_COMPLEX_OBJECT">
+                        <rm_type_name>DV_CODED_TEXT</rm_type_name>
+                        <occurrences>
+                          <lower_included>true</lower_included>
+                          <upper_included>true</upper_included>
+                          <lower_unbounded>false</lower_unbounded>
+                          <upper_unbounded>false</upper_unbounded>
+                          <lower>1</lower>
+                          <upper>1</upper>
+                        </occurrences>
+                        <node_id></node_id>
+                        <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                          <rm_attribute_name>defining_code</rm_attribute_name>
+                          <existence>
+                            <lower_included>true</lower_included>
+                            <upper_included>true</upper_included>
+                            <lower_unbounded>false</lower_unbounded>
+                            <upper_unbounded>false</upper_unbounded>
+                            <lower>1</lower>
+                            <upper>1</upper>
+                          </existence>
+                          <match_negated>false</match_negated>
+                          <children xsi:type="C_CODE_PHRASE">
+                            <rm_type_name>CODE_PHRASE</rm_type_name>
+                            <occurrences>
+                              <lower_included>true</lower_included>
+                              <upper_included>true</upper_included>
+                              <lower_unbounded>false</lower_unbounded>
+                              <upper_unbounded>false</upper_unbounded>
+                              <lower>1</lower>
+                              <upper>1</upper>
+                            </occurrences>
+                            <node_id></node_id>
+                            <terminology_id>
+                              <value>local</value>
+                            </terminology_id>
+                            <code_list>at0.30</code_list>
+                            <code_list>at0.31</code_list>
+                            <code_list>at0.32</code_list>
+                            <code_list>at0.33</code_list>
+                            <code_list>at0.34</code_list>
+                            <code_list>at0.35</code_list>
+                            <code_list>at0.36</code_list>
+                            <code_list>at0.37</code_list>
+                            <code_list>at0.38</code_list>
+                          </children>
+                        </attributes>
                       </children>
                     </attributes>
                   </children>
@@ -13334,7 +13718,7 @@
                       <lower>0</lower>
                       <upper>1</upper>
                     </occurrences>
-                    <node_id>at0018</node_id>
+                    <node_id>at0000</node_id>
                     <attributes xsi:type="C_SINGLE_ATTRIBUTE">
                       <rm_attribute_name>name</rm_attribute_name>
                       <existence>
@@ -13690,7 +14074,7 @@
                     <archetype_id>
                       <value>openEHR-EHR-CLUSTER.reference_sequence.v1</value>
                     </archetype_id>
-                    <term_definitions code="at0018">
+                    <term_definitions code="at0000">
                       <items id="text">Reference genome</items>
                       <items id="description">Reference sequence used for alignment (e.g. GRCh38).</items>
                     </term_definitions>
@@ -14333,6 +14717,116 @@
                       </children>
                     </attributes>
                   </children>
+                  <children xsi:type="C_COMPLEX_OBJECT">
+                    <rm_type_name>ELEMENT</rm_type_name>
+                    <occurrences>
+                      <lower_included>true</lower_included>
+                      <upper_included>true</upper_included>
+                      <lower_unbounded>false</lower_unbounded>
+                      <upper_unbounded>false</upper_unbounded>
+                      <lower>0</lower>
+                      <upper>1</upper>
+                    </occurrences>
+                    <node_id>at0.1</node_id>
+                    <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                      <rm_attribute_name>value</rm_attribute_name>
+                      <existence>
+                        <lower_included>true</lower_included>
+                        <upper_included>true</upper_included>
+                        <lower_unbounded>false</lower_unbounded>
+                        <upper_unbounded>false</upper_unbounded>
+                        <lower>0</lower>
+                        <upper>1</upper>
+                      </existence>
+                      <match_negated>false</match_negated>
+                      <children xsi:type="C_COMPLEX_OBJECT">
+                        <rm_type_name>DV_IDENTIFIER</rm_type_name>
+                        <occurrences>
+                          <lower_included>true</lower_included>
+                          <upper_included>true</upper_included>
+                          <lower_unbounded>false</lower_unbounded>
+                          <upper_unbounded>false</upper_unbounded>
+                          <lower>1</lower>
+                          <upper>1</upper>
+                        </occurrences>
+                        <node_id></node_id>
+                      </children>
+                    </attributes>
+                  </children>
+                  <children xsi:type="C_COMPLEX_OBJECT">
+                    <rm_type_name>ELEMENT</rm_type_name>
+                    <occurrences>
+                      <lower_included>true</lower_included>
+                      <upper_included>false</upper_included>
+                      <lower_unbounded>false</lower_unbounded>
+                      <upper_unbounded>true</upper_unbounded>
+                      <lower>0</lower>
+                    </occurrences>
+                    <node_id>at0.2</node_id>
+                    <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                      <rm_attribute_name>value</rm_attribute_name>
+                      <existence>
+                        <lower_included>true</lower_included>
+                        <upper_included>true</upper_included>
+                        <lower_unbounded>false</lower_unbounded>
+                        <upper_unbounded>false</upper_unbounded>
+                        <lower>0</lower>
+                        <upper>1</upper>
+                      </existence>
+                      <match_negated>false</match_negated>
+                      <children xsi:type="C_COMPLEX_OBJECT">
+                        <rm_type_name>DV_CODED_TEXT</rm_type_name>
+                        <occurrences>
+                          <lower_included>true</lower_included>
+                          <upper_included>true</upper_included>
+                          <lower_unbounded>false</lower_unbounded>
+                          <upper_unbounded>false</upper_unbounded>
+                          <lower>1</lower>
+                          <upper>1</upper>
+                        </occurrences>
+                        <node_id></node_id>
+                        <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                          <rm_attribute_name>defining_code</rm_attribute_name>
+                          <existence>
+                            <lower_included>true</lower_included>
+                            <upper_included>true</upper_included>
+                            <lower_unbounded>false</lower_unbounded>
+                            <upper_unbounded>false</upper_unbounded>
+                            <lower>1</lower>
+                            <upper>1</upper>
+                          </existence>
+                          <match_negated>false</match_negated>
+                          <children xsi:type="C_CODE_PHRASE">
+                            <rm_type_name>CODE_PHRASE</rm_type_name>
+                            <occurrences>
+                              <lower_included>true</lower_included>
+                              <upper_included>true</upper_included>
+                              <lower_unbounded>false</lower_unbounded>
+                              <upper_unbounded>false</upper_unbounded>
+                              <lower>1</lower>
+                              <upper>1</upper>
+                            </occurrences>
+                            <node_id></node_id>
+                            <terminology_id>
+                              <value>local</value>
+                            </terminology_id>
+                            <code_list>at0.10</code_list>
+                            <code_list>at0.11</code_list>
+                            <code_list>at0.12</code_list>
+                            <code_list>at0.13</code_list>
+                            <code_list>at0.14</code_list>
+                            <code_list>at0.15</code_list>
+                            <code_list>at0.16</code_list>
+                            <code_list>at0.17</code_list>
+                            <code_list>at0.18</code_list>
+                            <code_list>at0.19</code_list>
+                            <code_list>at0.20</code_list>
+                            <code_list>at0.21</code_list>
+                          </children>
+                        </attributes>
+                      </children>
+                    </attributes>
+                  </children>
                   <cardinality>
                     <is_ordered>false</is_ordered>
                     <is_unique>false</is_unique>
@@ -14346,11 +14840,11 @@
                   </cardinality>
                 </attributes>
                 <archetype_id>
-                  <value>openEHR-EHR-CLUSTER.sequencing_assay.v0</value>
+                  <value>openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0</value>
                 </archetype_id>
                 <term_definitions code="at0000">
                   <items id="text">Sequencing assay</items>
-                  <items id="description">Study / assay metadata (sequencing type, kit, nucleic acid, device).</items>
+                  <items id="description">An assay that uses sequencing technology to infer the sequence of a nucleic acid (DNA, RNA).</items>
                 </term_definitions>
                 <term_definitions code="at0001">
                   <items id="text">Sequencing type</items>
@@ -14413,8 +14907,8 @@
                   <items id="description">Structured details on the reference sequence of the region.</items>
                 </term_definitions>
                 <term_definitions code="at0036">
-                  <items id="text">Sequencing device / panel</items>
-                  <items id="description">Instrument or kit/panel product used for sequencing.</items>
+                  <items id="text">Sequencing device</items>
+                  <items id="description">The technology platform used to perform nucleic acid sequencing.</items>
                 </term_definitions>
                 <term_definitions code="at0037">
                   <items id="text">Comment</items>
@@ -14422,7 +14916,7 @@
                 </term_definitions>
                 <term_definitions code="at0038">
                   <items id="text">Reference genome</items>
-                  <items id="description">Reference sequence used for alignment (e.g. GRCh38).</items>
+                  <items id="description">Structured details about the specific version of the human sequence assembly used for annotation.</items>
                 </term_definitions>
                 <term_definitions code="at0039">
                   <items id="text">Bioinformatic analysis</items>
@@ -14523,6 +15017,114 @@
                 <term_definitions code="at0087">
                   <items id="text">Chromosome Y</items>
                   <items id="description">Chromosome Y.</items>
+                </term_definitions>
+                <term_definitions code="at0000.1">
+                  <items id="text">Sequencing assay</items>
+                  <items id="description">Study / assay metadata (sequencing type, kit, nucleic acid, device).</items>
+                </term_definitions>
+                <term_definitions code="at0.1">
+                  <items id="text">Study identifier</items>
+                  <items id="description">Identifier of the sequencing/genomic study (FHIR GenomicStudy.identifier).</items>
+                </term_definitions>
+                <term_definitions code="at0.2">
+                  <items id="text">Study type</items>
+                  <items id="description">The type of genomic study performed, e.g. SNP detection or CNV detection (FHIR GenomicStudy.type). Multiple occurrences allowed.</items>
+                </term_definitions>
+                <term_definitions code="at0.4">
+                  <items id="text">Study method type</items>
+                  <items id="description">Coded method type for the sequencing type (FHIR GenomicStudy.analysis.methodType).</items>
+                </term_definitions>
+                <term_definitions code="at0.10">
+                  <items id="text">Alternative splicing detection</items>
+                  <items id="description">Identification of multiple different processed mRNA transcripts from the same DNA template</items>
+                </term_definitions>
+                <term_definitions code="at0.11">
+                  <items id="text">Chromatin conformation</items>
+                  <items id="description">Analysis of the spacial organization of chromatin within a cell</items>
+                </term_definitions>
+                <term_definitions code="at0.12">
+                  <items id="text">CNV detection</items>
+                  <items id="description">Detection of a change in the number of copies of a defined region of genomic DNA sequence resulting in structural variation when compared to the reference sequence</items>
+                </term_definitions>
+                <term_definitions code="at0.13">
+                  <items id="text">Epigenetic Alterations - histone modifications</items>
+                  <items id="description">Detection of biochemical modifications covalently bound to the N-terminal tail of a histone protein. These modifications may alter chromatin compaction and gene expression</items>
+                </term_definitions>
+                <term_definitions code="at0.14">
+                  <items id="text">Epigenetic Alterations -DNA methylation</items>
+                  <items id="description">Detection of the presence of an additional methyl group on a DNA nucleobase, which may alter gene transcription</items>
+                </term_definitions>
+                <term_definitions code="at0.15">
+                  <items id="text">Familial variant segregation</items>
+                  <items id="description">Determining if a variant identified in an individual is present in other family members</items>
+                </term_definitions>
+                <term_definitions code="at0.16">
+                  <items id="text">Functional variation detection</items>
+                  <items id="description">Detection of sequence variants which may alter gene expression or gene product function when compared to the reference sequence</items>
+                </term_definitions>
+                <term_definitions code="at0.17">
+                  <items id="text">Gene expression profiling</items>
+                  <items id="description">Measurement and characterization of activity from all gene products</items>
+                </term_definitions>
+                <term_definitions code="at0.18">
+                  <items id="text">Post-translational Modification Identification</items>
+                  <items id="description">Detection of biochemical modifications covalently bound to the amino acid monomers of a processed protein</items>
+                </term_definitions>
+                <term_definitions code="at0.19">
+                  <items id="text">SNP Detection</items>
+                  <items id="description">Determination of which nucleotide is base present at a known variable location of the genomic sequence</items>
+                </term_definitions>
+                <term_definitions code="at0.20">
+                  <items id="text">STR count</items>
+                  <items id="description">Quantification of the number of sequential microsatellite units in a repetitive sequence region</items>
+                </term_definitions>
+                <term_definitions code="at0.21">
+                  <items id="text">Structural variation detection</items>
+                  <items id="description">Detection of deletions, insertions, or rearrangements of DNA segments compared to the reference sequence</items>
+                </term_definitions>
+                <term_definitions code="at0.30">
+                  <items id="text">Sequence analysis of select exons (targeted NGS panel)</items>
+                  <items id="description">HL7 genomic-study-method-type: sequence-analysis-of-select-exons.</items>
+                </term_definitions>
+                <term_definitions code="at0.31">
+                  <items id="text">Sequence analysis of the entire coding region (WES/WGS)</items>
+                  <items id="description">HL7 genomic-study-method-type: sequence-analysis-of-the-entire-coding-region.</items>
+                </term_definitions>
+                <term_definitions code="at0.32">
+                  <items id="text">Next-generation / massively parallel sequencing</items>
+                  <items id="description">HL7 genomic-study-method-type: ngs-mps.</items>
+                </term_definitions>
+                <term_definitions code="at0.33">
+                  <items id="text">Fluorescence in situ hybridization (FISH)</items>
+                  <items id="description">HL7 genomic-study-method-type: fish.</items>
+                </term_definitions>
+                <term_definitions code="at0.34">
+                  <items id="text">PCR</items>
+                  <items id="description">HL7 genomic-study-method-type: pcr.</items>
+                </term_definitions>
+                <term_definitions code="at0.35">
+                  <items id="text">Bi-directional Sanger sequence analysis</items>
+                  <items id="description">HL7 genomic-study-method-type: bi-directional-sanger-sequence-analysis.</items>
+                </term_definitions>
+                <term_definitions code="at0.36">
+                  <items id="text">Karyotyping</items>
+                  <items id="description">HL7 genomic-study-method-type: karyotyping.</items>
+                </term_definitions>
+                <term_definitions code="at0.37">
+                  <items id="text">Multiplex ligation-dependent probe amplification (MLPA)</items>
+                  <items id="description">HL7 genomic-study-method-type: mlpa.</items>
+                </term_definitions>
+                <term_definitions code="at0.38">
+                  <items id="text">Methylation analysis</items>
+                  <items id="description">HL7 genomic-study-method-type: methylation-analysis.</items>
+                </term_definitions>
+                <term_definitions code="at0036.0">
+                  <items id="text">Sequencing device / panel</items>
+                  <items id="description">Instrument or kit/panel product used for sequencing.</items>
+                </term_definitions>
+                <term_definitions code="at0038.0">
+                  <items id="text">Reference genome</items>
+                  <items id="description">Reference sequence used for alignment (e.g. GRCh38).</items>
                 </term_definitions>
               </children>
               <children xsi:type="C_ARCHETYPE_ROOT">
@@ -15594,7 +16196,7 @@
       <items id="text">Genomics cancer report</items>
       <items id="description">Result report for cancer genomic testing (Swedish RCC).</items>
     </term_definitions>
-    <term_definitions code="at0.1">
+    <term_definitions code="at0.0.1">
       <items id="text">Genomic laboratory test result</items>
       <items id="description">Laboratory test result constrained for cancer genomics: specimens, assay, variants and biomarkers.</items>
     </term_definitions>
@@ -15629,7 +16231,7 @@
         <items id="text">Genomics cancer report</items>
         <items id="description">Result report for cancer genomic testing (Swedish RCC).</items>
       </items>
-      <items code="at0.1">
+      <items code="at0.0.1">
         <items id="text">Genomic laboratory test result</items>
         <items id="description">Laboratory test result constrained for cancer genomics: specimens, assay, variants and biomarkers.</items>
       </items>
@@ -15664,7 +16266,7 @@
         <items id="text">Genomikrapport – cancer</items>
         <items id="description">Resultatrapport för cancergenomisk testning (RCC).</items>
       </items>
-      <items code="at0.1">
+      <items code="at0.0.1">
         <items id="text">Genomiskt laboratorieresultat</items>
         <items id="description">Laboratorieresultat begränsat för cancergenomik: prover, assay, varianter och biomarkörer.</items>
       </items>
@@ -16161,6 +16763,138 @@
         <items id="text">Storage details</items>
         <items id="description">Structured details about the storage of the specimen.</items>
       </items>
+      <items code="at0.1">
+        <items id="text">Blood venous</items>
+        <items id="description">HL7 v2 0487: BLDV.</items>
+      </items>
+      <items code="at0.2">
+        <items id="text">Marrow</items>
+        <items id="description">HL7 v2 0487: MAR.</items>
+      </items>
+      <items code="at0.3">
+        <items id="text">Tissue</items>
+        <items id="description">HL7 v2 0487: TISS.</items>
+      </items>
+      <items code="at0.4">
+        <items id="text">Tumor</items>
+        <items id="description">HL7 v2 0487: TUMOR.</items>
+      </items>
+      <items code="at0.5">
+        <items id="text">Pleural fluid</items>
+        <items id="description">HL7 v2 0487: PLR.</items>
+      </items>
+      <items code="at0.6">
+        <items id="text">Fluid, Abdomen</items>
+        <items id="description">HL7 v2 0487: FGA.</items>
+      </items>
+      <items code="at0.7">
+        <items id="text">Cerebrospinal fluid</items>
+        <items id="description">HL7 v2 0487: CSF.</items>
+      </items>
+      <items code="at0.8">
+        <items id="text">Bone</items>
+        <items id="description">HL7 v2 0487: BON.</items>
+      </items>
+      <items code="at0.9">
+        <items id="text">Skin</items>
+        <items id="description">HL7 v2 0487: SKN.</items>
+      </items>
+      <items code="at0.10">
+        <items id="text">Bile Fluid</items>
+        <items id="description">HL7 v2 0487: BIFL.</items>
+      </items>
+      <items code="at0.11">
+        <items id="text">Cervical Mucus</items>
+        <items id="description">HL7 v2 0487: CVM.</items>
+      </items>
+      <items code="at0.12">
+        <items id="text">Urine</items>
+        <items id="description">HL7 v2 0487: UR.</items>
+      </items>
+      <items code="at0.13">
+        <items id="text">Stool = Fecal</items>
+        <items id="description">HL7 v2 0487: STL.</items>
+      </items>
+      <items code="at0.14">
+        <items id="text">DNA</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.15">
+        <items id="text">RNA</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.16">
+        <items id="text">Circulating tumour DNA (ctDNA)</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.17">
+        <items id="text">Circulating tumour RNA (ctRNA)</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.18">
+        <items id="text">Cell-free DNA (cfDNA)</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.30">
+        <items id="text">Resection (procedure)</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.31">
+        <items id="text">Excision (procedure)</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.32">
+        <items id="text">Core needle biopsy</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.33">
+        <items id="text">Punch biopsy</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.34">
+        <items id="text">Bone marrow biopsy</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.35">
+        <items id="text">Needle core biopsy (procedure)</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.36">
+        <items id="text">Percutaneous needle biopsy</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.37">
+        <items id="text">Biopsy of bone (procedure)</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.38">
+        <items id="text">Biopsy</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.39">
+        <items id="text">Aspiration</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.40">
+        <items id="text">Fine needle biopsy</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.41">
+        <items id="text">Puncture procedure</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.42">
+        <items id="text">Cell block method</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.43">
+        <items id="text">Smear technique</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.44">
+        <items id="text">Phlebotomy</items>
+        <items id="description">Collection technique.</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
@@ -16336,7 +17070,373 @@
         <items id="text">Lagringsdetaljer</items>
         <items id="description">Strukturerade detaljer om förvaringen av provmaterialet.</items>
       </items>
+      <items code="at0.1">
+        <items id="text">Venöst blod</items>
+        <items id="description">HL7 v2 0487: BLDV.</items>
+      </items>
+      <items code="at0.2">
+        <items id="text">Benmärg</items>
+        <items id="description">HL7 v2 0487: MAR.</items>
+      </items>
+      <items code="at0.3">
+        <items id="text">Vävnad</items>
+        <items id="description">HL7 v2 0487: TISS.</items>
+      </items>
+      <items code="at0.4">
+        <items id="text">Tumörvävnad</items>
+        <items id="description">HL7 v2 0487: TUMOR.</items>
+      </items>
+      <items code="at0.5">
+        <items id="text">Pleuravätska</items>
+        <items id="description">HL7 v2 0487: PLR.</items>
+      </items>
+      <items code="at0.6">
+        <items id="text">Bukvätska / Ascitesvätska</items>
+        <items id="description">HL7 v2 0487: FGA.</items>
+      </items>
+      <items code="at0.7">
+        <items id="text">Cerebrospinalvätska</items>
+        <items id="description">HL7 v2 0487: CSF.</items>
+      </items>
+      <items code="at0.8">
+        <items id="text">Ben</items>
+        <items id="description">HL7 v2 0487: BON.</items>
+      </items>
+      <items code="at0.9">
+        <items id="text">Hud</items>
+        <items id="description">HL7 v2 0487: SKN.</items>
+      </items>
+      <items code="at0.10">
+        <items id="text">Galla</items>
+        <items id="description">HL7 v2 0487: BIFL.</items>
+      </items>
+      <items code="at0.11">
+        <items id="text">Cervixsekret</items>
+        <items id="description">HL7 v2 0487: CVM.</items>
+      </items>
+      <items code="at0.12">
+        <items id="text">Urin</items>
+        <items id="description">HL7 v2 0487: UR.</items>
+      </items>
+      <items code="at0.13">
+        <items id="text">Avföring / Feces</items>
+        <items id="description">HL7 v2 0487: STL.</items>
+      </items>
+      <items code="at0.14">
+        <items id="text">DNA</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.15">
+        <items id="text">RNA</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.16">
+        <items id="text">Cirkulerande tumör-DNA (ctDNA)</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.17">
+        <items id="text">Cirkulerande tumör-RNA (ctRNA)</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.18">
+        <items id="text">Cell-free DNA (cfDNA)</items>
+        <items id="description">Extracted material.</items>
+      </items>
+      <items code="at0.30">
+        <items id="text">Resektion / Resektat</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.31">
+        <items id="text">Excision</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.32">
+        <items id="text">Grovnålsbiopsi (core needle)</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.33">
+        <items id="text">Stansbiopsi</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.34">
+        <items id="text">Benmärgsbiopsi</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.35">
+        <items id="text">Mellannålsbiopsi</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.36">
+        <items id="text">Transtorakalbiopsi / Perkutan biopsi</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.37">
+        <items id="text">Benbiopsi</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.38">
+        <items id="text">Biopsi (ej specificerad)</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.39">
+        <items id="text">Aspirationscytologi (FNA)</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.40">
+        <items id="text">Finnålsaspirat / FNA</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.41">
+        <items id="text">Vätskeprov (pleura / ascites)</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.42">
+        <items id="text">Cytologi - cellblock</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.43">
+        <items id="text">Cytologiutstryk</items>
+        <items id="description">Collection technique.</items>
+      </items>
+      <items code="at0.44">
+        <items id="text">Blodprov (venöst)</items>
+        <items id="description">Collection technique.</items>
+      </items>
     </term_definitions>
+    <term_bindings terminology="SNOMED-CT">
+      <items code="at0.1">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>53130003</code_string>
+        </value>
+      </items>
+      <items code="at0.2">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>396997002</code_string>
+        </value>
+      </items>
+      <items code="at0.3">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>119376003</code_string>
+        </value>
+      </items>
+      <items code="at0.4">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>258435002</code_string>
+        </value>
+      </items>
+      <items code="at0.5">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>418564007</code_string>
+        </value>
+      </items>
+      <items code="at0.6">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>309201001</code_string>
+        </value>
+      </items>
+      <items code="at0.7">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>258450006</code_string>
+        </value>
+      </items>
+      <items code="at0.8">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>430268003</code_string>
+        </value>
+      </items>
+      <items code="at0.9">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>119325001</code_string>
+        </value>
+      </items>
+      <items code="at0.10">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>119341000</code_string>
+        </value>
+      </items>
+      <items code="at0.11">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>122577006</code_string>
+        </value>
+      </items>
+      <items code="at0.12">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>122575003</code_string>
+        </value>
+      </items>
+      <items code="at0.13">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>119339001</code_string>
+        </value>
+      </items>
+      <items code="at0.14">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>258566005</code_string>
+        </value>
+      </items>
+      <items code="at0.15">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>441673008</code_string>
+        </value>
+      </items>
+      <items code="at0.30">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>118292001</code_string>
+        </value>
+      </items>
+      <items code="at0.31">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>65801008</code_string>
+        </value>
+      </items>
+      <items code="at0.32">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>9911007</code_string>
+        </value>
+      </items>
+      <items code="at0.33">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>68660007</code_string>
+        </value>
+      </items>
+      <items code="at0.34">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>56241004</code_string>
+        </value>
+      </items>
+      <items code="at0.35">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>178255001</code_string>
+        </value>
+      </items>
+      <items code="at0.36">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>80783008</code_string>
+        </value>
+      </items>
+      <items code="at0.37">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>274036004</code_string>
+        </value>
+      </items>
+      <items code="at0.38">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>86273004</code_string>
+        </value>
+      </items>
+      <items code="at0.39">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>14766002</code_string>
+        </value>
+      </items>
+      <items code="at0.40">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>48635004</code_string>
+        </value>
+      </items>
+      <items code="at0.41">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>129300006</code_string>
+        </value>
+      </items>
+      <items code="at0.43">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>274315006</code_string>
+        </value>
+      </items>
+      <items code="at0.44">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>396540005</code_string>
+        </value>
+      </items>
+    </term_bindings>
   </component_ontologies>
   <component_ontologies archetype_id="openEHR-EHR-CLUSTER.anatomical_location.v1">
     <term_definitions language="en">
@@ -16717,6 +17817,22 @@
         <items id="text">End date/time</items>
         <items id="description">The date and time when the process activity ended.</items>
       </items>
+      <items code="">
+        <items id="text">Fixation method</items>
+        <items id="description">Coded fixation / preservation method.</items>
+      </items>
+      <items code="at0.1">
+        <items id="text">Formalin-Fixed Paraffin-Embedded</items>
+        <items id="description">Fixation / preservation method.</items>
+      </items>
+      <items code="at0.2">
+        <items id="text">Fresh (unfixed, incl. frozen)</items>
+        <items id="description">Fixation / preservation method.</items>
+      </items>
+      <items code="at0.3">
+        <items id="text">Other</items>
+        <items id="description">Fixation / preservation method.</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
@@ -16724,52 +17840,68 @@
         <items id="description">Fixering och annan bearbetning (t.ex. FFPE); i Additional details-slot.</items>
       </items>
       <items code="at0071">
-        <items id="text">Sequence</items>
-        <items id="description">The sequence number within a multi-step sequence.</items>
+        <items id="text">Ordningsnummer</items>
+        <items id="description">Ordningsnumret inom en process i flera steg.</items>
       </items>
       <items code="at0074">
-        <items id="text">Method</items>
-        <items id="description">The technique or method used to process the specimen.</items>
+        <items id="text">Metod</items>
+        <items id="description">Tekniken eller metoden som används för att bearbeta provet.</items>
       </items>
       <items code="at0086">
-        <items id="text">Process activity</items>
-        <items id="description">Details of a single activity carried out during a multi-step process.</items>
+        <items id="text">Processaktivitet</items>
+        <items id="description">Detaljer om en enskild aktivitet i en process i flera steg.</items>
       </items>
       <items code="at0088">
-        <items id="text">Device details</items>
-        <items id="description">Details of the device used in the processing activity.</items>
+        <items id="text">Instrumentdetaljer</items>
+        <items id="description">Detaljer om instrumentet som används i bearbetningsaktiviteten.</items>
       </items>
       <items code="at0089">
-        <items id="text">Description</items>
-        <items id="description">A narrative description of the processing activity.</items>
+        <items id="text">Beskrivning</items>
+        <items id="description">Fritextbeskrivning av bearbetningsaktiviteten.</items>
       </items>
       <items code="at0091">
-        <items id="text">Additive</items>
-        <items id="description">Identification of a substance used in the processing.</items>
+        <items id="text">Tillsats</items>
+        <items id="description">Identifiering av en substans som används i bearbetningen.</items>
       </items>
       <items code="at0092">
-        <items id="text">Process activity details</items>
-        <items id="description">Details about a single activity within a multistep process.</items>
+        <items id="text">Detaljer om processaktivitet</items>
+        <items id="description">Detaljer om en enskild aktivitet i en process i flera steg.</items>
       </items>
       <items code="at0093">
-        <items id="text">Additional details</items>
-        <items id="description">Additional details about the processing of a specimen.</items>
+        <items id="text">Ytterligare detaljer</items>
+        <items id="description">Ytterligare detaljer om bearbetningen av ett prov.</items>
       </items>
       <items code="at0094">
-        <items id="text">Process name</items>
-        <items id="description">The name of the processing activity.</items>
+        <items id="text">Processnamn</items>
+        <items id="description">Namnet på bearbetningsaktiviteten.</items>
       </items>
       <items code="at0095">
-        <items id="text">Comment</items>
-        <items id="description">Additional narrative about the processing of a specimen not captured in other fields.</items>
+        <items id="text">Kommentar</items>
+        <items id="description">Ytterligare fritext om bearbetningen av ett prov som inte fångats i andra fält.</items>
       </items>
       <items code="at0096">
-        <items id="text">Start date/time</items>
-        <items id="description">The date and time when the process activity started.</items>
+        <items id="text">Startdatum/-tid</items>
+        <items id="description">Datum och tid då processaktiviteten startade.</items>
       </items>
       <items code="at0097">
-        <items id="text">End date/time</items>
-        <items id="description">The date and time when the process activity ended.</items>
+        <items id="text">Slutdatum/-tid</items>
+        <items id="description">Datum och tid då processaktiviteten avslutades.</items>
+      </items>
+      <items code="">
+        <items id="text">Fixeringsmetod</items>
+        <items id="description">Kodad fixerings-/konserveringsmetod.</items>
+      </items>
+      <items code="at0.1">
+        <items id="text">Formalinfixerad paraffinbäddad vävnad</items>
+        <items id="description">Fixation / preservation method.</items>
+      </items>
+      <items code="at0.2">
+        <items id="text">Färsk/ofixerad vävnad (inkl. fryst)</items>
+        <items id="description">Fixation / preservation method.</items>
+      </items>
+      <items code="at0.3">
+        <items id="text">Annat</items>
+        <items id="description">Fixation / preservation method.</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -16867,7 +17999,7 @@
         <items id="text">Accredited</items>
         <items id="description">Indicates whether the analytical method used for this analyte is accredited.</items>
       </items>
-      <items code="at9001">
+      <items code="">
         <items id="text">Analyte name</items>
         <items id="description">Fixed to TMB / Tumor mutational burden.</items>
       </items>
@@ -16974,7 +18106,7 @@
         <items id="text">*Accredited (en)</items>
         <items id="description">*Indicates whether the analytical method used for this analyte is accredited. (en)</items>
       </items>
-      <items code="at9001">
+      <items code="">
         <items id="text">Analytnamn</items>
         <items id="description">Låst till TMB / Tumörmutationsbörda.</items>
       </items>
@@ -17282,23 +18414,23 @@
         <items id="text">Genomic variant result (cancer)</items>
         <items id="description">Cancer genomic finding with ASCO/AMP, ESCAT, origin, and clinical implications.</items>
       </items>
-      <items code="at0.1">
+      <items code="at0.9000">
         <items id="text">Genetic origin</items>
         <items id="description">Whether the variant is somatic, germline, likely somatic, likely germline, or unknown. Aligns with FHIR Genomics Observation.component:genomic-allele-origin.</items>
       </items>
-      <items code="at0.2">
+      <items code="at0.9001">
         <items id="text">ASCO/AMP clinical significance tier</items>
         <items id="description">Somatic clinical significance according to ASCO/AMP/CAP tiering (Tier I–IV). Complements parent ACMG classification which targets germline pathogenicity.</items>
       </items>
-      <items code="at0.3">
+      <items code="at0.9002">
         <items id="text">ESCAT therapeutic relevance</items>
         <items id="description">ESMO Scale for Clinical Actionability of molecular Targets (ESCAT) tier for therapeutic decision support.</items>
       </items>
-      <items code="at0.4">
+      <items code="at0.9003">
         <items id="text">Exon number</items>
         <items id="description">Exon number affected by the variant (general; parent Fusion exon remains for fusion-specific context).</items>
       </items>
-      <items code="at0.5">
+      <items code="at0.9004">
         <items id="text">Karyotype (ISCN)</items>
         <items id="description">ISCN karyotype string describing chromosomal rearrangement or CNV notation.</items>
       </items>
@@ -17310,51 +18442,51 @@
         <items id="text">Clinical implication</items>
         <items id="description">Diagnostic and/or therapeutic implication for this variant.</items>
       </items>
-      <items code="at0103">
+      <items code="at0.1">
         <items id="text">Somatic</items>
         <items id="description">Variant acquired in somatic (non-germline) tissue.</items>
       </items>
-      <items code="at0104">
+      <items code="at0.2">
         <items id="text">Germline</items>
         <items id="description">Variant present in germline.</items>
       </items>
-      <items code="at0105">
+      <items code="at0.3">
         <items id="text">Likely somatic</items>
         <items id="description">Variant assessed as likely somatic.</items>
       </items>
-      <items code="at0106">
+      <items code="at0.4">
         <items id="text">Likely germline</items>
         <items id="description">Variant assessed as likely germline.</items>
       </items>
-      <items code="at0107">
+      <items code="at0.5">
         <items id="text">Unknown origin</items>
         <items id="description">Genetic origin not determined.</items>
       </items>
-      <items code="at0108">
+      <items code="at0.10">
         <items id="text">Tier I-A</items>
         <items id="description">Strong clinical significance: FDA-approved therapy / guideline recommendation.</items>
       </items>
-      <items code="at0109">
+      <items code="at0.11">
         <items id="text">Tier I-B</items>
         <items id="description">Strong clinical significance: professional society recommendation.</items>
       </items>
-      <items code="at0110">
+      <items code="at0.12">
         <items id="text">Tier I-C</items>
         <items id="description">Strong clinical significance: expert consensus or well-powered study.</items>
       </items>
-      <items code="at0111">
+      <items code="at0.13">
         <items id="text">Tier I-D</items>
         <items id="description">Strong clinical significance: preclinical evidence.</items>
       </items>
-      <items code="at0112">
+      <items code="at0.14">
         <items id="text">Tier II</items>
         <items id="description">Potential clinical significance: investigational or other tumour type.</items>
       </items>
-      <items code="at0113">
+      <items code="at0.15">
         <items id="text">Tier III</items>
         <items id="description">Unknown clinical significance (somatic VUS equivalent).</items>
       </items>
-      <items code="at0114">
+      <items code="at0.16">
         <items id="text">Tier IV</items>
         <items id="description">Benign or likely benign / passenger mutation.</items>
       </items>
@@ -17402,57 +18534,365 @@
         <items id="text">ESCAT Tier X</items>
         <items id="description">No evidence for actionability.</items>
       </items>
-      <items code="at0045.1">
-        <items id="text">Copy number variant (cancer)</items>
-        <items id="description">CNV with Gain/Loss/Amplification/Homozygous deletion.</items>
+      <items code="at0.40">
+        <items id="text">missense_variant</items>
+        <items id="description">A sequence variant that changes one or more bases, resulting in a different amino acid sequence but where the length is preserved. (SO:0001583)</items>
       </items>
-      <items code="at0045.2">
-        <items id="text">Substitution variant</items>
-        <items id="description">SNV / substitution structured detail.</items>
+      <items code="at0.41">
+        <items id="text">stop_gained</items>
+        <items id="description">A sequence variant whereby at least one base of a codon is changed, resulting in a premature stop codon, leading to a shortened transcript. (SO:0001587)</items>
       </items>
-      <items code="at0045.3">
-        <items id="text">Deletion variant</items>
-        <items id="description">Deletion structured detail.</items>
+      <items code="at0.42">
+        <items id="text">frameshift_variant</items>
+        <items id="description">A sequence variant which causes a disruption of the translational reading frame, because the number of nucleotides inserted or deleted is not a multiple of three. (SO:0001589)</items>
       </items>
-      <items code="at0045.4">
-        <items id="text">Insertion variant</items>
-        <items id="description">Insertion structured detail.</items>
+      <items code="at0.43">
+        <items id="text">synonymous_variant</items>
+        <items id="description">A sequence variant where there is no resulting change to the encoded amino acid. (SO:0001819)</items>
       </items>
-      <items code="at0045.5">
+      <items code="at0.44">
+        <items id="text">start_lost</items>
+        <items id="description">A codon variant that changes at least one base of the canonical start codon. (SO:0002012)</items>
+      </items>
+      <items code="at0.45">
+        <items id="text">stop_lost</items>
+        <items id="description">A sequence variant where at least one base of the terminator codon (stop) is changed, resulting in an elongated transcript. (SO:0001578)</items>
+      </items>
+      <items code="at0.46">
+        <items id="text">inframe_insertion</items>
+        <items id="description">An inframe non synonymous variant that inserts bases into in the coding sequence. (SO:0001821)</items>
+      </items>
+      <items code="at0.47">
+        <items id="text">inframe_deletion</items>
+        <items id="description">An inframe non synonymous variant that deletes bases from the coding sequence. (SO:0001822)</items>
+      </items>
+      <items code="at0045.0">
         <items id="text">Deletion-insertion variant</items>
         <items id="description">Indel structured detail.</items>
       </items>
-      <items code="at0098.1">
-        <items id="text">Genetic variant presence</items>
-        <items id="description">Detected / not detected (draft archetype).</items>
-      </items>
-      <items code="at0098.2">
+      <items code="at0098.0">
         <items id="text">Translocation / fusion structure</items>
         <items id="description">Structural detail for rearrangements (draft; REVIEWSUSPENDED on CKM).</items>
       </items>
     </term_definitions>
     <term_definitions language="sv">
+      <items code="at0000">
+        <items id="text">Genomiskt variantresultat</items>
+        <items id="description">Fynd och annoteringar för en variant som påvisats hos en individ genom ett sekvenseringstest.</items>
+      </items>
+      <items code="at0001">
+        <items id="text">Bioinformatiskt analysflöde</items>
+        <items id="description">Strukturerade detaljer om det bioinformatiska analysflödet eller protokollet som används.</items>
+      </items>
+      <items code="at0002">
+        <items id="text">Referensgenom</items>
+        <items id="description">Strukturerade detaljer om den specifika versionen av den humana sekvensassemblyn som används för annotering.</items>
+      </items>
+      <items code="at0008">
+        <items id="text">Transkript</items>
+        <items id="description">Strukturerade detaljer om transkriptet som potentiellt påverkas av varianten.</items>
+      </items>
+      <items code="at0009">
+        <items id="text">Transkriptets referenssekvens</items>
+        <items id="description">Strukturerade detaljer om den transkriberade referenssekvensen.</items>
+      </items>
+      <items code="at0010">
+        <items id="text">DNA-regionens namn</items>
+        <items id="description">Läsbart namn på den aktuella regionen.</items>
+      </items>
+      <items code="at0011">
+        <items id="text">DNA-förändring</items>
+        <items id="description">Beskrivning av variationen på DNA-nivå enligt HGVS-nomenklaturen.</items>
+      </items>
+      <items code="at0012">
+        <items id="text">Aminosyraförändring</items>
+        <items id="description">Beskrivning av variationen på proteinnivå enligt HGVS-nomenklaturen.</items>
+      </items>
+      <items code="at0013">
+        <items id="text">Typ av aminosyraförändring</items>
+        <items id="description">Kodad typ för den tillhörande aminosyramarkören.</items>
+      </items>
+      <items code="at0015">
+        <items id="text">Predicerad påverkan</items>
+        <items id="description">Uppskattning av vilka effekter varianten kan ha på transkriptet.</items>
+      </items>
+      <items code="at0016">
+        <items id="text">Kunskapskälla för predicerad påverkan</items>
+        <items id="description">Strukturerade detaljer om referensen som används för att beräkna predicerad påverkan.</items>
+      </items>
+      <items code="at0017">
+        <items id="text">Poäng</items>
+        <items id="description">Det beräknade värdet.</items>
+      </items>
+      <items code="at0018">
+        <items id="text">Kvalitativ prediktion</items>
+        <items id="description">Läsbar version av den predicerade påverkan.</items>
+      </items>
+      <items code="at0019">
+        <items id="text">Gen</items>
+        <items id="description">Strukturerade detaljer om genen som bär varianten.</items>
+      </items>
+      <items code="at0020">
+        <items id="text">Gensymbol</items>
+        <items id="description">Den officiella gensymbolen godkänd av HGNC, en kort förkortning av gennamnet.</items>
+      </items>
+      <items code="at0021">
+        <items id="text">Gennamn</items>
+        <items id="description">Det fullständiga gennamnet godkänt av HGNC som beskriver genens karaktär eller funktion.</items>
+      </items>
+      <items code="at0023">
+        <items id="text">Bästa transkriptkandidat</items>
+        <items id="description">ID för transkriptet med högst predicerad påverkan.</items>
+      </items>
+      <items code="at0024">
+        <items id="text">Konservering</items>
+        <items id="description">Strukturerade detaljer om evolutionär konservering.</items>
+      </items>
+      <items code="at0025">
+        <items id="text">Kunskapskälla för konserveringspoäng</items>
+        <items id="description">Strukturerade detaljer om referensen som används för att beräkna konserveringspoängen.</items>
+      </items>
+      <items code="at0026">
+        <items id="text">Poäng</items>
+        <items id="description">Konserveringspoängen.</items>
+      </items>
+      <items code="at0028">
+        <items id="text">Alleldjup</items>
+        <items id="description">Antal läsningar som stöder den rapporterade varianten.</items>
+      </items>
+      <items code="at0029">
+        <items id="text">Detaljer om allelfrekvens i population</items>
+        <items id="description">Den relativa frekvensen av en viss allel i populationen.</items>
+      </items>
+      <items code="at0030">
+        <items id="text">Kunskapskälla för allelfrekvens i population</items>
+        <items id="description">Strukturerade detaljer om databasen som används för att beräkna allelfrekvensen.</items>
+      </items>
+      <items code="at0031">
+        <items id="text">Allelfrekvens i population</items>
+        <items id="description">Allelfrekvensen i populationen.</items>
+      </items>
+      <items code="at0039">
+        <items id="text">Genotyp</items>
+        <items id="description">Genotyp kodad som allelvärden.</items>
+      </items>
+      <items code="at0040">
+        <items id="text">Allelstatus</items>
+        <items id="description">Förekomstnivån för en enskild DNA-markör inom en uppsättning kromosomer.</items>
+      </items>
+      <items code="at0041">
+        <items id="text">Genotypkvalitet</items>
+        <items id="description">Betingad genotypkvalitet, kodad som Phred-kvalitet.</items>
+      </items>
+      <items code="at0045">
+        <items id="text">Strukturerad variant</items>
+        <items id="description">Strukturerad beskrivning av den genomiska varianten.</items>
+      </items>
+      <items code="at0047">
+        <items id="text">Allelfrekvens</items>
+        <items id="description">Den relativa frekvensen av en allel i ett visst locus.</items>
+      </items>
+      <items code="at0052">
+        <items id="text">Funktionell påverkan</items>
+        <items id="description">Tolkning av variationen kopplad till en specifik artikel.</items>
+      </items>
+      <items code="at0053">
+        <items id="text">Källa</items>
+        <items id="description">Referens till den specifika forskningsartikeln.</items>
+      </items>
+      <items code="at0054">
+        <items id="text">Påverkan</items>
+        <items id="description">Ord eller fras som beskriver den rapporterade påverkan av den specifika varianten.</items>
+      </items>
+      <items code="at0056">
+        <items id="text">Kopietalsöverlapp</items>
+        <items id="description">Andelen av genregionen som täcks av kopietalet.</items>
+      </items>
+      <items code="at0057">
+        <items id="text">Del av fusion</items>
+        <items id="description">Anger om genen ingår i en fusionsgen och om den är första eller andra delen av fusionsgenen.</items>
+      </items>
+      <items code="at0058">
+        <items id="text">ACMG-klassificering</items>
+        <items id="description">Klinisk signifikans enligt ACMG:s rekommendationer.</items>
+      </items>
+      <items code="at0059">
+        <items id="text">Fusionsexon</items>
+        <items id="description">Numret på exonet som ingår i fusionen.</items>
+      </items>
+      <items code="at0060">
+        <items id="text">Läsdjup</items>
+        <items id="description">Totalt antal läsningar mappade på denna specifika position.</items>
+      </items>
+      <items code="at0061">
+        <items id="text">VCF-kvalitetsfilter</items>
+        <items id="description">Strukturerade detaljer om kvalitetsfilter som tillämpats på data.</items>
+      </items>
+      <items code="at0062">
+        <items id="text">Filternamn</items>
+        <items id="description">Kvalitetsfiltrets namn.</items>
+      </items>
+      <items code="at0063">
+        <items id="text">Beskrivning</items>
+        <items id="description">Utökad beskrivning av kvalitetsfiltret.</items>
+      </items>
+      <items code="at0064">
+        <items id="text">Filter godkänt</items>
+        <items id="description">Passerade varianten kvalitetsfiltret?</items>
+      </items>
+      <items code="at0067">
+        <items id="text">Strängbiaskvot</items>
+        <items id="description">Kvoten för strängbias.</items>
+      </items>
+      <items code="at0068">
+        <items id="text">p-värde för strängbias</items>
+        <items id="description">Phred-skalat p-värde för strängbias.</items>
+      </items>
+      <items code="at0069">
+        <items id="text">Genotypsannolikhet</items>
+        <items id="description">Kommaseparerad lista med log10-skalade genotypsannolikheter för alla möjliga genotyper, givet referens- och alternativa alleler.</items>
+      </items>
+      <items code="at0070">
+        <items id="text">Providentifierare</items>
+        <items id="description">Identifiering av provet som använts för det genomiska resultatet.</items>
+      </items>
+      <items code="at0071">
+        <items id="text">Patogen</items>
+        <items id="description">Patogen variant.</items>
+      </items>
+      <items code="at0072">
+        <items id="text">Sannolikt patogen</items>
+        <items id="description">Sannolikt patogen variant.</items>
+      </items>
+      <items code="at0073">
+        <items id="text">Oklar signifikans</items>
+        <items id="description">Variant av oklar signifikans.</items>
+      </items>
+      <items code="at0074">
+        <items id="text">Sannolikt benign</items>
+        <items id="description">Sannolikt benign variant.</items>
+      </items>
+      <items code="at0075">
+        <items id="text">Benign</items>
+        <items id="description">Benign variant.</items>
+      </items>
+      <items code="at0076">
+        <items id="text">Heteroplasmisk</items>
+        <items id="description">Heteroplasmisk.</items>
+      </items>
+      <items code="at0077">
+        <items id="text">Homoplasmisk</items>
+        <items id="description">Homoplasmisk.</items>
+      </items>
+      <items code="at0078">
+        <items id="text">Homozygot</items>
+        <items id="description">Homozygot.</items>
+      </items>
+      <items code="at0079">
+        <items id="text">Heterozygot</items>
+        <items id="description">Heterozygot.</items>
+      </items>
+      <items code="at0080">
+        <items id="text">Hemizygot</items>
+        <items id="description">Hemizygot.</items>
+      </items>
+      <items code="at0085">
+        <items id="text">Vildtyp</items>
+        <items id="description">Sekvensen på en given position är identisk med referenssekvensen.</items>
+      </items>
+      <items code="at0086">
+        <items id="text">Deletion</items>
+        <items id="description">En deletion i aminosyrasekvensen.</items>
+      </items>
+      <items code="at0087">
+        <items id="text">Duplikation</items>
+        <items id="description">En duplikation i aminosyrasekvensen.</items>
+      </items>
+      <items code="at0088">
+        <items id="text">Läsramsförskjutning</items>
+        <items id="description">En läsramsförskjutning i aminosyrasekvensen.</items>
+      </items>
+      <items code="at0089">
+        <items id="text">Initierande metionin</items>
+        <items id="description">En variant som påverkar translationens startkodon.</items>
+      </items>
+      <items code="at0090">
+        <items id="text">Insertion</items>
+        <items id="description">En insertion i aminosyrasekvensen.</items>
+      </items>
+      <items code="at0091">
+        <items id="text">Insertion och deletion</items>
+        <items id="description">En insertion/deletion i aminosyrasekvensen.</items>
+      </items>
+      <items code="at0092">
+        <items id="text">Missense</items>
+        <items id="description">En aminosyra ersätts av en annan aminosyra.</items>
+      </items>
+      <items code="at0093">
+        <items id="text">Nonsens</items>
+        <items id="description">En aminosyra ersätts av ett translationellt stoppkodon (terminationskodon).</items>
+      </items>
+      <items code="at0094">
+        <items id="text">Tyst</items>
+        <items id="description">En variant i DNA-sekvensen som inte ändrar aminosyrasekvensen i det kodade proteinet.</items>
+      </items>
+      <items code="at0095">
+        <items id="text">Stoppkodonmutation</items>
+        <items id="description">En variant som påverkar translationens stoppkodon.</items>
+      </items>
+      <items code="at0096">
+        <items id="text">Första</items>
+        <items id="description">Första delen av en fusionsgen.</items>
+      </items>
+      <items code="at0097">
+        <items id="text">Andra</items>
+        <items id="description">Andra delen av en fusionsgen.</items>
+      </items>
+      <items code="at0098">
+        <items id="text">Ytterligare detaljer</items>
+        <items id="description">Ytterligare detaljer som ska registreras.</items>
+      </items>
+      <items code="at0099">
+        <items id="text">Avstånd från splitsningsställe</items>
+        <items id="description">Avstånd i nukleotider mellan mutationen och exon–intron-gränsen.</items>
+      </items>
+      <items code="at0100">
+        <items id="text">RNA-förändring</items>
+        <items id="description">Beskrivning av variationen på RNA-nivå enligt HGVS-nomenklaturen.</items>
+      </items>
+      <items code="at0101">
+        <items id="text">Variant</items>
+        <items id="description">Beskrivning av variationen på genomisk nivå enligt HGVS-nomenklaturen.</items>
+      </items>
+      <items code="at0102">
+        <items id="text">Variantidentifiering</items>
+        <items id="description">Referens till en specifik variation registrerad i en extern biologisk variationsdatabas.</items>
+      </items>
+      <items code="at9000">
+        <items id="text">Kvalificerat reellt tal</items>
+        <items id="description">Kvalificerat reellt tal</items>
+      </items>
       <items code="at0000.1">
         <items id="text">Genetiskt variantresultat (cancer)</items>
         <items id="description">Cancergenomiskt fynd med ASCO/AMP, ESCAT, ursprung och kliniska implikationer.</items>
       </items>
-      <items code="at0.1">
+      <items code="at0.9000">
         <items id="text">Genetiskt ursprung</items>
         <items id="description">Om varianten är somatisk, germline, troligen somatisk, troligen germline eller okänd.</items>
       </items>
-      <items code="at0.2">
+      <items code="at0.9001">
         <items id="text">ASCO/AMP klinisk signifikans-tier</items>
         <items id="description">Somatisk klinisk signifikans enligt ASCO/AMP/CAP (Tier I–IV). Komplement till förälderns ACMG-klassificering.</items>
       </items>
-      <items code="at0.3">
+      <items code="at0.9002">
         <items id="text">ESCAT behandlingsrelevans</items>
         <items id="description">ESMO ESCAT-nivå för terapeutiskt beslutsstöd.</items>
       </items>
-      <items code="at0.4">
+      <items code="at0.9003">
         <items id="text">Exonnummer</items>
         <items id="description">Exonnummer som påverkas av varianten.</items>
       </items>
-      <items code="at0.5">
+      <items code="at0.9004">
         <items id="text">Karyotyp (ISCN)</items>
         <items id="description">ISCN-karyotypsträng för kromosomavvikelse eller CNV-notation.</items>
       </items>
@@ -17464,51 +18904,51 @@
         <items id="text">Klinisk implikation</items>
         <items id="description">Diagnostisk och/eller terapeutisk implikation för varianten.</items>
       </items>
-      <items code="at0103">
+      <items code="at0.1">
         <items id="text">Somatisk</items>
         <items id="description">Variant förvärvad i somatisk vävnad.</items>
       </items>
-      <items code="at0104">
+      <items code="at0.2">
         <items id="text">Germline</items>
         <items id="description">Variant i germline.</items>
       </items>
-      <items code="at0105">
+      <items code="at0.3">
         <items id="text">Troligen somatisk</items>
         <items id="description">Variant bedömd som troligen somatisk.</items>
       </items>
-      <items code="at0106">
+      <items code="at0.4">
         <items id="text">Troligen germline</items>
         <items id="description">Variant bedömd som troligen germline.</items>
       </items>
-      <items code="at0107">
+      <items code="at0.5">
         <items id="text">Okänt ursprung</items>
         <items id="description">Genetiskt ursprung ej fastställt.</items>
       </items>
-      <items code="at0108">
+      <items code="at0.10">
         <items id="text">Tier I-A</items>
         <items id="description">Stark klinisk signifikans: FDA-godkänd behandling / riktlinjerek.</items>
       </items>
-      <items code="at0109">
+      <items code="at0.11">
         <items id="text">Tier I-B</items>
         <items id="description">Stark klinisk signifikans: professionell riktlinjerek.</items>
       </items>
-      <items code="at0110">
+      <items code="at0.12">
         <items id="text">Tier I-C</items>
         <items id="description">Stark klinisk signifikans: expertkonsensus / välpowrad studie.</items>
       </items>
-      <items code="at0111">
+      <items code="at0.13">
         <items id="text">Tier I-D</items>
         <items id="description">Stark klinisk signifikans: preklinisk evidens.</items>
       </items>
-      <items code="at0112">
+      <items code="at0.14">
         <items id="text">Tier II</items>
         <items id="description">Potentiell klinisk signifikans: investigationell eller annan tumörtyp.</items>
       </items>
-      <items code="at0113">
+      <items code="at0.15">
         <items id="text">Tier III</items>
         <items id="description">Okänd klinisk signifikans (somatisk VUS-ekvivalent).</items>
       </items>
-      <items code="at0114">
+      <items code="at0.16">
         <items id="text">Tier IV</items>
         <items id="description">Benign eller troligen benign / passager-mutation.</items>
       </items>
@@ -17556,31 +18996,43 @@
         <items id="text">ESCAT Tier X</items>
         <items id="description">Ingen evidens för åtgärdbarhet.</items>
       </items>
-      <items code="at0045.1">
-        <items id="text">Kopietalsvariant (cancer)</items>
-        <items id="description">CNV med Gain/Loss/Amplifiering/Homozygot deletion.</items>
+      <items code="at0.40">
+        <items id="text">Missense-variant</items>
+        <items id="description">Sekvensvariant som ändrar en eller flera baser och ger en annan aminosyrasekvens med bibehållen längd. (SO:0001583)</items>
       </items>
-      <items code="at0045.2">
-        <items id="text">Substitutionsvariant</items>
-        <items id="description">SNV / substitution – strukturerad detalj.</items>
+      <items code="at0.41">
+        <items id="text">Nonsensvariant (stop gained)</items>
+        <items id="description">Sekvensvariant där minst en bas i ett kodon ändras så att ett förtida stoppkodon uppstår och transkriptet förkortas. (SO:0001587)</items>
       </items>
-      <items code="at0045.3">
-        <items id="text">Deletionsvariant</items>
-        <items id="description">Deletion – strukturerad detalj.</items>
+      <items code="at0.42">
+        <items id="text">Läsramsförskjutningsvariant</items>
+        <items id="description">Sekvensvariant som bryter den translationella läsramen eftersom antalet insererade eller deleterade nukleotider inte är en multipel av tre. (SO:0001589)</items>
       </items>
-      <items code="at0045.4">
-        <items id="text">Insertionsvariant</items>
-        <items id="description">Insertion – strukturerad detalj.</items>
+      <items code="at0.43">
+        <items id="text">Synonym variant</items>
+        <items id="description">Sekvensvariant som inte ändrar den kodade aminosyran. (SO:0001819)</items>
       </items>
-      <items code="at0045.5">
+      <items code="at0.44">
+        <items id="text">Förlust av startkodon</items>
+        <items id="description">Kodonvariant som ändrar minst en bas i det kanoniska startkodonet. (SO:0002012)</items>
+      </items>
+      <items code="at0.45">
+        <items id="text">Förlust av stoppkodon</items>
+        <items id="description">Sekvensvariant där minst en bas i stoppkodonet ändras så att transkriptet förlängs. (SO:0001578)</items>
+      </items>
+      <items code="at0.46">
+        <items id="text">Insertion i läsram</items>
+        <items id="description">Icke-synonym variant i läsram som infogar baser i den kodande sekvensen. (SO:0001821)</items>
+      </items>
+      <items code="at0.47">
+        <items id="text">Deletion i läsram</items>
+        <items id="description">Icke-synonym variant i läsram som tar bort baser från den kodande sekvensen. (SO:0001822)</items>
+      </items>
+      <items code="at0045.0">
         <items id="text">Deletions-insertionsvariant</items>
         <items id="description">Indel – strukturerad detalj.</items>
       </items>
-      <items code="at0098.1">
-        <items id="text">Genetisk variantförekomst</items>
-        <items id="description">Påvisad / ej påvisad (utkastarketyp).</items>
-      </items>
-      <items code="at0098.2">
+      <items code="at0098.0">
         <items id="text">Translokation / fusionsstruktur</items>
         <items id="description">Strukturdetalj för rearrangemang (utkast).</items>
       </items>
@@ -17592,6 +19044,56 @@
             <value>openehr</value>
           </terminology_id>
           <code_string>380</code_string>
+        </value>
+      </items>
+    </term_bindings>
+    <term_bindings terminology="SNOMED-CT">
+      <items code="at0.40">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>1306850007</code_string>
+        </value>
+      </items>
+      <items code="at0.41">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>327671006</code_string>
+        </value>
+      </items>
+      <items code="at0.42">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>325753009</code_string>
+        </value>
+      </items>
+      <items code="at0.43">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>1306861004</code_string>
+        </value>
+      </items>
+      <items code="at0.1">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>719428005</code_string>
+        </value>
+      </items>
+      <items code="at0.2">
+        <value>
+          <terminology_id>
+            <value>SNOMED-CT</value>
+          </terminology_id>
+          <code_string>261101003</code_string>
         </value>
       </items>
     </term_bindings>
@@ -17642,16 +19144,52 @@
         <items id="text">Copy number change type value</items>
         <items id="description">Coded value for copy number change type including amplification and homozygous deletion.</items>
       </items>
-      <items code="at0.1">
+      <items code="at0006.1">
         <items id="text">Amplification</items>
         <items id="description">High-level copy number gain (typically &gt;4–6 copies; laboratory-specific threshold). SO:0001742 used clinically for amplification events such as ERBB2 or MYC.</items>
       </items>
-      <items code="at0.2">
+      <items code="at0007.1">
         <items id="text">Homozygous deletion</items>
         <items id="description">Both alleles deleted (0 copies). Aligns with SO:0002210 presence_absence_variation / homozygous deletion (e.g. CDKN2A).</items>
       </items>
     </term_definitions>
     <term_definitions language="sv">
+      <items code="at0000">
+        <items id="text">Genomisk kopietalsvariant</items>
+        <items id="description">En genetisk sekvensförändring hos människa där ett DNA-segment, vanligen större än 1 kilobas (kb), jämfört med en genomisk referenssekvens har deleterats eller duplicerats.</items>
+      </items>
+      <items code="at0001">
+        <items id="text">Start</items>
+        <items id="description">Position eller intervall av möjliga positioner för CNV:ns första nukleotid.</items>
+      </items>
+      <items code="at0002">
+        <items id="text">Slut</items>
+        <items id="description">Position eller intervall av möjliga positioner för CNV:ns sista nukleotid.</items>
+      </items>
+      <items code="at0003">
+        <items id="text">Totalt kopietal</items>
+        <items id="description">Antal förekomster av allelen.</items>
+      </items>
+      <items code="at0004">
+        <items id="text">Referenssekvens</items>
+        <items id="description">Sekvensfilen som används som referens för att beskriva varianten.</items>
+      </items>
+      <items code="at0005">
+        <items id="text">Typ av kopietalsförändring</items>
+        <items id="description">Typ av sekvensförändring.</items>
+      </items>
+      <items code="at0006">
+        <items id="text">Ökning</items>
+        <items id="description">En sekvensförändring där kopietalet för en given region är större än i referenssekvensen.</items>
+      </items>
+      <items code="at0007">
+        <items id="text">Förlust</items>
+        <items id="description">En sekvensförändring där kopietalet för en given region är mindre än i referenssekvensen.</items>
+      </items>
+      <items code="at8999">
+        <items id="text">Kvalificerat reellt tal</items>
+        <items id="description">Kvalificerat reellt tal</items>
+      </items>
       <items code="at0000.1">
         <items id="text">Kopietalsvariant (cancer)</items>
         <items id="description">CNV med Gain/Loss/Amplifiering/Homozygot deletion.</items>
@@ -17660,11 +19198,11 @@
         <items id="text">Kopietalsändringstyp värde</items>
         <items id="description">Kodad kopietalsändringstyp inklusive amplifiering och homozygot deletion.</items>
       </items>
-      <items code="at0.1">
+      <items code="at0006.1">
         <items id="text">Amplifiering</items>
         <items id="description">Hög kopietalsökning (typiskt &gt;4–6 kopior; labspecifik tröskel).</items>
       </items>
-      <items code="at0.2">
+      <items code="at0007.1">
         <items id="text">Homozygot deletion</items>
         <items id="description">Båda alleler deleterade (0 kopior).</items>
       </items>
@@ -17709,20 +19247,20 @@
         <items id="description">SNV / substitution – strukturerad detalj.</items>
       </items>
       <items code="at0001">
-        <items id="text">Position substituted</items>
-        <items id="description">The position of the substituted nucleotide.</items>
+        <items id="text">Substituerad position</items>
+        <items id="description">Positionen för den substituerade nukleotiden.</items>
       </items>
       <items code="at0003">
-        <items id="text">Reference nucleotide</items>
-        <items id="description">The nucleotide at reference position.</items>
+        <items id="text">Referensnukleotid</items>
+        <items id="description">Nukleotiden på referenspositionen.</items>
       </items>
       <items code="at0005">
-        <items id="text">New nucleotide</items>
-        <items id="description">Substituted nucleotide.</items>
+        <items id="text">Ny nukleotid</items>
+        <items id="description">Substituerad nukleotid.</items>
       </items>
       <items code="at0006">
-        <items id="text">Reference sequence</items>
-        <items id="description">The sequence file used as a reference to describe this variant.</items>
+        <items id="text">Referenssekvens</items>
+        <items id="description">Sekvensfilen som används som referens för att beskriva varianten.</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -17755,20 +19293,20 @@
         <items id="description">Deletion – strukturerad detalj.</items>
       </items>
       <items code="at0001">
-        <items id="text">Start position</items>
-        <items id="description">Position of the deleted nucleotide or the first nucleotide of the deleted range.</items>
+        <items id="text">Startposition</items>
+        <items id="description">Position för den deleterade nukleotiden eller den första nukleotiden i det deleterade intervallet.</items>
       </items>
       <items code="at0005">
-        <items id="text">End position</items>
-        <items id="description">Position of the last nucleotide of the deleted range.</items>
+        <items id="text">Slutposition</items>
+        <items id="description">Position för den sista nukleotiden i det deleterade intervallet.</items>
       </items>
       <items code="at0008">
-        <items id="text">Deleted sequence</items>
-        <items id="description">The deleted nucleotide or sequence.</items>
+        <items id="text">Deleterad sekvens</items>
+        <items id="description">Den deleterade nukleotiden eller sekvensen.</items>
       </items>
       <items code="at0009">
-        <items id="text">Reference sequence</items>
-        <items id="description">The sequence file used as a reference to describe this variant.</items>
+        <items id="text">Referenssekvens</items>
+        <items id="description">Sekvensfilen som används som referens för att beskriva varianten.</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -17801,20 +19339,20 @@
         <items id="description">Insertion – strukturerad detalj.</items>
       </items>
       <items code="at0001">
-        <items id="text">Start position</items>
-        <items id="description">The position of the first of the two flanking nucleotides.</items>
+        <items id="text">Startposition</items>
+        <items id="description">Positionen för den första av de två flankerande nukleotiderna.</items>
       </items>
       <items code="at0003">
-        <items id="text">End position</items>
-        <items id="description">The position of the last of the two flanking nucleotides.</items>
+        <items id="text">Slutposition</items>
+        <items id="description">Positionen för den sista av de två flankerande nukleotiderna.</items>
       </items>
       <items code="at0006">
-        <items id="text">Inserted sequence</items>
-        <items id="description">The inserted nucleotide or sequence.</items>
+        <items id="text">Insererad sekvens</items>
+        <items id="description">Den insererade nukleotiden eller sekvensen.</items>
       </items>
       <items code="at0007">
-        <items id="text">Reference sequence</items>
-        <items id="description">The sequence file used as a reference to describe this variant.</items>
+        <items id="text">Referenssekvens</items>
+        <items id="description">Sekvensfilen som används som referens för att beskriva varianten.</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -17851,24 +19389,24 @@
         <items id="description">Indel – strukturerad detalj.</items>
       </items>
       <items code="at0001">
-        <items id="text">Start position</items>
-        <items id="description">Position of the deleted nucleotide or the first nucleotide of the deleted range.</items>
+        <items id="text">Startposition</items>
+        <items id="description">Position för den deleterade nukleotiden eller den första nukleotiden i det deleterade intervallet.</items>
       </items>
       <items code="at0003">
-        <items id="text">End position</items>
-        <items id="description">Position of the last nucleotide of the deleted range.</items>
+        <items id="text">Slutposition</items>
+        <items id="description">Position för den sista nukleotiden i det deleterade intervallet.</items>
       </items>
       <items code="at0005">
-        <items id="text">Deleted sequence</items>
-        <items id="description">The deleted nucleotide or sequence.</items>
+        <items id="text">Deleterad sekvens</items>
+        <items id="description">Den deleterade nukleotiden eller sekvensen.</items>
       </items>
       <items code="at0007">
-        <items id="text">Inserted sequence</items>
-        <items id="description">The inserted nucleotide or sequence.</items>
+        <items id="text">Insererad sekvens</items>
+        <items id="description">Den insererade nukleotiden eller sekvensen.</items>
       </items>
       <items code="at0008">
-        <items id="text">Reference sequence</items>
-        <items id="description">The sequence file used as a reference to describe this variant.</items>
+        <items id="text">Referenssekvens</items>
+        <items id="description">Sekvensfilen som används som referens för att beskriva varianten.</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -17913,32 +19451,32 @@
         <items id="description">Påvisad / ej påvisad (utkastarketyp).</items>
       </items>
       <items code="at0001">
-        <items id="text">Variant name</items>
-        <items id="description">The name of the variant.</items>
+        <items id="text">Variantnamn</items>
+        <items id="description">Variantens namn.</items>
       </items>
       <items code="at0002">
-        <items id="text">Finding</items>
-        <items id="description">The presence or absence of the variant.</items>
+        <items id="text">Fynd</items>
+        <items id="description">Förekomst eller frånvaro av varianten.</items>
       </items>
       <items code="at0003">
-        <items id="text">Comment</items>
-        <items id="description">Additional narrative about the genetic variant presence not captured in other elements.</items>
+        <items id="text">Kommentar</items>
+        <items id="description">Ytterligare fritext om förekomst av den genetiska varianten som inte fångas i andra element.</items>
       </items>
       <items code="at0004">
-        <items id="text">Present</items>
-        <items id="description">The target variant is present.</items>
+        <items id="text">Förekommer</items>
+        <items id="description">Målvarianten förekommer.</items>
       </items>
       <items code="at0005">
-        <items id="text">Absent</items>
-        <items id="description">The target variant is absent.</items>
+        <items id="text">Förekommer inte</items>
+        <items id="description">Målvarianten förekommer inte.</items>
       </items>
       <items code="at0006">
-        <items id="text">No call</items>
-        <items id="description">No data are available to confirm the presence/absence of the variant.</items>
+        <items id="text">Ingen bestämning</items>
+        <items id="description">Data saknas för att bekräfta förekomst/frånvaro av varianten.</items>
       </items>
       <items code="at0007">
-        <items id="text">Indeterminate</items>
-        <items id="description">The result is indeterminate.</items>
+        <items id="text">Obestämbart</items>
+        <items id="description">Resultatet är obestämbart.</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -17983,32 +19521,32 @@
         <items id="description">Strukturdetalj för rearrangemang (utkast).</items>
       </items>
       <items code="at0003">
-        <items id="text">Breakpoint position 1</items>
-        <items id="description">Position of first breakpoint relative to start of &quot;Chromosome 1&quot;.</items>
+        <items id="text">Brytpunktsposition 1</items>
+        <items id="description">Position för första brytpunkten relativt början av &quot;Kromosom 1&quot;.</items>
       </items>
       <items code="at0004">
-        <items id="text">Breakpoint position 2</items>
-        <items id="description">Position of second breakpoint relative to start of &quot;Chromosome 2&quot;.</items>
+        <items id="text">Brytpunktsposition 2</items>
+        <items id="description">Position för andra brytpunkten relativt början av &quot;Kromosom 2&quot;.</items>
       </items>
       <items code="at0005">
-        <items id="text">Strand 1</items>
-        <items id="description">A value of &quot;+&quot; indicates that the chromosomal segment at the second breakpoint is connected to the chromosomal segment at the first breakpoint right of &quot;Breakpoint position 1&quot;. A value of &quot;-&quot; indicates that the chromosomal segment at the second breakpoint is connected to the chromosomal segment of the first breakpoint left of &quot;Breakpoint position 1&quot;.</items>
+        <items id="text">Sträng 1</items>
+        <items id="description">Värdet &quot;+&quot; anger att kromosomsegmentet vid andra brytpunkten är kopplat till kromosomsegmentet vid första brytpunkten till höger om &quot;Brytpunktsposition 1&quot;. Värdet &quot;-&quot; anger att det är kopplat till vänster om &quot;Brytpunktsposition 1&quot;.</items>
       </items>
       <items code="at0006">
-        <items id="text">Strand 2</items>
-        <items id="description">A value of &quot;+&quot; indicates that the chromosomal segment at the first breakpoint is connected to the chromosomal segment at the second breakpoint right of &quot;Breakpoint position 2&quot;. A value of &quot;-&quot; indicates that the chromosomal segment at the first breakpoint is connected to the chromosomal segment of the second breakpoint left of &quot;Breakpoint position 2&quot;.</items>
+        <items id="text">Sträng 2</items>
+        <items id="description">Värdet &quot;+&quot; anger att kromosomsegmentet vid första brytpunkten är kopplat till kromosomsegmentet vid andra brytpunkten till höger om &quot;Brytpunktsposition 2&quot;. Värdet &quot;-&quot; anger att det är kopplat till vänster om &quot;Brytpunktsposition 2&quot;.</items>
       </items>
       <items code="at0007">
-        <items id="text">Reference sequence 1</items>
-        <items id="description">Chromosome of first breakpoint.</items>
+        <items id="text">Referenssekvens 1</items>
+        <items id="description">Kromosom för första brytpunkten.</items>
       </items>
       <items code="at0008">
-        <items id="text">Reference sequence 2</items>
-        <items id="description">Chromosome of second breakpoint.</items>
+        <items id="text">Referenssekvens 2</items>
+        <items id="description">Kromosom för andra brytpunkten.</items>
       </items>
       <items code="at0009">
-        <items id="text">HGVS term</items>
-        <items id="description">The description of the variant using the recommendations of the accepted HGVS nomeclature named extension ISCN.</items>
+        <items id="text">HGVS-term</items>
+        <items id="description">Beskrivning av varianten enligt rekommendationerna i den accepterade HGVS-nomenklaturens utvidgning ISCN.</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -18018,15 +19556,15 @@
         <items id="text">Clinical implication</items>
         <items id="description">Diagnostic and/or therapeutic implication for this variant.</items>
       </items>
-      <items code="at0001">
+      <items code="at9001">
         <items id="text">Implication identifier</items>
         <items id="description">Business identifier for this implication entry (FHIR Observation.identifier).</items>
       </items>
-      <items code="at0003">
+      <items code="at9003">
         <items id="text">Implication type</items>
         <items id="description">Whether this implication is diagnostic or therapeutic.</items>
       </items>
-      <items code="at0005">
+      <items code="at9005">
         <items id="text">Status</items>
         <items id="description">Lifecycle status of the implication (e.g. preliminary, final, amended).</items>
       </items>
@@ -18042,27 +19580,27 @@
         <items id="text">Linked variant reference</items>
         <items id="description">Optional explicit link back to the source variant when implications are stored separately.</items>
       </items>
-      <items code="at0015">
+      <items code="at9000">
         <items id="text">Diagnostic</items>
         <items id="description">Implication affects diagnosis, subtype, or prognosis classification.</items>
       </items>
-      <items code="at0016">
+      <items code="at0001">
         <items id="text">Therapeutic</items>
         <items id="description">Implication affects treatment choice or eligibility.</items>
       </items>
-      <items code="at0017">
+      <items code="at0002">
         <items id="text">Preliminary</items>
         <items id="description">Implication is preliminary.</items>
       </items>
-      <items code="at0018">
+      <items code="at0003">
         <items id="text">Final</items>
         <items id="description">Implication is final.</items>
       </items>
-      <items code="at0019">
+      <items code="at0004">
         <items id="text">Amended</items>
         <items id="description">Implication has been amended.</items>
       </items>
-      <items code="at0020">
+      <items code="at0005">
         <items id="text">Cancelled</items>
         <items id="description">Implication cancelled / entered in error.</items>
       </items>
@@ -18072,15 +19610,15 @@
         <items id="text">Klinisk implikation</items>
         <items id="description">Diagnostisk och/eller terapeutisk implikation för varianten.</items>
       </items>
-      <items code="at0001">
+      <items code="at9001">
         <items id="text">Implikationsidentifierare</items>
         <items id="description">Verksamhetsidentifierare för implikationsposten.</items>
       </items>
-      <items code="at0003">
+      <items code="at9003">
         <items id="text">Implikationstyp</items>
         <items id="description">Om implikationen är diagnostisk eller terapeutisk.</items>
       </items>
-      <items code="at0005">
+      <items code="at9005">
         <items id="text">Status</items>
         <items id="description">Livscykelstatus för implikationen.</items>
       </items>
@@ -18096,27 +19634,27 @@
         <items id="text">Länkad variantreferens</items>
         <items id="description">Valfri explicit länk tillbaka till källvarianten.</items>
       </items>
-      <items code="at0015">
+      <items code="at9000">
         <items id="text">Diagnostisk</items>
         <items id="description">Implikation påverkar diagnos, subtyp eller prognosklassificering.</items>
       </items>
-      <items code="at0016">
+      <items code="at0001">
         <items id="text">Terapeutisk</items>
         <items id="description">Implikation påverkar behandlingsval eller behörighet.</items>
       </items>
-      <items code="at0017">
+      <items code="at0002">
         <items id="text">Preliminär</items>
         <items id="description">Implikationen är preliminär.</items>
       </items>
-      <items code="at0018">
+      <items code="at0003">
         <items id="text">Slutgiltig</items>
         <items id="description">Implikationen är slutgiltig.</items>
       </items>
-      <items code="at0019">
+      <items code="at0004">
         <items id="text">Ändrad</items>
         <items id="description">Implikationen har ändrats.</items>
       </items>
-      <items code="at0020">
+      <items code="at0005">
         <items id="text">Makulerad</items>
         <items id="description">Implikationen makulerad / felaktigt registrerad.</items>
       </items>
@@ -18208,11 +19746,11 @@
       </items>
     </term_definitions>
   </component_ontologies>
-  <component_ontologies archetype_id="openEHR-EHR-CLUSTER.sequencing_assay.v0">
+  <component_ontologies archetype_id="openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0">
     <term_definitions language="en">
       <items code="at0000">
         <items id="text">Sequencing assay</items>
-        <items id="description">Study / assay metadata (sequencing type, kit, nucleic acid, device).</items>
+        <items id="description">An assay that uses sequencing technology to infer the sequence of a nucleic acid (DNA, RNA).</items>
       </items>
       <items code="at0001">
         <items id="text">Sequencing type</items>
@@ -18275,8 +19813,8 @@
         <items id="description">Structured details on the reference sequence of the region.</items>
       </items>
       <items code="at0036">
-        <items id="text">Sequencing device / panel</items>
-        <items id="description">Instrument or kit/panel product used for sequencing.</items>
+        <items id="text">Sequencing device</items>
+        <items id="description">The technology platform used to perform nucleic acid sequencing.</items>
       </items>
       <items code="at0037">
         <items id="text">Comment</items>
@@ -18284,7 +19822,7 @@
       </items>
       <items code="at0038">
         <items id="text">Reference genome</items>
-        <items id="description">Reference sequence used for alignment (e.g. GRCh38).</items>
+        <items id="description">Structured details about the specific version of the human sequence assembly used for annotation.</items>
       </items>
       <items code="at0039">
         <items id="text">Bioinformatic analysis</items>
@@ -18386,17 +19924,397 @@
         <items id="text">Chromosome Y</items>
         <items id="description">Chromosome Y.</items>
       </items>
+      <items code="at0000.1">
+        <items id="text">Sequencing assay</items>
+        <items id="description">Study / assay metadata (sequencing type, kit, nucleic acid, device).</items>
+      </items>
+      <items code="at0.1">
+        <items id="text">Study identifier</items>
+        <items id="description">Identifier of the sequencing/genomic study (FHIR GenomicStudy.identifier).</items>
+      </items>
+      <items code="at0.2">
+        <items id="text">Study type</items>
+        <items id="description">The type of genomic study performed, e.g. SNP detection or CNV detection (FHIR GenomicStudy.type). Multiple occurrences allowed.</items>
+      </items>
+      <items code="at0.4">
+        <items id="text">Study method type</items>
+        <items id="description">Coded method type for the sequencing type (FHIR GenomicStudy.analysis.methodType).</items>
+      </items>
+      <items code="at0.10">
+        <items id="text">Alternative splicing detection</items>
+        <items id="description">Identification of multiple different processed mRNA transcripts from the same DNA template</items>
+      </items>
+      <items code="at0.11">
+        <items id="text">Chromatin conformation</items>
+        <items id="description">Analysis of the spacial organization of chromatin within a cell</items>
+      </items>
+      <items code="at0.12">
+        <items id="text">CNV detection</items>
+        <items id="description">Detection of a change in the number of copies of a defined region of genomic DNA sequence resulting in structural variation when compared to the reference sequence</items>
+      </items>
+      <items code="at0.13">
+        <items id="text">Epigenetic Alterations - histone modifications</items>
+        <items id="description">Detection of biochemical modifications covalently bound to the N-terminal tail of a histone protein. These modifications may alter chromatin compaction and gene expression</items>
+      </items>
+      <items code="at0.14">
+        <items id="text">Epigenetic Alterations -DNA methylation</items>
+        <items id="description">Detection of the presence of an additional methyl group on a DNA nucleobase, which may alter gene transcription</items>
+      </items>
+      <items code="at0.15">
+        <items id="text">Familial variant segregation</items>
+        <items id="description">Determining if a variant identified in an individual is present in other family members</items>
+      </items>
+      <items code="at0.16">
+        <items id="text">Functional variation detection</items>
+        <items id="description">Detection of sequence variants which may alter gene expression or gene product function when compared to the reference sequence</items>
+      </items>
+      <items code="at0.17">
+        <items id="text">Gene expression profiling</items>
+        <items id="description">Measurement and characterization of activity from all gene products</items>
+      </items>
+      <items code="at0.18">
+        <items id="text">Post-translational Modification Identification</items>
+        <items id="description">Detection of biochemical modifications covalently bound to the amino acid monomers of a processed protein</items>
+      </items>
+      <items code="at0.19">
+        <items id="text">SNP Detection</items>
+        <items id="description">Determination of which nucleotide is base present at a known variable location of the genomic sequence</items>
+      </items>
+      <items code="at0.20">
+        <items id="text">STR count</items>
+        <items id="description">Quantification of the number of sequential microsatellite units in a repetitive sequence region</items>
+      </items>
+      <items code="at0.21">
+        <items id="text">Structural variation detection</items>
+        <items id="description">Detection of deletions, insertions, or rearrangements of DNA segments compared to the reference sequence</items>
+      </items>
+      <items code="at0.30">
+        <items id="text">Sequence analysis of select exons (targeted NGS panel)</items>
+        <items id="description">HL7 genomic-study-method-type: sequence-analysis-of-select-exons.</items>
+      </items>
+      <items code="at0.31">
+        <items id="text">Sequence analysis of the entire coding region (WES/WGS)</items>
+        <items id="description">HL7 genomic-study-method-type: sequence-analysis-of-the-entire-coding-region.</items>
+      </items>
+      <items code="at0.32">
+        <items id="text">Next-generation / massively parallel sequencing</items>
+        <items id="description">HL7 genomic-study-method-type: ngs-mps.</items>
+      </items>
+      <items code="at0.33">
+        <items id="text">Fluorescence in situ hybridization (FISH)</items>
+        <items id="description">HL7 genomic-study-method-type: fish.</items>
+      </items>
+      <items code="at0.34">
+        <items id="text">PCR</items>
+        <items id="description">HL7 genomic-study-method-type: pcr.</items>
+      </items>
+      <items code="at0.35">
+        <items id="text">Bi-directional Sanger sequence analysis</items>
+        <items id="description">HL7 genomic-study-method-type: bi-directional-sanger-sequence-analysis.</items>
+      </items>
+      <items code="at0.36">
+        <items id="text">Karyotyping</items>
+        <items id="description">HL7 genomic-study-method-type: karyotyping.</items>
+      </items>
+      <items code="at0.37">
+        <items id="text">Multiplex ligation-dependent probe amplification (MLPA)</items>
+        <items id="description">HL7 genomic-study-method-type: mlpa.</items>
+      </items>
+      <items code="at0.38">
+        <items id="text">Methylation analysis</items>
+        <items id="description">HL7 genomic-study-method-type: methylation-analysis.</items>
+      </items>
+      <items code="at0036.0">
+        <items id="text">Sequencing device / panel</items>
+        <items id="description">Instrument or kit/panel product used for sequencing.</items>
+      </items>
+      <items code="at0038.0">
+        <items id="text">Reference genome</items>
+        <items id="description">Reference sequence used for alignment (e.g. GRCh38).</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
+        <items id="text">Sekvenseringsanalys</items>
+        <items id="description">En analys som använder sekvenseringsteknik för att bestämma sekvensen hos en nukleinsyra (DNA, RNA).</items>
+      </items>
+      <items code="at0001">
+        <items id="text">Sekvenseringstyp</items>
+        <items id="description">Namn på tekniken som används för sekvenseringsanalysen.</items>
+      </items>
+      <items code="at0002">
+        <items id="text">Kitnamn</items>
+        <items id="description">Namn på kitet som används i experimentet.</items>
+      </items>
+      <items code="at0003">
+        <items id="text">Nukleinsyra</items>
+        <items id="description">Typ av nukleinsyra som används för sekvensering, t.ex. DNA, RNA eller cf-DNA.</items>
+      </items>
+      <items code="at0006">
+        <items id="text">Testad gen</items>
+        <items id="description">Lista över alla testade gener, om panelsekvensering utförts.</items>
+      </items>
+      <items code="at0007">
+        <items id="text">Gensymbol</items>
+        <items id="description">Den officiella gensymbolen godkänd av HGNC, en kort förkortning av gennamnet.</items>
+      </items>
+      <items code="at0022">
+        <items id="text">DNA</items>
+        <items id="description"></items>
+      </items>
+      <items code="at0023">
+        <items id="text">RNA</items>
+        <items id="description"></items>
+      </items>
+      <items code="at0024">
+        <items id="text">cf-DNA</items>
+        <items id="description"></items>
+      </items>
+      <items code="at0025">
+        <items id="text">Genens referenssekvens</items>
+        <items id="description">Strukturerade detaljer om genens referenssekvens.</items>
+      </items>
+      <items code="at0026">
+        <items id="text">Tillägg</items>
+        <items id="description">Ytterligare detaljer som ska registreras.</items>
+      </items>
+      <items code="at0030">
+        <items id="text">Testad region</items>
+        <items id="description">Om panelsekvensering utförts används detta kluster för att rapportera de regioner som sekvenserats, som ett genomiskt intervall som anger vilka delar av referenssekvensen som sekvenserats.</items>
+      </items>
+      <items code="at0031">
+        <items id="text">Kromosometikett</items>
+        <items id="description">Kromosomen för den testade regionen.</items>
+      </items>
+      <items code="at0032">
+        <items id="text">Start</items>
+        <items id="description">Startposition för den testade regionen.</items>
+      </items>
+      <items code="at0033">
+        <items id="text">Slut</items>
+        <items id="description">Slutposition för den testade regionen.</items>
+      </items>
+      <items code="at0035">
+        <items id="text">Regionens referenssekvens</items>
+        <items id="description">Strukturerade detaljer om regionens referenssekvens.</items>
+      </items>
+      <items code="at0036">
+        <items id="text">Sekvenseringsinstrument</items>
+        <items id="description">Teknikplattformen som används för nukleinsyrasekvensering.</items>
+      </items>
+      <items code="at0037">
+        <items id="text">Kommentar</items>
+        <items id="description">Kommentar om sekvenseringsanalysen som inte fångats i andra fält.</items>
+      </items>
+      <items code="at0038">
+        <items id="text">Referensgenom</items>
+        <items id="description">Strukturerade detaljer om den specifika versionen av den humana sekvensassemblyn som används för annotering.</items>
+      </items>
+      <items code="at0039">
+        <items id="text">Bioinformatisk analys</items>
+        <items id="description">Strukturerade detaljer om stegen i det bioinformatiska analysflödet eller protokollen som används (t.ex. instrument, mjukvara, pipelines).</items>
+      </items>
+      <items code="at0064">
+        <items id="text">Kromosom 1</items>
+        <items id="description">Kromosom 1.</items>
+      </items>
+      <items code="at0065">
+        <items id="text">Kromosom 2</items>
+        <items id="description">Kromosom 2.</items>
+      </items>
+      <items code="at0066">
+        <items id="text">Kromosom 3</items>
+        <items id="description">Kromosom 3.</items>
+      </items>
+      <items code="at0067">
+        <items id="text">Kromosom 4</items>
+        <items id="description">Kromosom 4.</items>
+      </items>
+      <items code="at0068">
+        <items id="text">Kromosom 5</items>
+        <items id="description">Kromosom 5.</items>
+      </items>
+      <items code="at0069">
+        <items id="text">Kromosom 6</items>
+        <items id="description">Kromosom 6.</items>
+      </items>
+      <items code="at0070">
+        <items id="text">Kromosom 7</items>
+        <items id="description">Kromosom 7.</items>
+      </items>
+      <items code="at0071">
+        <items id="text">Kromosom 8</items>
+        <items id="description">Kromosom 8.</items>
+      </items>
+      <items code="at0072">
+        <items id="text">Kromosom 9</items>
+        <items id="description">Kromosom 9.</items>
+      </items>
+      <items code="at0073">
+        <items id="text">Kromosom 10</items>
+        <items id="description">Kromosom 10.</items>
+      </items>
+      <items code="at0074">
+        <items id="text">Kromosom 11</items>
+        <items id="description">Kromosom 11.</items>
+      </items>
+      <items code="at0075">
+        <items id="text">Kromosom 12</items>
+        <items id="description">Kromosom 12.</items>
+      </items>
+      <items code="at0076">
+        <items id="text">Kromosom 13</items>
+        <items id="description">Kromosom 13.</items>
+      </items>
+      <items code="at0077">
+        <items id="text">Kromosom 14</items>
+        <items id="description">Kromosom 14.</items>
+      </items>
+      <items code="at0078">
+        <items id="text">Kromosom 15</items>
+        <items id="description">Kromosom 15.</items>
+      </items>
+      <items code="at0079">
+        <items id="text">Kromosom 16</items>
+        <items id="description">Kromosom 16.</items>
+      </items>
+      <items code="at0080">
+        <items id="text">Kromosom 17</items>
+        <items id="description">Kromosom 17.</items>
+      </items>
+      <items code="at0081">
+        <items id="text">Kromosom 18</items>
+        <items id="description">Kromosom 18.</items>
+      </items>
+      <items code="at0082">
+        <items id="text">Kromosom 19</items>
+        <items id="description">Kromosom 19.</items>
+      </items>
+      <items code="at0083">
+        <items id="text">Kromosom 20</items>
+        <items id="description">Kromosom 20.</items>
+      </items>
+      <items code="at0084">
+        <items id="text">Kromosom 21</items>
+        <items id="description">Kromosom 21.</items>
+      </items>
+      <items code="at0085">
+        <items id="text">Kromosom 22</items>
+        <items id="description">Kromosom 22.</items>
+      </items>
+      <items code="at0086">
+        <items id="text">Kromosom X</items>
+        <items id="description">Kromosom X.</items>
+      </items>
+      <items code="at0087">
+        <items id="text">Kromosom Y</items>
+        <items id="description">Kromosom Y.</items>
+      </items>
+      <items code="at0000.1">
         <items id="text">Sekvenseringsassay</items>
         <items id="description">Studie-/assaymetadata (sekvenseringstyp, kit, nukleinsyra, enhet).</items>
       </items>
-      <items code="at0036">
+      <items code="at0.1">
+        <items id="text">Studieidentifierare</items>
+        <items id="description">Identifierare för sekvenserings-/genomikstudien (FHIR GenomicStudy.identifier).</items>
+      </items>
+      <items code="at0.2">
+        <items id="text">Analystyp</items>
+        <items id="description">Typ av genomisk studie, t.ex. SNP-detektion eller CNV-detektion (FHIR GenomicStudy.type). Kan förekomma flera gånger.</items>
+      </items>
+      <items code="at0.4">
+        <items id="text">Analysmetod</items>
+        <items id="description">Kodad metodtyp för sekvenseringstypen (FHIR GenomicStudy.analysis.methodType).</items>
+      </items>
+      <items code="at0.10">
+        <items id="text">Detektion av alternativ splitsning</items>
+        <items id="description">Alternative splicing detection (HL7 genomic-study-type: alt-splc).</items>
+      </items>
+      <items code="at0.11">
+        <items id="text">Kromatinkonformation</items>
+        <items id="description">Chromatin conformation (HL7 genomic-study-type: chromatin).</items>
+      </items>
+      <items code="at0.12">
+        <items id="text">CNV-detektion</items>
+        <items id="description">CNV detection (HL7 genomic-study-type: cnv).</items>
+      </items>
+      <items code="at0.13">
+        <items id="text">Epigenetiska förändringar – histonmodifieringar</items>
+        <items id="description">Epigenetic Alterations - histone modifications (HL7 genomic-study-type: epi-alt-hist).</items>
+      </items>
+      <items code="at0.14">
+        <items id="text">Epigenetiska förändringar – DNA-metylering</items>
+        <items id="description">Epigenetic Alterations -DNA methylation (HL7 genomic-study-type: epi-alt-dna).</items>
+      </items>
+      <items code="at0.15">
+        <items id="text">Familjär variantsegregation</items>
+        <items id="description">Familial variant segregation (HL7 genomic-study-type: fam-var-segr).</items>
+      </items>
+      <items code="at0.16">
+        <items id="text">Detektion av funktionell variation</items>
+        <items id="description">Functional variation detection (HL7 genomic-study-type: func-var).</items>
+      </items>
+      <items code="at0.17">
+        <items id="text">Genuttrycksprofilering</items>
+        <items id="description">Gene expression profiling (HL7 genomic-study-type: gene-expression).</items>
+      </items>
+      <items code="at0.18">
+        <items id="text">Identifiering av posttranslationell modifiering</items>
+        <items id="description">Post-translational Modification Identification (HL7 genomic-study-type: post-trans-mod).</items>
+      </items>
+      <items code="at0.19">
+        <items id="text">SNP-detektion</items>
+        <items id="description">SNP Detection (HL7 genomic-study-type: snp).</items>
+      </items>
+      <items code="at0.20">
+        <items id="text">STR-räkning</items>
+        <items id="description">STR count (HL7 genomic-study-type: str).</items>
+      </items>
+      <items code="at0.21">
+        <items id="text">Detektion av strukturell variation</items>
+        <items id="description">Structural variation detection (HL7 genomic-study-type: struc-var).</items>
+      </items>
+      <items code="at0.30">
+        <items id="text">Sekvensanalys av utvalda exon (riktad NGS-panel)</items>
+        <items id="description">HL7 genomic-study-method-type: sequence-analysis-of-select-exons.</items>
+      </items>
+      <items code="at0.31">
+        <items id="text">Sekvensanalys av hela den kodande regionen (WES/WGS)</items>
+        <items id="description">HL7 genomic-study-method-type: sequence-analysis-of-the-entire-coding-region.</items>
+      </items>
+      <items code="at0.32">
+        <items id="text">Nästa generations / massivt parallell sekvensering</items>
+        <items id="description">HL7 genomic-study-method-type: ngs-mps.</items>
+      </items>
+      <items code="at0.33">
+        <items id="text">Fluorescens in situ-hybridisering (FISH)</items>
+        <items id="description">HL7 genomic-study-method-type: fish.</items>
+      </items>
+      <items code="at0.34">
+        <items id="text">PCR</items>
+        <items id="description">HL7 genomic-study-method-type: pcr.</items>
+      </items>
+      <items code="at0.35">
+        <items id="text">Dubbelriktad Sanger-sekvensanalys</items>
+        <items id="description">HL7 genomic-study-method-type: bi-directional-sanger-sequence-analysis.</items>
+      </items>
+      <items code="at0.36">
+        <items id="text">Karyotypering</items>
+        <items id="description">HL7 genomic-study-method-type: karyotyping.</items>
+      </items>
+      <items code="at0.37">
+        <items id="text">Multiplex ligeringsberoende probamplifiering (MLPA)</items>
+        <items id="description">HL7 genomic-study-method-type: mlpa.</items>
+      </items>
+      <items code="at0.38">
+        <items id="text">Metyleringsanalys</items>
+        <items id="description">HL7 genomic-study-method-type: methylation-analysis.</items>
+      </items>
+      <items code="at0036.0">
         <items id="text">Sekvenseringsenhet / panel</items>
         <items id="description">Instrument eller kit/panelprodukt för sekvensering.</items>
       </items>
-      <items code="at0038">
+      <items code="at0038.0">
         <items id="text">Referensgenom</items>
         <items id="description">Referenssekvens för alignment (t.ex. GRCh38).</items>
       </items>
@@ -18570,7 +20488,7 @@
   </component_ontologies>
   <component_ontologies archetype_id="openEHR-EHR-CLUSTER.reference_sequence.v1">
     <term_definitions language="en">
-      <items code="at0018">
+      <items code="at0000">
         <items id="text">Reference genome</items>
         <items id="description">Reference sequence used for alignment (e.g. GRCh38).</items>
       </items>
@@ -18696,7 +20614,7 @@
       </items>
     </term_definitions>
     <term_definitions language="sv">
-      <items code="at0018">
+      <items code="at0000">
         <items id="text">Referensgenom</items>
         <items id="description">Referenssekvens för alignment (t.ex. GRCh38).</items>
       </items>
@@ -18842,7 +20760,7 @@
     <items id="L10n.en">Sequencing / panel device</items>
     <items id="L10n.sv">Sekvenserings-/panelenhet</items>
   </annotations>
-  <annotations path="/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[openEHR-EHR-CLUSTER.sequencing_assay.v0]/items[openEHR-EHR-CLUSTER.device.v1 and name/value='Sequencing device / panel']">
+  <annotations path="/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/protocol[at0004]/items[openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0]/items[openEHR-EHR-CLUSTER.device.v1 and name/value='Sequencing device / panel']">
     <items id="L10n.en">Sequencing device / panel</items>
     <items id="L10n.sv">Sekvenseringsenhet / panel</items>
   </annotations>

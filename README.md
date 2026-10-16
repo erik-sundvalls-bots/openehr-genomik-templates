@@ -33,4 +33,4 @@ Source data © RCC i samverkan; CKM archetypes © openEHR Foundation, CC-BY-SA 4
 - `docs/decisions.md`: answers 1–5 included.
 - `docs/ehrtslib-gaps.md`: ADL2→1.4 with Ehrtslib currently fails (0/5 usable).
 - `tools/`: ArchieConvert.java, the pom, and the Ehrtslib script.
-- **Not done:** ADL 1.4 / OET / OPT export (no working 2→1.4 converter), Better validation, full T1 constraints (specimen, assay, analytes, variant slots).
+- **Not done:** ADL 1.4 / OET / OPT export (no working 2→1.4 converter), validation in the target CDR, full T1 constraints (specimen, assay, analytes, variant slots).

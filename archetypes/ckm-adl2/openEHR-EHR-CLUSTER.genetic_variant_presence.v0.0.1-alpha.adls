@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=2d7ac39c-147d-467
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -31,6 +38,11 @@ description
         ["MD5-CAM-1.0.1"] = <"FA49B7ED2418260198D18D3F69CEABD7">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera bedömningen av om en specifik genetisk variant finns eller saknas i ett sekvenserat prov.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Zur Darstellung einer Bewertung des Vorkommens oder Nicht-Vorkommens einer bestimmten genetischen Variante in einer sequenzierten Probe.">
@@ -149,6 +161,44 @@ terminology
             ["ac9000"] = <
                 text = <"Finding (synthesised)">
                 description = <"The presence or absence of the variant. (synthesised)">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Förekomst av genetisk variant">
+                description = <"Bedömning av förekomst eller frånvaro av en specifik genetisk variant i ett sekvenserat prov.">
+            >
+            ["id2"] = <
+                text = <"Variantnamn">
+                description = <"Variantens namn.">
+            >
+            ["id3"] = <
+                text = <"Fynd">
+                description = <"Förekomst eller frånvaro av varianten.">
+            >
+            ["id4"] = <
+                text = <"Kommentar">
+                description = <"Ytterligare fritext om förekomst av den genetiska varianten som inte fångas i andra element.">
+            >
+            ["at5"] = <
+                text = <"Förekommer">
+                description = <"Målvarianten förekommer.">
+            >
+            ["at6"] = <
+                text = <"Förekommer inte">
+                description = <"Målvarianten förekommer inte.">
+            >
+            ["at7"] = <
+                text = <"Ingen bestämning">
+                description = <"Data saknas för att bekräfta förekomst/frånvaro av varianten.">
+            >
+            ["at8"] = <
+                text = <"Obestämbart">
+                description = <"Resultatet är obestämbart.">
+            >
+            ["ac9000"] = <
+                text = <"Fynd (syntetiserad)">
+                description = <"Fynd (syntetiserad)">
             >
         >
     >
