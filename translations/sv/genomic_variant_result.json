@@ -1,0 +1,299 @@
+{
+ "_purpose": "För att registrera fynd och annoteringar för en variant som påvisats hos en individ genom ett sekvenseringstest.",
+ "id1": [
+  "Genomiskt variantresultat",
+  "Fynd och annoteringar för en variant som påvisats hos en individ genom ett sekvenseringstest."
+ ],
+ "id2": [
+  "Bioinformatiskt analysflöde",
+  "Strukturerade detaljer om det bioinformatiska analysflödet eller protokollet som används."
+ ],
+ "id3": [
+  "Referensgenom",
+  "Strukturerade detaljer om den specifika versionen av den humana sekvensassemblyn som används för annotering."
+ ],
+ "id9": [
+  "Transkript",
+  "Strukturerade detaljer om transkriptet som potentiellt påverkas av varianten."
+ ],
+ "id10": [
+  "Transkriptets referenssekvens",
+  "Strukturerade detaljer om den transkriberade referenssekvensen."
+ ],
+ "id11": [
+  "DNA-regionens namn",
+  "Läsbart namn på den aktuella regionen."
+ ],
+ "id12": [
+  "DNA-förändring",
+  "Beskrivning av variationen på DNA-nivå enligt HGVS-nomenklaturen."
+ ],
+ "id13": [
+  "Aminosyraförändring",
+  "Beskrivning av variationen på proteinnivå enligt HGVS-nomenklaturen."
+ ],
+ "id14": [
+  "Typ av aminosyraförändring",
+  "Kodad typ för den tillhörande aminosyramarkören."
+ ],
+ "id16": [
+  "Predicerad påverkan",
+  "Uppskattning av vilka effekter varianten kan ha på transkriptet."
+ ],
+ "id17": [
+  "Kunskapskälla för predicerad påverkan",
+  "Strukturerade detaljer om referensen som används för att beräkna predicerad påverkan."
+ ],
+ "id18": [
+  "Poäng",
+  "Det beräknade värdet."
+ ],
+ "id19": [
+  "Kvalitativ prediktion",
+  "Läsbar version av den predicerade påverkan."
+ ],
+ "id20": [
+  "Gen",
+  "Strukturerade detaljer om genen som bär varianten."
+ ],
+ "id21": [
+  "Gensymbol",
+  "Den officiella gensymbolen godkänd av HGNC, en kort förkortning av gennamnet."
+ ],
+ "id22": [
+  "Gennamn",
+  "Det fullständiga gennamnet godkänt av HGNC som beskriver genens karaktär eller funktion."
+ ],
+ "id24": [
+  "Bästa transkriptkandidat",
+  "ID för transkriptet med högst predicerad påverkan."
+ ],
+ "id25": [
+  "Konservering",
+  "Strukturerade detaljer om evolutionär konservering."
+ ],
+ "id26": [
+  "Kunskapskälla för konserveringspoäng",
+  "Strukturerade detaljer om referensen som används för att beräkna konserveringspoängen."
+ ],
+ "id27": [
+  "Poäng",
+  "Konserveringspoängen."
+ ],
+ "id29": [
+  "Alleldjup",
+  "Antal läsningar som stöder den rapporterade varianten."
+ ],
+ "id30": [
+  "Detaljer om allelfrekvens i population",
+  "Den relativa frekvensen av en viss allel i populationen."
+ ],
+ "id31": [
+  "Kunskapskälla för allelfrekvens i population",
+  "Strukturerade detaljer om databasen som används för att beräkna allelfrekvensen."
+ ],
+ "id32": [
+  "Allelfrekvens i population",
+  "Allelfrekvensen i populationen."
+ ],
+ "id40": [
+  "Genotyp",
+  "Genotyp kodad som allelvärden."
+ ],
+ "id41": [
+  "Allelstatus",
+  "Förekomstnivån för en enskild DNA-markör inom en uppsättning kromosomer."
+ ],
+ "id42": [
+  "Genotypkvalitet",
+  "Betingad genotypkvalitet, kodad som Phred-kvalitet."
+ ],
+ "id46": [
+  "Strukturerad variant",
+  "Strukturerad beskrivning av den genomiska varianten."
+ ],
+ "id48": [
+  "Allelfrekvens",
+  "Den relativa frekvensen av en allel i ett visst locus."
+ ],
+ "id53": [
+  "Funktionell påverkan",
+  "Tolkning av variationen kopplad till en specifik artikel."
+ ],
+ "id54": [
+  "Källa",
+  "Referens till den specifika forskningsartikeln."
+ ],
+ "id55": [
+  "Påverkan",
+  "Ord eller fras som beskriver den rapporterade påverkan av den specifika varianten."
+ ],
+ "id57": [
+  "Kopietalsöverlapp",
+  "Andelen av genregionen som täcks av kopietalet."
+ ],
+ "id58": [
+  "Del av fusion",
+  "Anger om genen ingår i en fusionsgen och om den är första eller andra delen av fusionsgenen."
+ ],
+ "id59": [
+  "ACMG-klassificering",
+  "Klinisk signifikans enligt ACMG:s rekommendationer."
+ ],
+ "id60": [
+  "Fusionsexon",
+  "Numret på exonet som ingår i fusionen."
+ ],
+ "id61": [
+  "Läsdjup",
+  "Totalt antal läsningar mappade på denna specifika position."
+ ],
+ "id62": [
+  "VCF-kvalitetsfilter",
+  "Strukturerade detaljer om kvalitetsfilter som tillämpats på data."
+ ],
+ "id63": [
+  "Filternamn",
+  "Kvalitetsfiltrets namn."
+ ],
+ "id64": [
+  "Beskrivning",
+  "Utökad beskrivning av kvalitetsfiltret."
+ ],
+ "id65": [
+  "Filter godkänt",
+  "Passerade varianten kvalitetsfiltret?"
+ ],
+ "id68": [
+  "Strängbiaskvot",
+  "Kvoten för strängbias."
+ ],
+ "id69": [
+  "p-värde för strängbias",
+  "Phred-skalat p-värde för strängbias."
+ ],
+ "id70": [
+  "Genotypsannolikhet",
+  "Kommaseparerad lista med log10-skalade genotypsannolikheter för alla möjliga genotyper, givet referens- och alternativa alleler."
+ ],
+ "id71": [
+  "Providentifierare",
+  "Identifiering av provet som använts för det genomiska resultatet."
+ ],
+ "at72": [
+  "Patogen",
+  "Patogen variant."
+ ],
+ "at73": [
+  "Sannolikt patogen",
+  "Sannolikt patogen variant."
+ ],
+ "at74": [
+  "Oklar signifikans",
+  "Variant av oklar signifikans."
+ ],
+ "at75": [
+  "Sannolikt benign",
+  "Sannolikt benign variant."
+ ],
+ "at76": [
+  "Benign",
+  "Benign variant."
+ ],
+ "at77": [
+  "Heteroplasmisk",
+  "Heteroplasmisk."
+ ],
+ "at78": [
+  "Homoplasmisk",
+  "Homoplasmisk."
+ ],
+ "at79": [
+  "Homozygot",
+  "Homozygot."
+ ],
+ "at80": [
+  "Heterozygot",
+  "Heterozygot."
+ ],
+ "at81": [
+  "Hemizygot",
+  "Hemizygot."
+ ],
+ "at86": [
+  "Vildtyp",
+  "Sekvensen på en given position är identisk med referenssekvensen."
+ ],
+ "at87": [
+  "Deletion",
+  "En deletion i aminosyrasekvensen."
+ ],
+ "at88": [
+  "Duplikation",
+  "En duplikation i aminosyrasekvensen."
+ ],
+ "at89": [
+  "Läsramsförskjutning",
+  "En läsramsförskjutning i aminosyrasekvensen."
+ ],
+ "at90": [
+  "Initierande metionin",
+  "En variant som påverkar translationens startkodon."
+ ],
+ "at91": [
+  "Insertion",
+  "En insertion i aminosyrasekvensen."
+ ],
+ "at92": [
+  "Insertion och deletion",
+  "En insertion/deletion i aminosyrasekvensen."
+ ],
+ "at93": [
+  "Missense",
+  "En aminosyra ersätts av en annan aminosyra."
+ ],
+ "at94": [
+  "Nonsens",
+  "En aminosyra ersätts av ett translationellt stoppkodon (terminationskodon)."
+ ],
+ "at95": [
+  "Tyst",
+  "En variant i DNA-sekvensen som inte ändrar aminosyrasekvensen i det kodade proteinet."
+ ],
+ "at96": [
+  "Stoppkodonmutation",
+  "En variant som påverkar translationens stoppkodon."
+ ],
+ "at97": [
+  "Första",
+  "Första delen av en fusionsgen."
+ ],
+ "at98": [
+  "Andra",
+  "Andra delen av en fusionsgen."
+ ],
+ "id99": [
+  "Ytterligare detaljer",
+  "Ytterligare detaljer som ska registreras."
+ ],
+ "id100": [
+  "Avstånd från splitsningsställe",
+  "Avstånd i nukleotider mellan mutationen och exon–intron-gränsen."
+ ],
+ "id101": [
+  "RNA-förändring",
+  "Beskrivning av variationen på RNA-nivå enligt HGVS-nomenklaturen."
+ ],
+ "id102": [
+  "Variant",
+  "Beskrivning av variationen på genomisk nivå enligt HGVS-nomenklaturen."
+ ],
+ "id103": [
+  "Variantidentifiering",
+  "Referens till en specifik variation registrerad i en extern biologisk variationsdatabas."
+ ],
+ "at9001": [
+  "Kvalificerat reellt tal",
+  "Kvalificerat reellt tal"
+ ]
+}

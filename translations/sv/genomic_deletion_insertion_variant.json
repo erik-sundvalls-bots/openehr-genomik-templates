@@ -1,0 +1,27 @@
+{
+ "_purpose": "För att registrera detaljer om en deletion-insertionsvariant (indel) jämfört med en genomisk referenssekvens.",
+ "id1": [
+  "Genomisk deletion-insertionsvariant",
+  "En genetisk sekvensförändring hos människa där en eller flera nukleotider, jämfört med en genomisk referenssekvens, ersätts av en eller flera andra nukleotider och som inte är en substitution, inversion eller konversion."
+ ],
+ "id2": [
+  "Startposition",
+  "Position för den deleterade nukleotiden eller den första nukleotiden i det deleterade intervallet."
+ ],
+ "id4": [
+  "Slutposition",
+  "Position för den sista nukleotiden i det deleterade intervallet."
+ ],
+ "id6": [
+  "Deleterad sekvens",
+  "Den deleterade nukleotiden eller sekvensen."
+ ],
+ "id8": [
+  "Insererad sekvens",
+  "Den insererade nukleotiden eller sekvensen."
+ ],
+ "id9": [
+  "Referenssekvens",
+  "Sekvensfilen som används som referens för att beskriva varianten."
+ ]
+}

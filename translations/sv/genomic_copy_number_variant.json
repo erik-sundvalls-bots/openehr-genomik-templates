@@ -1,0 +1,39 @@
+{
+ "_purpose": "För att registrera detaljer om en kopietalsvariant (CNV) jämfört med en genomisk referenssekvens.",
+ "id1": [
+  "Genomisk kopietalsvariant",
+  "En genetisk sekvensförändring hos människa där ett DNA-segment, vanligen större än 1 kilobas (kb), jämfört med en genomisk referenssekvens har deleterats eller duplicerats."
+ ],
+ "id2": [
+  "Start",
+  "Position eller intervall av möjliga positioner för CNV:ns första nukleotid."
+ ],
+ "id3": [
+  "Slut",
+  "Position eller intervall av möjliga positioner för CNV:ns sista nukleotid."
+ ],
+ "id4": [
+  "Totalt kopietal",
+  "Antal förekomster av allelen."
+ ],
+ "id5": [
+  "Referenssekvens",
+  "Sekvensfilen som används som referens för att beskriva varianten."
+ ],
+ "id6": [
+  "Typ av kopietalsförändring",
+  "Typ av sekvensförändring."
+ ],
+ "at7": [
+  "Ökning",
+  "En sekvensförändring där kopietalet för en given region är större än i referenssekvensen."
+ ],
+ "at8": [
+  "Förlust",
+  "En sekvensförändring där kopietalet för en given region är mindre än i referenssekvensen."
+ ],
+ "at9000": [
+  "Kvalificerat reellt tal",
+  "Kvalificerat reellt tal"
+ ]
+}

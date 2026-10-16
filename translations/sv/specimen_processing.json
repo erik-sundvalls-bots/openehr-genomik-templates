@@ -1,0 +1,55 @@
+{
+ "_purpose": "För att registrera detaljer om bearbetning eller preparering av ett prov.",
+ "id1": [
+  "Provbearbetning",
+  "Detaljer om bearbetning eller preparering av ett prov."
+ ],
+ "id72": [
+  "Ordningsnummer",
+  "Ordningsnumret inom en process i flera steg."
+ ],
+ "id75": [
+  "Metod",
+  "Tekniken eller metoden som används för att bearbeta provet."
+ ],
+ "id87": [
+  "Processaktivitet",
+  "Detaljer om en enskild aktivitet i en process i flera steg."
+ ],
+ "id89": [
+  "Instrumentdetaljer",
+  "Detaljer om instrumentet som används i bearbetningsaktiviteten."
+ ],
+ "id90": [
+  "Beskrivning",
+  "Fritextbeskrivning av bearbetningsaktiviteten."
+ ],
+ "id92": [
+  "Tillsats",
+  "Identifiering av en substans som används i bearbetningen."
+ ],
+ "id93": [
+  "Detaljer om processaktivitet",
+  "Detaljer om en enskild aktivitet i en process i flera steg."
+ ],
+ "id94": [
+  "Ytterligare detaljer",
+  "Ytterligare detaljer om bearbetningen av ett prov."
+ ],
+ "id95": [
+  "Processnamn",
+  "Namnet på bearbetningsaktiviteten."
+ ],
+ "id96": [
+  "Kommentar",
+  "Ytterligare fritext om bearbetningen av ett prov som inte fångats i andra fält."
+ ],
+ "id97": [
+  "Startdatum/-tid",
+  "Datum och tid då processaktiviteten startade."
+ ],
+ "id98": [
+  "Slutdatum/-tid",
+  "Datum och tid då processaktiviteten avslutades."
+ ]
+}

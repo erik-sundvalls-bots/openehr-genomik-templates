@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=f33562c3-f55f-4f4
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -41,6 +48,11 @@ description
         ["MD5-CAM-1.0.1"] = <"C89FF9E2CDDE633A47ECCE539B0EFD75">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera detaljer om bearbetning eller preparering av ett prov.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Um Details über die Verarbeitung einer Probe aufzuzeichnen, das von einer Person zur weiteren Analyse, Konservierung oder Lagerung gesammelt wurde oder damit in Verbindung steht.">
@@ -325,6 +337,60 @@ If there is only one processing step event or if this instance is the overview o
             ["id98"] = <
                 text = <"End date/time">
                 description = <"The date and time when the process activity ended.">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Provbearbetning">
+                description = <"Detaljer om bearbetning eller preparering av ett prov.">
+            >
+            ["id72"] = <
+                text = <"Ordningsnummer">
+                description = <"Ordningsnumret inom en process i flera steg.">
+            >
+            ["id75"] = <
+                text = <"Metod">
+                description = <"Tekniken eller metoden som används för att bearbeta provet.">
+            >
+            ["id87"] = <
+                text = <"Processaktivitet">
+                description = <"Detaljer om en enskild aktivitet i en process i flera steg.">
+            >
+            ["id89"] = <
+                text = <"Instrumentdetaljer">
+                description = <"Detaljer om instrumentet som används i bearbetningsaktiviteten.">
+            >
+            ["id90"] = <
+                text = <"Beskrivning">
+                description = <"Fritextbeskrivning av bearbetningsaktiviteten.">
+            >
+            ["id92"] = <
+                text = <"Tillsats">
+                description = <"Identifiering av en substans som används i bearbetningen.">
+            >
+            ["id93"] = <
+                text = <"Detaljer om processaktivitet">
+                description = <"Detaljer om en enskild aktivitet i en process i flera steg.">
+            >
+            ["id94"] = <
+                text = <"Ytterligare detaljer">
+                description = <"Ytterligare detaljer om bearbetningen av ett prov.">
+            >
+            ["id95"] = <
+                text = <"Processnamn">
+                description = <"Namnet på bearbetningsaktiviteten.">
+            >
+            ["id96"] = <
+                text = <"Kommentar">
+                description = <"Ytterligare fritext om bearbetningen av ett prov som inte fångats i andra fält.">
+            >
+            ["id97"] = <
+                text = <"Startdatum/-tid">
+                description = <"Datum och tid då processaktiviteten startade.">
+            >
+            ["id98"] = <
+                text = <"Slutdatum/-tid">
+                description = <"Datum och tid då processaktiviteten avslutades.">
             >
         >
     >

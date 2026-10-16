@@ -1,0 +1,35 @@
+{
+ "_purpose": "För att registrera bedömningen av om en specifik genetisk variant finns eller saknas i ett sekvenserat prov.",
+ "id1": [
+  "Förekomst av genetisk variant",
+  "Bedömning av förekomst eller frånvaro av en specifik genetisk variant i ett sekvenserat prov."
+ ],
+ "id2": [
+  "Variantnamn",
+  "Variantens namn."
+ ],
+ "id3": [
+  "Fynd",
+  "Förekomst eller frånvaro av varianten."
+ ],
+ "id4": [
+  "Kommentar",
+  "Ytterligare fritext om förekomst av den genetiska varianten som inte fångas i andra element."
+ ],
+ "at5": [
+  "Förekommer",
+  "Målvarianten förekommer."
+ ],
+ "at6": [
+  "Förekommer inte",
+  "Målvarianten förekommer inte."
+ ],
+ "at7": [
+  "Ingen bestämning",
+  "Data saknas för att bekräfta förekomst/frånvaro av varianten."
+ ],
+ "at8": [
+  "Obestämbart",
+  "Resultatet är obestämbart."
+ ]
+}

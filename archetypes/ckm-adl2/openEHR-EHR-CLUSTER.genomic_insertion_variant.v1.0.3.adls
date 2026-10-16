@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=d9f75b85-a5d0-4f6
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -44,6 +51,11 @@ description
         ["MD5-CAM-1.0.1"] = <"98872A5FB3B08507F48CB34F51A3A8AA">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera detaljer om en insertionsvariant jämfört med en genomisk referenssekvens.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Zur Beschreibung der in einer Sequenz beobachteten \"Insertion Variante\" menschlicher DNA.">
@@ -193,6 +205,28 @@ terminology
             ["id8"] = <
                 text = <"Reference sequence">
                 description = <"The sequence file used as a reference to describe this variant.">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Genomisk insertionsvariant">
+                description = <"En genetisk sekvensförändring hos människa där en eller flera nukleotider, jämfört med den genomiska referenssekvensen, har infogats och där insertionen inte är en kopia av sekvensen omedelbart 5'.">
+            >
+            ["id2"] = <
+                text = <"Startposition">
+                description = <"Positionen för den första av de två flankerande nukleotiderna.">
+            >
+            ["id4"] = <
+                text = <"Slutposition">
+                description = <"Positionen för den sista av de två flankerande nukleotiderna.">
+            >
+            ["id7"] = <
+                text = <"Insererad sekvens">
+                description = <"Den insererade nukleotiden eller sekvensen.">
+            >
+            ["id8"] = <
+                text = <"Referenssekvens">
+                description = <"Sekvensfilen som används som referens för att beskriva varianten.">
             >
         >
     >

@@ -4,6 +4,13 @@ archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=844062c0-06ff-471
 language
     original_language = <[ISO_639-1::en]>
     translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Erik Sundvall">
+            >
+            accreditation = <"Local draft translation, not CKM-reviewed">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             author = <
@@ -40,6 +47,11 @@ description
         ["MD5-CAM-1.0.1"] = <"8745C8D1D9C1569BEE1714EB866630E8">
     >
     details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"För att registrera detaljer om en genetisk translokationsvariant.">
+            use = <"Lokal svensk översättning (utkast) – se docs/forum-proposals/07-ckm-swedish-translations.md.">
+        >
         ["de"] = <
             language = <[ISO_639-1::de]>
             purpose = <"Zur Beschreibung der in einer Sequenz beobachteten 'translocation variant'.">
@@ -211,6 +223,40 @@ Verdien \"-\"indikerer at kromosomsegmentet ved det første bruddpunktet er kobl
             ["id10"] = <
                 text = <"HGVS term">
                 description = <"The description of the variant using the recommendations of the accepted HGVS nomeclature named extension ISCN.">
+            >
+        >
+        ["sv"] = <
+            ["id1"] = <
+                text = <"Genetisk translokationsvariant">
+                description = <"Translokationsvariant.">
+            >
+            ["id4"] = <
+                text = <"Brytpunktsposition 1">
+                description = <"Position för första brytpunkten relativt början av \"Kromosom 1\".">
+            >
+            ["id5"] = <
+                text = <"Brytpunktsposition 2">
+                description = <"Position för andra brytpunkten relativt början av \"Kromosom 2\".">
+            >
+            ["id6"] = <
+                text = <"Sträng 1">
+                description = <"Värdet \"+\" anger att kromosomsegmentet vid andra brytpunkten är kopplat till kromosomsegmentet vid första brytpunkten till höger om \"Brytpunktsposition 1\". Värdet \"-\" anger att det är kopplat till vänster om \"Brytpunktsposition 1\".">
+            >
+            ["id7"] = <
+                text = <"Sträng 2">
+                description = <"Värdet \"+\" anger att kromosomsegmentet vid första brytpunkten är kopplat till kromosomsegmentet vid andra brytpunkten till höger om \"Brytpunktsposition 2\". Värdet \"-\" anger att det är kopplat till vänster om \"Brytpunktsposition 2\".">
+            >
+            ["id8"] = <
+                text = <"Referenssekvens 1">
+                description = <"Kromosom för första brytpunkten.">
+            >
+            ["id9"] = <
+                text = <"Referenssekvens 2">
+                description = <"Kromosom för andra brytpunkten.">
+            >
+            ["id10"] = <
+                text = <"HGVS-term">
+                description = <"Beskrivning av varianten enligt rekommendationerna i den accepterade HGVS-nomenklaturens utvidgning ISCN.">
             >
         >
     >

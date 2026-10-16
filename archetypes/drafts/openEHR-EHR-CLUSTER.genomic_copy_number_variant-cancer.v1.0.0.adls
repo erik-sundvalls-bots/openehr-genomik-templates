@@ -11,7 +11,7 @@ language
 			language = <[ISO_639-1::sv]>
 			author = <
 				["name"] = <"Erik Sundvall / RCC Genomik (draft)">
-				["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+				["organisation"] = <"Regionala cancercentrum i samverkan">
 			>
 		>
 	>
@@ -66,11 +66,11 @@ terminology
 				text = <"Copy number change type value">
 				description = <"Coded value for copy number change type including amplification and homozygous deletion.">
 			>
-			["at0.1"] = <
+			["at7.1"] = <
 				text = <"Amplification">
 				description = <"High-level copy number gain (typically >4–6 copies; laboratory-specific threshold). SO:0001742 used clinically for amplification events such as ERBB2 or MYC.">
 			>
-			["at0.2"] = <
+			["at8.1"] = <
 				text = <"Homozygous deletion">
 				description = <"Both alleles deleted (0 copies). Aligns with SO:0002210 presence_absence_variation / homozygous deletion (e.g. CDKN2A).">
 			>
@@ -88,11 +88,11 @@ terminology
 				text = <"Kopietalsändringstyp värde">
 				description = <"Kodad kopietalsändringstyp inklusive amplifiering och homozygot deletion.">
 			>
-			["at0.1"] = <
+			["at7.1"] = <
 				text = <"Amplifiering">
 				description = <"Hög kopietalsökning (typiskt >4–6 kopior; labspecifik tröskel).">
 			>
-			["at0.2"] = <
+			["at8.1"] = <
 				text = <"Homozygot deletion">
 				description = <"Båda alleler deleterade (0 kopior).">
 			>
@@ -105,6 +105,6 @@ terminology
 	value_sets = <
 		["ac9001.1"] = <
 			id = <"ac9001.1">
-			members = <"at7", "at8", "at0.1", "at0.2">
+			members = <"at7", "at8", "at7.1", "at8.1">
 		>
 	>

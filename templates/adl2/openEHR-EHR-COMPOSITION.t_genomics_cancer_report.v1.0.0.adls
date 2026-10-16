@@ -11,7 +11,7 @@ language
 			language = <[ISO_639-1::sv]>
 			author = <
 				["name"] = <"Erik Sundvall / RCC Genomik (draft)">
-				["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+				["organisation"] = <"Regionala cancercentrum i samverkan">
 			>
 		>
 	>
@@ -27,14 +27,14 @@ description
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"Swedish RCC cancer genomics result report (Konfigurationsunderlag genomik / T1 Genomikrapport). Event Assessment composition: report-result wrapping laboratory_test_result with specimen (+ anatomical_location, specimen_processing), receiving organisation, sequencing_assay (+ device), genomic_variant_result-cancer (+ CNV-cancer, clinical implication, presence, translocation, substitution), and TMB/MSI/HRD/tumour-cellularity analytes. Request linkage via protocol Test request details / Requester order identifier.">
-			use = <"Fill slots per inventory. Genomic findings and sequencing_assay follow CKM Molecular Pathology Report placement (Test result / Testing details) even where current laboratory_test_result.v1.2.8 slot regexes list only analyte|panel and device — see docs/template-oet-gaps.md. Narrow value sets in Better/OPT after ADL2→1.4.">
+			use = <"Fill slots per inventory. Genomic findings and sequencing_assay follow CKM Molecular Pathology Report placement (Test result / Testing details) even where current laboratory_test_result.v1.2.8 slot regexes list only analyte|panel and device — see docs/template-oet-gaps.md. Value sets from valuesets/ are bound in the overlays (specimen type, collection method, fixation, study type/method).">
 			keywords = <"genomics", "cancer", "report", "RCC", "molecular pathology", "TMB", "MSI", "HRD">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			purpose = <"Svensk RCC cancergenomikrapport (Konfigurationsunderlag genomik / T1 Genomikrapport). Event Assessment: report-result med laboratorieresultat, prov, organisation, sekvenseringsassay, cancer-varianter och TMB/MSI/HRD.">
-			use = <"Fyll slotar enligt inventering. Se docs/template-oet-gaps.md för slot-/OET-luckor. Begränsa värdemängder i Better/OPT efter ADL2→1.4.">
+			use = <"Fyll slotar enligt inventering. Se docs/template-oet-gaps.md för slot-/OET-luckor. Värdemängder från valuesets/ är bundna i overlays.">
 			keywords = <"genomik", "cancer", "rapport", "RCC", "TMB", "MSI", "HRD">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
@@ -44,30 +44,30 @@ description
 	custodian_organisation = <"Regionala cancercentrum i samverkan">
 
 definition
-	COMPOSITION[id1.1] matches {	-- Genomics cancer report
+	COMPOSITION[id1.1.1] matches {	-- Genomics cancer report
 		content matches {
-			use_archetype OBSERVATION[id0.1, openEHR-EHR-OBSERVATION.t_genomics_lab_result.v1] occurrences matches {1}
+			use_archetype OBSERVATION[id0.0.1, openEHR-EHR-OBSERVATION.t_genomics_lab_result.v1] occurrences matches {1}
 		}
 	}
 
 terminology
 	term_definitions = <
 		["en"] = <
-			["id1.1"] = <
+			["id1.1.1"] = <
 				text = <"Genomics cancer report">
 				description = <"Result report for cancer genomic testing (Swedish RCC).">
 			>
-			["id0.1"] = <
+			["id0.0.1"] = <
 				text = <"Genomic laboratory test result">
 				description = <"Laboratory test result constrained for cancer genomics: specimens, assay, variants and biomarkers.">
 			>
 		>
 		["sv"] = <
-			["id1.1"] = <
+			["id1.1.1"] = <
 				text = <"Genomikrapport – cancer">
 				description = <"Resultatrapport för cancergenomisk testning (RCC).">
 			>
-			["id0.1"] = <
+			["id0.0.1"] = <
 				text = <"Genomiskt laboratorieresultat">
 				description = <"Laboratorieresultat begränsat för cancergenomik: prover, assay, varianter och biomarkörer.">
 			>
@@ -195,9 +195,19 @@ specialize
 
 definition
 	CLUSTER[id1.1] matches {	-- Specimen (genomics)
+		/items[id30]/value matches {
+			DV_CODED_TEXT[id9002.1] matches {
+				defining_code matches {[ac0.1]}	-- Specimen type (genomics)
+			}
+		}
+		/items[id8]/value matches {
+			DV_CODED_TEXT[id9012.1] matches {
+				defining_code matches {[ac0.2]}	-- Collection method (genomics)
+			}
+		}
 		/items matches {
 			use_archetype CLUSTER[id14.1, openEHR-EHR-CLUSTER.anatomical_location.v1] occurrences matches {0..1}
-			use_archetype CLUSTER[id84.1, openEHR-EHR-CLUSTER.specimen_processing.v1] occurrences matches {0..*}
+			use_archetype CLUSTER[id84.1, openEHR-EHR-CLUSTER.t_specimen_processing_genomics.v1] occurrences matches {0..*}
 		}
 	}
 
@@ -216,6 +226,146 @@ terminology
 				text = <"Specimen processing">
 				description = <"Fixation and other processing (e.g. FFPE); in Additional details slot.">
 			>
+			["at0.1"] = <
+				text = <"Blood venous">
+				description = <"HL7 v2 0487: BLDV.">
+			>
+			["at0.2"] = <
+				text = <"Marrow">
+				description = <"HL7 v2 0487: MAR.">
+			>
+			["at0.3"] = <
+				text = <"Tissue">
+				description = <"HL7 v2 0487: TISS.">
+			>
+			["at0.4"] = <
+				text = <"Tumor">
+				description = <"HL7 v2 0487: TUMOR.">
+			>
+			["at0.5"] = <
+				text = <"Pleural fluid">
+				description = <"HL7 v2 0487: PLR.">
+			>
+			["at0.6"] = <
+				text = <"Fluid, Abdomen">
+				description = <"HL7 v2 0487: FGA.">
+			>
+			["at0.7"] = <
+				text = <"Cerebrospinal fluid">
+				description = <"HL7 v2 0487: CSF.">
+			>
+			["at0.8"] = <
+				text = <"Bone">
+				description = <"HL7 v2 0487: BON.">
+			>
+			["at0.9"] = <
+				text = <"Skin">
+				description = <"HL7 v2 0487: SKN.">
+			>
+			["at0.10"] = <
+				text = <"Bile Fluid">
+				description = <"HL7 v2 0487: BIFL.">
+			>
+			["at0.11"] = <
+				text = <"Cervical Mucus">
+				description = <"HL7 v2 0487: CVM.">
+			>
+			["at0.12"] = <
+				text = <"Urine">
+				description = <"HL7 v2 0487: UR.">
+			>
+			["at0.13"] = <
+				text = <"Stool = Fecal">
+				description = <"HL7 v2 0487: STL.">
+			>
+			["at0.14"] = <
+				text = <"DNA">
+				description = <"Extracted material.">
+			>
+			["at0.15"] = <
+				text = <"RNA">
+				description = <"Extracted material.">
+			>
+			["at0.16"] = <
+				text = <"Circulating tumour DNA (ctDNA)">
+				description = <"Extracted material.">
+			>
+			["at0.17"] = <
+				text = <"Circulating tumour RNA (ctRNA)">
+				description = <"Extracted material.">
+			>
+			["at0.18"] = <
+				text = <"Cell-free DNA (cfDNA)">
+				description = <"Extracted material.">
+			>
+			["at0.30"] = <
+				text = <"Resection (procedure)">
+				description = <"Collection technique.">
+			>
+			["at0.31"] = <
+				text = <"Excision (procedure)">
+				description = <"Collection technique.">
+			>
+			["at0.32"] = <
+				text = <"Core needle biopsy">
+				description = <"Collection technique.">
+			>
+			["at0.33"] = <
+				text = <"Punch biopsy">
+				description = <"Collection technique.">
+			>
+			["at0.34"] = <
+				text = <"Bone marrow biopsy">
+				description = <"Collection technique.">
+			>
+			["at0.35"] = <
+				text = <"Needle core biopsy (procedure)">
+				description = <"Collection technique.">
+			>
+			["at0.36"] = <
+				text = <"Percutaneous needle biopsy">
+				description = <"Collection technique.">
+			>
+			["at0.37"] = <
+				text = <"Biopsy of bone (procedure)">
+				description = <"Collection technique.">
+			>
+			["at0.38"] = <
+				text = <"Biopsy">
+				description = <"Collection technique.">
+			>
+			["at0.39"] = <
+				text = <"Aspiration">
+				description = <"Collection technique.">
+			>
+			["at0.40"] = <
+				text = <"Fine needle biopsy">
+				description = <"Collection technique.">
+			>
+			["at0.41"] = <
+				text = <"Puncture procedure">
+				description = <"Collection technique.">
+			>
+			["at0.42"] = <
+				text = <"Cell block method">
+				description = <"Collection technique.">
+			>
+			["at0.43"] = <
+				text = <"Smear technique">
+				description = <"Collection technique.">
+			>
+			["at0.44"] = <
+				text = <"Phlebotomy">
+				description = <"Collection technique.">
+			>
+			["ac0.1"] = <
+				text = <"Specimen type (genomics)">
+				description = <"Specimen type (genomics) (from valuesets/).">
+			>
+			["ac0.2"] = <
+				text = <"Collection method (genomics)">
+				description = <"Collection method (genomics) (from valuesets/).">
+			>
 		>
 		["sv"] = <
 			["id1.1"] = <
@@ -230,6 +380,189 @@ terminology
 				text = <"Provbearbetning">
 				description = <"Fixering och annan bearbetning (t.ex. FFPE); i Additional details-slot.">
 			>
+			["at0.1"] = <
+				text = <"Venöst blod">
+				description = <"HL7 v2 0487: BLDV.">
+			>
+			["at0.2"] = <
+				text = <"Benmärg">
+				description = <"HL7 v2 0487: MAR.">
+			>
+			["at0.3"] = <
+				text = <"Vävnad">
+				description = <"HL7 v2 0487: TISS.">
+			>
+			["at0.4"] = <
+				text = <"Tumörvävnad">
+				description = <"HL7 v2 0487: TUMOR.">
+			>
+			["at0.5"] = <
+				text = <"Pleuravätska">
+				description = <"HL7 v2 0487: PLR.">
+			>
+			["at0.6"] = <
+				text = <"Bukvätska / Ascitesvätska">
+				description = <"HL7 v2 0487: FGA.">
+			>
+			["at0.7"] = <
+				text = <"Cerebrospinalvätska">
+				description = <"HL7 v2 0487: CSF.">
+			>
+			["at0.8"] = <
+				text = <"Ben">
+				description = <"HL7 v2 0487: BON.">
+			>
+			["at0.9"] = <
+				text = <"Hud">
+				description = <"HL7 v2 0487: SKN.">
+			>
+			["at0.10"] = <
+				text = <"Galla">
+				description = <"HL7 v2 0487: BIFL.">
+			>
+			["at0.11"] = <
+				text = <"Cervixsekret">
+				description = <"HL7 v2 0487: CVM.">
+			>
+			["at0.12"] = <
+				text = <"Urin">
+				description = <"HL7 v2 0487: UR.">
+			>
+			["at0.13"] = <
+				text = <"Avföring / Feces">
+				description = <"HL7 v2 0487: STL.">
+			>
+			["at0.14"] = <
+				text = <"DNA">
+				description = <"Extracted material.">
+			>
+			["at0.15"] = <
+				text = <"RNA">
+				description = <"Extracted material.">
+			>
+			["at0.16"] = <
+				text = <"Cirkulerande tumör-DNA (ctDNA)">
+				description = <"Extracted material.">
+			>
+			["at0.17"] = <
+				text = <"Cirkulerande tumör-RNA (ctRNA)">
+				description = <"Extracted material.">
+			>
+			["at0.18"] = <
+				text = <"Cell-free DNA (cfDNA)">
+				description = <"Extracted material.">
+			>
+			["at0.30"] = <
+				text = <"Resektion / Resektat">
+				description = <"Collection technique.">
+			>
+			["at0.31"] = <
+				text = <"Excision">
+				description = <"Collection technique.">
+			>
+			["at0.32"] = <
+				text = <"Grovnålsbiopsi (core needle)">
+				description = <"Collection technique.">
+			>
+			["at0.33"] = <
+				text = <"Stansbiopsi">
+				description = <"Collection technique.">
+			>
+			["at0.34"] = <
+				text = <"Benmärgsbiopsi">
+				description = <"Collection technique.">
+			>
+			["at0.35"] = <
+				text = <"Mellannålsbiopsi">
+				description = <"Collection technique.">
+			>
+			["at0.36"] = <
+				text = <"Transtorakalbiopsi / Perkutan biopsi">
+				description = <"Collection technique.">
+			>
+			["at0.37"] = <
+				text = <"Benbiopsi">
+				description = <"Collection technique.">
+			>
+			["at0.38"] = <
+				text = <"Biopsi (ej specificerad)">
+				description = <"Collection technique.">
+			>
+			["at0.39"] = <
+				text = <"Aspirationscytologi (FNA)">
+				description = <"Collection technique.">
+			>
+			["at0.40"] = <
+				text = <"Finnålsaspirat / FNA">
+				description = <"Collection technique.">
+			>
+			["at0.41"] = <
+				text = <"Vätskeprov (pleura / ascites)">
+				description = <"Collection technique.">
+			>
+			["at0.42"] = <
+				text = <"Cytologi - cellblock">
+				description = <"Collection technique.">
+			>
+			["at0.43"] = <
+				text = <"Cytologiutstryk">
+				description = <"Collection technique.">
+			>
+			["at0.44"] = <
+				text = <"Blodprov (venöst)">
+				description = <"Collection technique.">
+			>
+			["ac0.1"] = <
+				text = <"Provtyp (genomik)">
+				description = <"Provtyp (genomik) (från valuesets/).">
+			>
+			["ac0.2"] = <
+				text = <"Provtagningsteknik (genomik)">
+				description = <"Provtagningsteknik (genomik) (från valuesets/).">
+			>
+		>
+	>
+	term_bindings = <
+		["SNOMED-CT"] = <
+			["at0.1"] = <http://snomed.info/id/53130003>
+			["at0.2"] = <http://snomed.info/id/396997002>
+			["at0.3"] = <http://snomed.info/id/119376003>
+			["at0.4"] = <http://snomed.info/id/258435002>
+			["at0.5"] = <http://snomed.info/id/418564007>
+			["at0.6"] = <http://snomed.info/id/309201001>
+			["at0.7"] = <http://snomed.info/id/258450006>
+			["at0.8"] = <http://snomed.info/id/430268003>
+			["at0.9"] = <http://snomed.info/id/119325001>
+			["at0.10"] = <http://snomed.info/id/119341000>
+			["at0.11"] = <http://snomed.info/id/122577006>
+			["at0.12"] = <http://snomed.info/id/122575003>
+			["at0.13"] = <http://snomed.info/id/119339001>
+			["at0.14"] = <http://snomed.info/id/258566005>
+			["at0.15"] = <http://snomed.info/id/441673008>
+			["at0.30"] = <http://snomed.info/id/118292001>
+			["at0.31"] = <http://snomed.info/id/65801008>
+			["at0.32"] = <http://snomed.info/id/9911007>
+			["at0.33"] = <http://snomed.info/id/68660007>
+			["at0.34"] = <http://snomed.info/id/56241004>
+			["at0.35"] = <http://snomed.info/id/178255001>
+			["at0.36"] = <http://snomed.info/id/80783008>
+			["at0.37"] = <http://snomed.info/id/274036004>
+			["at0.38"] = <http://snomed.info/id/86273004>
+			["at0.39"] = <http://snomed.info/id/14766002>
+			["at0.40"] = <http://snomed.info/id/48635004>
+			["at0.41"] = <http://snomed.info/id/129300006>
+			["at0.43"] = <http://snomed.info/id/274315006>
+			["at0.44"] = <http://snomed.info/id/396540005>
+		>
+	>
+	value_sets = <
+		["ac0.1"] = <
+			id = <"ac0.1">
+			members = <"at0.1", "at0.2", "at0.3", "at0.4", "at0.5", "at0.6", "at0.7", "at0.8", "at0.9", "at0.10", "at0.11", "at0.12", "at0.13", "at0.14", "at0.15", "at0.16", "at0.17", "at0.18">
+		>
+		["ac0.2"] = <
+			id = <"ac0.2">
+			members = <"at0.30", "at0.31", "at0.32", "at0.33", "at0.34", "at0.35", "at0.36", "at0.37", "at0.38", "at0.39", "at0.40", "at0.41", "at0.42", "at0.43", "at0.44">
 		>
 	>
 
@@ -241,43 +574,43 @@ specialize
 	openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1
 
 definition
-	CLUSTER[id1.1] matches {	-- Genomic variant result (cancer) filled
+	CLUSTER[id1.1.1] matches {	-- Genomic variant result (cancer) filled
 		/items matches {
-			use_archetype CLUSTER[id46.1, openEHR-EHR-CLUSTER.genomic_copy_number_variant-cancer.v1] occurrences matches {0..1}
-			use_archetype CLUSTER[id46.2, openEHR-EHR-CLUSTER.genomic_substitution_variant.v1] occurrences matches {0..1}
-			use_archetype CLUSTER[id46.3, openEHR-EHR-CLUSTER.genomic_deletion_variant.v1] occurrences matches {0..1}
-			use_archetype CLUSTER[id46.4, openEHR-EHR-CLUSTER.genomic_insertion_variant.v1] occurrences matches {0..1}
-			use_archetype CLUSTER[id46.5, openEHR-EHR-CLUSTER.genomic_deletion_insertion_variant.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.0.1, openEHR-EHR-CLUSTER.genomic_copy_number_variant-cancer.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.0.2, openEHR-EHR-CLUSTER.genomic_substitution_variant.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.0.3, openEHR-EHR-CLUSTER.genomic_deletion_variant.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.0.4, openEHR-EHR-CLUSTER.genomic_insertion_variant.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id46.0.5, openEHR-EHR-CLUSTER.genomic_deletion_insertion_variant.v1] occurrences matches {0..1}
 			use_archetype CLUSTER[id0.7.1, openEHR-EHR-CLUSTER.variant_clinical_implication.v1] occurrences matches {0..*}
-			use_archetype CLUSTER[id99.1, openEHR-EHR-CLUSTER.genetic_variant_presence.v0] occurrences matches {0..1}
-			use_archetype CLUSTER[id99.2, openEHR-EHR-CLUSTER.translocation_variant.v0] occurrences matches {0..1}
+			use_archetype CLUSTER[id99.0.1, openEHR-EHR-CLUSTER.genetic_variant_presence.v0] occurrences matches {0..1}
+			use_archetype CLUSTER[id99.0.2, openEHR-EHR-CLUSTER.translocation_variant.v0] occurrences matches {0..1}
 		}
 	}
 
 terminology
 	term_definitions = <
 		["en"] = <
-			["id1.1"] = <
+			["id1.1.1"] = <
 				text = <"Genomic variant result (cancer)">
 				description = <"Cancer genomic finding with nested structured variant and implications.">
 			>
-			["id46.1"] = <
+			["id46.0.1"] = <
 				text = <"Copy number variant (cancer)">
 				description = <"CNV with Gain/Loss/Amplification/Homozygous deletion.">
 			>
-			["id46.2"] = <
+			["id46.0.2"] = <
 				text = <"Substitution variant">
 				description = <"SNV / substitution structured detail.">
 			>
-			["id46.3"] = <
+			["id46.0.3"] = <
 				text = <"Deletion variant">
 				description = <"Deletion structured detail.">
 			>
-			["id46.4"] = <
+			["id46.0.4"] = <
 				text = <"Insertion variant">
 				description = <"Insertion structured detail.">
 			>
-			["id46.5"] = <
+			["id46.0.5"] = <
 				text = <"Deletion-insertion variant">
 				description = <"Indel structured detail.">
 			>
@@ -285,37 +618,37 @@ terminology
 				text = <"Clinical implication">
 				description = <"Diagnostic and/or therapeutic implication for this variant.">
 			>
-			["id99.1"] = <
+			["id99.0.1"] = <
 				text = <"Genetic variant presence">
 				description = <"Detected / not detected (draft archetype).">
 			>
-			["id99.2"] = <
+			["id99.0.2"] = <
 				text = <"Translocation / fusion structure">
 				description = <"Structural detail for rearrangements (draft; REVIEWSUSPENDED on CKM).">
 			>
 		>
 		["sv"] = <
-			["id1.1"] = <
+			["id1.1.1"] = <
 				text = <"Genetiskt variantresultat (cancer)">
 				description = <"Cancergenomiskt fynd med nästlad strukturerad variant och implikationer.">
 			>
-			["id46.1"] = <
+			["id46.0.1"] = <
 				text = <"Kopietalsvariant (cancer)">
 				description = <"CNV med Gain/Loss/Amplifiering/Homozygot deletion.">
 			>
-			["id46.2"] = <
+			["id46.0.2"] = <
 				text = <"Substitutionsvariant">
 				description = <"SNV / substitution – strukturerad detalj.">
 			>
-			["id46.3"] = <
+			["id46.0.3"] = <
 				text = <"Deletionsvariant">
 				description = <"Deletion – strukturerad detalj.">
 			>
-			["id46.4"] = <
+			["id46.0.4"] = <
 				text = <"Insertionsvariant">
 				description = <"Insertion – strukturerad detalj.">
 			>
-			["id46.5"] = <
+			["id46.0.5"] = <
 				text = <"Deletions-insertionsvariant">
 				description = <"Indel – strukturerad detalj.">
 			>
@@ -323,11 +656,11 @@ terminology
 				text = <"Klinisk implikation">
 				description = <"Diagnostisk och/eller terapeutisk implikation för varianten.">
 			>
-			["id99.1"] = <
+			["id99.0.1"] = <
 				text = <"Genetisk variantförekomst">
 				description = <"Påvisad / ej påvisad (utkastarketyp).">
 			>
-			["id99.2"] = <
+			["id99.0.2"] = <
 				text = <"Translokation / fusionsstruktur">
 				description = <"Strukturdetalj för rearrangemang (utkast).">
 			>
@@ -339,42 +672,42 @@ template_overlay
 	openEHR-EHR-CLUSTER.t_sequencing_assay.v1.0.0
 
 specialize
-	openEHR-EHR-CLUSTER.sequencing_assay.v0
+	openEHR-EHR-CLUSTER.sequencing_assay-genomic_study.v0
 
 definition
-	CLUSTER[id1.1] matches {	-- Sequencing assay filled
+	CLUSTER[id1.1.1] matches {	-- Sequencing assay filled
 		/items matches {
-			use_archetype CLUSTER[id37.1, openEHR-EHR-CLUSTER.device.v1] occurrences matches {0..*}
-			use_archetype CLUSTER[id39.1, openEHR-EHR-CLUSTER.reference_sequence.v1] occurrences matches {0..1}
+			use_archetype CLUSTER[id37.0.1, openEHR-EHR-CLUSTER.device.v1] occurrences matches {0..*}
+			use_archetype CLUSTER[id39.0.1, openEHR-EHR-CLUSTER.reference_sequence.v1] occurrences matches {0..1}
 		}
 	}
 
 terminology
 	term_definitions = <
 		["en"] = <
-			["id1.1"] = <
+			["id1.1.1"] = <
 				text = <"Sequencing assay">
 				description = <"Genomic study / assay metadata.">
 			>
-			["id37.1"] = <
+			["id37.0.1"] = <
 				text = <"Sequencing device / panel">
 				description = <"Instrument or kit/panel product used for sequencing.">
 			>
-			["id39.1"] = <
+			["id39.0.1"] = <
 				text = <"Reference genome">
 				description = <"Reference sequence used for alignment (e.g. GRCh38).">
 			>
 		>
 		["sv"] = <
-			["id1.1"] = <
+			["id1.1.1"] = <
 				text = <"Sekvenseringsassay">
 				description = <"Genomisk studie-/assaymetadata.">
 			>
-			["id37.1"] = <
+			["id37.0.1"] = <
 				text = <"Sekvenseringsenhet / panel">
 				description = <"Instrument eller kit/panelprodukt för sekvensering.">
 			>
-			["id39.1"] = <
+			["id39.0.1"] = <
 				text = <"Referensgenom">
 				description = <"Referenssekvens för alignment (t.ex. GRCh38).">
 			>
@@ -538,5 +871,82 @@ terminology
 				text = <"Analytnamn">
 				description = <"Begränsat till tumörcellshalt / fraktion-etiketter.">
 			>
+		>
+	>
+-----------------------------------------------------------------------------------------------
+template_overlay
+	openEHR-EHR-CLUSTER.t_specimen_processing_genomics.v1.0.0
+
+specialize
+	openEHR-EHR-CLUSTER.specimen_processing.v1
+
+definition
+	CLUSTER[id1.1] matches {	-- Specimen processing (genomics)
+		/items[id75]/value matches {
+			DV_CODED_TEXT[id9002.1] matches {
+				defining_code matches {[ac0.1]}	-- Fixation method
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Specimen processing (genomics)">
+				description = <"Fixation / preservation of the specimen for genomic testing.">
+			>
+			["id9002.1"] = <
+				text = <"Fixation method">
+				description = <"Coded fixation / preservation method.">
+			>
+			["at0.1"] = <
+				text = <"Formalin-Fixed Paraffin-Embedded">
+				description = <"Fixation / preservation method.">
+			>
+			["at0.2"] = <
+				text = <"Fresh (unfixed, incl. frozen)">
+				description = <"Fixation / preservation method.">
+			>
+			["at0.3"] = <
+				text = <"Other">
+				description = <"Fixation / preservation method.">
+			>
+			["ac0.1"] = <
+				text = <"Fixation method">
+				description = <"Fixation method (from valuesets/).">
+			>
+		>
+		["sv"] = <
+			["id1.1"] = <
+				text = <"Provbearbetning (genomik)">
+				description = <"Fixering / konservering av provet för genomisk analys.">
+			>
+			["id9002.1"] = <
+				text = <"Fixeringsmetod">
+				description = <"Kodad fixerings-/konserveringsmetod.">
+			>
+			["at0.1"] = <
+				text = <"Formalinfixerad paraffinbäddad vävnad">
+				description = <"Fixation / preservation method.">
+			>
+			["at0.2"] = <
+				text = <"Färsk/ofixerad vävnad (inkl. fryst)">
+				description = <"Fixation / preservation method.">
+			>
+			["at0.3"] = <
+				text = <"Annat">
+				description = <"Fixation / preservation method.">
+			>
+			["ac0.1"] = <
+				text = <"Fixeringsmetod">
+				description = <"Fixeringsmetod (från valuesets/).">
+			>
+		>
+	>
+	value_sets = <
+		["ac0.1"] = <
+			id = <"ac0.1">
+			members = <"at0.1", "at0.2", "at0.3">
 		>
 	>

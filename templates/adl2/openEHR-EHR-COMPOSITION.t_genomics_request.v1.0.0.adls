@@ -11,7 +11,7 @@ language
 			language = <[ISO_639-1::sv]>
 			author = <
 				["name"] = <"Erik Sundvall / RCC Genomik (draft)">
-				["organisation"] = <"Regionala cancercentrum i samverkan / Karolinska">
+				["organisation"] = <"Regionala cancercentrum i samverkan">
 			>
 		>
 	>
@@ -27,14 +27,14 @@ description
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"Swedish RCC genomics service request / referral (T2 Genomikremiss). Managed Response composition: request + service_request (remiss_id, frågeställning / clinical indication, service name) and problem_diagnosis (ICD-10). Receiving organisation optional under service_request protocol.">
-			use = <"Narrow frågeställning value set in OPT/Better (valuesets/fragestallning). Mirror remiss_id into report protocol Requester order identifier when fulfilling.">
+			use = <"Frågeställning is bound to local codes from valuesets/fragestallning.json in the service_request overlay. Mirror remiss_id into report protocol Requester order identifier when fulfilling.">
 			keywords = <"genomics", "request", "referral", "RCC", "remiss">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			purpose = <"Svensk RCC genomikremiss (T2). Managed Response: request + tjänstebegäran (remiss_id, frågeställning) och problem_diagnosis (ICD-10).">
-			use = <"Begränsa frågeställning i OPT/Better. Spegla remiss_id till rapportens Requester order identifier vid svar.">
+			use = <"Frågeställning är bunden till lokala koder (valuesets/fragestallning.json). Spegla remiss_id till rapportens Requester order identifier vid svar.">
 			keywords = <"genomik", "remiss", "RCC">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
@@ -92,6 +92,11 @@ specialize
 
 definition
 	INSTRUCTION[id1.1] matches {	-- Genomic service request
+		/activities[id2]/description[id10]/items[id63]/value matches {
+			DV_CODED_TEXT[id9006.1] matches {
+				defining_code matches {[ac0.1]}	-- Genomics request question
+			}
+		}
 		/protocol[id9]/items matches {
 			ELEMENT[id11] occurrences matches {1}
 			use_archetype CLUSTER[id143.1, openEHR-EHR-CLUSTER.organisation.v1] occurrences matches {0..1}
@@ -109,6 +114,42 @@ terminology
 				text = <"Receiving laboratory / organisation">
 				description = <"Organisation expected to fulfil the request (HSA).">
 			>
+			["at0.1"] = <
+				text = <"Primary diagnostics">
+				description = <"Local request question code 1.">
+			>
+			["at0.2"] = <
+				text = <"Prediction of treatment response">
+				description = <"Local request question code 2.">
+			>
+			["at0.3"] = <
+				text = <"Treatment monitoring">
+				description = <"Local request question code 3.">
+			>
+			["at0.4"] = <
+				text = <"Relapse detection (MRD)">
+				description = <"Local request question code 4.">
+			>
+			["at0.5"] = <
+				text = <"Resistance question">
+				description = <"Local request question code 5.">
+			>
+			["at0.6"] = <
+				text = <"Pharmacogenomics">
+				description = <"Local request question code 6.">
+			>
+			["at0.7"] = <
+				text = <"Hereditary cancer / oncogenetics">
+				description = <"Local request question code 7.">
+			>
+			["at0.8"] = <
+				text = <"Other">
+				description = <"Local request question code 8.">
+			>
+			["ac0.1"] = <
+				text = <"Genomics request question">
+				description = <"Genomics request question (from valuesets/).">
+			>
 		>
 		["sv"] = <
 			["id1.1"] = <
@@ -119,6 +160,48 @@ terminology
 				text = <"Mottagande laboratorium / organisation">
 				description = <"Organisation som förväntas utföra begäran (HSA).">
 			>
+			["at0.1"] = <
+				text = <"Primärdiagnostik">
+				description = <"Local request question code 1.">
+			>
+			["at0.2"] = <
+				text = <"Behandlingssvarsprediktion">
+				description = <"Local request question code 2.">
+			>
+			["at0.3"] = <
+				text = <"Behandlingsmonitorering">
+				description = <"Local request question code 3.">
+			>
+			["at0.4"] = <
+				text = <"Återfallsdetektion (MRD)">
+				description = <"Local request question code 4.">
+			>
+			["at0.5"] = <
+				text = <"Resistensfrågeställning">
+				description = <"Local request question code 5.">
+			>
+			["at0.6"] = <
+				text = <"Farmakogenomik">
+				description = <"Local request question code 6.">
+			>
+			["at0.7"] = <
+				text = <"Ärftlig cancer / onkogenetik">
+				description = <"Local request question code 7.">
+			>
+			["at0.8"] = <
+				text = <"Övrigt">
+				description = <"Local request question code 8.">
+			>
+			["ac0.1"] = <
+				text = <"Frågeställning (genomik)">
+				description = <"Frågeställning (genomik) (från valuesets/).">
+			>
+		>
+	>
+	value_sets = <
+		["ac0.1"] = <
+			id = <"ac0.1">
+			members = <"at0.1", "at0.2", "at0.3", "at0.4", "at0.5", "at0.6", "at0.7", "at0.8">
 		>
 	>
 

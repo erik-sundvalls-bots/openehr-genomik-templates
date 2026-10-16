@@ -130,4 +130,4 @@ Fixes applied during benchmark:
 - Ehrtslib: bare `author` ODIN attrs; per-language `items = <`; inline `{|>0|}`
 - Archie: specialize before concept; rewrite `/items[idN]` path codes
 
-Template → OET remains unimplemented in both (Better path).
+Template → OET remains unimplemented in both (target-CDR path).

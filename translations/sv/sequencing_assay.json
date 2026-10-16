@@ -1,0 +1,83 @@
+{
+ "_purpose": "För att registrera detaljer om den utförda sekvenseringsanalysen, inklusive en lista över alla testade gener om panelsekvensering utförts.",
+ "id1": [
+  "Sekvenseringsanalys",
+  "En analys som använder sekvenseringsteknik för att bestämma sekvensen hos en nukleinsyra (DNA, RNA)."
+ ],
+ "id2": [
+  "Sekvenseringstyp",
+  "Namn på tekniken som används för sekvenseringsanalysen."
+ ],
+ "id3": [
+  "Kitnamn",
+  "Namn på kitet som används i experimentet."
+ ],
+ "id4": [
+  "Nukleinsyra",
+  "Typ av nukleinsyra som används för sekvensering, t.ex. DNA, RNA eller cf-DNA."
+ ],
+ "id7": [
+  "Testad gen",
+  "Lista över alla testade gener, om panelsekvensering utförts."
+ ],
+ "id8": [
+  "Gensymbol",
+  "Den officiella gensymbolen godkänd av HGNC, en kort förkortning av gennamnet."
+ ],
+ "at23": [
+  "DNA",
+  ""
+ ],
+ "at24": [
+  "RNA",
+  ""
+ ],
+ "at25": [
+  "cf-DNA",
+  ""
+ ],
+ "id26": [
+  "Genens referenssekvens",
+  "Strukturerade detaljer om genens referenssekvens."
+ ],
+ "id27": [
+  "Tillägg",
+  "Ytterligare detaljer som ska registreras."
+ ],
+ "id31": [
+  "Testad region",
+  "Om panelsekvensering utförts används detta kluster för att rapportera de regioner som sekvenserats, som ett genomiskt intervall som anger vilka delar av referenssekvensen som sekvenserats."
+ ],
+ "id32": [
+  "Kromosometikett",
+  "Kromosomen för den testade regionen."
+ ],
+ "id33": [
+  "Start",
+  "Startposition för den testade regionen."
+ ],
+ "id34": [
+  "Slut",
+  "Slutposition för den testade regionen."
+ ],
+ "id36": [
+  "Regionens referenssekvens",
+  "Strukturerade detaljer om regionens referenssekvens."
+ ],
+ "id37": [
+  "Sekvenseringsinstrument",
+  "Teknikplattformen som används för nukleinsyrasekvensering."
+ ],
+ "id38": [
+  "Kommentar",
+  "Kommentar om sekvenseringsanalysen som inte fångats i andra fält."
+ ],
+ "id39": [
+  "Referensgenom",
+  "Strukturerade detaljer om den specifika versionen av den humana sekvensassemblyn som används för annotering."
+ ],
+ "id40": [
+  "Bioinformatisk analys",
+  "Strukturerade detaljer om stegen i det bioinformatiska analysflödet eller protokollen som används (t.ex. instrument, mjukvara, pipelines)."
+ ]
+}

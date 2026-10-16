@@ -1,15 +1,15 @@
 # T1/T2 coverage vs variable inventory
 
-*Updated 2026-10-15 (Europe/Stockholm). Inventory: `analysis/variable-inventory.json` (73 variables).*
+*Updated 2026-10-16 (Europe/Stockholm). Inventory: `analysis/variable-inventory.json` (73 variables).*
 
 ## Templates
 
 | ID | File | Root | Overlays / fills |
 |----|------|------|------------------|
-| T1 | `templates/adl2/openEHR-EHR-COMPOSITION.t_genomics_cancer_report.v1.0.0.adls` | `report-result` | lab_result → specimen (+anatomical_location, specimen_processing), TMB/MSI/HRD/cellularity analytes, GVR-cancer (+CNV-cancer, substitution/del/ins/indel, clinical implication, presence, translocation), organisation, sequencing_assay (+device, reference_sequence), device |
-| T2 | `templates/adl2/openEHR-EHR-COMPOSITION.t_genomics_request.v1.0.0.adls` | `request` | service_request (mandate remiss_id / Requester order identifier; Receiver organisation), problem_diagnosis (mandate diagnosis name) |
+| T1 | `templates/adl2/openEHR-EHR-COMPOSITION.t_genomics_cancer_report.v1.0.0.adls` | `report-result` | lab_result → specimen (+anatomical_location, specimen_processing), TMB/MSI/HRD/cellularity analytes, GVR-cancer (+CNV-cancer, substitution/del/ins/indel, clinical implication, presence, translocation), organisation, sequencing_assay-genomic_study (+device, reference_sequence; study id, study type, coded method), device. Value sets bound: specimen type (provtyp + extraherat material), collection method, fixation method |
+| T2 | `templates/adl2/openEHR-EHR-COMPOSITION.t_genomics_request.v1.0.0.adls` | `request` | service_request (mandate remiss_id / Requester order identifier; Receiver organisation), problem_diagnosis (mandate diagnosis name). Value set bound: Reason for request = frågeställning (local codes) |
 
-Archie `parse2`: **OK** for both.
+Archie full validation (parse + flatten + validate, 31 artefacts incl. all overlays): **0 failures** (`build/archie-validation.txt`).
 
 ## Coverage by inventory block
 
@@ -21,7 +21,7 @@ Archie `parse2`: **OK** for both.
 | PROVMATERIAL N1 | 10 | T1 | specimen + anatomical_location + specimen_processing; cellularity as analyte |
 | PROVMATERIAL N2 | 2 | T1 | Child specimen + sequencing_assay nucleic acid |
 | DIAGNOSTISK RAPPORT | 11 | T1 | lab_result fields + GVR fills; remiss_ref = Test request details / Requester order identifier |
-| STUDIEMETADATA | 6 | T1 partial | sequencing_assay + overall status; **studie_id**, **analystyp** still gap/extension |
+| STUDIEMETADATA | 6 | T1 | sequencing_assay-genomic_study draft: Study identifier (studie_id), Study type (analystyp, HL7 genomic-study-type), coded Sequencing type (analysmetod, HL7 method type); status via overall test status |
 | DEVICE / PANEL | 1 | T1 | device under assay / Testing details |
 | VARIANT gemensamma | 9 | T1 | GVR-cancer (incl. genetiskt ursprung ASCO/ESCAT); presence draft |
 | SNV/INDEL | 5 | T1 | GVR + substitution/del/ins/indel overlays |
@@ -31,28 +31,48 @@ Archie `parse2`: **OK** for both.
 | TERAPEUTISK IMPLIKATION | 3 | T1 | same implication cluster (type = therapeutic) |
 | TMB / MSI / HRD | 6 | T1 | dedicated analyte overlays with name constraints |
 
-## Counts (approximate against inventory gap_flag)
+## Counts (inventory gap_flag, updated)
 
-| gap_flag | Inventory | Template status |
-|----------|-----------|-----------------|
-| covered | 34 | Represented in T1/T2 structure |
-| partial | 26 | Structure present; value-set / path polish in OPT |
-| gap | 9 | Mostly studie_id, analystyp, implication entry ids; ASCO/ESCAT/origin addressed by **draft specialisations** now included |
-| out_of_scope_demographics | 4 | Unchanged |
+| gap_flag | Before (2026-10-15) | Now |
+|----------|-----------|-----|
+| covered | 34 | 40 |
+| partial | 26 | 22 |
+| covered_by_local_draft | – | 7 (genetic origin, ASCO, ESCAT, copy number type, implication id/status) |
+| gap | 9 | 0 |
+| out_of_scope_demographics | 4 | 4 |
+
+## Value-set bindings (source → where bound)
+
+| valuesets/ file | Bound in | Codes | External binding |
+|---|---|---|---|
+| provtyp + extraherat_material | T1 overlay `t_specimen_genomics` Specimen type `ac0.1` | 18 | SNOMED CT (15) |
+| provtagningsteknik | T1 overlay `t_specimen_genomics` Collection method `ac0.2` | 15 | SNOMED CT (14; cell block has none) |
+| fixeringsmetod | T1 overlay `t_specimen_processing_genomics` Method `ac0.1` | 3 | none in source |
+| analystyp | draft `sequencing_assay-genomic_study` Study type `ac0.1` | 12 | HL7 genomic-study-type |
+| analysmetod | draft `sequencing_assay-genomic_study` Sequencing type `ac0.2` | 9 | HL7 genomic-study-method-type |
+| molecular_consequence | draft `genomic_variant_result-cancer` `ac0.4` (was empty) | 8 | SO (8) + SNOMED CT (4) |
+| genetiskt_ursprung | draft `genomic_variant_result-cancer` `ac0.1` | 5 | SNOMED CT (2) |
+| asco_tier / escat_tier | draft `genomic_variant_result-cancer` `ac0.2`/`ac0.3` | 7 / 11 | local only (namespace open, see decisions) |
+| kopietaltyp | draft `genomic_copy_number_variant-cancer` (Amplification = `at7.1` under Gain, Homozygous deletion = `at8.1` under Loss) | 4 | SO in descriptions |
+| fragestallning | T2 overlay `t_genomics_service_request` Reason for request `ac0.1` | 8 | local only |
+| variationstyp | not bound: expressed by choice of structured-variant archetype | – | – |
+| produktnamn | not bound: free text (Kit name / device name); list changes often | – | – |
 
 ## Still missing / deferred
 
-1. **OET/OPT for Better** — see `docs/template-oet-gaps.md`.
-2. **studie_id** — no dedicated element on sequencing_assay; use Extension or lab internal id until archetype evolves.
-3. **analystyp** (snp/cnv/…) — may stay template annotation / Extension.
-4. **ICD-10 / frågeställning / ASCO / ESCAT / SO bindings** — local value sets in `valuesets/`; bind in Better OPT.
-5. **Per-finding fynd_id / status** — feeder_audit or Additional details; not separate ENTRY.
-6. **Widen lab_result slots** (optional local specialisation) if Better slot-checks reject GVR / sequencing_assay placement.
-7. **specimen_preparation** — not in repo; using specimen_processing in Additional details instead.
+1. **T2 frågeställning constraint missing from OPT (Ehrtslib gap B)**: the codes are in the OPT terminology, but the DV_CODED_TEXT constraint is dropped. Archie validates the ADL2.
+2. **HL7 study type/method term bindings missing from OPT (Ehrtslib gap A)**: `#` in URIs. Codes and texts are present.
+3. **OET lacks local coded-text value sets (gap C)**: the OPT is complete.
+4. **ICD-10 binding** for diagnosis (T2 problem_diagnosis): external terminology, left to the target CDR.
+5. **Per-finding fynd_id / status**: feeder_audit or Additional details; not a separate ENTRY.
+6. **Widen lab_result slots** (optional local specialisation) if the target CDR's slot checks reject GVR / sequencing_assay placement.
+7. **specimen_preparation**: not in repo; specimen_processing is used instead.
+8. **Swedish translation** of 3 unused CKM archetypes (duplication, inversion, knowledge_base_reference).
 
-## Validation performed
+## Validation performed (2026-10-16, `tools/build.sh`)
 
-- Archie `parse2` on T1 and T2 ADL2 templates: OK.
-- Archie `parse14` on down-converted drafts in `build/archie-adl14/`: OK (3 cancer drafts + organisation sample).
-- Ehrtslib ADL14 on same drafts: OK (`build/ehrtslib-adl14/*.v1.0.0.adl`).
-- Ehrtslib ADL14 on T1/T2 templates: **not** valid ADL1.4 archetypes (expected; not OET).
+- Archie (fork, `feature/adl2-to-adl14-downconverter` incl. PR #3) full validation of `archetypes/ckm-adl2`, `archetypes/drafts`, `templates/adl2`: 31/31 OK. Three earlier errors that `parse2` had missed were fixed: the T1 root/slot node ids had the wrong specialisation depth, the CNV-cancer value set added codes outside its parent, and the reference_sequence root was `id19`.
+- Ehrtslib (main @ fc1b5b0) `export:opt14` / `export:oet14` for T1 and T2.
+- OPT 1.4 vs `AM/Release-1.4/Template.xsd`: both VALID.
+- OET vs `OET/latest/CompositionTemplate.xsd`: both VALID. They are not valid against Release-1.0.1, which has no `annotations` element (needed for the L10n workaround).
+- ADL 1.4 down-conversion of the 4 drafts with both Ehrtslib and Archie: OK (`build/ehrtslib-adl14`, `build/archie-adl14`).

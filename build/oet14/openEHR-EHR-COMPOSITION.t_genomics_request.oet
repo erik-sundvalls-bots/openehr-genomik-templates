@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template xmlns="openEHR/v1/Template">
-  <id>14a1a911-db87-4159-bdf9-9c79cbbaf60d</id>
+  <id>b7739cae-9ac4-4f9e-ae20-56b4dfc62060</id>
   <name>Genomics request</name>
   <description>
     <original_author>
@@ -11,7 +11,7 @@
     <lifecycle_state>unmanaged</lifecycle_state>
     <details>
       <purpose>Swedish RCC genomics service request / referral (T2 Genomikremiss). Managed Response composition: request + service_request (remiss_id, frågeställning / clinical indication, service name) and problem_diagnosis (ICD-10). Receiving organisation optional under service_request protocol.</purpose>
-      <use>Narrow frågeställning value set in OPT/Better (valuesets/fragestallning). Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
+      <use>Frågeställning is bound to local codes from valuesets/fragestallning.json in the service_request overlay. Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
       <misuse></misuse>
     </details>
   </description>
