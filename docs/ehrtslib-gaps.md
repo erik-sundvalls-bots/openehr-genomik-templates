@@ -33,16 +33,16 @@ There is still **no working automatic ADL2 → 1.4 path** on the box (Archie can
 - (b) write a small Archie-based Java down-converter (AOM2 → AOM1.4 serializer)
 - (c) hand-maintain 1.4 versions of the 3 drafts and build T1/T2 as OETs in a graphical template designer.
 
-## New gaps found 2026-10-16 (genomics value-set bindings) — not yet filed
+## New gaps found 2026-10-16 (genomics value-set bindings)
 
-Draft issue texts for Erik to file (nothing has been posted):
+Status 2026-10-21: A = ehrtslib#133, B = ehrtslib#134, C = ehrtslib#135, all fixed/documented on ehrtslib main (ebc2434). The build workaround for A is removed and the fix for B is confirmed in the T2 OPT. Gap D below is new and not filed.
 
 ### A. ADL2 tokenizer rejects `#` (and likely `?`) inside ODIN URI values
 - Input: `["at0.10"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#alt-splc>` in `term_bindings`.
 - Ehrtslib: `Unexpected character '#'` from `parser/adl2_tokenizer.ts`; the whole archetype fails to load, so templates using it lose that archetype ("no published base archetype in chain").
 - Archie: parses and validates.
 - Expected: URI values in ODIN accept full RFC 3986 syntax, including fragment and query.
-- Workaround in `tools/build.sh`: the copy given to Ehrtslib has bindings containing `#` removed. As a result the OPT 1.4 has no HL7 study type/method bindings, though the codes and texts are still there.
+- ~~Workaround in `tools/build.sh`~~: removed 2026-10-21. Parsing now works; the bindings are still missing from the OPT because of gap D.
 
 ### B. Differential path through `description` attribute not resolved (INSTRUCTION activities)
 - Input (T2 overlay on service_request): `/activities[id2]/description[id10]/items[id63]/value matches { DV_CODED_TEXT[id9006.1] ... }`.
@@ -52,3 +52,11 @@ Draft issue texts for Erik to file (nothing has been posted):
 ### C. OET 1.4 has no export for local coded-text redefinitions
 - `value constraint at /items[at0029] has no OET equivalent; kept only in the OPT export` (specimen type, collection method, fixation method).
 - The OPT is complete. The OET lacks these value sets. That may be acceptable, since OET textConstraint cannot carry new local codes. Document this in ADL_SUPPORT.md.
+
+### D. OPT 1.4 exporter silently drops term bindings that are not `[t::c]` or `http://<host>/id/<code>` (new 2026-10-21, not filed)
+- `generation/opt14/opt14_exporter.ts` `parseBinding()` only accepts `[terminology::code]` or `https?://<host>/id/<code>` (SNOMED/LOINC/openEHR style).
+- Valid ADL2 binding URIs such as `http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#cnv` and `http://purl.obolibrary.org/obo/SO_0001583` return `undefined` and are dropped with no warning.
+- Effect: T1 OPT has the SNOMED CT bindings but none of the HL7 study type/method or SO bindings.
+- Expected: map at least `<code-system-uri>#<code>` (FHIR style) and OBO PURLs to a terminology id + code (e.g. terminology id from a configurable URI→id table, defaulting to the binding key), or warn when a binding cannot be exported.
+- Related: Ehrtslib's ADL 1.4 down-conversion (`tools/ehrtslib-down14.ts`, `ADL14Serializer`) writes no `term_bindings` section at all for the drafts (SNOMED CT, SO and HL7 bindings all missing in `build/ehrtslib-adl14/`).
+- Archie keeps all these bindings in its ADL 1.4 output (`build/archie-adl14/`: 12 HL7 bindings in `sequencing_assay-genomic_study`, 8 SO bindings in `genomic_variant_result-cancer`).

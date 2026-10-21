@@ -1,6 +1,6 @@
 # Beslut och öppna frågor – fas 2
 
-*Uppdaterad 2026-10-15 (Europe/Stockholm). Fas 1-bakgrund behålls; Eriks svar 1–5 inarbetade.*
+*Uppdaterad 2026-10-21 (Europe/Stockholm). Fas 1-bakgrund behålls; Eriks svar 1–5 inarbetade; beslut om frågeställning och studie-/analystyp (§10).*
 
 ## 1. Underlaget i siffror (oförändrat från fas 1)
 - 73 variabler: 34 covered, 26 partial, 9 gap, 4 demografi.
@@ -68,13 +68,13 @@ CKM-sökning 2026-10-15: **0 träffar** för ASCO/AMP/ESCAT. GMS `mtbp_classific
 
 | # | Fråga | Alternativ | Rekommendation |
 |---|-------|-----------|----------------|
-| 6 | **SO-URI** i term_bindings | (a) OBO PURL `http://purl.obolibrary.org/obo/SO_0001583`; (b) FHIR-system `http://www.sequenceontology.org/` + kod `SO:0001583`; (c) `http://identifiers.org/so/SO:0001583` | **(a)** i ADL (en kod-URI per term; används nu i `genomic_variant_result-cancer`). I FHIR-mappningen används (b), som Genomics Reporting IG anger. Mappningen a↔b är mekanisk. |
+| 6 | **SO-URI** i term_bindings | (a) OBO-term-PURL `http://purl.obolibrary.org/obo/SO_0001583`; (b) FHIR-system `http://www.sequenceontology.org` (utan avslutande snedstreck, enligt HL7 THO NamingSystem SO) + kod `SO:0001583`; (c) `http://identifiers.org/so/SO:0001583` | **Rekommenderat, inväntar Eriks slutliga besked:** (a) i ADL (en resolverbar URI per term; används i `genomic_variant_result-cancer`) och (b) på FHIR-sidan. Mappningen a↔b är mekanisk (`SO_nnnnnnn` ↔ `SO:nnnnnnn`). Obs: bara per-term-adresser resolverar; själva katalogen `/obo/` ger 404. |
 | 7 | **Namnrymd för lokala värdemängder** (ASCO, ESCAT, frågeställning, cellblock …) | (a) organisationsägd HTTPS-namnrymd, t.ex. `https://<ägare>/fhir/CodeSystem/<namn>`; (b) `urn:oid:` under ägarens OID; (c) inga externa bindningar, endast lokala at-koder | **(a)** när ägaren (den nationella genomik-/cancerorganisationen) har bekräftat basadressen. Tills dess **(c)**: värdemängderna finns redan som lokala at-koder, och inga platshållar-URI:er läggs in i ADL. |
 | 8 | Patient via EHR-subject; HSA-id i `organisation` | – | Behåll. Bekräftas med mottagande system. |
 | 9 | När ska forumförslagen 01–07 postas? | – | Gärna 07 (översättningar) först. Det är minst kontroversiellt och ger granskare för resten. |
 | 10 | Grafiskt mallverktyg vs genererad OET | (a) importera genererad OPT direkt; (b) importera OET och efterbearbeta i mallverktyg | **(a)** för test. OPT:n är komplett och XSD-giltig, medan OET:n saknar lokala kodade värdemängder (Ehrtslib-gap C). |
-| 11 | **Studie-/analystyp-luckan**: lokal specialisering vs CKM-ändring | (a) behåll `sequencing_assay-genomic_study` lokalt; (b) föreslå ändring i CKM (förslag 07 §2) | **(a)+(b)**: använd lokalt nu och föreslå i CKM. |
-| 12 | Frågeställning bunden som stängd lista (endast kodat) | (a) stängd lista; (b) kodat + fritext | **(a)** enligt konfigurationsunderlaget, där "Övrigt" täcker resten. |
+| 11 | **Studie-/analystyp-luckan**: lokal specialisering vs CKM-ändring | (a) behåll `sequencing_assay-genomic_study` lokalt; (b) föreslå ändring i CKM (förslag 07 §2) | **BESLUTAT 2026-10-21: (a)+(b).** Lokala utkastet används nu; CKM-ändringsförslaget finns färdigt i `forum-proposals/07` §2 (ej postat, Erik postar). |
+| 12 | Frågeställning: stängd kodad lista vs kodat + fritext | (a) stängd lista; (b) kodat + öppen fritext | **BESLUTAT 2026-10-21: (a)**, som underlagets FHIR-design (`ServiceRequest.reasonCode`, 1..*, obligatorisk, flerval). Se §10. Alternativ (b) dokumenteras som möjligt designval. |
 
 ## 7. Repo
 Privat: `https://github.com/erik-sundvalls-bots/openehr-genomik-templates` (gh som `erik-sundvalls-bots`).
@@ -89,3 +89,25 @@ ADL2 templates filled with nested `template_overlay` slot fills (not skeletons).
 - Värdemängder från `valuesets/` är bundna i T1/T2-overlays. Se tabellen i `template-coverage.md`.
 - Svenska översättningar har lagts in lokalt i 10 CKM ADL2-kopior (`translations/sv/`, `tools/add_sv_translation.py`). CKM-förslag i `forum-proposals/07`.
 - `tools/build.sh` bygger om allt och validerar (Archie full validering, Ehrtslib OPT/OET, ADL 1.4 via båda verktygen, XSD).
+
+## 10. Beslut 2026-10-21: frågeställning, studie-/analystyp, SO-URI
+
+### 10.1 Frågeställning (T2) — beslutat: följ underlagets FHIR-design
+Underlaget (`source/csv/Alla_variabler.csv`, REMISS/frågeställning; `Listvärden - Frågeställning`): 1..*, Code, obligatorisk, kodat värde, flerval tillåtet, FHIR `ServiceRequest.reasonCode` (R4), "Separata ServiceRequest per frågeställning rekommenderas".
+
+Modellering i T2 (`t_genomics_service_request`-overlayn på `INSTRUCTION.service_request.v1`):
+- `Reason for request` (id63) specialiseras till `id63.1` med namnet **Clinical question / Frågeställning**, `occurrences 1..*` (obligatorisk, flerval).
+- Värdet är `DV_CODED_TEXT` med **stängd** lokal värdemängd `ac0.1` (8 koder, `valuesets/fragestallning.json`; beskrivningar från underlaget). Ingen fritext i elementet.
+- Mappning: openEHR `ACTIVITY` ↔ FHIR `ServiceRequest` (en aktivitet är den enhet som beställs och följs upp med ACTIONs), `Reason for request` ↔ `ServiceRequest.reasonCode`, remiss-id (protocol `Requester order identifier`, delat av alla aktiviteter i INSTRUCTION). Underlaget mappar `remiss_id` till `ServiceRequest.id`; med en ServiceRequest per frågeställning bör det delade remiss-id:t i stället bli `ServiceRequest.requisition` (gruppidentifierare) och varje ServiceRequest få eget id. Detta tas upp i FHIRconnect-fasen.
+- `ACTIVITY` behåller arketypens `1..*`. **Rekommenderat mönster**: en ACTIVITY per frågeställning (ger separata ServiceRequest per frågeställning, som underlaget rekommenderar). Flera frågeställningar i en ACTIVITY är också giltigt (motsvarar flera `reasonCode` i en ServiceRequest). Vi tvingar inte 1 frågeställning per aktivitet, eftersom underlaget bara *rekommenderar* separata ServiceRequests men kräver 1..* flerval.
+- Arketypens fritextelement `Reason description` (id65) är fortfarande tillgängligt (ej begränsat i T2), som i CKM. Det kan tas bort (occurrences 0) om man vill ha en helt stängd remiss.
+
+**Alternativ design (ej vald): kodat + öppen fritext.** Tillåt `DV_TEXT` bredvid `DV_CODED_TEXT` i elementet (eller en öppen värdemängd, ADL2 `constraint_status = extensible`), så att remittenten kan skriva fritext när listan inte räcker.
+- *Fördelar:* fångar kliniska nyanser utan "Övrigt"; tål listförändringar utan ny mallversion.
+- *Nackdelar:* sämre jämförbarhet och statistik; fritext måste tolkas av labbet; FHIR-sidan får `reasonCode.text` utan kod, och det bryter underlagets krav på kodat värde.
+
+### 10.2 Studie-/analystyp — beslutat
+Behåll lokala utkastet `sequencing_assay-genomic_study` **och** förbered CKM-ändringsförslaget. Verifierat: förslaget finns i `docs/forum-proposals/07-ckm-swedish-translations-and-sequencing-assay.md` §2 (Study identifier, Study type, kodad Sequencing type). Ej postat.
+
+### 10.3 SO-URI — rekommenderat (inväntar Eriks slutliga besked)
+ADL: OBO-term-PURL `http://purl.obolibrary.org/obo/SO_nnnnnnn`. FHIR: system `http://www.sequenceontology.org` (utan avslutande snedstreck, HL7 THO NamingSystem SO), kod `SO:nnnnnnn`. Förekomster med snedstreck i docs/valuesets är rättade.

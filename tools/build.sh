@@ -10,15 +10,12 @@ if [[ -z "${ARCHIE_CP:-}" ]]; then
 fi
 CP="$ARCHIE_CP"
 echo "== Archie full validation (parse + flatten + validate)"
-java -cp "$CP" "$G/tools/ArchieValidateAll.java" "$G/archetypes/ckm-adl2" "$G/archetypes/drafts" "$G/templates/adl2" 2>/dev/null | tee "$G/build/archie-validation.txt" | tail -1
-# Ehrtslib tokenizer does not accept '#' in ODIN URIs yet: strip such term_bindings in a temp copy (see docs/ehrtslib-gaps.md)
-TMP=$(mktemp -d); cp -r "$G/archetypes" "$TMP/"; python3 - "$TMP" <<'PY'
-import sys,re,glob
-for f in glob.glob(sys.argv[1]+'/archetypes/**/*.adls',recursive=True):
-    s=open(f).read(); n=re.sub(r'\t\t\["[^"]+"\] = <\n(\t\t\t\["[^"]+"\] = <[^>\n]*#[^>\n]*>\n)+\t\t>\n','',s)
-    if n!=s: open(f,'w').write(n); print('  (ehrtslib copy) stripped #-URI bindings in',f.split('/')[-1])
-PY
-echo "== Ehrtslib OPT/OET 1.4"
+java -cp "$CP" "$G/tools/ArchieValidateAll.java" "$G/archetypes/ckm-adl2" "$G/archetypes/drafts" "$G/templates/adl2" 2>/dev/null > "$G/build/archie-validation.raw" || true
+{ grep -v "^total=" "$G/build/archie-validation.raw" | sort; grep "^total=" "$G/build/archie-validation.raw"; } > "$G/build/archie-validation.txt"; rm -f "$G/build/archie-validation.raw"; tail -1 "$G/build/archie-validation.txt"
+# Ehrtslib main reads '#' in ODIN URIs since ehrtslib#133 (PR #138); no stripping workaround needed.
+TMP=$(mktemp -d); cp -r "$G/archetypes" "$TMP/"
+echo "== Ehrtslib OPT/OET 1.4 (ehrtslib $(git -C "$EHRTSLIB" rev-parse --short HEAD))"
+mkdir -p "$G/build/opt14" "$G/build/oet14"; : > "$G/build/ehrtslib-export-log.txt"
 for T in t_genomics_cancer_report t_genomics_request; do for F in opt oet; do
   (cd "$EHRTSLIB" && deno task -q export:${F}14 --lib "$TMP/archetypes/ckm-adl2" --lib "$TMP/archetypes/drafts" \
     --template "$G/templates/adl2/openEHR-EHR-COMPOSITION.$T.v1.0.0.adls" --lang en,sv --out "$G/build/${F}14/openEHR-EHR-COMPOSITION.$T.$F") 2>&1 | sed 's/^/  /' | tee -a "$G/build/ehrtslib-export-log.txt" >/dev/null

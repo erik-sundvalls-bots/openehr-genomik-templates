@@ -7,7 +7,7 @@
     "so": {
       "uri": "http://www.sequenceontology.org",
       "name": "Sequence Ontology",
-      "note": "FHIR Genomics IG often uses http://www.sequenceontology.org"
+      "note": "FHIR system per HL7 THO NamingSystem SO (no trailing slash), code form SO:nnnnnnn. ADL term_bindings use the OBO term PURL http://purl.obolibrary.org/obo/SO_nnnnnnn (see docs/decisions.md 10.3)."
     },
     "hl7_genomic_study_method": {
       "uri": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-method-type-cs",

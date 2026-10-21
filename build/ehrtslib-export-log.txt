@@ -39,7 +39,6 @@
   WARN openEHR-EHR-CLUSTER.specimen.v1.1.3: value constraint at /items[at0007] has no OET equivalent; kept only in the OPT export
   WARN openEHR-EHR-CLUSTER.specimen_processing.v1.0.1: value constraint at /items[at0074] has no OET equivalent; kept only in the OPT export
   openEHR-EHR-COMPOSITION.t_genomics_cancer_report.v1.0.0: OET with 19 archetypes, 9 L10n annotations
-  WARN openEHR-EHR-INSTRUCTION.t_genomics_service_request.v1.0.0: differential path /items[id63]/value not found in parent
   Genomics request: 4 archetypes, 0 L10n annotations, 0 repeated-translation conflicts
-  WARN openEHR-EHR-INSTRUCTION.t_genomics_service_request.v1.0.0: differential path /items[id63]/value not found in parent
-  openEHR-EHR-COMPOSITION.t_genomics_request.v1.0.0: OET with 4 archetypes, 2 L10n annotations
+  WARN openEHR-EHR-INSTRUCTION.service_request.v1.1.3-alpha: value constraint at /activities[at0001]/description[at0009]/items[at0062] has no OET equivalent; kept only in the OPT export
+  openEHR-EHR-COMPOSITION.t_genomics_request.v1.0.0: OET with 4 archetypes, 3 L10n annotations

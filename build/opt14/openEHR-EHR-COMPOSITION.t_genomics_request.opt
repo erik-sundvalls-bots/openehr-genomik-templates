@@ -25,7 +25,7 @@
       <keywords>referral</keywords>
       <keywords>RCC</keywords>
       <keywords>remiss</keywords>
-      <use>Frågeställning is bound to local codes from valuesets/fragestallning.json in the service_request overlay. Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
+      <use>Frågeställning (Reason for request, renamed Clinical question) is a required closed coded list (1..*, multiple selection) from valuesets/fragestallning.json, mirroring FHIR ServiceRequest.reasonCode in the source dataset. Each ACTIVITY corresponds to one ServiceRequest; the recommended pattern is one ACTIVITY per clinical question. Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
       <copyright>© Regionala cancercentrum i samverkan</copyright>
     </details>
     <details>
@@ -39,7 +39,7 @@
       <keywords>genomik</keywords>
       <keywords>remiss</keywords>
       <keywords>RCC</keywords>
-      <use>Frågeställning är bunden till lokala koder (valuesets/fragestallning.json). Spegla remiss_id till rapportens Requester order identifier vid svar.</use>
+      <use>Frågeställning är en obligatorisk stängd kodad lista (1..*, flerval) från valuesets/fragestallning.json, i linje med FHIR ServiceRequest.reasonCode i underlaget. Varje ACTIVITY motsvarar en ServiceRequest; rekommenderat mönster är en ACTIVITY per frågeställning. Spegla remiss_id till rapportens Requester order identifier vid svar.</use>
       <copyright>© Regionala cancercentrum i samverkan</copyright>
     </details>
   </description>
@@ -474,7 +474,7 @@
                       <upper_included>false</upper_included>
                       <lower_unbounded>false</lower_unbounded>
                       <upper_unbounded>true</upper_unbounded>
-                      <lower>0</lower>
+                      <lower>1</lower>
                     </occurrences>
                     <node_id>at0062</node_id>
                     <attributes xsi:type="C_SINGLE_ATTRIBUTE">
@@ -489,7 +489,7 @@
                       </existence>
                       <match_negated>false</match_negated>
                       <children xsi:type="C_COMPLEX_OBJECT">
-                        <rm_type_name>DV_TEXT</rm_type_name>
+                        <rm_type_name>DV_CODED_TEXT</rm_type_name>
                         <occurrences>
                           <lower_included>true</lower_included>
                           <upper_included>true</upper_included>
@@ -499,6 +499,41 @@
                           <upper>1</upper>
                         </occurrences>
                         <node_id></node_id>
+                        <attributes xsi:type="C_SINGLE_ATTRIBUTE">
+                          <rm_attribute_name>defining_code</rm_attribute_name>
+                          <existence>
+                            <lower_included>true</lower_included>
+                            <upper_included>true</upper_included>
+                            <lower_unbounded>false</lower_unbounded>
+                            <upper_unbounded>false</upper_unbounded>
+                            <lower>1</lower>
+                            <upper>1</upper>
+                          </existence>
+                          <match_negated>false</match_negated>
+                          <children xsi:type="C_CODE_PHRASE">
+                            <rm_type_name>CODE_PHRASE</rm_type_name>
+                            <occurrences>
+                              <lower_included>true</lower_included>
+                              <upper_included>true</upper_included>
+                              <lower_unbounded>false</lower_unbounded>
+                              <upper_unbounded>false</upper_unbounded>
+                              <lower>1</lower>
+                              <upper>1</upper>
+                            </occurrences>
+                            <node_id></node_id>
+                            <terminology_id>
+                              <value>local</value>
+                            </terminology_id>
+                            <code_list>at0.1</code_list>
+                            <code_list>at0.2</code_list>
+                            <code_list>at0.3</code_list>
+                            <code_list>at0.4</code_list>
+                            <code_list>at0.5</code_list>
+                            <code_list>at0.6</code_list>
+                            <code_list>at0.7</code_list>
+                            <code_list>at0.8</code_list>
+                          </children>
+                        </attributes>
                       </children>
                     </attributes>
                   </children>
@@ -1902,8 +1937,8 @@
           <items id="description">The date/time or description about timing for provision of the requested service/s.</items>
         </term_definitions>
         <term_definitions code="at0062">
-          <items id="text">Reason for request</items>
-          <items id="description">The specific problem needing attention or the clinical question that requires investigation.</items>
+          <items id="text">Clinical question</items>
+          <items id="description">Clinical question (purpose) of the genomic analysis, from the closed national list. Required; several may be selected. Recommended pattern: one activity per clinical question (maps to one FHIR ServiceRequest per question).</items>
         </term_definitions>
         <term_definitions code="at0064">
           <items id="text">Reason description</items>
@@ -2019,35 +2054,35 @@
         </term_definitions>
         <term_definitions code="at0.1">
           <items id="text">Primary diagnostics</items>
-          <items id="description">Local request question code 1.</items>
+          <items id="description">Confirm the molecular diagnosis or cancer subtype at new diagnosis.</items>
         </term_definitions>
         <term_definitions code="at0.2">
           <items id="text">Prediction of treatment response</items>
-          <items id="description">Local request question code 2.</items>
+          <items id="description">Predict whether a specific treatment is expected to work based on tumour genetics.</items>
         </term_definitions>
         <term_definitions code="at0.3">
           <items id="text">Treatment monitoring</items>
-          <items id="description">Local request question code 3.</items>
+          <items id="description">Follow treatment response over time through repeated sampling (not MRD-specific).</items>
         </term_definitions>
         <term_definitions code="at0.4">
           <items id="text">Relapse detection (MRD)</items>
-          <items id="description">Local request question code 4.</items>
+          <items id="description">Detect minimal residual disease (MRD) or early relapse after treatment.</items>
         </term_definitions>
         <term_definitions code="at0.5">
           <items id="text">Resistance question</items>
-          <items id="description">Local request question code 5.</items>
+          <items id="description">Explain why an ongoing treatment has stopped working.</items>
         </term_definitions>
         <term_definitions code="at0.6">
           <items id="text">Pharmacogenomics</items>
-          <items id="description">Local request question code 6.</items>
+          <items id="description">Drug response and dosing based on the patient's genetic profile (not tumour genomics).</items>
         </term_definitions>
         <term_definitions code="at0.7">
           <items id="text">Hereditary cancer / oncogenetics</items>
-          <items id="description">Local request question code 7.</items>
+          <items id="description">Investigation of hereditary cancer predisposition and/or screening of individuals with increased genetic risk (includes former 'Screening (predisposition)').</items>
         </term_definitions>
         <term_definitions code="at0.8">
           <items id="text">Other</items>
-          <items id="description">Local request question code 8.</items>
+          <items id="description">Other clinical question not covered by the categories above.</items>
         </term_definitions>
       </children>
       <children xsi:type="C_ARCHETYPE_ROOT">
@@ -3084,8 +3119,8 @@
         <items id="description">The date/time or description about timing for provision of the requested service/s.</items>
       </items>
       <items code="at0062">
-        <items id="text">Reason for request</items>
-        <items id="description">The specific problem needing attention or the clinical question that requires investigation.</items>
+        <items id="text">Clinical question</items>
+        <items id="description">Clinical question (purpose) of the genomic analysis, from the closed national list. Required; several may be selected. Recommended pattern: one activity per clinical question (maps to one FHIR ServiceRequest per question).</items>
       </items>
       <items code="at0064">
         <items id="text">Reason description</items>
@@ -3201,35 +3236,35 @@
       </items>
       <items code="at0.1">
         <items id="text">Primary diagnostics</items>
-        <items id="description">Local request question code 1.</items>
+        <items id="description">Confirm the molecular diagnosis or cancer subtype at new diagnosis.</items>
       </items>
       <items code="at0.2">
         <items id="text">Prediction of treatment response</items>
-        <items id="description">Local request question code 2.</items>
+        <items id="description">Predict whether a specific treatment is expected to work based on tumour genetics.</items>
       </items>
       <items code="at0.3">
         <items id="text">Treatment monitoring</items>
-        <items id="description">Local request question code 3.</items>
+        <items id="description">Follow treatment response over time through repeated sampling (not MRD-specific).</items>
       </items>
       <items code="at0.4">
         <items id="text">Relapse detection (MRD)</items>
-        <items id="description">Local request question code 4.</items>
+        <items id="description">Detect minimal residual disease (MRD) or early relapse after treatment.</items>
       </items>
       <items code="at0.5">
         <items id="text">Resistance question</items>
-        <items id="description">Local request question code 5.</items>
+        <items id="description">Explain why an ongoing treatment has stopped working.</items>
       </items>
       <items code="at0.6">
         <items id="text">Pharmacogenomics</items>
-        <items id="description">Local request question code 6.</items>
+        <items id="description">Drug response and dosing based on the patient's genetic profile (not tumour genomics).</items>
       </items>
       <items code="at0.7">
         <items id="text">Hereditary cancer / oncogenetics</items>
-        <items id="description">Local request question code 7.</items>
+        <items id="description">Investigation of hereditary cancer predisposition and/or screening of individuals with increased genetic risk (includes former 'Screening (predisposition)').</items>
       </items>
       <items code="at0.8">
         <items id="text">Other</items>
-        <items id="description">Local request question code 8.</items>
+        <items id="description">Other clinical question not covered by the categories above.</items>
       </items>
     </term_definitions>
     <term_definitions language="sv">
@@ -3254,8 +3289,8 @@
         <items id="description">*The date/time or description about timing for provision of the requested service/s. (en)</items>
       </items>
       <items code="at0062">
-        <items id="text">Anledning till förfrågan</items>
-        <items id="description">*The specific problem needing attention or the clinical question that requires investigation. (en)</items>
+        <items id="text">Frågeställning</items>
+        <items id="description">Klinisk frågeställning (syfte med analysen) från den stängda nationella listan. Obligatorisk; flerval tillåtet. Rekommenderat mönster: en aktivitet per frågeställning (motsvarar en FHIR ServiceRequest per frågeställning).</items>
       </items>
       <items code="at0064">
         <items id="text">Beskrivning av anledning</items>
@@ -3371,35 +3406,35 @@
       </items>
       <items code="at0.1">
         <items id="text">Primärdiagnostik</items>
-        <items id="description">Local request question code 1.</items>
+        <items id="description">Bekräfta molekylär diagnos eller subtyp av cancer vid nydiagnos.</items>
       </items>
       <items code="at0.2">
         <items id="text">Behandlingssvarsprediktion</items>
-        <items id="description">Local request question code 2.</items>
+        <items id="description">Förutsäga om en specifik behandling förväntas fungera baserat på tumörens genetik.</items>
       </items>
       <items code="at0.3">
         <items id="text">Behandlingsmonitorering</items>
-        <items id="description">Local request question code 3.</items>
+        <items id="description">Följa behandlingssvar över tid via upprepad provtagning (ej MRD-specifik).</items>
       </items>
       <items code="at0.4">
         <items id="text">Återfallsdetektion (MRD)</items>
-        <items id="description">Local request question code 4.</items>
+        <items id="description">Upptäcka minimal residual disease (MRD) eller tidigt återfall efter behandling.</items>
       </items>
       <items code="at0.5">
         <items id="text">Resistensfrågeställning</items>
-        <items id="description">Local request question code 5.</items>
+        <items id="description">Förklara varför en pågående behandling upphört att fungera.</items>
       </items>
       <items code="at0.6">
         <items id="text">Farmakogenomik</items>
-        <items id="description">Local request question code 6.</items>
+        <items id="description">Läkemedelsrespons och dosering baserat på patientens genetiska profil (ej tumörgenomik).</items>
       </items>
       <items code="at0.7">
         <items id="text">Ärftlig cancer / onkogenetik</items>
-        <items id="description">Local request question code 7.</items>
+        <items id="description">Utredning av ärftlig cancerpredisposition och/eller screening för individer med ökad genetisk risk. Inkluderar tidigare 'Screening (predisposition)'.</items>
       </items>
       <items code="at0.8">
         <items id="text">Övrigt</items>
-        <items id="description">Local request question code 8.</items>
+        <items id="description">Annan klinisk frågeställning som ej ryms i ovanstående kategorier.</items>
       </items>
     </term_definitions>
   </component_ontologies>
