@@ -1,0 +1,326 @@
+# GENERATED from ehr-slice/tools/fhirconnect-src by gen_fhirconnect.py; edit the source, not this file.
+grammar: FHIRConnect/v1.0.0
+type: extension
+metadata:
+  name: SE_genomics_specimen
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+  extends: CLUSTER.specimen.v1
+
+# Specimen type in T1 is a local list (at0.1-at0.12) bound to SNOMED CT; map it code by code.
+mappings:
+  - name: type
+    extension: overwrite
+    with:
+      fhir: $resource.type
+      openehr: $archetype/items[at0029]
+      type: NONE
+    followedBy:
+      mappings:
+        - name: specimenTypeCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: specimen_type_at0.1
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.1
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.1
+                - path: value
+                  value: Blood venous
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "53130003"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "53130003"
+                - path: coding.display
+                  value: Blood venous
+            - name: specimen_type_at0.2
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.2
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.2
+                - path: value
+                  value: Marrow
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "396997002"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "396997002"
+                - path: coding.display
+                  value: Marrow
+            - name: specimen_type_at0.3
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.3
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.3
+                - path: value
+                  value: Tissue
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "119376003"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "119376003"
+                - path: coding.display
+                  value: Tissue
+            - name: specimen_type_at0.4
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.4
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.4
+                - path: value
+                  value: Tumor
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "258435002"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "258435002"
+                - path: coding.display
+                  value: Tumor
+            - name: specimen_type_at0.5
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.5
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.5
+                - path: value
+                  value: Pleural fluid
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "418564007"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "418564007"
+                - path: coding.display
+                  value: Pleural fluid
+            - name: specimen_type_at0.6
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.6
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.6
+                - path: value
+                  value: Fluid, Abdomen
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "309201001"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "309201001"
+                - path: coding.display
+                  value: Fluid, Abdomen
+            - name: specimen_type_at0.7
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.7
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.7
+                - path: value
+                  value: Cerebrospinal fluid
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "258450006"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "258450006"
+                - path: coding.display
+                  value: Cerebrospinal fluid
+            - name: specimen_type_at0.8
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.8
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.8
+                - path: value
+                  value: Bone
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "430268003"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "430268003"
+                - path: coding.display
+                  value: Bone
+            - name: specimen_type_at0.9
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.9
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.9
+                - path: value
+                  value: Skin
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "119325001"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "119325001"
+                - path: coding.display
+                  value: Skin
+            - name: specimen_type_at0.10
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.10
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.10
+                - path: value
+                  value: Bile Fluid
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "119341000"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "119341000"
+                - path: coding.display
+                  value: Bile Fluid
+            - name: specimen_type_at0.11
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.11
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.11
+                - path: value
+                  value: Cervical Mucus
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "122577006"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "122577006"
+                - path: coding.display
+                  value: Cervical Mucus
+            - name: specimen_type_at0.12
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.12
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.12
+                - path: value
+                  value: Urine
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "122575003"
+              fhir:
+                - path: coding.system
+                  value: http://snomed.info/sct
+                - path: coding.code
+                  value: "122575003"
+                - path: coding.display
+                  value: Urine

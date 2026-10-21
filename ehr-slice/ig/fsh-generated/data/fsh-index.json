@@ -1,0 +1,194 @@
+[
+  {
+    "outputFile": "CodeSystem-asco-amp-tier.json",
+    "fshName": "AscoAmpTierCS",
+    "fshType": "CodeSystem",
+    "fshFile": "terminology.fsh",
+    "startLine": 45,
+    "endLine": 74
+  },
+  {
+    "outputFile": "CodeSystem-escat-tier.json",
+    "fshName": "EscatTierCS",
+    "fshType": "CodeSystem",
+    "fshFile": "terminology.fsh",
+    "startLine": 84,
+    "endLine": 125
+  },
+  {
+    "outputFile": "CodeSystem-fragestallning.json",
+    "fshName": "FragestallningCS",
+    "fshType": "CodeSystem",
+    "fshFile": "terminology.fsh",
+    "startLine": 3,
+    "endLine": 35
+  },
+  {
+    "outputFile": "Condition-diagnosis-demo-1.json",
+    "fshName": "diagnosis-demo-1",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 21,
+    "endLine": 27
+  },
+  {
+    "outputFile": "DiagnosticReport-genomic-report-demo-1.json",
+    "fshName": "genomic-report-demo-1",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 106,
+    "endLine": 126
+  },
+  {
+    "outputFile": "Observation-variant-demo-egfr.json",
+    "fshName": "variant-demo-egfr",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 56,
+    "endLine": 79
+  },
+  {
+    "outputFile": "Observation-variant-demo-tp53.json",
+    "fshName": "variant-demo-tp53",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 81,
+    "endLine": 104
+  },
+  {
+    "outputFile": "Organization-lab-genomics-demo.json",
+    "fshName": "lab-genomics-demo",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 13,
+    "endLine": 19
+  },
+  {
+    "outputFile": "Patient-patient-demo-1.json",
+    "fshName": "patient-demo-1",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 4,
+    "endLine": 11
+  },
+  {
+    "outputFile": "Practitioner-practitioner-demo-1.json",
+    "fshName": "practitioner-demo-1",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 128,
+    "endLine": 132
+  },
+  {
+    "outputFile": "ServiceRequest-servicerequest-demo-1.json",
+    "fshName": "servicerequest-demo-1",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 29,
+    "endLine": 44
+  },
+  {
+    "outputFile": "Specimen-specimen-demo-1.json",
+    "fshName": "specimen-demo-1",
+    "fshType": "Instance",
+    "fshFile": "examples.fsh",
+    "startLine": 46,
+    "endLine": 54
+  },
+  {
+    "outputFile": "StructureDefinition-se-genomic-report.json",
+    "fshName": "SEGenomicReport",
+    "fshType": "Profile",
+    "fshFile": "profiles.fsh",
+    "startLine": 64,
+    "endLine": 88
+  },
+  {
+    "outputFile": "StructureDefinition-se-genomics-laboratory.json",
+    "fshName": "SEGenomicsLaboratory",
+    "fshType": "Profile",
+    "fshFile": "profiles.fsh",
+    "startLine": 40,
+    "endLine": 49
+  },
+  {
+    "outputFile": "StructureDefinition-se-genomics-referring-diagnosis.json",
+    "fshName": "SEGenomicsReferringDiagnosis",
+    "fshType": "Profile",
+    "fshFile": "profiles.fsh",
+    "startLine": 30,
+    "endLine": 38
+  },
+  {
+    "outputFile": "StructureDefinition-se-genomics-servicerequest.json",
+    "fshName": "SEGenomicsServiceRequest",
+    "fshType": "Profile",
+    "fshFile": "profiles.fsh",
+    "startLine": 4,
+    "endLine": 28
+  },
+  {
+    "outputFile": "StructureDefinition-se-genomics-specimen.json",
+    "fshName": "SEGenomicsSpecimen",
+    "fshType": "Profile",
+    "fshFile": "profiles.fsh",
+    "startLine": 51,
+    "endLine": 62
+  },
+  {
+    "outputFile": "StructureDefinition-se-variant.json",
+    "fshName": "SEVariant",
+    "fshType": "Profile",
+    "fshFile": "profiles.fsh",
+    "startLine": 90,
+    "endLine": 125
+  },
+  {
+    "outputFile": "ValueSet-asco-amp-tier.json",
+    "fshName": "AscoAmpTierVS",
+    "fshType": "ValueSet",
+    "fshFile": "terminology.fsh",
+    "startLine": 76,
+    "endLine": 82
+  },
+  {
+    "outputFile": "ValueSet-escat-tier.json",
+    "fshName": "EscatTierVS",
+    "fshType": "ValueSet",
+    "fshFile": "terminology.fsh",
+    "startLine": 127,
+    "endLine": 133
+  },
+  {
+    "outputFile": "ValueSet-fragestallning.json",
+    "fshName": "FragestallningVS",
+    "fshType": "ValueSet",
+    "fshFile": "terminology.fsh",
+    "startLine": 37,
+    "endLine": 43
+  },
+  {
+    "outputFile": "ValueSet-genetic-origin-se.json",
+    "fshName": "GeneticOriginSEVS",
+    "fshType": "ValueSet",
+    "fshFile": "terminology.fsh",
+    "startLine": 150,
+    "endLine": 160
+  },
+  {
+    "outputFile": "ValueSet-molecular-consequence-se.json",
+    "fshName": "MolecularConsequenceSEVS",
+    "fshType": "ValueSet",
+    "fshFile": "terminology.fsh",
+    "startLine": 135,
+    "endLine": 148
+  },
+  {
+    "outputFile": "ValueSet-specimen-type-se.json",
+    "fshName": "SpecimenTypeSEVS",
+    "fshType": "ValueSet",
+    "fshFile": "terminology.fsh",
+    "startLine": 162,
+    "endLine": 179
+  }
+]

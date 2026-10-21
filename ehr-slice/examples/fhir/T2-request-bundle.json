@@ -1,0 +1,170 @@
+{
+  "resourceType": "Bundle",
+  "id": "T2-request-bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:a81ae24d-08fa-5311-ab0f-d993953e19b1",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "servicerequest-demo-1",
+        "meta": {
+          "profile": [
+            "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-servicerequest"
+          ]
+        },
+        "intent": "order",
+        "identifier": [
+          {
+            "system": "https://example.org/fhir/ehr-slice-se-genomics/identifier/remiss",
+            "value": "REM-2026-000123"
+          }
+        ],
+        "status": "active",
+        "code": {
+          "text": "Solid tumour NGS panel (DNA)"
+        },
+        "subject": {
+          "reference": "Patient/patient-demo-1"
+        },
+        "authoredOn": "2026-10-01T09:30:00+02:00",
+        "requester": {
+          "reference": "Practitioner/practitioner-demo-1",
+          "display": "Remitterande läkare (demo)"
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "code": "1",
+                "system": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning",
+                "display": "Primärdiagnostik"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "code": "2",
+                "system": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning",
+                "display": "Behandlingssvarsprediktion"
+              }
+            ]
+          }
+        ],
+        "reasonReference": [
+          {
+            "reference": "Condition/diagnosis-demo-1"
+          }
+        ],
+        "performer": [
+          {
+            "reference": "Organization/lab-genomics-demo"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "ServiceRequest/servicerequest-demo-1"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7701fca2-b3ad-5433-9355-b36677d9b93f",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "diagnosis-demo-1",
+        "meta": {
+          "profile": [
+            "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-referring-diagnosis"
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "C34.1",
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "display": "Malignant neoplasm: Upper lobe, bronchus or lung"
+            }
+          ],
+          "text": "Malign tumör i övre loben, bronk eller lunga"
+        },
+        "subject": {
+          "reference": "Patient/patient-demo-1"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Condition/diagnosis-demo-1"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2e481f73-c1c7-5f62-97b1-e7fed6421107",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "lab-genomics-demo",
+        "meta": {
+          "profile": [
+            "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-laboratory"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "urn:oid:1.2.752.29.4.19",
+            "value": "SE0000000000-GEN1"
+          }
+        ],
+        "name": "Genomiklaboratoriet (demo)"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Organization/lab-genomics-demo"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7052d73c-2a2c-5ce1-b541-18315ba68855",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner-demo-1",
+        "name": [
+          {
+            "text": "Remitterande läkare (demo)"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner/practitioner-demo-1"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fb810e5e-08d6-5afe-8493-43484cd67662",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-demo-1",
+        "meta": {
+          "profile": [
+            "http://hl7.se/fhir/ig/base/StructureDefinition/SEBasePatient"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://electronichealth.se/identifier/personnummer",
+            "value": "191212121212"
+          }
+        ],
+        "name": [
+          {
+            "family": "Testsson",
+            "given": [
+              "Tolvan"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient/patient-demo-1"
+      }
+    }
+  ]
+}

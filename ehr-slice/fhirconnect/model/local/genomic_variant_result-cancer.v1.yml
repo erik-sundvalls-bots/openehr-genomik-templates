@@ -1,0 +1,1154 @@
+# GENERATED from ehr-slice/tools/fhirconnect-src by gen_fhirconnect.py; edit the source, not this file.
+grammar: FHIRConnect/v1.0.0
+type: model
+metadata:
+  name: CLUSTER.genomic_variant_result-cancer.v1
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+  openEhrConfig:
+    archetype: openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1
+    revision: 0.1.0
+  fhirConfig:
+    # The engine derives the FHIR resource type from this URL, so the base type is given here;
+    # the SE Variant profile is asserted via meta.profile below.
+    structureDefinition: http://hl7.org/fhir/StructureDefinition/Observation
+
+# Local model mapping (no upstream mapping exists yet) for the Swedish cancer specialisation
+# of CLUSTER.genomic_variant_result.v1 <-> SE Variant Observation (profile of the HL7
+# Genomics Reporting IG v3 'variant'). One openEHR cluster per variant Observation; the
+# cluster is reached from the report via DiagnosticReport.result (see SE_genomic_report).
+#
+# Each FHIR component is selected by its code (fhirCondition on component.code) and mapped
+# to one openEHR element; the component code is written back as a constant (manual).
+# Coded values use generated per-code tables (ehr-slice/tools/code_tables.py).
+#
+# Deliberate simplifications (documented in ehr-slice/README.md):
+# - ASCO/AMP tier, ESCAT tier and molecular consequence are components on the variant, not
+#   separate 'implication' / 'molecular-consequence' Observations as in Genomics Reporting v3.
+# - Only the first Transcript cluster (at0008) is mapped (gene, c. and p. HGVS).
+# - DV_PARSABLE.formalism: openFHIR 3.0.2 always writes "text/html" for DV_PARSABLE and drops a
+#   manual formalism, so "HGVS" cannot be set from this mapping (engine limitation).
+# - Observation.value ('Present', LOINC LA9633-4) is a constant on export; the template has no
+#   element for it, so it is not stored.
+mappings:
+  - name: metaProfile
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.meta
+    manual:
+      - name: profileUrl
+        fhir:
+          - path: profile
+            value: https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-variant
+
+  - name: statusConstant
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.status
+      openehr: $archetype
+    manual:
+      - name: final
+        fhir:
+          - path: $fhirRoot
+            value: final
+
+  - name: codeConstant
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.code
+      openehr: $archetype
+    manual:
+      - name: loinc69548
+        fhir:
+          - path: coding.system
+            value: http://loinc.org
+          - path: coding.code
+            value: 69548-6
+          - path: coding.display
+            value: Genetic variant assessment
+
+  - name: valueConstant
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.value.as(CodeableConcept)
+      openehr: $archetype
+    manual:
+      - name: present
+        fhir:
+          - path: coding.system
+            value: http://loinc.org
+          - path: coding.code
+            value: LA9633-4
+          - path: coding.display
+            value: Present
+
+  - name: categoryLaboratory
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.category
+      openehr: $archetype
+    manual:
+      - name: laboratory
+        fhir:
+          - path: coding.system
+            value: http://terminology.hl7.org/CodeSystem/observation-category
+          - path: coding.code
+            value: laboratory
+
+  - name: categoryGenetics
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.category
+      openehr: $archetype
+    manual:
+      - name: genetics
+        fhir:
+          - path: coding.system
+            value: http://terminology.hl7.org/CodeSystem/v2-0074
+          - path: coding.code
+            value: GE
+
+  # Gene studied (LOINC 48018-6): CodeableConcept.text <-> Transcript/Gene/Gene symbol (DV_TEXT)
+  - name: geneStudied
+    with:
+      fhir: $resource.component
+      openehr: $archetype
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "48018-6"
+    followedBy:
+      mappings:
+        - name: geneStudiedValue
+          with:
+            fhir: value.as(CodeableConcept).text
+            openehr: items[at0008]/items[at0019]/items[at0020]
+
+        - name: geneStudiedCode
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype
+          manual:
+            - name: geneStudiedComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "48018-6"
+
+  # DNA change, c. HGVS (LOINC 48004-6) <-> Transcript/DNA change (DV_PARSABLE, formalism HGVS)
+  - name: codingHgvs
+    with:
+      fhir: $resource.component
+      openehr: $archetype
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "48004-6"
+    followedBy:
+      mappings:
+        - name: codingHgvsValue
+          with:
+            fhir: value.as(CodeableConcept).coding
+            openehr: items[at0008]/items[at0011]
+            type: NONE
+          followedBy:
+            mappings:
+              - name: codingHgvsCode
+                with:
+                  fhir: code
+                  openehr: $openehrRoot
+              - name: codingHgvsSystem
+                with:
+                  fhir: $fhirRoot
+                  openehr: $openehrRoot
+                manual:
+                  - name: varnomen
+                    fhir:
+                      - path: system
+                        value: http://varnomen.hgvs.org
+
+        - name: codingHgvsCode
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype
+          manual:
+            - name: codingHgvsComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "48004-6"
+
+  # Amino acid change, p. HGVS (LOINC 48005-3) <-> Transcript/Amino acid change (DV_PARSABLE)
+  - name: proteinHgvs
+    with:
+      fhir: $resource.component
+      openehr: $archetype
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "48005-3"
+    followedBy:
+      mappings:
+        - name: proteinHgvsValue
+          with:
+            fhir: value.as(CodeableConcept).coding
+            openehr: items[at0008]/items[at0012]
+            type: NONE
+          followedBy:
+            mappings:
+              - name: proteinHgvsCode
+                with:
+                  fhir: code
+                  openehr: $openehrRoot
+              - name: proteinHgvsSystem
+                with:
+                  fhir: $fhirRoot
+                  openehr: $openehrRoot
+                manual:
+                  - name: varnomen
+                    fhir:
+                      - path: system
+                        value: http://varnomen.hgvs.org
+
+        - name: proteinHgvsCode
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype
+          manual:
+            - name: proteinHgvsComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "48005-3"
+
+  # Genomic source class (LOINC 48002-0, answer list LL378-1) <-> Genetic origin (local at0.1-at0.5)
+  - name: genomicSourceClass
+    with:
+      fhir: $resource.component
+      openehr: $archetype/items[at0.9000]
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "48002-0"
+    followedBy:
+      mappings:
+        - name: genomicSourceClassValue
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: genetic_origin_at0.1
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.1
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.1
+                - path: value
+                  value: Somatic
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: LA6684-0
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://loinc.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: LA6684-0
+                - path: value.as(CodeableConcept).coding.display
+                  value: Somatic
+            - name: genetic_origin_at0.2
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.2
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.2
+                - path: value
+                  value: Germline
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: LA6683-2
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://loinc.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: LA6683-2
+                - path: value.as(CodeableConcept).coding.display
+                  value: Germline
+            - name: genetic_origin_at0.3
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.3
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.3
+                - path: value
+                  value: Likely somatic
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: LA18195-0
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://loinc.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: LA18195-0
+                - path: value.as(CodeableConcept).coding.display
+                  value: Likely somatic
+            - name: genetic_origin_at0.4
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.4
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.4
+                - path: value
+                  value: Likely germline
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: LA18194-3
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://loinc.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: LA18194-3
+                - path: value.as(CodeableConcept).coding.display
+                  value: Likely germline
+            - name: genetic_origin_at0.5
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.5
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.5
+                - path: value
+                  value: Unknown origin
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: LA18197-6
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://loinc.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: LA18197-6
+                - path: value.as(CodeableConcept).coding.display
+                  value: Unknown genomic origin
+
+        - name: genomicSourceClassCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: genomicSourceClassComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "48002-0"
+
+  # Sample variant allelic frequency (LOINC 81258-6) <-> Allele frequency (DV_QUANTITY, unit 1)
+  - name: alleleFrequency
+    with:
+      fhir: $resource.component
+      openehr: $archetype
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "81258-6"
+    followedBy:
+      mappings:
+        - name: alleleFrequencyValue
+          with:
+            fhir: value.as(Quantity)
+            openehr: items[at0047]
+
+        - name: alleleFrequencyCode
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype
+          manual:
+            - name: alleleFrequencyComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "81258-6"
+
+  # Molecular consequence (Sequence Ontology) <-> Molecular consequence (local at0.40-at0.47)
+  - name: molecularConsequence
+    with:
+      fhir: $resource.component
+      openehr: $archetype/items[at0.6]
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "feature-consequence"
+    followedBy:
+      mappings:
+        - name: molecularConsequenceValue
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: molecular_consequence_at0.40
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.40
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.40
+                - path: value
+                  value: missense_variant
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: SO:0001583
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://www.sequenceontology.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: SO:0001583
+                - path: value.as(CodeableConcept).coding.display
+                  value: missense_variant
+            - name: molecular_consequence_at0.41
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.41
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.41
+                - path: value
+                  value: stop_gained
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: SO:0001587
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://www.sequenceontology.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: SO:0001587
+                - path: value.as(CodeableConcept).coding.display
+                  value: stop_gained
+            - name: molecular_consequence_at0.42
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.42
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.42
+                - path: value
+                  value: frameshift_variant
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: SO:0001589
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://www.sequenceontology.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: SO:0001589
+                - path: value.as(CodeableConcept).coding.display
+                  value: frameshift_variant
+            - name: molecular_consequence_at0.43
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.43
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.43
+                - path: value
+                  value: synonymous_variant
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: SO:0001819
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://www.sequenceontology.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: SO:0001819
+                - path: value.as(CodeableConcept).coding.display
+                  value: synonymous_variant
+            - name: molecular_consequence_at0.44
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.44
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.44
+                - path: value
+                  value: start_lost
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: SO:0002012
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://www.sequenceontology.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: SO:0002012
+                - path: value.as(CodeableConcept).coding.display
+                  value: start_lost
+            - name: molecular_consequence_at0.45
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.45
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.45
+                - path: value
+                  value: stop_lost
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: SO:0001578
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://www.sequenceontology.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: SO:0001578
+                - path: value.as(CodeableConcept).coding.display
+                  value: stop_lost
+            - name: molecular_consequence_at0.46
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.46
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.46
+                - path: value
+                  value: inframe_insertion
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: SO:0001821
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://www.sequenceontology.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: SO:0001821
+                - path: value.as(CodeableConcept).coding.display
+                  value: inframe_insertion
+            - name: molecular_consequence_at0.47
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.47
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.47
+                - path: value
+                  value: inframe_deletion
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: SO:0001822
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: http://www.sequenceontology.org
+                - path: value.as(CodeableConcept).coding.code
+                  value: SO:0001822
+                - path: value.as(CodeableConcept).coding.display
+                  value: inframe_deletion
+
+        - name: molecularConsequenceCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: molecularConsequenceComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs
+                - path: code.coding.code
+                  value: "feature-consequence"
+
+  # ASCO/AMP/CAP tier (LOINC 53037-8 as component code) <-> local at0.10-at0.16
+  - name: ascoAmpTier
+    with:
+      fhir: $resource.component
+      openehr: $archetype/items[at0.9001]
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "53037-8"
+    followedBy:
+      mappings:
+        - name: ascoAmpTierValue
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: asco_at0.10
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.10
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.10
+                - path: value
+                  value: Tier I-A
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier I-A
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier I-A
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier I-A
+            - name: asco_at0.11
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.11
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.11
+                - path: value
+                  value: Tier I-B
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier I-B
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier I-B
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier I-B
+            - name: asco_at0.12
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.12
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.12
+                - path: value
+                  value: Tier I-C
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier I-C
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier I-C
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier I-C
+            - name: asco_at0.13
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.13
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.13
+                - path: value
+                  value: Tier I-D
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier I-D
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier I-D
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier I-D
+            - name: asco_at0.14
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.14
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.14
+                - path: value
+                  value: Tier II
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier II
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier II
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier II
+            - name: asco_at0.15
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.15
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.15
+                - path: value
+                  value: Tier III
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier III
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier III
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier III
+            - name: asco_at0.16
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.16
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.16
+                - path: value
+                  value: Tier IV
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier IV
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier IV
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier IV
+
+        - name: ascoAmpTierCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: ascoAmpTierComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "53037-8"
+
+  # ESCAT tier (LOINC 93044-6 as component code) <-> local at0.20-at0.30
+  - name: escatTier
+    with:
+      fhir: $resource.component
+      openehr: $archetype/items[at0.9002]
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "93044-6"
+    followedBy:
+      mappings:
+        - name: escatTierValue
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: escat_at0.20
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.20
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.20
+                - path: value
+                  value: ESCAT Tier I-A
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier I-A
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier I-A
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier I-A
+            - name: escat_at0.21
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.21
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.21
+                - path: value
+                  value: ESCAT Tier I-B
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier I-B
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier I-B
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier I-B
+            - name: escat_at0.22
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.22
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.22
+                - path: value
+                  value: ESCAT Tier I-C
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier I-C
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier I-C
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier I-C
+            - name: escat_at0.23
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.23
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.23
+                - path: value
+                  value: ESCAT Tier II-A
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier II-A
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier II-A
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier II-A
+            - name: escat_at0.24
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.24
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.24
+                - path: value
+                  value: ESCAT Tier II-B
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier II-B
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier II-B
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier II-B
+            - name: escat_at0.25
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.25
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.25
+                - path: value
+                  value: ESCAT Tier III-A
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier III-A
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier III-A
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier III-A
+            - name: escat_at0.26
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.26
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.26
+                - path: value
+                  value: ESCAT Tier III-B
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier III-B
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier III-B
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier III-B
+            - name: escat_at0.27
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.27
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.27
+                - path: value
+                  value: ESCAT Tier IV-A
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier IV-A
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier IV-A
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier IV-A
+            - name: escat_at0.28
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.28
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.28
+                - path: value
+                  value: ESCAT Tier IV-B
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier IV-B
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier IV-B
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier IV-B
+            - name: escat_at0.29
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.29
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.29
+                - path: value
+                  value: ESCAT Tier V
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier V
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier V
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier V
+            - name: escat_at0.30
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.30
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.30
+                - path: value
+                  value: ESCAT Tier X
+              fhirCondition:
+                targetRoot: $fhirRoot.value.as(CodeableConcept).coding
+                targetAttribute: code
+                operator: one of
+                criteria: Tier X
+              fhir:
+                - path: value.as(CodeableConcept).coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier
+                - path: value.as(CodeableConcept).coding.code
+                  value: Tier X
+                - path: value.as(CodeableConcept).coding.display
+                  value: Tier X
+
+        - name: escatTierCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: escatTierComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "93044-6"

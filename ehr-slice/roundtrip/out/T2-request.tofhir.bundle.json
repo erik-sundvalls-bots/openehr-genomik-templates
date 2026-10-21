@@ -1,0 +1,93 @@
+{
+    "resourceType": "Bundle",
+    "type": "collection",
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "ServiceRequest",
+                "meta": {
+                    "profile": [
+                        "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-servicerequest"
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "https://example.org/fhir/ehr-slice-se-genomics/identifier/remiss",
+                        "value": "REM-2026-000123"
+                    }
+                ],
+                "status": "active",
+                "intent": "order",
+                "code": {
+                    "text": "Solid tumour NGS panel (DNA)"
+                },
+                "authoredOn": "2026-10-01T09:30:00+02:00",
+                "performer": [
+                    {
+                        "reference": "urn:uuid:6add5cdd-0f65-4905-9575-b08674bf63ab"
+                    }
+                ],
+                "reasonCode": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning",
+                                "code": "1",
+                                "display": "Primärdiagnostik"
+                            }
+                        ]
+                    },
+                    {
+                        "coding": [
+                            {
+                                "system": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning",
+                                "code": "2",
+                                "display": "Behandlingssvarsprediktion"
+                            }
+                        ]
+                    }
+                ],
+                "reasonReference": [
+                    {
+                        "reference": "urn:uuid:72cc6524-05b6-47f8-81a0-a90791b84f82"
+                    }
+                ]
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:6add5cdd-0f65-4905-9575-b08674bf63ab",
+            "resource": {
+                "resourceType": "Organization",
+                "identifier": [
+                    {
+                        "system": "urn:oid:1.2.752.29.4.19",
+                        "value": "SE0000000000-GEN1"
+                    }
+                ],
+                "name": "Genomiklaboratoriet (demo)"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:72cc6524-05b6-47f8-81a0-a90791b84f82",
+            "resource": {
+                "resourceType": "Condition",
+                "meta": {
+                    "profile": [
+                        "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-referring-diagnosis"
+                    ]
+                },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-10",
+                            "code": "C34.1",
+                            "display": "Malign tumör i övre loben, bronk eller lunga"
+                        }
+                    ],
+                    "text": "Malign tumör i övre loben, bronk eller lunga"
+                },
+                "recordedDate": "2026-10-01T09:30:00+02:00"
+            }
+        }
+    ]
+}

@@ -1,0 +1,136 @@
+grammar: FHIRConnect/v1.0.0
+type: extension
+metadata:
+  name: SE_genomic_report
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+  extends: OBSERVATION.laboratory_test_result.v1
+
+# Project layer for T1. The archetype-level model mapping
+# (model/openehr-lib/laboratory_test_result.v1.yml) is reused unchanged for test name,
+# overall status, conclusion, specimen, issued/effective and basedOn; this file adds the
+# genomics-specific parts.
+mappings:
+  - name: compositionMapping
+    extension: add
+    with:
+      fhir: $resource
+      openehr: $composition
+    slotArchetype: COMPOSITION.report_result.v1.DiagnosticReport
+
+  - name: metaProfile
+    extension: add
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.meta
+    manual:
+      - name: profileUrl
+        fhir:
+          - path: profile
+            value: https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomic-report
+
+  - name: categoryGenetics
+    extension: add
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.category
+      openehr: $archetype
+    manual:
+      - name: genetics
+        fhir:
+          - path: coding.system
+            value: http://terminology.hl7.org/CodeSystem/v2-0074
+          - path: coding.code
+            value: GE
+
+  # Overall test status <-> DiagnosticReport.status. Overwrites the model's 'status' mapping,
+  # whose 'unknown' entry carries an openehrCondition with a non-path targetRoot and in
+  # openFHIR 3.0.2 turned every status into 'unknown' on the way back to FHIR.
+  - name: status
+    extension: overwrite
+    with:
+      fhir: $fhirRoot
+      openehr: data[at0003]/items[at0073]
+      type: NONE
+    followedBy:
+      mappings:
+        - name: statusCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            __MANUAL_CODE:REPORT_STATUS:status__
+
+  # DiagnosticReport.issued <-> Overall test status timestamp. (The model maps issued to the
+  # composition start time / event time, which then equals effective[x] after a round-trip.)
+  - name: issuedTimestamp
+    extension: add
+    with:
+      fhir: $resource.issued
+      openehr: $archetype/data[at0001]/events[at0002]/data[at0003]/items[at0075]
+
+  # Laboratory report identifier <-> Laboratory internal identifier
+  - name: reportIdentifier
+    extension: add
+    with:
+      fhir: $resource.identifier
+      openehr: $archetype/protocol[at0004]/items[at0068]
+      type: IDENTIFIER
+
+  # Remiss id of the ServiceRequest this report answers <-> Requester order identifier.
+  # Overwrites the model's nested 'basedOn' mapping, which uses the Receiver order identifier
+  # and, without a typed reference, made openFHIR 3.0.2 emit an empty CarePlan on export.
+  - name: basedOn
+    extension: overwrite
+    with:
+      fhir: basedOn.as(Reference)
+      openehr: $archetype
+    followedBy:
+      mappings:
+        - name: requesterOrderIdentifier
+          with:
+            fhir: identifier
+            openehr: protocol[at0004]/items[at0094]/items[at0062]
+            type: IDENTIFIER
+
+  # Performing laboratory <-> organisation cluster 'Receiving laboratory' in the protocol
+  - name: performingLaboratory
+    extension: add
+    with:
+      fhir: $resource.performer
+      openehr: $reference
+    reference:
+      resourceType: Organization
+      mappings:
+        - name: organisation
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype/protocol[at0004]/items[openEHR-EHR-CLUSTER.organisation.v1]
+          slotArchetype: CLUSTER.organisation.v1
+
+  # DiagnosticReport.result -> one SE Variant Observation per genomic variant result cluster
+  - name: resultAppendToParent
+    extension: append
+    appendTo: eventParent
+    followedBy:
+      mappings:
+        - name: result
+          with:
+            fhir: result
+            openehr: data[at0003]/items[openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1]
+          followedBy:
+            mappings:
+              - name: variantReference
+                with:
+                  fhir: $fhirRoot
+                  openehr: $reference
+                reference:
+                  resourceType: Observation
+                  mappings:
+                    - name: variant
+                      with:
+                        fhir: $fhirRoot
+                        openehr: $openehrRoot
+                      slotArchetype: CLUSTER.genomic_variant_result-cancer.v1

@@ -1,0 +1,67 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "SpecimenTypeSEVS",
+  "id": "specimen-type-se",
+  "title": "Provtyp (SNOMED CT)",
+  "description": "Specimen types from the dataset's Provtyp list (SNOMED CT; HL7 v2 0487 equivalents in the source).",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/specimen-type-se",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          {
+            "code": "53130003",
+            "display": "Blood venous"
+          },
+          {
+            "code": "396997002",
+            "display": "Marrow"
+          },
+          {
+            "code": "119376003",
+            "display": "Tissue"
+          },
+          {
+            "code": "258435002",
+            "display": "Tumor"
+          },
+          {
+            "code": "418564007",
+            "display": "Pleural fluid"
+          },
+          {
+            "code": "309201001",
+            "display": "Fluid, Abdomen"
+          },
+          {
+            "code": "258450006",
+            "display": "Cerebrospinal fluid"
+          },
+          {
+            "code": "430268003",
+            "display": "Bone"
+          },
+          {
+            "code": "119325001",
+            "display": "Skin"
+          },
+          {
+            "code": "119341000",
+            "display": "Bile Fluid"
+          },
+          {
+            "code": "122577006",
+            "display": "Cervical Mucus"
+          },
+          {
+            "code": "122575003",
+            "display": "Urine"
+          }
+        ]
+      }
+    ]
+  }
+}

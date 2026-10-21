@@ -1,0 +1,51 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "MolecularConsequenceSEVS",
+  "id": "molecular-consequence-se",
+  "title": "Molecular consequence (Sequence Ontology subset)",
+  "description": "Sequence Ontology terms from the dataset's MolecularConsequence list. System http://www.sequenceontology.org per HL7 THO NamingSystem SO.",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/molecular-consequence-se",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "http://www.sequenceontology.org",
+        "concept": [
+          {
+            "code": "SO:0001583",
+            "display": "missense_variant"
+          },
+          {
+            "code": "SO:0001587",
+            "display": "stop_gained"
+          },
+          {
+            "code": "SO:0001589",
+            "display": "frameshift_variant"
+          },
+          {
+            "code": "SO:0001819",
+            "display": "synonymous_variant"
+          },
+          {
+            "code": "SO:0002012",
+            "display": "start_lost"
+          },
+          {
+            "code": "SO:0001578",
+            "display": "stop_lost"
+          },
+          {
+            "code": "SO:0001821",
+            "display": "inframe_insertion"
+          },
+          {
+            "code": "SO:0001822",
+            "display": "inframe_deletion"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+# Local openFHIR engine (open-source FHIRconnect implementation) for the round-trip demo.
+# Host networking is used because container-to-container networking is not available on
+# every Docker host; adjust if you prefer a bridge network.
+services:
+  mongodb:
+    image: mongo:7@sha256:c53852c00c23ca9f23fc39690350ffa9a80e3642fe8f96879726d8da0abe80a7
+    network_mode: host
+    command: ["--bind_ip", "127.0.0.1"]
+  openfhir:
+    # openFHIR 3.0.2 (the version the round-trip in ../roundtrip was run with), pinned by digest
+    image: openfhir/openfhir@sha256:fb6b991e35fe5ccc45ddfb88257ce6fb61369a7ee5d508954ed639293c980287
+    network_mode: host
+    depends_on: [mongodb]
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://127.0.0.1:27017/openfhir
+    volumes:
+      - ./bootstrap:/app/bootstrap

@@ -1,0 +1,111 @@
+"""Compare the FHIR input bundles with what came back after FHIR -> openEHR -> FHIR.
+
+For every checked element the report says whether the value survived the round-trip.
+Resource ids, fullUrls and literal references are not compared (the engine mints new
+urn:uuid ids); what matters is the content. Writes roundtrip/RESULTS.md.
+"""
+import json, pathlib
+HERE = pathlib.Path(__file__).resolve().parent
+EX, OUT = HERE.parent / "examples" / "fhir", HERE / "out"
+
+def res(bundle, rtype):
+    return [e["resource"] for e in bundle["entry"] if e["resource"]["resourceType"] == rtype]
+
+def comp(obs, code):
+    for c in obs.get("component", []):
+        if any(cd.get("code") == code for cd in c["code"].get("coding", [])):
+            return c
+    return {}
+
+def cc(v):   # CodeableConcept -> comparable tuple set
+    if not v: return None
+    s = sorted((c.get("system"), c.get("code")) for c in v.get("coding", []) if c.get("code"))
+    return s or v.get("text")
+
+def ident(lst):
+    return sorted((i.get("system"), i.get("value")) for i in (lst or []))
+
+CHECKS = {
+    "T2-request": [
+        ("ServiceRequest.identifier", lambda b: ident(res(b, "ServiceRequest")[0].get("identifier"))),
+        ("ServiceRequest.status", lambda b: res(b, "ServiceRequest")[0].get("status")),
+        ("ServiceRequest.intent", lambda b: res(b, "ServiceRequest")[0].get("intent")),
+        ("ServiceRequest.code.text", lambda b: res(b, "ServiceRequest")[0].get("code", {}).get("text")),
+        ("ServiceRequest.authoredOn", lambda b: res(b, "ServiceRequest")[0].get("authoredOn")),
+        ("ServiceRequest.reasonCode (frågeställning)", lambda b: [cc(x) for x in res(b, "ServiceRequest")[0].get("reasonCode", [])]),
+        ("ServiceRequest.performer -> Organization.identifier (HSA)", lambda b: ident(res(b, "Organization")[0].get("identifier"))),
+        ("ServiceRequest.performer -> Organization.name", lambda b: res(b, "Organization")[0].get("name")),
+        ("ServiceRequest.reasonReference -> Condition.code (ICD-10)", lambda b: cc(res(b, "Condition")[0].get("code"))),
+        ("ServiceRequest.requester", lambda b: (res(b, "ServiceRequest")[0].get("requester") or {}).get("reference", "").split("/")[0] or None),
+    ],
+    "T1-report": [
+        ("DiagnosticReport.identifier", lambda b: ident(res(b, "DiagnosticReport")[0].get("identifier"))),
+        ("DiagnosticReport.status", lambda b: res(b, "DiagnosticReport")[0].get("status")),
+        ("DiagnosticReport.code (LOINC)", lambda b: [c for c in cc(res(b, "DiagnosticReport")[0].get("code")) or []]),
+        ("DiagnosticReport.code.text", lambda b: res(b, "DiagnosticReport")[0].get("code", {}).get("text")),
+        ("DiagnosticReport.category GE", lambda b: any(c.get("code") == "GE" for k in res(b, "DiagnosticReport")[0].get("category", []) for c in k.get("coding", []))),
+        ("DiagnosticReport.effectiveDateTime", lambda b: res(b, "DiagnosticReport")[0].get("effectiveDateTime")),
+        ("DiagnosticReport.issued", lambda b: res(b, "DiagnosticReport")[0].get("issued")),
+        ("DiagnosticReport.conclusion", lambda b: res(b, "DiagnosticReport")[0].get("conclusion")),
+        ("DiagnosticReport.basedOn.identifier (remiss-id)", lambda b: sorted(ident([x["identifier"] for x in res(b, "DiagnosticReport")[0].get("basedOn", []) if "identifier" in x]))),
+        ("DiagnosticReport.performer -> Organization.identifier", lambda b: ident(res(b, "Organization")[0].get("identifier"))),
+        ("Specimen.identifier", lambda b: ident(res(b, "Specimen")[0].get("identifier"))),
+        ("Specimen.type (SNOMED CT)", lambda b: cc(res(b, "Specimen")[0].get("type"))),
+        ("Specimen.collection.collectedDateTime", lambda b: res(b, "Specimen")[0].get("collection", {}).get("collectedDateTime")),
+        ("number of variant Observations", lambda b: len(res(b, "Observation"))),
+    ],
+}
+VARIANT = [
+    ("status", lambda o: o.get("status")),
+    ("code", lambda o: cc(o.get("code"))),
+    ("value (Present)", lambda o: cc(o.get("valueCodeableConcept"))),
+    ("gene studied 48018-6", lambda o: cc(comp(o, "48018-6").get("valueCodeableConcept"))),
+    ("c. HGVS 48004-6", lambda o: cc(comp(o, "48004-6").get("valueCodeableConcept"))),
+    ("p. HGVS 48005-3", lambda o: cc(comp(o, "48005-3").get("valueCodeableConcept"))),
+    ("genomic source class 48002-0", lambda o: cc(comp(o, "48002-0").get("valueCodeableConcept"))),
+    ("allelic frequency 81258-6", lambda o: comp(o, "81258-6").get("valueQuantity", {}).get("value")),
+    ("molecular consequence (SO)", lambda o: cc(comp(o, "feature-consequence").get("valueCodeableConcept"))),
+    ("ASCO/AMP tier", lambda o: cc(comp(o, "53037-8").get("valueCodeableConcept"))),
+    ("ESCAT tier", lambda o: cc(comp(o, "93044-6").get("valueCodeableConcept"))),
+]
+
+def safe(f, b):
+    try: return f(b)
+    except (IndexError, KeyError, TypeError, StopIteration): return None
+
+lines = ["# Round-trip results (FHIR -> openEHR -> FHIR)", "",
+         "Generated by `roundtrip/compare.py` from `examples/fhir/*` (input) and `roundtrip/out/*.tofhir.bundle.json` (output).",
+         "`same` = value identical after the round-trip.", ""]
+total = same = 0
+for name, checks in CHECKS.items():
+    a = json.load(open(EX / f"{name.split('-')[0]}-{name.split('-',1)[1]}-bundle.json"))
+    b = json.load(open(OUT / f"{name}.tofhir.bundle.json"))
+    lines += [f"## {name}", "", "| Element | Input | After round-trip | |", "|---|---|---|---|"]
+    rows = [(l, safe(f, a), safe(f, b)) for l, f in checks]
+    if name == "T1-report":
+        for i, (oa, ob) in enumerate(zip(res(a, "Observation"), res(b, "Observation"))):
+            rows += [(f"variant[{i}] {l}", safe(f, oa), safe(f, ob)) for l, f in VARIANT]
+    for l, va, vb in rows:
+        ok = va == vb; total += 1; same += ok
+        lines.append(f"| {l} | `{json.dumps(va, ensure_ascii=False)}` | `{json.dumps(vb, ensure_ascii=False)}` | {'same' if ok else '**differs**'} |")
+    extra = sorted({e['resource']['resourceType'] for e in b['entry']} - {e['resource']['resourceType'] for e in a['entry']})
+    if extra: lines += ["", f"Resource types in the output that were not in the input: {', '.join(extra)}"]
+    lines.append("")
+fhir_total, fhir_same = total, same
+# openEHR side: flat composition from the first pass vs. from the exported FHIR (second pass)
+lines += ["## openEHR -> FHIR -> openEHR (flat paths)", "",
+          "The FHIR exported from the first composition is converted to openEHR again and the two flat",
+          "compositions are compared path by path.", "", "| Template | Flat paths | Identical | Differences |", "|---|---|---|---|"]
+for name in CHECKS:
+    f1 = json.load(open(HERE.parent / "examples" / "openehr" / f"{name}.flat.json"))
+    p2 = json.load(open(OUT / f"{name}.second-pass.flat.parameters.json"))
+    f2 = json.loads(next(x for x in p2["parameter"] if x["name"] == "composition")["valueString"])
+    keys = sorted(set(f1) | set(f2)); diff = [k for k in keys if f1.get(k) != f2.get(k)]
+    total += len(keys); same += len(keys) - len(diff)
+    lines.append(f"| {name} | {len(keys)} | {len(keys) - len(diff)} | " + ("none" if not diff else "<br>".join(
+        f"`{k}`: `{f1.get(k)}` -> `{f2.get(k)}`" for k in diff)) + " |")
+lines.append("")
+lines.insert(5, f"**FHIR -> openEHR -> FHIR: {fhir_same} of {fhir_total} checked FHIR elements identical. "
+                 f"openEHR -> FHIR -> openEHR: {same - fhir_same} of {total - fhir_total} flat paths identical.**\n")
+(HERE / "RESULTS.md").write_text("\n".join(lines) + "\n")
+print(f"FHIR {fhir_same}/{fhir_total}, openEHR flat {same - fhir_same}/{total - fhir_total} identical -> roundtrip/RESULTS.md")

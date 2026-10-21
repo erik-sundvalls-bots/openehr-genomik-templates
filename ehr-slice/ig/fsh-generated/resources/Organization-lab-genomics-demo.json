@@ -1,0 +1,16 @@
+{
+  "resourceType": "Organization",
+  "id": "lab-genomics-demo",
+  "meta": {
+    "profile": [
+      "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-laboratory"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "urn:oid:1.2.752.29.4.19",
+      "value": "SE0000000000-GEN1"
+    }
+  ],
+  "name": "Genomiklaboratoriet (demo)"
+}

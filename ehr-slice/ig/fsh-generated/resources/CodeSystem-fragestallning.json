@@ -1,0 +1,104 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "FragestallningCS",
+  "id": "fragestallning",
+  "title": "Frågeställning (genomik) – local draft",
+  "description": "Clinical question for genomic analysis (RCC/NAG CancerGenomik consultation draft). Local codes 1–8; no SNOMED CT binding yet. Canonical URL is a placeholder (open decision: local value-set namespace).",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning",
+  "concept": [
+    {
+      "code": "1",
+      "display": "Primärdiagnostik",
+      "definition": "Bekräfta molekylär diagnos eller subtyp av cancer vid nydiagnos.",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary diagnostics"
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "display": "Behandlingssvarsprediktion",
+      "definition": "Förutsäga om en specifik behandling förväntas fungera baserat på tumörens genetik.",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Prediction of treatment response"
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "display": "Behandlingsmonitorering",
+      "definition": "Följa behandlingssvar över tid via upprepad provtagning (ej MRD-specifik).",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Treatment monitoring"
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "display": "Återfallsdetektion (MRD)",
+      "definition": "Upptäcka minimal residual disease (MRD) eller tidigt återfall efter behandling.",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Relapse detection (MRD)"
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "display": "Resistensfrågeställning",
+      "definition": "Förklara varför en pågående behandling upphört att fungera.",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Resistance question"
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "display": "Farmakogenomik",
+      "definition": "Läkemedelsrespons och dosering baserat på patientens genetiska profil (ej tumörgenomik).",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Pharmacogenomics"
+        }
+      ]
+    },
+    {
+      "code": "7",
+      "display": "Ärftlig cancer / onkogenetik",
+      "definition": "Utredning av ärftlig cancerpredisposition och/eller screening för individer med ökad genetisk risk. Inkluderar tidigare 'Screening (predisposition)'.",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Hereditary cancer / oncogenetics"
+        }
+      ]
+    },
+    {
+      "code": "8",
+      "display": "Övrigt",
+      "definition": "Annan klinisk frågeställning som ej ryms i ovanstående kategorier.",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other"
+        }
+      ]
+    }
+  ],
+  "experimental": true,
+  "caseSensitive": true,
+  "language": "sv",
+  "count": 8
+}
