@@ -33,9 +33,9 @@ There is still **no working automatic ADL2 → 1.4 path** on the box (Archie can
 - (b) write a small Archie-based Java down-converter (AOM2 → AOM1.4 serializer)
 - (c) hand-maintain 1.4 versions of the 3 drafts and build T1/T2 as OETs in a graphical template designer.
 
-## New gaps found 2026-10-16 (genomics value-set bindings) — not yet filed
+## New gaps found 2026-10-16 (genomics value-set bindings) — filed 2026-10-21 as ErikSundvall/ehrtslib #133 (A), #134 (B), #135 (C)
 
-Draft issue texts for Erik to file (nothing has been posted):
+Filed issues: A → https://github.com/ErikSundvall/ehrtslib/issues/133, B → https://github.com/ErikSundvall/ehrtslib/issues/134, C → https://github.com/ErikSundvall/ehrtslib/issues/135
 
 ### A. ADL2 tokenizer rejects `#` (and likely `?`) inside ODIN URI values
 - Input: `["at0.10"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#alt-splc>` in `term_bindings`.
