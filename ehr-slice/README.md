@@ -92,7 +92,8 @@ Findings while running the engine (worked around here; worth reporting upstream)
    (NullPointerException in `OPTParser.buildNode`). `tools/repair_opt_terms.py` adds the missing
    terms from the CKM ADL 1.4 sources into `templates/opt14/`; `../build/opt14` is unchanged.
    Still needed after ehrtslib#142/PR #143 (that fix covers ADL 1.4 input only): ehrtslib#145, retested on Ehrtslib main 35f33da.
-   The OPT export is pinned to Ehrtslib fca190a because of ehrtslib#147 (see `../docs/ehrtslib-gaps.md`).
+   The OPT export is pinned to Ehrtslib fca190a because of ehrtslib#147 (see `../docs/ehrtslib-gaps.md`). Both workarounds can go once
+   ehrtslib PR #154 (the catch-up for #150/#151) is on main; this was verified on that branch on 2026-10-22.
 2. **Mapping library, `service_request.v1`**: maps the requester to `$composition/provider`, which
    does not exist in the RM; neutralised in `se_genomics_service_request.yml`.
 3. **Mapping library, `laboratory_test_result.v1`**: the `unknown` status entry has a non-path

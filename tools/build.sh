@@ -30,7 +30,7 @@ for T in t_genomics_cancer_report t_genomics_request; do for F in opt oet; do
 done; done
 echo "== Ehrtslib ADL 1.4 down-conversion (drafts + sv-translated CKM copies)"
 mkdir -p "$G/build/ehrtslib-adl14" "$G/build/archie-adl14"
-(cd "$EHRTSLIB" && deno run -q --allow-read --allow-write "$G/tools/ehrtslib-down14.ts" "$G/build/ehrtslib-adl14" "$TMP"/archetypes/drafts/*.adls)
+(cd "$EHRTSLIB" && EHRTSLIB="$EHRTSLIB" deno run -q --allow-read --allow-write --allow-env=EHRTSLIB "$G/tools/ehrtslib-down14.ts" "$G/build/ehrtslib-adl14" "$TMP"/archetypes/drafts/*.adls)
 echo "== Archie fork ADL 1.4 down-conversion"
 for f in "$G"/archetypes/drafts/*.adls; do
   o="$G/build/archie-adl14/$(basename "$f" | sed -E 's/\.v([0-9]+)\.[0-9]+\.[0-9]+.*\.adls$/.v\1.adl/')"

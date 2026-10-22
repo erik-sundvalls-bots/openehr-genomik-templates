@@ -77,6 +77,12 @@ T2 follows the dataset's FHIR design (closed coded list, `ServiceRequest.reasonC
 
 See `docs/decisions.md` §10.1.
 
+## Validation performed (2026-10-22, third run)
+
+- Ehrtslib main @ a5b7541 (with #149) for the down-conversion. The OPT/OET export is still pinned to fca190a, because the fixes for #147/#145 (PRs #150/#151) are not on main yet (catch-up PR #154).
+- Unpinned test on the catch-up branch: local code lists kept, bindings present (LOINC versioned, SO `SO:` prefix, HL7), openFHIR works without `repair_opt_terms.py`, and "missense_variant" is preserved. Details are in `docs/ehrtslib-gaps.md`.
+- Archie 31/31; XSD valid; round-trip 45/46 and 78/89; SUSHI 0/0; IG Publisher 0 errors, 105 warnings, 67 info, 0 broken links (all unchanged).
+
 ## Validation performed (2026-10-22, second run, `tools/build.sh`)
 
 - Ehrtslib main @ 35f33da for the ADL 1.4 down-conversion (now with `term_bindings`); OPT/OET export pinned to fca190a (ehrtslib#147). Archie 31/31 OK; all OPT/OET XSD VALID; the OPTs are unchanged.
