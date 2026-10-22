@@ -37,12 +37,11 @@ There is still **no working automatic ADL2 → 1.4 path** on the box (Archie can
 
 Status 2026-10-21: A = ehrtslib#133, B = ehrtslib#134, C = ehrtslib#135, all fixed/documented on ehrtslib main (ebc2434). The build workaround for A is removed and the fix for B is confirmed in the T2 OPT. Gap D = ehrtslib#141 and gap E = ehrtslib#142 (filed 2026-10-21).
 
-Status 2026-10-22 (retest with ehrtslib main @ fca190a and with the #144 branch @ 7e9baec):
-- **E is still open for this repo.** #142 was closed by PR #143, which fixes the ADL 1.4 → ADL2 converter. This build feeds ADL2 (Archie-converted CKM) archetypes, whose structural id-codes have no terms, so the OPTs still lack the same 10 terms. Without `ehr-slice/tools/repair_opt_terms.py`, openFHIR rejects both templates ("Could not create a WebTemplate"). The workaround stays. Follow-up: [ehrtslib#145](https://github.com/ErikSundvall/ehrtslib/issues/145).
-- **D is fixed on a branch, not on main.** #141 was closed by PR #144, but #144 was merged into its stacked base branch after that branch had already reached main. Catch-up: [ehrtslib#148](https://github.com/ErikSundvall/ehrtslib/pull/148). On the #144 branch, HL7 and SO bindings reach the OPT and the Ehrtslib ADL 1.4 output has `term_bindings`. Two follow-ups:
-  - CKM-style LOINC bindings `http://LOINC.org/ver/2.65/id/<code>` are still dropped, now with a warning (170 warnings): [ehrtslib#146](https://github.com/ErikSundvall/ehrtslib/issues/146).
-  - Value sets whose members are all bound are exported as external code lists instead of local codes (SO as bare `0001583`). openFHIR then writes `DV_CODED_TEXT` without `value`: [ehrtslib#147](https://github.com/ErikSundvall/ehrtslib/issues/147).
-  - The committed build therefore uses ehrtslib main (fca190a). Its OPTs are identical to the 2026-10-21 build.
+Status 2026-10-22, second retest with ehrtslib main @ 35f33da (#148 brought #144 to main):
+- **D is fixed on main** (ehrtslib#141, PR #144 via catch-up PR #148, commit b300f3a). HL7 and SO bindings now reach the OPT, and the Ehrtslib ADL 1.4 down-conversion writes `term_bindings` (SNOMED CT, SO, HL7). The build uses main for the down-conversion.
+- **E is still open for this repo** ([ehrtslib#145](https://github.com/ErikSundvall/ehrtslib/issues/145)). #142 / PR #143 fixed only the ADL 1.4 → ADL2 converter. This build feeds ADL2 (Archie-converted CKM) archetypes, whose structural id-codes have no terms, so the OPTs still lack the same 10 terms. Without `ehr-slice/tools/repair_opt_terms.py`, openFHIR rejects both templates ("Could not create a WebTemplate"). The workaround stays.
+- **LOINC `/ver/<v>/id/<code>` bindings are still dropped** (170 warnings): [ehrtslib#146](https://github.com/ErikSundvall/ehrtslib/issues/146).
+- **New regression on main: bound local value sets are exported as external code lists** ([ehrtslib#147](https://github.com/ErikSundvall/ehrtslib/issues/147), closed through the #148 reference but not fixed; reopening requested). For example, molecular consequence becomes `SO` `0001583…` instead of `local` `at0.40…`. With such an OPT, openFHIR writes `DV_CODED_TEXT` without `value` ("missense_variant" lost). The round-trip score is unchanged (45/46, 78/89), but the data is RM-invalid. **Decision:** `tools/build.sh` pins the OPT/OET export to fca190a (`EHRTSLIB_OPT_REF`, a git worktree) until #147 is fixed. The OPTs therefore have no HL7/SO bindings yet; those bindings are mapping metadata, not data. Set `EHRTSLIB_OPT_REF=HEAD` to test main.
 
 ### A. ADL2 tokenizer rejects `#` (and likely `?`) inside ODIN URI values
 - Input: `["at0.10"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#alt-splc>` in `term_bindings`.
@@ -60,7 +59,7 @@ Status 2026-10-22 (retest with ehrtslib main @ fca190a and with the #144 branch 
 - `value constraint at /items[at0029] has no OET equivalent; kept only in the OPT export` (specimen type, collection method, fixation method).
 - The OPT is complete. The OET lacks these value sets. That may be acceptable, since OET textConstraint cannot carry new local codes. Document this in ADL_SUPPORT.md.
 
-### D. OPT 1.4 exporter silently drops term bindings that are not `[t::c]` or `http://<host>/id/<code>` (new 2026-10-21, [ehrtslib#141](https://github.com/ErikSundvall/ehrtslib/issues/141); fixed by PR #144, not yet on main, see status above)
+### D. OPT 1.4 exporter silently drops term bindings that are not `[t::c]` or `http://<host>/id/<code>` (new 2026-10-21, [ehrtslib#141](https://github.com/ErikSundvall/ehrtslib/issues/141); fixed on main by PR #144/#148, commit b300f3a; OPT export pinned because of ehrtslib#147, see status above)
 - `generation/opt14/opt14_exporter.ts` `parseBinding()` only accepts `[terminology::code]` or `https?://<host>/id/<code>` (SNOMED/LOINC/openEHR style).
 - Valid ADL2 binding URIs such as `http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#cnv` and `http://purl.obolibrary.org/obo/SO_0001583` return `undefined` and are dropped with no warning.
 - Effect: T1 OPT has the SNOMED CT bindings but none of the HL7 study type/method or SO bindings.

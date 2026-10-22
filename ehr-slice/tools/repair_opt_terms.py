@@ -7,7 +7,7 @@ node without a term. This script copies the missing terms from the CKM ADL 1.4 s
 archetypes (falling back to a generic text per RM type) and writes repaired copies to
 ehr-slice/templates/opt14/. The originals in build/opt14 are left untouched; the proper
 fix belongs in the OPT exporter (ehrtslib#142 fixed only ADL 1.4 input; ADL2 input
-is ehrtslib#145). Retested 2026-10-22: still needed.
+is ehrtslib#145). Retested 2026-10-22 on ehrtslib main 35f33da: still needed.
 """
 import re, pathlib, xml.etree.ElementTree as ET
 HERE = pathlib.Path(__file__).resolve().parent

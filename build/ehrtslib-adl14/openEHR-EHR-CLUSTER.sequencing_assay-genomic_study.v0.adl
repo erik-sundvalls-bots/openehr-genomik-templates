@@ -294,3 +294,34 @@ ontology
                 >
             >
         >
+    term_bindings = <
+        ["HL7-genomic-study-method-type"] = <
+            items = <
+                ["at0.30"] = <[HL7-genomic-study-method-type::sequence-analysis-of-select-exons]>
+                ["at0.31"] = <[HL7-genomic-study-method-type::sequence-analysis-of-the-entire-coding-region]>
+                ["at0.32"] = <[HL7-genomic-study-method-type::ngs-mps]>
+                ["at0.33"] = <[HL7-genomic-study-method-type::fish]>
+                ["at0.34"] = <[HL7-genomic-study-method-type::pcr]>
+                ["at0.35"] = <[HL7-genomic-study-method-type::bi-directional-sanger-sequence-analysis]>
+                ["at0.36"] = <[HL7-genomic-study-method-type::karyotyping]>
+                ["at0.37"] = <[HL7-genomic-study-method-type::mlpa]>
+                ["at0.38"] = <[HL7-genomic-study-method-type::methylation-analysis]>
+            >
+        >
+        ["HL7-genomic-study-type"] = <
+            items = <
+                ["at0.10"] = <[HL7-genomic-study-type::alt-splc]>
+                ["at0.11"] = <[HL7-genomic-study-type::chromatin]>
+                ["at0.12"] = <[HL7-genomic-study-type::cnv]>
+                ["at0.13"] = <[HL7-genomic-study-type::epi-alt-hist]>
+                ["at0.14"] = <[HL7-genomic-study-type::epi-alt-dna]>
+                ["at0.15"] = <[HL7-genomic-study-type::fam-var-segr]>
+                ["at0.16"] = <[HL7-genomic-study-type::func-var]>
+                ["at0.17"] = <[HL7-genomic-study-type::gene-expression]>
+                ["at0.18"] = <[HL7-genomic-study-type::post-trans-mod]>
+                ["at0.19"] = <[HL7-genomic-study-type::snp]>
+                ["at0.20"] = <[HL7-genomic-study-type::str]>
+                ["at0.21"] = <[HL7-genomic-study-type::struc-var]>
+            >
+        >
+    >

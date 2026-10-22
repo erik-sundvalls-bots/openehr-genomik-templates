@@ -4,7 +4,7 @@
 
 **Result:** Errors 0, Warnings 105, Info 67, Broken links 0. Build errors 0.
 
-Re-run 2026-10-22 (after the Ehrtslib update, IG Publisher tool 6.0.0-snapshot1, FHIR 4.0.1): same result. Errors 0, Warnings 105, Info 67, Broken links 0. SUSHI: 0 errors, 0 warnings.
+Re-run 2026-10-22 (after the Ehrtslib update, IG Publisher tool 6.0.0-snapshot1, FHIR 4.0.1): same result. Errors 0, Warnings 105, Info 67, Broken links 0. SUSHI: 0 errors, 0 warnings. A second re-run the same day, with Ehrtslib main 35f33da (OPT export pinned to fca190a), gave the same result.
 
 Main warning groups: example identifier systems under `https://example.org` (placeholder namespace),
 the Sequence Ontology CodeSystem `http://www.sequenceontology.org` is not known to the terminology
