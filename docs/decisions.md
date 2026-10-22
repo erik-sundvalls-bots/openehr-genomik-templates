@@ -51,7 +51,7 @@ Erik är författare till [ehrtslib](https://github.com/ErikSundvall/ehrtslib) (
 ## 5. Luckor och lokala specialiseringar
 
 ### 5.1 ASCO/ESCAT-gap bekräftat
-CKM-sökning 2026-10-15: **0 träffar** för ASCO/AMP/ESCAT. GMS `mtbp_classification.v0` har endast grov relevansskala. Svenskt material: `analysis/swedish-prior-art/` (= GMS Information-specifications / modellbibliotek-lokala arketyper).
+CKM-sökning 2026-10-15: **0 träffar** för ASCO/AMP/ESCAT. GMS `mtbp_classification.v0` har endast grov relevansskala. Svenskt material: `analysis/gms-prior-art/` (= GMS Information-specifications / modellbibliotek-lokala arketyper).
 
 ### 5.2 Drafts (ADL2, EN+SV, parse2 OK)
 
