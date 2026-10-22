@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "FragestallningVS",
+  "id": "fragestallning",
+  "title": "Frågeställning (genomik)",
+  "description": "All codes of the local Frågeställning code system (closed list, ServiceRequest.reasonCode).",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/fragestallning",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning"
+      }
+    ]
+  }
+}

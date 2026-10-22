@@ -1,0 +1,93 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "AscoAmpTierCS",
+  "id": "asco-amp-tier",
+  "title": "AMP/ASCO/CAP 2017 somatic tier – local draft",
+  "description": "AMP/ASCO/CAP 2017 somatic variant tiers as local codes (no SNOMED CT codes available). Placeholder canonical URL.",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier",
+  "concept": [
+    {
+      "code": "Tier I-A",
+      "display": "Stark klinisk signifikans FDA-godkänd behandling / riktlinjerek.",
+      "definition": "Strong clinical significance FDA-approved therapy / guideline recommendation",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Strong clinical significance FDA-approved therapy / guideline recommendation"
+        }
+      ]
+    },
+    {
+      "code": "Tier I-B",
+      "display": "Stark klinisk signifikans Professionell riktlinjerek.",
+      "definition": "Strong clinical significance Professional society recommendation",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Strong clinical significance Professional society recommendation"
+        }
+      ]
+    },
+    {
+      "code": "Tier I-C",
+      "display": "Stark klinisk signifikans Expertkonsensus / välpowrad studie",
+      "definition": "Strong clinical significance Expert consensus or well-powered study",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Strong clinical significance Expert consensus or well-powered study"
+        }
+      ]
+    },
+    {
+      "code": "Tier I-D",
+      "display": "Stark klinisk signifikans Preklinisk evidens",
+      "definition": "Strong clinical significance Preclinical evidence",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Strong clinical significance Preclinical evidence"
+        }
+      ]
+    },
+    {
+      "code": "Tier II",
+      "display": "Potentiell klinisk signifikans Investigationell eller annan tumörtyp",
+      "definition": "Potential clinical significance Investigational or other tumor type",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Potential clinical significance Investigational or other tumor type"
+        }
+      ]
+    },
+    {
+      "code": "Tier III",
+      "display": "Okänd klinisk signifikans Somatisk VUS-ekvivalent",
+      "definition": "Unknown clinical significance VUS equivalent for somatic",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown clinical significance VUS equivalent for somatic"
+        }
+      ]
+    },
+    {
+      "code": "Tier IV",
+      "display": "Benign eller troligen benign Passager-mutation",
+      "definition": "Benign or likely benign Passenger mutation",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Benign or likely benign Passenger mutation"
+        }
+      ]
+    }
+  ],
+  "experimental": true,
+  "caseSensitive": true,
+  "language": "sv",
+  "count": 7
+}

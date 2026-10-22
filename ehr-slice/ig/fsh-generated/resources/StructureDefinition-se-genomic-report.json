@@ -1,0 +1,124 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "se-genomic-report",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomic-report",
+  "name": "SEGenomicReport",
+  "title": "SE Genomic report",
+  "status": "draft",
+  "experimental": true,
+  "description": "Genomic report (T1 'Genomics cancer report': OBSERVATION.laboratory_test_result.v1). Subset used by the demo: identifier, status, code, issued, performer, specimen, basedOn and variant results.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DiagnosticReport",
+  "baseDefinition": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DiagnosticReport.identifier",
+        "path": "DiagnosticReport.identifier",
+        "short": "rapport_id (openEHR: protocol/Laboratory internal identifier)",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.basedOn",
+        "path": "DiagnosticReport.basedOn",
+        "short": "remiss_ref (openEHR: Test request details/Requester order identifier)",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-servicerequest"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.status",
+        "path": "DiagnosticReport.status",
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.code",
+        "path": "DiagnosticReport.code",
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.code.text",
+        "path": "DiagnosticReport.code.text",
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.subject",
+        "path": "DiagnosticReport.subject",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.issued",
+        "path": "DiagnosticReport.issued",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.performer",
+        "path": "DiagnosticReport.performer",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-laboratory"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.specimen",
+        "path": "DiagnosticReport.specimen",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-specimen"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.result:variant",
+        "path": "DiagnosticReport.result",
+        "sliceName": "variant",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-variant"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "DiagnosticReport.conclusion",
+        "path": "DiagnosticReport.conclusion",
+        "mustSupport": true
+      }
+    ]
+  }
+}

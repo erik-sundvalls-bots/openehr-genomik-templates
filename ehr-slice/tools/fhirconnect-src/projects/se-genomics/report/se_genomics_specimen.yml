@@ -1,0 +1,26 @@
+grammar: FHIRConnect/v1.0.0
+type: extension
+metadata:
+  name: SE_genomics_specimen
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+  extends: CLUSTER.specimen.v1
+
+# Specimen type in T1 is a local list (at0.1-at0.12) bound to SNOMED CT; map it code by code.
+mappings:
+  - name: type
+    extension: overwrite
+    with:
+      fhir: $resource.type
+      openehr: $archetype/items[at0029]
+      type: NONE
+    followedBy:
+      mappings:
+        - name: specimenTypeCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            __MANUAL_CC:SPECIMEN_TYPE__

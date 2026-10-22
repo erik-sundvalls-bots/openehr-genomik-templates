@@ -1,0 +1,706 @@
+{
+  "_type": "COMPOSITION",
+  "name": {
+    "_type": "DV_TEXT",
+    "value": "Genomics cancer report"
+  },
+  "archetype_details": {
+    "archetype_id": {
+      "value": "openEHR-EHR-COMPOSITION.report-result.v1"
+    },
+    "template_id": {
+      "value": "Genomics cancer report"
+    },
+    "rm_version": "1.0.4"
+  },
+  "language": {
+    "_type": "CODE_PHRASE",
+    "terminology_id": {
+      "_type": "TERMINOLOGY_ID",
+      "value": "ISO_639-1"
+    },
+    "code_string": "en"
+  },
+  "territory": {
+    "_type": "CODE_PHRASE",
+    "terminology_id": {
+      "_type": "TERMINOLOGY_ID",
+      "value": "ISO_3166-1"
+    },
+    "code_string": "DE"
+  },
+  "category": {
+    "_type": "DV_CODED_TEXT",
+    "value": "event",
+    "defining_code": {
+      "_type": "CODE_PHRASE",
+      "terminology_id": {
+        "_type": "TERMINOLOGY_ID",
+        "value": "openehr"
+      },
+      "code_string": "433"
+    }
+  },
+  "composer": {
+    "_type": "PARTY_IDENTIFIED",
+    "external_ref": {
+      "_type": "PARTY_REF",
+      "namespace": "N/A",
+      "type": "PARTY",
+      "id": {
+        "_type": "GENERIC_ID",
+        "value": "Organization/lab-genomics-demo",
+        "scheme": "N/A"
+      }
+    }
+  },
+  "context": {
+    "_type": "EVENT_CONTEXT",
+    "start_time": {
+      "_type": "DV_DATE_TIME",
+      "value": "2026-10-05T10:00:00+02:00"
+    },
+    "setting": {
+      "_type": "DV_CODED_TEXT",
+      "value": "other care",
+      "defining_code": {
+        "_type": "CODE_PHRASE",
+        "terminology_id": {
+          "_type": "TERMINOLOGY_ID",
+          "value": "openehr"
+        },
+        "code_string": "238"
+      }
+    },
+    "health_care_facility": {
+      "_type": "PARTY_IDENTIFIED",
+      "external_ref": {
+        "_type": "PARTY_REF",
+        "namespace": "N/A",
+        "type": "PARTY",
+        "id": {
+          "_type": "GENERIC_ID",
+          "value": "Organization/lab-genomics-demo",
+          "scheme": "N/A"
+        }
+      }
+    }
+  },
+  "content": [
+    {
+      "_type": "OBSERVATION",
+      "name": {
+        "_type": "DV_TEXT",
+        "value": "Genomic laboratory test result"
+      },
+      "archetype_details": {
+        "archetype_id": {
+          "value": "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+        },
+        "rm_version": "1.0.4"
+      },
+      "language": {
+        "_type": "CODE_PHRASE",
+        "terminology_id": {
+          "_type": "TERMINOLOGY_ID",
+          "value": "ISO_639-1"
+        },
+        "code_string": "en"
+      },
+      "encoding": {
+        "_type": "CODE_PHRASE",
+        "terminology_id": {
+          "_type": "TERMINOLOGY_ID",
+          "value": "IANA_character-sets"
+        },
+        "code_string": "UTF-8"
+      },
+      "subject": {
+        "_type": "PARTY_SELF"
+      },
+      "protocol": {
+        "_type": "ITEM_TREE",
+        "name": {
+          "_type": "DV_TEXT",
+          "value": "Tree"
+        },
+        "items": [
+          {
+            "_type": "CLUSTER",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Receiving laboratory"
+            },
+            "archetype_details": {
+              "archetype_id": {
+                "value": "openEHR-EHR-CLUSTER.organisation.v1"
+              },
+              "rm_version": "1.0.4"
+            },
+            "items": [
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Name"
+                },
+                "value": {
+                  "_type": "DV_TEXT",
+                  "value": "Genomiklaboratoriet (demo)"
+                },
+                "archetype_node_id": "at0001"
+              },
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Identifier"
+                },
+                "value": {
+                  "_type": "DV_IDENTIFIER",
+                  "issuer": "urn:oid:1.2.752.29.4.19",
+                  "id": "SE0000000000-GEN1"
+                },
+                "archetype_node_id": "at0003"
+              }
+            ],
+            "archetype_node_id": "openEHR-EHR-CLUSTER.organisation.v1"
+          },
+          {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Laboratory internal identifier"
+            },
+            "value": {
+              "_type": "DV_IDENTIFIER",
+              "issuer": "https://example.org/fhir/ehr-slice-se-genomics/identifier/labreport",
+              "id": "GEN-2026-000777"
+            },
+            "archetype_node_id": "at0068"
+          },
+          {
+            "_type": "CLUSTER",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Test request details"
+            },
+            "items": [
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Requester order identifier"
+                },
+                "value": {
+                  "_type": "DV_IDENTIFIER",
+                  "issuer": "https://example.org/fhir/ehr-slice-se-genomics/identifier/remiss",
+                  "id": "REM-2026-000123"
+                },
+                "archetype_node_id": "at0062"
+              }
+            ],
+            "archetype_node_id": "at0094"
+          }
+        ],
+        "archetype_node_id": "at0004"
+      },
+      "data": {
+        "name": {
+          "_type": "DV_TEXT",
+          "value": "Event Series"
+        },
+        "origin": {
+          "_type": "DV_DATE_TIME",
+          "value": "2026-10-05T10:00:00+02:00"
+        },
+        "events": [
+          {
+            "_type": "POINT_EVENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Any event"
+            },
+            "time": {
+              "_type": "DV_DATE_TIME",
+              "value": "2026-10-05T10:00:00+02:00"
+            },
+            "data": {
+              "_type": "ITEM_TREE",
+              "name": {
+                "_type": "DV_TEXT",
+                "value": "Tree"
+              },
+              "items": [
+                {
+                  "_type": "ELEMENT",
+                  "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Test name"
+                  },
+                  "value": {
+                    "_type": "DV_CODED_TEXT",
+                    "value": "Solid tumour NGS panel (DNA)",
+                    "defining_code": {
+                      "_type": "CODE_PHRASE",
+                      "terminology_id": {
+                        "_type": "TERMINOLOGY_ID",
+                        "value": "http://loinc.org"
+                      },
+                      "code_string": "51969-4"
+                    }
+                  },
+                  "archetype_node_id": "at0005"
+                },
+                {
+                  "_type": "CLUSTER",
+                  "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Specimen"
+                  },
+                  "archetype_details": {
+                    "archetype_id": {
+                      "value": "openEHR-EHR-CLUSTER.specimen.v1"
+                    },
+                    "rm_version": "1.0.4"
+                  },
+                  "items": [
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Specimen type"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "Tumor",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.4"
+                        }
+                      },
+                      "archetype_node_id": "at0029"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "External identifier"
+                      },
+                      "value": {
+                        "_type": "DV_IDENTIFIER",
+                        "issuer": "https://example.org/fhir/ehr-slice-se-genomics/identifier/pad",
+                        "id": "PAD-2026-04567"
+                      },
+                      "archetype_node_id": "at0088"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Collection date/time"
+                      },
+                      "value": {
+                        "_type": "DV_DATE_TIME",
+                        "value": "2026-09-28T13:15:00+02:00"
+                      },
+                      "archetype_node_id": "at0015"
+                    }
+                  ],
+                  "archetype_node_id": "openEHR-EHR-CLUSTER.specimen.v1"
+                },
+                {
+                  "_type": "ELEMENT",
+                  "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Overall test status"
+                  },
+                  "value": {
+                    "_type": "DV_CODED_TEXT",
+                    "value": "Final",
+                    "defining_code": {
+                      "_type": "CODE_PHRASE",
+                      "terminology_id": {
+                        "_type": "TERMINOLOGY_ID",
+                        "value": "local"
+                      },
+                      "code_string": "at0038"
+                    }
+                  },
+                  "archetype_node_id": "at0073"
+                },
+                {
+                  "_type": "ELEMENT",
+                  "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Overall test status timestamp"
+                  },
+                  "value": {
+                    "_type": "DV_DATE_TIME",
+                    "value": "2026-10-06T14:00:00+02:00"
+                  },
+                  "archetype_node_id": "at0075"
+                },
+                {
+                  "_type": "CLUSTER",
+                  "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Genomic variant result (cancer)"
+                  },
+                  "archetype_details": {
+                    "archetype_id": {
+                      "value": "openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1"
+                    },
+                    "rm_version": "1.0.4"
+                  },
+                  "items": [
+                    {
+                      "_type": "CLUSTER",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Transcript"
+                      },
+                      "items": [
+                        {
+                          "_type": "ELEMENT",
+                          "name": {
+                            "_type": "DV_TEXT",
+                            "value": "DNA change"
+                          },
+                          "value": {
+                            "_type": "DV_PARSABLE",
+                            "value": "NM_005228.5:c.2573T>G",
+                            "formalism": "text/html"
+                          },
+                          "archetype_node_id": "at0011"
+                        },
+                        {
+                          "_type": "ELEMENT",
+                          "name": {
+                            "_type": "DV_TEXT",
+                            "value": "Amino acid change"
+                          },
+                          "value": {
+                            "_type": "DV_PARSABLE",
+                            "value": "NP_005219.2:p.(Leu858Arg)",
+                            "formalism": "text/html"
+                          },
+                          "archetype_node_id": "at0012"
+                        },
+                        {
+                          "_type": "CLUSTER",
+                          "name": {
+                            "_type": "DV_TEXT",
+                            "value": "Gene"
+                          },
+                          "items": [
+                            {
+                              "_type": "ELEMENT",
+                              "name": {
+                                "_type": "DV_TEXT",
+                                "value": "Gene symbol"
+                              },
+                              "value": {
+                                "_type": "DV_TEXT",
+                                "value": "EGFR"
+                              },
+                              "archetype_node_id": "at0020"
+                            }
+                          ],
+                          "archetype_node_id": "at0019"
+                        }
+                      ],
+                      "archetype_node_id": "at0008"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Allele frequency"
+                      },
+                      "value": {
+                        "_type": "DV_QUANTITY",
+                        "units": "1",
+                        "magnitude": 0.32
+                      },
+                      "archetype_node_id": "at0047"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Genetic origin"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "Somatic",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.1"
+                        }
+                      },
+                      "archetype_node_id": "at0.9000"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "ASCO/AMP clinical significance tier"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "Tier I-A",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.10"
+                        }
+                      },
+                      "archetype_node_id": "at0.9001"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "ESCAT therapeutic relevance"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "ESCAT Tier I-A",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.20"
+                        }
+                      },
+                      "archetype_node_id": "at0.9002"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Molecular consequence"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "missense_variant",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.40"
+                        }
+                      },
+                      "archetype_node_id": "at0.6"
+                    }
+                  ],
+                  "archetype_node_id": "openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1"
+                },
+                {
+                  "_type": "CLUSTER",
+                  "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Genomic variant result (cancer)"
+                  },
+                  "archetype_details": {
+                    "archetype_id": {
+                      "value": "openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1"
+                    },
+                    "rm_version": "1.0.4"
+                  },
+                  "items": [
+                    {
+                      "_type": "CLUSTER",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Transcript"
+                      },
+                      "items": [
+                        {
+                          "_type": "ELEMENT",
+                          "name": {
+                            "_type": "DV_TEXT",
+                            "value": "DNA change"
+                          },
+                          "value": {
+                            "_type": "DV_PARSABLE",
+                            "value": "NM_000546.6:c.818G>A",
+                            "formalism": "text/html"
+                          },
+                          "archetype_node_id": "at0011"
+                        },
+                        {
+                          "_type": "ELEMENT",
+                          "name": {
+                            "_type": "DV_TEXT",
+                            "value": "Amino acid change"
+                          },
+                          "value": {
+                            "_type": "DV_PARSABLE",
+                            "value": "NP_000537.3:p.(Arg273His)",
+                            "formalism": "text/html"
+                          },
+                          "archetype_node_id": "at0012"
+                        },
+                        {
+                          "_type": "CLUSTER",
+                          "name": {
+                            "_type": "DV_TEXT",
+                            "value": "Gene"
+                          },
+                          "items": [
+                            {
+                              "_type": "ELEMENT",
+                              "name": {
+                                "_type": "DV_TEXT",
+                                "value": "Gene symbol"
+                              },
+                              "value": {
+                                "_type": "DV_TEXT",
+                                "value": "TP53"
+                              },
+                              "archetype_node_id": "at0020"
+                            }
+                          ],
+                          "archetype_node_id": "at0019"
+                        }
+                      ],
+                      "archetype_node_id": "at0008"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Allele frequency"
+                      },
+                      "value": {
+                        "_type": "DV_QUANTITY",
+                        "units": "1",
+                        "magnitude": 0.18
+                      },
+                      "archetype_node_id": "at0047"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Genetic origin"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "Somatic",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.1"
+                        }
+                      },
+                      "archetype_node_id": "at0.9000"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "ASCO/AMP clinical significance tier"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "Tier III",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.15"
+                        }
+                      },
+                      "archetype_node_id": "at0.9001"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "ESCAT therapeutic relevance"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "ESCAT Tier X",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.30"
+                        }
+                      },
+                      "archetype_node_id": "at0.9002"
+                    },
+                    {
+                      "_type": "ELEMENT",
+                      "name": {
+                        "_type": "DV_TEXT",
+                        "value": "Molecular consequence"
+                      },
+                      "value": {
+                        "_type": "DV_CODED_TEXT",
+                        "value": "missense_variant",
+                        "defining_code": {
+                          "_type": "CODE_PHRASE",
+                          "terminology_id": {
+                            "_type": "TERMINOLOGY_ID",
+                            "value": "local"
+                          },
+                          "code_string": "at0.40"
+                        }
+                      },
+                      "archetype_node_id": "at0.6"
+                    }
+                  ],
+                  "archetype_node_id": "openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1"
+                },
+                {
+                  "_type": "ELEMENT",
+                  "name": {
+                    "_type": "DV_TEXT",
+                    "value": "Conclusion"
+                  },
+                  "value": {
+                    "_type": "DV_TEXT",
+                    "value": "EGFR L858R påvisad (Tier I-A / ESCAT I-A). TP53 R273H påvisad."
+                  },
+                  "archetype_node_id": "at0057"
+                }
+              ],
+              "archetype_node_id": "at0003"
+            },
+            "archetype_node_id": "at0002"
+          }
+        ],
+        "archetype_node_id": "at0001"
+      },
+      "archetype_node_id": "openEHR-EHR-OBSERVATION.laboratory_test_result.v1"
+    }
+  ],
+  "archetype_node_id": "openEHR-EHR-COMPOSITION.report-result.v1"
+}

@@ -1,0 +1,358 @@
+{
+  "_type": "COMPOSITION",
+  "name": {
+    "_type": "DV_TEXT",
+    "value": "Genomics request"
+  },
+  "archetype_details": {
+    "archetype_id": {
+      "value": "openEHR-EHR-COMPOSITION.request.v1"
+    },
+    "template_id": {
+      "value": "Genomics request"
+    },
+    "rm_version": "1.0.4"
+  },
+  "language": {
+    "_type": "CODE_PHRASE",
+    "terminology_id": {
+      "_type": "TERMINOLOGY_ID",
+      "value": "ISO_639-1"
+    },
+    "code_string": "en"
+  },
+  "territory": {
+    "_type": "CODE_PHRASE",
+    "terminology_id": {
+      "_type": "TERMINOLOGY_ID",
+      "value": "ISO_3166-1"
+    },
+    "code_string": "DE"
+  },
+  "category": {
+    "_type": "DV_CODED_TEXT",
+    "value": "event",
+    "defining_code": {
+      "_type": "CODE_PHRASE",
+      "terminology_id": {
+        "_type": "TERMINOLOGY_ID",
+        "value": "openehr"
+      },
+      "code_string": "433"
+    }
+  },
+  "composer": {
+    "_type": "PARTY_IDENTIFIED",
+    "external_ref": {
+      "_type": "PARTY_REF",
+      "namespace": "N/A",
+      "type": "PARTY",
+      "id": {
+        "_type": "GENERIC_ID",
+        "value": "Practitioner/practitioner-demo-1",
+        "scheme": "N/A"
+      }
+    }
+  },
+  "context": {
+    "_type": "EVENT_CONTEXT",
+    "start_time": {
+      "_type": "DV_DATE_TIME",
+      "value": "2026-10-01T09:30:00+02:00"
+    },
+    "setting": {
+      "_type": "DV_CODED_TEXT",
+      "value": "other care",
+      "defining_code": {
+        "_type": "CODE_PHRASE",
+        "terminology_id": {
+          "_type": "TERMINOLOGY_ID",
+          "value": "openehr"
+        },
+        "code_string": "238"
+      }
+    },
+    "health_care_facility": {
+      "_type": "PARTY_IDENTIFIED",
+      "external_ref": {
+        "_type": "PARTY_REF",
+        "namespace": "N/A",
+        "type": "PARTY",
+        "id": {
+          "_type": "GENERIC_ID",
+          "value": "Practitioner/practitioner-demo-1",
+          "scheme": "N/A"
+        }
+      }
+    }
+  },
+  "content": [
+    {
+      "_type": "INSTRUCTION",
+      "name": {
+        "_type": "DV_TEXT",
+        "value": "Genomic service request"
+      },
+      "archetype_details": {
+        "archetype_id": {
+          "value": "openEHR-EHR-INSTRUCTION.service_request.v1"
+        },
+        "rm_version": "1.0.4"
+      },
+      "language": {
+        "_type": "CODE_PHRASE",
+        "terminology_id": {
+          "_type": "TERMINOLOGY_ID",
+          "value": "ISO_639-1"
+        },
+        "code_string": "en"
+      },
+      "encoding": {
+        "_type": "CODE_PHRASE",
+        "terminology_id": {
+          "_type": "TERMINOLOGY_ID",
+          "value": "IANA_character-sets"
+        },
+        "code_string": "UTF-8"
+      },
+      "subject": {
+        "_type": "PARTY_SELF"
+      },
+      "protocol": {
+        "_type": "ITEM_TREE",
+        "name": {
+          "_type": "DV_TEXT",
+          "value": "Tree"
+        },
+        "items": [
+          {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Requester order identifier"
+            },
+            "value": {
+              "_type": "DV_IDENTIFIER",
+              "issuer": "https://example.org/fhir/ehr-slice-se-genomics/identifier/remiss",
+              "id": "REM-2026-000123"
+            },
+            "archetype_node_id": "at0010"
+          },
+          {
+            "_type": "CLUSTER",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Receiving laboratory / organisation"
+            },
+            "archetype_details": {
+              "archetype_id": {
+                "value": "openEHR-EHR-CLUSTER.organisation.v1"
+              },
+              "rm_version": "1.0.4"
+            },
+            "items": [
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Name"
+                },
+                "value": {
+                  "_type": "DV_TEXT",
+                  "value": "Genomiklaboratoriet (demo)"
+                },
+                "archetype_node_id": "at0001"
+              },
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Identifier"
+                },
+                "value": {
+                  "_type": "DV_IDENTIFIER",
+                  "issuer": "urn:oid:1.2.752.29.4.19",
+                  "id": "SE0000000000-GEN1"
+                },
+                "archetype_node_id": "at0003"
+              }
+            ],
+            "archetype_node_id": "openEHR-EHR-CLUSTER.organisation.v1"
+          },
+          {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Request status"
+            },
+            "value": {
+              "_type": "DV_TEXT",
+              "value": "active"
+            },
+            "archetype_node_id": "at0127"
+          }
+        ],
+        "archetype_node_id": "at0008"
+      },
+      "narrative": {
+        "_type": "DV_TEXT",
+        "value": "<none>"
+      },
+      "activities": [
+        {
+          "_type": "ACTIVITY",
+          "name": {
+            "_type": "DV_TEXT",
+            "value": "Current Activity"
+          },
+          "description": {
+            "_type": "ITEM_TREE",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Tree"
+            },
+            "items": [
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Service name"
+                },
+                "value": {
+                  "_type": "DV_TEXT",
+                  "value": "Solid tumour NGS panel (DNA)"
+                },
+                "archetype_node_id": "at0121"
+              },
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Clinical question"
+                },
+                "value": {
+                  "_type": "DV_CODED_TEXT",
+                  "value": "Primary diagnostics",
+                  "defining_code": {
+                    "_type": "CODE_PHRASE",
+                    "terminology_id": {
+                      "_type": "TERMINOLOGY_ID",
+                      "value": "local"
+                    },
+                    "code_string": "at0.1"
+                  }
+                },
+                "archetype_node_id": "at0062"
+              },
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Clinical question"
+                },
+                "value": {
+                  "_type": "DV_CODED_TEXT",
+                  "value": "Prediction of treatment response",
+                  "defining_code": {
+                    "_type": "CODE_PHRASE",
+                    "terminology_id": {
+                      "_type": "TERMINOLOGY_ID",
+                      "value": "local"
+                    },
+                    "code_string": "at0.2"
+                  }
+                },
+                "archetype_node_id": "at0062"
+              },
+              {
+                "_type": "ELEMENT",
+                "name": {
+                  "_type": "DV_TEXT",
+                  "value": "Intent"
+                },
+                "value": {
+                  "_type": "DV_TEXT",
+                  "value": "order"
+                },
+                "archetype_node_id": "at0065"
+              }
+            ],
+            "archetype_node_id": "at0009"
+          },
+          "timing": {
+            "_type": "DV_PARSABLE",
+            "value": "R1",
+            "formalism": "timing"
+          },
+          "action_archetype_id": "/.*/",
+          "archetype_node_id": "at0001"
+        }
+      ],
+      "archetype_node_id": "openEHR-EHR-INSTRUCTION.service_request.v1"
+    },
+    {
+      "_type": "EVALUATION",
+      "name": {
+        "_type": "DV_TEXT",
+        "value": "Referring diagnosis"
+      },
+      "archetype_details": {
+        "archetype_id": {
+          "value": "openEHR-EHR-EVALUATION.problem_diagnosis.v1"
+        },
+        "rm_version": "1.0.4"
+      },
+      "language": {
+        "_type": "CODE_PHRASE",
+        "terminology_id": {
+          "_type": "TERMINOLOGY_ID",
+          "value": "ISO_639-1"
+        },
+        "code_string": "en"
+      },
+      "encoding": {
+        "_type": "CODE_PHRASE",
+        "terminology_id": {
+          "_type": "TERMINOLOGY_ID",
+          "value": "IANA_character-sets"
+        },
+        "code_string": "UTF-8"
+      },
+      "subject": {
+        "_type": "PARTY_SELF"
+      },
+      "data": {
+        "_type": "ITEM_TREE",
+        "name": {
+          "_type": "DV_TEXT",
+          "value": "structure"
+        },
+        "items": [
+          {
+            "_type": "ELEMENT",
+            "name": {
+              "_type": "DV_TEXT",
+              "value": "Problem/Diagnosis name"
+            },
+            "value": {
+              "_type": "DV_CODED_TEXT",
+              "value": "Malign tumör i övre loben, bronk eller lunga",
+              "defining_code": {
+                "_type": "CODE_PHRASE",
+                "terminology_id": {
+                  "_type": "TERMINOLOGY_ID",
+                  "value": "http://hl7.org/fhir/sid/icd-10"
+                },
+                "code_string": "C34.1"
+              }
+            },
+            "archetype_node_id": "at0002"
+          }
+        ],
+        "archetype_node_id": "at0001"
+      },
+      "archetype_node_id": "openEHR-EHR-EVALUATION.problem_diagnosis.v1"
+    }
+  ],
+  "archetype_node_id": "openEHR-EHR-COMPOSITION.request.v1"
+}

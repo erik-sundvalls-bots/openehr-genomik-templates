@@ -1,0 +1,38 @@
+# SUSHI configuration for the EHR Slice demo (Swedish cancer genomics, consultation draft)
+id: ehr-slice.se.cancer-genomics
+canonical: https://example.org/fhir/ehr-slice-se-genomics
+name: EHRSliceSECancerGenomics
+title: "EHR Slice demo – Swedish harmonised cancer genomics dataset (draft)"
+description: >-
+  Demonstration EHR Slice: FHIR R4 profiles derived from HL7 Genomics Reporting IG v3,
+  local CodeSystems/ValueSets from the consultation dataset, openEHR templates (ADL2 + OPT 1.4)
+  and bidirectional FHIRconnect mappings, packaged as one FHIR IG. Not for production use.
+status: draft
+experimental: true
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2026+
+releaseLabel: ci-build
+license: CC-BY-4.0
+jurisdiction: urn:iso:std:iso:3166#SE "Sweden"
+publisher:
+  name: Erik Sundvall (demo)
+dependencies:
+  hl7.fhir.uv.genomics-reporting: 3.0.0
+  hl7se.fhir.base: 1.1.0
+pages:
+  index.md:
+    title: EHR Slice – översikt / overview
+  artefacts.md:
+    title: openEHR-artefakter och FHIRconnect / openEHR artefacts and FHIRconnect
+  roundtrip.md:
+    title: Rundtur / Round-trip evidence
+menu:
+  Home: index.html
+  Artefacts: artefacts.html
+  Round-trip: roundtrip.html
+  Artifacts index: artifacts.html
+parameters:
+  # Non-FHIR artefacts (OPT, ADL2, FHIRconnect YAML) are carried as Binary resources
+  # listed in a Library manifest; see input/resources.
+  show-inherited-invariants: false

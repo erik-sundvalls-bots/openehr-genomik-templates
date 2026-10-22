@@ -1,0 +1,23 @@
+{
+  "resourceType": "Patient",
+  "id": "patient-demo-1",
+  "meta": {
+    "profile": [
+      "http://hl7.se/fhir/ig/base/StructureDefinition/SEBasePatient"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://electronichealth.se/identifier/personnummer",
+      "value": "191212121212"
+    }
+  ],
+  "name": [
+    {
+      "family": "Testsson",
+      "given": [
+        "Tolvan"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,406 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "ehr-slice.se.cancer-genomics",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/ImplementationGuide/ehr-slice.se.cancer-genomics",
+  "version": "0.1.0",
+  "name": "EHRSliceSECancerGenomics",
+  "title": "EHR Slice demo – Swedish harmonised cancer genomics dataset (draft)",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "Erik Sundvall (demo)",
+  "description": "Demonstration EHR Slice: FHIR R4 profiles derived from HL7 Genomics Reporting IG v3, local CodeSystems/ValueSets from the consultation dataset, openEHR templates (ADL2 + OPT 1.4) and bidirectional FHIRconnect mappings, packaged as one FHIR IG. Not for production use.",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "code": "SE",
+          "system": "urn:iso:std:iso:3166",
+          "display": "Sweden"
+        }
+      ]
+    }
+  ],
+  "packageId": "ehr-slice.se.cancer-genomics",
+  "license": "CC-BY-4.0",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "dependsOn": [
+    {
+      "packageId": "hl7.fhir.uv.genomics-reporting",
+      "version": "3.0.0",
+      "uri": "http://hl7.org/fhir/uv/genomics-reporting/ImplementationGuide/hl7.fhir.uv.genomics-reporting",
+      "id": "hl7_fhir_uv_genomics_reporting"
+    },
+    {
+      "packageId": "hl7se.fhir.base",
+      "version": "1.1.0",
+      "uri": "http://hl7.se/fhir/ig/base/ImplementationGuide/hl7se.fhir.base",
+      "id": "hl7se_fhir_base"
+    }
+  ],
+  "definition": {
+    "resource": [
+      {
+        "reference": {
+          "reference": "Binary/adl2-openEHR-EHR-COMPOSITION.t-genomics-cancer-report.v-306ee6ab"
+        },
+        "exampleBoolean": false,
+        "name": "adl2-openEHR-EHR-COMPOSITION.t-genomics-cancer-report.v-306ee6ab"
+      },
+      {
+        "reference": {
+          "reference": "Binary/adl2-openEHR-EHR-COMPOSITION.t-genomics-request.v1.0.0.adls"
+        },
+        "exampleBoolean": false,
+        "name": "adl2-openEHR-EHR-COMPOSITION.t-genomics-request.v1.0.0.adls"
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/asco-amp-tier"
+        },
+        "name": "AMP/ASCO/CAP 2017 somatic tier – local draft",
+        "description": "AMP/ASCO/CAP 2017 somatic variant tiers as local codes (no SNOMED CT codes available). Placeholder canonical URL.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/asco-amp-tier"
+        },
+        "name": "AMP/ASCO/CAP tier",
+        "description": "AMP/ASCO/CAP 2017 tier (klinisk_signifikans_asco).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Organization/lab-genomics-demo"
+        },
+        "name": "Demo genomics laboratory",
+        "exampleCanonical": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-laboratory"
+      },
+      {
+        "reference": {
+          "reference": "Patient/patient-demo-1"
+        },
+        "name": "Demo patient",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "Observation/variant-demo-egfr"
+        },
+        "name": "EGFR L858R (somatic)",
+        "exampleCanonical": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-variant"
+      },
+      {
+        "reference": {
+          "reference": "Library/ehr-slice-manifest"
+        },
+        "description": "The technology-neutral artefacts of this EHR Slice: openEHR templates (ADL2 and OPT 1.4) and the bidirectional FHIRconnect mappings between them and the FHIR profiles in this guide.",
+        "exampleBoolean": false,
+        "name": "EHR Slice manifest – Swedish cancer genomics (demo)"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/escat-tier"
+        },
+        "name": "ESCAT tier",
+        "description": "ESCAT tier (behandlingsrelevans_escat).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/escat-tier"
+        },
+        "name": "ESMO ESCAT tier – local draft",
+        "description": "ESMO Scale for Clinical Actionability of molecular Targets (ESCAT) tiers as local codes. Placeholder canonical URL.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-anatomical-location.v1.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-anatomical-location.v1.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-genomic-variant-result-cancer.v1.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-genomic-variant-result-cancer.v1.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-laboratory-test-result.v1.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-laboratory-test-result.v1.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-organisation.v1.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-organisation.v1.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-problem-diagnosis.v1.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-problem-diagnosis.v1.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-report-result.v1.DiagnosticReport.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-report-result.v1.DiagnosticReport.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-request.v1.ServiceRequest.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-request.v1.ServiceRequest.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-se-genomic-report.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-se-genomic-report.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-se-genomics-referring-diagnosis.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-se-genomics-referring-diagnosis.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-se-genomics-report.context.yaml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-se-genomics-report.context.yaml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-se-genomics-request.context.yaml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-se-genomics-request.context.yaml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-se-genomics-service-request.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-se-genomics-service-request.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-se-genomics-specimen.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-se-genomics-specimen.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-service-request.v1.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-service-request.v1.yml"
+      },
+      {
+        "reference": {
+          "reference": "Binary/fc-specimen.v1.yml"
+        },
+        "exampleBoolean": false,
+        "name": "fc-specimen.v1.yml"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/fragestallning"
+        },
+        "name": "Frågeställning (genomik)",
+        "description": "All codes of the local Frågeställning code system (closed list, ServiceRequest.reasonCode).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/fragestallning"
+        },
+        "name": "Frågeställning (genomik) – local draft",
+        "description": "Clinical question for genomic analysis (RCC/NAG CancerGenomik consultation draft). Local codes 1–8; no SNOMED CT binding yet. Canonical URL is a placeholder (open decision: local value-set namespace).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/genetic-origin-se"
+        },
+        "name": "Genetiskt ursprung (LOINC LL378-1 subset)",
+        "description": "Genetic origin answers used by the dataset, expressed with LOINC LL378-1 answer codes (genomic-source-class).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "DiagnosticReport/genomic-report-demo-1"
+        },
+        "name": "Genomic report – NSCLC panel",
+        "exampleCanonical": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomic-report"
+      },
+      {
+        "reference": {
+          "reference": "ServiceRequest/servicerequest-demo-1"
+        },
+        "name": "Genomikremiss – NSCLC panel",
+        "exampleCanonical": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-servicerequest"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/molecular-consequence-se"
+        },
+        "name": "Molecular consequence (Sequence Ontology subset)",
+        "description": "Sequence Ontology terms from the dataset's MolecularConsequence list. System http://www.sequenceontology.org per HL7 THO NamingSystem SO.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Binary/opt-openEHR-EHR-COMPOSITION.t-genomics-cancer-report.opt"
+        },
+        "exampleBoolean": false,
+        "name": "opt-openEHR-EHR-COMPOSITION.t-genomics-cancer-report.opt"
+      },
+      {
+        "reference": {
+          "reference": "Binary/opt-openEHR-EHR-COMPOSITION.t-genomics-request.opt"
+        },
+        "exampleBoolean": false,
+        "name": "opt-openEHR-EHR-COMPOSITION.t-genomics-request.opt"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/specimen-type-se"
+        },
+        "name": "Provtyp (SNOMED CT)",
+        "description": "Specimen types from the dataset's Provtyp list (SNOMED CT; HL7 v2 0487 equivalents in the source).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Condition/diagnosis-demo-1"
+        },
+        "name": "Referring diagnosis – lung adenocarcinoma",
+        "exampleCanonical": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-referring-diagnosis"
+      },
+      {
+        "reference": {
+          "reference": "Practitioner/practitioner-demo-1"
+        },
+        "name": "Requesting physician (demo)",
+        "exampleBoolean": true
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/se-genomic-report"
+        },
+        "name": "SE Genomic report",
+        "description": "Genomic report (T1 'Genomics cancer report': OBSERVATION.laboratory_test_result.v1). Subset used by the demo: identifier, status, code, issued, performer, specimen, basedOn and variant results.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/se-genomics-laboratory"
+        },
+        "name": "SE Genomics laboratory",
+        "description": "Performing or receiving genomics laboratory, based on the Swedish base Organization profile (HSA-id).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/se-genomics-referring-diagnosis"
+        },
+        "name": "SE Genomics referring diagnosis",
+        "description": "Diagnosis motivating the genomic request (T2: EVALUATION.problem_diagnosis.v1). ICD-10 (Swedish edition in practice; generic ICD-10 system used in the demo).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/se-genomics-servicerequest"
+        },
+        "name": "SE Genomics ServiceRequest (genomikremiss)",
+        "description": "Request for genomic analysis (T2). One ServiceRequest corresponds to one openEHR ACTIVITY of INSTRUCTION.service_request.v1 in template 'Genomics request'. The Genomics Reporting IG v3 has no ServiceRequest profile, so this derives from core R4.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/se-genomics-specimen"
+        },
+        "name": "SE Genomics specimen (provmaterial nivå 1)",
+        "description": "Original specimen (T1: CLUSTER.specimen.v1).",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/se-variant"
+        },
+        "name": "SE Variant",
+        "description": "Variant finding (T1: CLUSTER.genomic_variant_result-cancer.v1). Demo simplification: molecular consequence, AMP/ASCO/CAP tier and ESCAT tier are carried as components on the variant (mirroring the openEHR cluster) instead of separate molecular-consequence / diagnostic-implication / therapeutic-implication Observations as in Genomics Reporting v3. See the round-trip page.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Observation/variant-demo-tp53"
+        },
+        "name": "TP53 R273H (somatic)",
+        "exampleCanonical": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-variant"
+      },
+      {
+        "reference": {
+          "reference": "Specimen/specimen-demo-1"
+        },
+        "name": "Tumour tissue specimen (FFPE)",
+        "exampleCanonical": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-specimen"
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "EHR Slice – översikt / overview",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "artefacts.html",
+          "title": "openEHR-artefakter och FHIRconnect / openEHR artefacts and FHIRconnect",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "roundtrip.html",
+          "title": "Rundtur / Round-trip evidence",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2026+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "ci-build"
+      },
+      {
+        "code": "show-inherited-invariants",
+        "value": "false"
+      }
+    ]
+  }
+}

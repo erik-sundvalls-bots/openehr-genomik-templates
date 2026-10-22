@@ -1,0 +1,137 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "EscatTierCS",
+  "id": "escat-tier",
+  "title": "ESMO ESCAT tier – local draft",
+  "description": "ESMO Scale for Clinical Actionability of molecular Targets (ESCAT) tiers as local codes. Placeholder canonical URL.",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier",
+  "concept": [
+    {
+      "code": "Tier I-A",
+      "display": "Tier I-A",
+      "definition": "Ready for routine use - RCT evidence",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Ready for routine use - RCT evidence"
+        }
+      ]
+    },
+    {
+      "code": "Tier I-B",
+      "display": "Tier I-B",
+      "definition": "Ready for routine use - Single-arm trial",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Ready for routine use - Single-arm trial"
+        }
+      ]
+    },
+    {
+      "code": "Tier I-C",
+      "display": "Tier I-C",
+      "definition": "Ready for routine use - Basket trial",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Ready for routine use - Basket trial"
+        }
+      ]
+    },
+    {
+      "code": "Tier II-A",
+      "display": "Tier II-A",
+      "definition": "Investigational - Retrospective evidence",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Investigational - Retrospective evidence"
+        }
+      ]
+    },
+    {
+      "code": "Tier II-B",
+      "display": "Tier II-B",
+      "definition": "Investigational - Response without survival data",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Investigational - Response without survival data"
+        }
+      ]
+    },
+    {
+      "code": "Tier III-A",
+      "display": "Tier III-A",
+      "definition": "Hypothetical - Evidence from other tumor type",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Hypothetical - Evidence from other tumor type"
+        }
+      ]
+    },
+    {
+      "code": "Tier III-B",
+      "display": "Tier III-B",
+      "definition": "Hypothetical - Similar molecular alteration",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Hypothetical - Similar molecular alteration"
+        }
+      ]
+    },
+    {
+      "code": "Tier IV-A",
+      "display": "Tier IV-A",
+      "definition": "Preclinical - In vitro/vivo evidence",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Preclinical - In vitro/vivo evidence"
+        }
+      ]
+    },
+    {
+      "code": "Tier IV-B",
+      "display": "Tier IV-B",
+      "definition": "Preclinical - In silico prediction",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Preclinical - In silico prediction"
+        }
+      ]
+    },
+    {
+      "code": "Tier V",
+      "display": "Tier V",
+      "definition": "Combination - Response without clinical benefit",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Combination - Response without clinical benefit"
+        }
+      ]
+    },
+    {
+      "code": "Tier X",
+      "display": "Tier X",
+      "definition": "No evidence for actionability",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No evidence for actionability"
+        }
+      ]
+    }
+  ],
+  "experimental": true,
+  "caseSensitive": true,
+  "language": "sv",
+  "count": 11
+}

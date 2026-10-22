@@ -14,10 +14,18 @@ java -cp "$CP" "$G/tools/ArchieValidateAll.java" "$G/archetypes/ckm-adl2" "$G/ar
 { grep -v "^total=" "$G/build/archie-validation.raw" | sort; grep "^total=" "$G/build/archie-validation.raw"; } > "$G/build/archie-validation.txt"; rm -f "$G/build/archie-validation.raw"; tail -1 "$G/build/archie-validation.txt"
 # Ehrtslib main reads '#' in ODIN URIs since ehrtslib#133 (PR #138); no stripping workaround needed.
 TMP=$(mktemp -d); cp -r "$G/archetypes" "$TMP/"
-echo "== Ehrtslib OPT/OET 1.4 (ehrtslib $(git -C "$EHRTSLIB" rev-parse --short HEAD))"
+# OPT/OET export is pinned to the last Ehrtslib commit before ehrtslib#147: from 35f33da on, local value sets
+# whose codes are all bound to one terminology are exported as external code lists, which drops the local term texts
+# (openFHIR then writes DV_CODED_TEXT without value). Set EHRTSLIB_OPT_REF=HEAD once #147 is fixed.
+EHRTSLIB_OPT_REF="${EHRTSLIB_OPT_REF:-fca190a}"; EHRTSLIB_OPT="$EHRTSLIB"
+if [[ "$EHRTSLIB_OPT_REF" != HEAD ]]; then
+  EHRTSLIB_OPT="/tmp/ehrtslib-opt-$EHRTSLIB_OPT_REF"
+  [[ -d "$EHRTSLIB_OPT" ]] || git -C "$EHRTSLIB" worktree add -q --detach "$EHRTSLIB_OPT" "$EHRTSLIB_OPT_REF"
+fi
+echo "== Ehrtslib OPT/OET 1.4 (ehrtslib $(git -C "$EHRTSLIB_OPT" rev-parse --short HEAD); down-conversion uses $(git -C "$EHRTSLIB" rev-parse --short HEAD))"
 mkdir -p "$G/build/opt14" "$G/build/oet14"; : > "$G/build/ehrtslib-export-log.txt"
 for T in t_genomics_cancer_report t_genomics_request; do for F in opt oet; do
-  (cd "$EHRTSLIB" && deno task -q export:${F}14 --lib "$TMP/archetypes/ckm-adl2" --lib "$TMP/archetypes/drafts" \
+  (cd "$EHRTSLIB_OPT" && deno task -q export:${F}14 --lib "$TMP/archetypes/ckm-adl2" --lib "$TMP/archetypes/drafts" \
     --template "$G/templates/adl2/openEHR-EHR-COMPOSITION.$T.v1.0.0.adls" --lang en,sv --out "$G/build/${F}14/openEHR-EHR-COMPOSITION.$T.$F") 2>&1 | sed 's/^/  /' | tee -a "$G/build/ehrtslib-export-log.txt" >/dev/null
 done; done
 echo "== Ehrtslib ADL 1.4 down-conversion (drafts + sv-translated CKM copies)"

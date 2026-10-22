@@ -1,0 +1,30 @@
+{
+  "resourceType": "Specimen",
+  "id": "specimen-demo-1",
+  "meta": {
+    "profile": [
+      "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-specimen"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://example.org/fhir/ehr-slice-se-genomics/identifier/pad",
+      "value": "PAD-2026-04567"
+    }
+  ],
+  "type": {
+    "coding": [
+      {
+        "code": "258435002",
+        "system": "http://snomed.info/sct",
+        "display": "Tumor"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/patient-demo-1"
+  },
+  "collection": {
+    "collectedDateTime": "2026-09-28T13:15:00+02:00"
+  }
+}

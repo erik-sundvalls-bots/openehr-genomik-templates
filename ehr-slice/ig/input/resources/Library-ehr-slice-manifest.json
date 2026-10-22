@@ -1,0 +1,211 @@
+{
+  "resourceType": "Library",
+  "id": "ehr-slice-manifest",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/Library/ehr-slice-manifest",
+  "version": "0.1.0",
+  "name": "EHRSliceManifestSECancerGenomics",
+  "title": "EHR Slice manifest – Swedish cancer genomics (demo)",
+  "status": "draft",
+  "experimental": true,
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/library-type",
+        "code": "asset-collection"
+      }
+    ]
+  },
+  "description": "The technology-neutral artefacts of this EHR Slice: openEHR templates (ADL2 and OPT 1.4) and the bidirectional FHIRconnect mappings between them and the FHIR profiles in this guide.",
+  "relatedArtifact": [
+    {
+      "type": "composed-of",
+      "label": "openEHR operational template (OPT 1.4)",
+      "display": "OPT 1.4: openEHR-EHR-COMPOSITION.t_genomics_cancer_report.opt",
+      "document": {
+        "contentType": "application/xml",
+        "url": "Binary/opt-openEHR-EHR-COMPOSITION.t-genomics-cancer-report.opt",
+        "title": "ehr-slice/templates/opt14/openEHR-EHR-COMPOSITION.t_genomics_cancer_report.opt"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "openEHR operational template (OPT 1.4)",
+      "display": "OPT 1.4: openEHR-EHR-COMPOSITION.t_genomics_request.opt",
+      "document": {
+        "contentType": "application/xml",
+        "url": "Binary/opt-openEHR-EHR-COMPOSITION.t-genomics-request.opt",
+        "title": "ehr-slice/templates/opt14/openEHR-EHR-COMPOSITION.t_genomics_request.opt"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "openEHR template (ADL2 source)",
+      "display": "ADL2 template: openEHR-EHR-COMPOSITION.t_genomics_cancer_report.v1.0.0.adls",
+      "document": {
+        "contentType": "text/plain",
+        "url": "Binary/adl2-openEHR-EHR-COMPOSITION.t-genomics-cancer-report.v-306ee6ab",
+        "title": "templates/adl2/openEHR-EHR-COMPOSITION.t_genomics_cancer_report.v1.0.0.adls"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "openEHR template (ADL2 source)",
+      "display": "ADL2 template: openEHR-EHR-COMPOSITION.t_genomics_request.v1.0.0.adls",
+      "document": {
+        "contentType": "text/plain",
+        "url": "Binary/adl2-openEHR-EHR-COMPOSITION.t-genomics-request.v1.0.0.adls",
+        "title": "templates/adl2/openEHR-EHR-COMPOSITION.t_genomics_request.v1.0.0.adls"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/local/genomic_variant_result-cancer.v1.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-genomic-variant-result-cancer.v1.yml",
+        "title": "ehr-slice/fhirconnect/model/local/genomic_variant_result-cancer.v1.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/openehr-lib/anatomical_location.v1.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-anatomical-location.v1.yml",
+        "title": "ehr-slice/fhirconnect/model/openehr-lib/anatomical_location.v1.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/openehr-lib/laboratory_test_result.v1.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-laboratory-test-result.v1.yml",
+        "title": "ehr-slice/fhirconnect/model/openehr-lib/laboratory_test_result.v1.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/openehr-lib/organisation.v1.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-organisation.v1.yml",
+        "title": "ehr-slice/fhirconnect/model/openehr-lib/organisation.v1.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/openehr-lib/problem_diagnosis.v1.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-problem-diagnosis.v1.yml",
+        "title": "ehr-slice/fhirconnect/model/openehr-lib/problem_diagnosis.v1.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/openehr-lib/report_result.v1.DiagnosticReport.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-report-result.v1.DiagnosticReport.yml",
+        "title": "ehr-slice/fhirconnect/model/openehr-lib/report_result.v1.DiagnosticReport.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/openehr-lib/request.v1.ServiceRequest.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-request.v1.ServiceRequest.yml",
+        "title": "ehr-slice/fhirconnect/model/openehr-lib/request.v1.ServiceRequest.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/openehr-lib/service_request.v1.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-service-request.v1.yml",
+        "title": "ehr-slice/fhirconnect/model/openehr-lib/service_request.v1.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect model mapping",
+      "display": "FHIRconnect model: model/openehr-lib/specimen.v1.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-specimen.v1.yml",
+        "title": "ehr-slice/fhirconnect/model/openehr-lib/specimen.v1.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect extension mapping",
+      "display": "FHIRconnect extension: projects/se-genomics/report/se_genomic_report.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-se-genomic-report.yml",
+        "title": "ehr-slice/fhirconnect/projects/se-genomics/report/se_genomic_report.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect context mapping",
+      "display": "FHIRconnect context: projects/se-genomics/report/se_genomics_report.context.yaml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-se-genomics-report.context.yaml",
+        "title": "ehr-slice/fhirconnect/projects/se-genomics/report/se_genomics_report.context.yaml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect extension mapping",
+      "display": "FHIRconnect extension: projects/se-genomics/report/se_genomics_specimen.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-se-genomics-specimen.yml",
+        "title": "ehr-slice/fhirconnect/projects/se-genomics/report/se_genomics_specimen.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect extension mapping",
+      "display": "FHIRconnect extension: projects/se-genomics/request/se_genomics_referring_diagnosis.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-se-genomics-referring-diagnosis.yml",
+        "title": "ehr-slice/fhirconnect/projects/se-genomics/request/se_genomics_referring_diagnosis.yml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect context mapping",
+      "display": "FHIRconnect context: projects/se-genomics/request/se_genomics_request.context.yaml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-se-genomics-request.context.yaml",
+        "title": "ehr-slice/fhirconnect/projects/se-genomics/request/se_genomics_request.context.yaml"
+      }
+    },
+    {
+      "type": "composed-of",
+      "label": "FHIRconnect extension mapping",
+      "display": "FHIRconnect extension: projects/se-genomics/request/se_genomics_service_request.yml",
+      "document": {
+        "contentType": "application/yaml",
+        "url": "Binary/fc-se-genomics-service-request.yml",
+        "title": "ehr-slice/fhirconnect/projects/se-genomics/request/se_genomics_service_request.yml"
+      }
+    }
+  ]
+}

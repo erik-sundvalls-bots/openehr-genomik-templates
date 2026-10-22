@@ -1,0 +1,328 @@
+# GENERATED from ehr-slice/tools/fhirconnect-src by gen_fhirconnect.py; edit the source, not this file.
+grammar: FHIRConnect/v1.0.0
+type: extension
+metadata:
+  name: SE_genomics_service_request
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+  extends: INSTRUCTION.service_request.v1
+
+# Project layer for T2. The archetype-level model mapping
+# (model/openehr-lib/service_request.v1.yml) is reused unchanged; this file only
+# adds what the Swedish genomics profile/template need.
+mappings:
+  - name: compositionMapping
+    extension: add
+    with:
+      fhir: $resource
+      openehr: $composition
+    slotArchetype: COMPOSITION.request.v1.ServiceRequest
+
+  - name: metaProfile
+    extension: add
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.meta
+    manual:
+      - name: profileUrl
+        fhir:
+          - path: profile
+            value: https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-servicerequest
+
+  # Request status is DV_TEXT in the template; FHIR status is required (1..1).
+  - name: statusDefault
+    extension: add
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource
+      openehr: $archetype/protocol[at0008]/items[at0127]
+    openehrCondition:
+      targetRoot: $archetype/protocol[at0008]
+      targetAttribute: items[at0127]
+      operator: empty
+    manual:
+      - name: active
+        fhir:
+          - path: status
+            value: active
+
+  # The model mapping maps ServiceRequest.requester -> organisation cluster. In T2 the
+  # organisation cluster is the *receiving* laboratory, i.e. ServiceRequest.performer.
+  - name: protocol0008Parent
+    extension: overwrite
+    with:
+      fhir: $resource
+      openehr: $archetype/protocol[at0008]
+    followedBy:
+      mappings:
+        - name: status
+          with:
+            fhir: status
+            openehr: items[at0127]
+        - name: receivingLaboratory
+          with:
+            fhir: performer
+            openehr: $reference
+          reference:
+            resourceType: Organization
+            mappings:
+              - name: organisation
+                with:
+                  fhir: $fhirRoot
+                  openehr: items[openEHR-EHR-CLUSTER.organisation.v1]
+                slotArchetype: CLUSTER.organisation.v1
+
+  # frågeställning: ServiceRequest.reasonCode 1..* <-> Clinical question (at0062) 1..*,
+  # closed list. Local at-codes <-> local FHIR CodeSystem, one guarded mapping per code
+  # (generated from ehr-slice/tools/code_tables.py).
+  # Upstream service_request.v1 maps the requester to `$composition/provider`, which does not
+  # exist in the RM (PROVIDER belongs to ENTRY), and the flat serialiser rejects it. Pointing it at
+  # the entry-level provider is rejected the same way by this engine version, so the mapping is
+  # neutralised (type NONE); the requester still reaches the composition as composer.
+  - name: provider
+    extension: overwrite
+    with:
+      fhir: $resource.requester
+      openehr: $archetype/provider
+      type: NONE
+
+  # Requester order identifier. The archetype allows DV_TEXT or DV_IDENTIFIER here; without the
+  # explicit type the engine picks DV_TEXT on the way back to FHIR and drops the identifier.
+  - name: requesterOrderIdentifier
+    extension: add
+    with:
+      fhir: $resource.identifier
+      openehr: $archetype/protocol[at0008]/items[at0010]
+      type: IDENTIFIER
+
+  # The code table sits in a followedBy child whose paths are relative ($fhirRoot /
+  # $openehrRoot), so each reasonCode repetition is matched on its own.
+  - name: clinicalQuestion
+    extension: add
+    with:
+      fhir: $resource.reasonCode
+      openehr: $archetype/activities[at0001]/description[at0009]/items[at0062]
+      type: NONE
+    followedBy:
+      mappings:
+        - name: clinicalQuestionCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: fragestallning_at0.1
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.1
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.1
+                - path: value
+                  value: Primary diagnostics
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "1"
+              fhir:
+                - path: coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning
+                - path: coding.code
+                  value: "1"
+                - path: coding.display
+                  value: Primärdiagnostik
+            - name: fragestallning_at0.2
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.2
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.2
+                - path: value
+                  value: Prediction of treatment response
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "2"
+              fhir:
+                - path: coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning
+                - path: coding.code
+                  value: "2"
+                - path: coding.display
+                  value: Behandlingssvarsprediktion
+            - name: fragestallning_at0.3
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.3
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.3
+                - path: value
+                  value: Treatment monitoring
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "3"
+              fhir:
+                - path: coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning
+                - path: coding.code
+                  value: "3"
+                - path: coding.display
+                  value: Behandlingsmonitorering
+            - name: fragestallning_at0.4
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.4
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.4
+                - path: value
+                  value: Relapse detection (MRD)
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "4"
+              fhir:
+                - path: coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning
+                - path: coding.code
+                  value: "4"
+                - path: coding.display
+                  value: Återfallsdetektion (MRD)
+            - name: fragestallning_at0.5
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.5
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.5
+                - path: value
+                  value: Resistance question
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "5"
+              fhir:
+                - path: coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning
+                - path: coding.code
+                  value: "5"
+                - path: coding.display
+                  value: Resistensfrågeställning
+            - name: fragestallning_at0.6
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.6
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.6
+                - path: value
+                  value: Pharmacogenomics
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "6"
+              fhir:
+                - path: coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning
+                - path: coding.code
+                  value: "6"
+                - path: coding.display
+                  value: Farmakogenomik
+            - name: fragestallning_at0.7
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.7
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.7
+                - path: value
+                  value: Hereditary cancer / oncogenetics
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "7"
+              fhir:
+                - path: coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning
+                - path: coding.code
+                  value: "7"
+                - path: coding.display
+                  value: Ärftlig cancer / onkogenetik
+            - name: fragestallning_at0.8
+              openehrCondition:
+                targetRoot: $openehrRoot
+                targetAttribute: defining_code/code_string
+                operator: one of
+                criteria: at0.8
+              openehr:
+                - path: defining_code/terminology_id
+                  value: local
+                - path: defining_code/code_string
+                  value: at0.8
+                - path: value
+                  value: Other
+              fhirCondition:
+                targetRoot: $fhirRoot.coding
+                targetAttribute: code
+                operator: one of
+                criteria: "8"
+              fhir:
+                - path: coding.system
+                  value: https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/fragestallning
+                - path: coding.code
+                  value: "8"
+                - path: coding.display
+                  value: Övrigt
+
+  - name: referringDiagnosis
+    extension: add
+    with:
+      fhir: $resource.reasonReference
+      openehr: $reference
+    reference:
+      resourceType: Condition
+      mappings:
+        - name: problemDiagnosis
+          with:
+            fhir: $fhirRoot
+            openehr: $composition/content[openEHR-EHR-EVALUATION.problem_diagnosis.v1]
+          slotArchetype: EVALUATION.problem_diagnosis.v1

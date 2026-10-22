@@ -9,7 +9,7 @@
 - `tools/build.sh` rebuilds and validates everything: Archie full validation (31/31 OK), OPT 1.4 + OET 1.4 via Ehrtslib (XSD-valid), ADL 1.4 down-conversion via Ehrtslib and the Archie fork.
 - **Frågeställning (T2)** follows the dataset's FHIR design: required closed coded list, 1..*, multiple selection (`ServiceRequest.reasonCode`); one ACTIVITY ≈ one ServiceRequest. *Alternative design:* coded plus open free text (DV_TEXT alongside DV_CODED_TEXT, or an extensible value set). It keeps clinical nuance and tolerates list changes, but weakens comparability and breaks the dataset's coded-value requirement. See `docs/decisions.md` §10.
 - **SO URIs:** OBO term PURLs (`http://purl.obolibrary.org/obo/SO_nnnnnnn`) in ADL; FHIR system `http://www.sequenceontology.org` (no trailing slash). Recommended, pending final decision.
-- Next phases: EHR-Slice, FHIR profile, FHIRconnect mappings.
+- **EHR Slice demo** (`ehr-slice/`): FHIR IG (SUSHI) with profiles for T2 and part of T1 on Genomics Reporting IG v3, local CodeSystems/ValueSets, the OPT 1.4 + ADL2 templates as IG artefacts, and bidirectional FHIRconnect mappings, run FHIR → openEHR → FHIR → openEHR with openFHIR 3.0.2 (`ehr-slice/roundtrip/RESULTS.md`). Simplifications and upstream findings: `ehr-slice/README.md`. Swedish text for the consultation response: `docs/remissvar-ehr-slice.md`.
 
 The phase 2 notes below are kept for history.
 
@@ -24,6 +24,8 @@ The phase 2 notes below are kept for history.
 | `archetypes/drafts/` | Future local specialisations / new archetypes |
 | `templates/reference/` | CKM *Molecular Pathology Report* OET (HiGHmed draft) as prior art |
 | `docs/decisions.md` | Template set, format recommendation, open questions (Swedish) |
+| `ehr-slice/` | EHR Slice demo: FHIR IG, FHIRconnect mappings, engine set-up, round-trip evidence |
+| `docs/remissvar-ehr-slice.md` | Consultation-response section on EHR Slices (Swedish) |
 
 Source data © RCC i samverkan; CKM archetypes © openEHR Foundation, CC-BY-SA 4.0.
 
