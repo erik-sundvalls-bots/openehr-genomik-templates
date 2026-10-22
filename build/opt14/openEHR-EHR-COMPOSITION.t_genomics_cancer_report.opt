@@ -1166,11 +1166,11 @@
                                         </occurrences>
                                         <node_id></node_id>
                                         <terminology_id>
-                                          <value>SNOMED-CT</value>
+                                          <value>local</value>
                                         </terminology_id>
-                                        <code_list>24028007</code_list>
-                                        <code_list>7771000</code_list>
-                                        <code_list>51440002</code_list>
+                                        <code_list>at0004</code_list>
+                                        <code_list>at0003</code_list>
+                                        <code_list>at0083</code_list>
                                       </children>
                                     </attributes>
                                   </children>
@@ -16149,6 +16149,22 @@
           <items id="text">Structured test diagnosis</items>
           <items id="description">A structured or complex diagnosis for the laboratory test.</items>
         </term_definitions>
+        <term_definitions code="at0001">
+          <items id="text">History</items>
+          <items id="description">History</items>
+        </term_definitions>
+        <term_definitions code="at0003">
+          <items id="text">Tree</items>
+          <items id="description">Tree</items>
+        </term_definitions>
+        <term_definitions code="at0112">
+          <items id="text">Tree</items>
+          <items id="description">Tree</items>
+        </term_definitions>
+        <term_definitions code="at0004">
+          <items id="text">Tree</items>
+          <items id="description">Tree</items>
+        </term_definitions>
       </children>
       <cardinality>
         <is_ordered>false</is_ordered>
@@ -16200,6 +16216,10 @@
       <items id="text">Genomic laboratory test result</items>
       <items id="description">Laboratory test result constrained for cancer genomics: specimens, assay, variants and biomarkers.</items>
     </term_definitions>
+    <term_definitions code="at0001">
+      <items id="text">Tree</items>
+      <items id="description">Tree</items>
+    </term_definitions>
   </definition>
   <component_ontologies archetype_id="openEHR-EHR-COMPOSITION.report-result.v1">
     <term_definitions language="en">
@@ -16235,6 +16255,10 @@
         <items id="text">Genomic laboratory test result</items>
         <items id="description">Laboratory test result constrained for cancer genomics: specimens, assay, variants and biomarkers.</items>
       </items>
+      <items code="at0001">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
@@ -16269,6 +16293,10 @@
       <items code="at0.0.1">
         <items id="text">Genomiskt laboratorieresultat</items>
         <items id="description">Laboratorieresultat begränsat för cancergenomik: prover, assay, varianter och biomarkörer.</items>
+      </items>
+      <items code="at0001">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
       </items>
     </term_definitions>
     <term_bindings terminology="openehr">
@@ -16432,6 +16460,22 @@
         <items id="text">Structured test diagnosis</items>
         <items id="description">A structured or complex diagnosis for the laboratory test.</items>
       </items>
+      <items code="at0001">
+        <items id="text">History</items>
+        <items id="description">History</items>
+      </items>
+      <items code="at0003">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
+      <items code="at0112">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
+      <items code="at0004">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
@@ -16586,6 +16630,22 @@
       <items code="at0122">
         <items id="text">Strukturerad undersökningsdiagnos</items>
         <items id="description">En strukturerad eller komplex diagnos för laboratorieundersökningen.</items>
+      </items>
+      <items code="at0001">
+        <items id="text">History</items>
+        <items id="description">History</items>
+      </items>
+      <items code="at0003">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
+      <items code="at0112">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
+      <items code="at0004">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -19047,6 +19107,314 @@
         </value>
       </items>
     </term_bindings>
+    <term_bindings terminology="LOINC(2.65)">
+      <items code="at0009">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>51958-7</code_string>
+        </value>
+      </items>
+      <items code="at0010">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>47999-8</code_string>
+        </value>
+      </items>
+      <items code="at0011">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>48004-6</code_string>
+        </value>
+      </items>
+      <items code="at0013">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>48006-1</code_string>
+        </value>
+      </items>
+      <items code="at0058">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>53037-8</code_string>
+        </value>
+      </items>
+      <items code="at0040">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>53034-5</code_string>
+        </value>
+      </items>
+      <items code="at0012">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>48005-3</code_string>
+        </value>
+      </items>
+      <items code="at0071">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6668-3</code_string>
+        </value>
+      </items>
+      <items code="at0072">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA26332-9</code_string>
+        </value>
+      </items>
+      <items code="at0073">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA26333-7</code_string>
+        </value>
+      </items>
+      <items code="at0074">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA26334-5</code_string>
+        </value>
+      </items>
+      <items code="at0075">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6675-8</code_string>
+        </value>
+      </items>
+      <items code="at0076">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6703-8</code_string>
+        </value>
+      </items>
+      <items code="at0077">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6704-6</code_string>
+        </value>
+      </items>
+      <items code="at0078">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6705-3</code_string>
+        </value>
+      </items>
+      <items code="at0079">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6706-1</code_string>
+        </value>
+      </items>
+      <items code="at0080">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6707-9</code_string>
+        </value>
+      </items>
+      <items code="at0085">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA9658-1</code_string>
+        </value>
+      </items>
+      <items code="at0086">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6692-3</code_string>
+        </value>
+      </items>
+      <items code="at0087">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6686-5</code_string>
+        </value>
+      </items>
+      <items code="at0088">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6694-9</code_string>
+        </value>
+      </items>
+      <items code="at0089">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6695-6</code_string>
+        </value>
+      </items>
+      <items code="at0090">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6687-3</code_string>
+        </value>
+      </items>
+      <items code="at0091">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA9659-9</code_string>
+        </value>
+      </items>
+      <items code="at0092">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6698-0</code_string>
+        </value>
+      </items>
+      <items code="at0093">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6699-8</code_string>
+        </value>
+      </items>
+      <items code="at0094">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6700-4</code_string>
+        </value>
+      </items>
+      <items code="at0095">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA6701-2</code_string>
+        </value>
+      </items>
+      <items code="at0031">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>81258-6</code_string>
+        </value>
+      </items>
+      <items code="at0047">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>81258-6</code_string>
+        </value>
+      </items>
+    </term_bindings>
+    <term_bindings terminology="SO">
+      <items code="at0.40">
+        <value>
+          <terminology_id>
+            <value>SO</value>
+          </terminology_id>
+          <code_string>SO:0001583</code_string>
+        </value>
+      </items>
+      <items code="at0.41">
+        <value>
+          <terminology_id>
+            <value>SO</value>
+          </terminology_id>
+          <code_string>SO:0001587</code_string>
+        </value>
+      </items>
+      <items code="at0.42">
+        <value>
+          <terminology_id>
+            <value>SO</value>
+          </terminology_id>
+          <code_string>SO:0001589</code_string>
+        </value>
+      </items>
+      <items code="at0.43">
+        <value>
+          <terminology_id>
+            <value>SO</value>
+          </terminology_id>
+          <code_string>SO:0001819</code_string>
+        </value>
+      </items>
+      <items code="at0.44">
+        <value>
+          <terminology_id>
+            <value>SO</value>
+          </terminology_id>
+          <code_string>SO:0002012</code_string>
+        </value>
+      </items>
+      <items code="at0.45">
+        <value>
+          <terminology_id>
+            <value>SO</value>
+          </terminology_id>
+          <code_string>SO:0001578</code_string>
+        </value>
+      </items>
+      <items code="at0.46">
+        <value>
+          <terminology_id>
+            <value>SO</value>
+          </terminology_id>
+          <code_string>SO:0001821</code_string>
+        </value>
+      </items>
+      <items code="at0.47">
+        <value>
+          <terminology_id>
+            <value>SO</value>
+          </terminology_id>
+          <code_string>SO:0001822</code_string>
+        </value>
+      </items>
+    </term_bindings>
     <term_bindings terminology="SNOMED-CT">
       <items code="at0.40">
         <value>
@@ -19479,6 +19847,48 @@
         <items id="description">Resultatet är obestämbart.</items>
       </items>
     </term_definitions>
+    <term_bindings terminology="LOINC(2.65)">
+      <items code="at0002">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>69548-6</code_string>
+        </value>
+      </items>
+      <items code="at0004">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA9633-4</code_string>
+        </value>
+      </items>
+      <items code="at0005">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA9634-2</code_string>
+        </value>
+      </items>
+      <items code="at0006">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA18198-4</code_string>
+        </value>
+      </items>
+      <items code="at0007">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA11884-6</code_string>
+        </value>
+      </items>
+    </term_bindings>
   </component_ontologies>
   <component_ontologies archetype_id="openEHR-EHR-CLUSTER.translocation_variant.v0">
     <term_definitions language="en">
@@ -20319,6 +20729,380 @@
         <items id="description">Referenssekvens för alignment (t.ex. GRCh38).</items>
       </items>
     </term_definitions>
+    <term_bindings terminology="LOINC(2.80)">
+      <items code="at0007">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>48018-6</code_string>
+        </value>
+      </items>
+      <items code="at0064">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21254-0</code_string>
+        </value>
+      </items>
+      <items code="at0065">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21255-7</code_string>
+        </value>
+      </items>
+      <items code="at0066">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21256-5</code_string>
+        </value>
+      </items>
+      <items code="at0067">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21257-3</code_string>
+        </value>
+      </items>
+      <items code="at0068">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21258-1</code_string>
+        </value>
+      </items>
+      <items code="at0069">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21259-9</code_string>
+        </value>
+      </items>
+      <items code="at0070">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21260-7</code_string>
+        </value>
+      </items>
+      <items code="at0071">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21261-5</code_string>
+        </value>
+      </items>
+      <items code="at0072">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21262-3</code_string>
+        </value>
+      </items>
+      <items code="at0073">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21263-1</code_string>
+        </value>
+      </items>
+      <items code="at0074">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21264-9</code_string>
+        </value>
+      </items>
+      <items code="at0075">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21265-6</code_string>
+        </value>
+      </items>
+      <items code="at0076">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21266-4</code_string>
+        </value>
+      </items>
+      <items code="at0077">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21267-2</code_string>
+        </value>
+      </items>
+      <items code="at0078">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21268-0</code_string>
+        </value>
+      </items>
+      <items code="at0079">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21269-8</code_string>
+        </value>
+      </items>
+      <items code="at0080">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21270-6</code_string>
+        </value>
+      </items>
+      <items code="at0081">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21271-4</code_string>
+        </value>
+      </items>
+      <items code="at0082">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21272-2</code_string>
+        </value>
+      </items>
+      <items code="at0083">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21273-0</code_string>
+        </value>
+      </items>
+      <items code="at0084">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21274-8</code_string>
+        </value>
+      </items>
+      <items code="at0085">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21275-5</code_string>
+        </value>
+      </items>
+      <items code="at0086">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21276-3</code_string>
+        </value>
+      </items>
+      <items code="at0087">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.80)</value>
+          </terminology_id>
+          <code_string>LA21277-1</code_string>
+        </value>
+      </items>
+    </term_bindings>
+    <term_bindings terminology="HL7-genomic-study-type">
+      <items code="at0.10">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>alt-splc</code_string>
+        </value>
+      </items>
+      <items code="at0.11">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>chromatin</code_string>
+        </value>
+      </items>
+      <items code="at0.12">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>cnv</code_string>
+        </value>
+      </items>
+      <items code="at0.13">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>epi-alt-hist</code_string>
+        </value>
+      </items>
+      <items code="at0.14">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>epi-alt-dna</code_string>
+        </value>
+      </items>
+      <items code="at0.15">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>fam-var-segr</code_string>
+        </value>
+      </items>
+      <items code="at0.16">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>func-var</code_string>
+        </value>
+      </items>
+      <items code="at0.17">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>gene-expression</code_string>
+        </value>
+      </items>
+      <items code="at0.18">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>post-trans-mod</code_string>
+        </value>
+      </items>
+      <items code="at0.19">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>snp</code_string>
+        </value>
+      </items>
+      <items code="at0.20">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>str</code_string>
+        </value>
+      </items>
+      <items code="at0.21">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-type</value>
+          </terminology_id>
+          <code_string>struc-var</code_string>
+        </value>
+      </items>
+    </term_bindings>
+    <term_bindings terminology="HL7-genomic-study-method-type">
+      <items code="at0.30">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>sequence-analysis-of-select-exons</code_string>
+        </value>
+      </items>
+      <items code="at0.31">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>sequence-analysis-of-the-entire-coding-region</code_string>
+        </value>
+      </items>
+      <items code="at0.32">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>ngs-mps</code_string>
+        </value>
+      </items>
+      <items code="at0.33">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>fish</code_string>
+        </value>
+      </items>
+      <items code="at0.34">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>pcr</code_string>
+        </value>
+      </items>
+      <items code="at0.35">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>bi-directional-sanger-sequence-analysis</code_string>
+        </value>
+      </items>
+      <items code="at0.36">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>karyotyping</code_string>
+        </value>
+      </items>
+      <items code="at0.37">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>mlpa</code_string>
+        </value>
+      </items>
+      <items code="at0.38">
+        <value>
+          <terminology_id>
+            <value>HL7-genomic-study-method-type</value>
+          </terminology_id>
+          <code_string>methylation-analysis</code_string>
+        </value>
+      </items>
+    </term_bindings>
   </component_ontologies>
   <component_ontologies archetype_id="openEHR-EHR-CLUSTER.device.v1">
     <term_definitions language="en">
@@ -20739,6 +21523,208 @@
         <items id="description">Referensgenomet monterat som en representativ modell för det mänskliga genomet.</items>
       </items>
     </term_definitions>
+    <term_bindings terminology="LOINC(2.65)">
+      <items code="at0023">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>48000-4</code_string>
+        </value>
+      </items>
+      <items code="at0024">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21254-0</code_string>
+        </value>
+      </items>
+      <items code="at0025">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21255-7</code_string>
+        </value>
+      </items>
+      <items code="at0026">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21256-5</code_string>
+        </value>
+      </items>
+      <items code="at0027">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21257-3</code_string>
+        </value>
+      </items>
+      <items code="at0028">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21258-1</code_string>
+        </value>
+      </items>
+      <items code="at0029">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21259-9</code_string>
+        </value>
+      </items>
+      <items code="at0030">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21260-7</code_string>
+        </value>
+      </items>
+      <items code="at0031">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21261-5</code_string>
+        </value>
+      </items>
+      <items code="at0032">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21262-3</code_string>
+        </value>
+      </items>
+      <items code="at0033">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21263-1</code_string>
+        </value>
+      </items>
+      <items code="at0034">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21264-9</code_string>
+        </value>
+      </items>
+      <items code="at0035">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21265-6</code_string>
+        </value>
+      </items>
+      <items code="at0036">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21266-4</code_string>
+        </value>
+      </items>
+      <items code="at0037">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21267-2</code_string>
+        </value>
+      </items>
+      <items code="at0038">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21268-0</code_string>
+        </value>
+      </items>
+      <items code="at0039">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21269-8</code_string>
+        </value>
+      </items>
+      <items code="at0040">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21270-6</code_string>
+        </value>
+      </items>
+      <items code="at0041">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21271-4</code_string>
+        </value>
+      </items>
+      <items code="at0042">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21272-2</code_string>
+        </value>
+      </items>
+      <items code="at0043">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21273-0</code_string>
+        </value>
+      </items>
+      <items code="at0044">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21274-8</code_string>
+        </value>
+      </items>
+      <items code="at0045">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21275-5</code_string>
+        </value>
+      </items>
+      <items code="at0046">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21276-3</code_string>
+        </value>
+      </items>
+      <items code="at0047">
+        <value>
+          <terminology_id>
+            <value>LOINC(2.65)</value>
+          </terminology_id>
+          <code_string>LA21277-1</code_string>
+        </value>
+      </items>
+    </term_bindings>
   </component_ontologies>
   <annotations path="/content[openEHR-EHR-OBSERVATION.laboratory_test_result.v1]/data[at0001]/events[at0002]/data[at0003]/items[openEHR-EHR-CLUSTER.laboratory_test_analyte.v1 and name/value='MSI']">
     <items id="L10n.en">MSI</items>

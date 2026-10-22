@@ -61,7 +61,7 @@ Archie full validation (parse + flatten + validate, 31 artefacts incl. all overl
 ## Still missing / deferred
 
 1. ~~T2 frågeställning constraint missing from OPT (Ehrtslib gap B)~~: fixed by ehrtslib#134. The OPT now has the DV_CODED_TEXT with the 8 codes and occurrences 1..*.
-2. **HL7 study type/method and SO term bindings missing from OPT (Ehrtslib gap D)**: the `#` parse error is fixed (ehrtslib#133) and the build workaround is removed, but the OPT exporter only converts `[terminology::code]` and `http://<host>/id/<code>` binding URIs. HL7 `CodeSystem#code` and OBO `SO_nnnnnnn` URIs are silently dropped. Codes and texts are present. The fix (ehrtslib#141) is on Ehrtslib main since 35f33da (#148). The OPT/OET export is still pinned to fca190a because main exports bound local value sets as external codes, losing the texts (ehrtslib#147). LOINC `/ver/` bindings are still dropped (ehrtslib#146). See `docs/ehrtslib-gaps.md`.
+2. ~~HL7 study type/method and SO term bindings missing from OPT (Ehrtslib gap D)~~: the `#` parse error is fixed (ehrtslib#133) and the build workaround is removed, but the OPT exporter only converts `[terminology::code]` and `http://<host>/id/<code>` binding URIs. HL7 `CodeSystem#code` and OBO `SO_nnnnnnn` URIs are silently dropped. Codes and texts are present. Fixed: ehrtslib#141 (35f33da), #146 (LOINC `/ver/`, PR #149) and #147 (local value sets kept, PR #154, 37657ec). The OPTs now carry the HL7, SO, LOINC and SNOMED CT bindings, and the build uses Ehrtslib main without a pin. See `docs/ehrtslib-gaps.md`.
 3. **OET lacks local coded-text value sets (gap C)**: the OPT is complete.
 4. **ICD-10 binding** for diagnosis (T2 problem_diagnosis): external terminology, left to the target CDR.
 5. **Per-finding fynd_id / status**: feeder_audit or Additional details; not a separate ENTRY.
@@ -76,6 +76,12 @@ T2 follows the dataset's FHIR design (closed coded list, `ServiceRequest.reasonC
 - Cons: weaker comparability and statistics; free text must be interpreted by the lab; the FHIR side gets `reasonCode.text` without a code, which breaks the dataset's coded-value requirement.
 
 See `docs/decisions.md` §10.1.
+
+## Validation performed (2026-10-22, fourth run)
+
+- Ehrtslib main @ 37657ec (PR #154 merged) for everything. The fca190a pin and `ehr-slice/tools/repair_opt_terms.py` are removed.
+- Local code lists kept (no LOINC LA codes), bindings present (LOINC versioned, SO `SO:` prefix, SNOMED CT, HL7), 0 `Cannot export` warnings, "missense_variant" preserved. Structural nodes are named "Tree"/"History" by Ehrtslib (no mapping impact).
+- Archie 31/31; XSD valid; round-trip 45/46 and 78/89; SUSHI 0/0; IG Publisher: see `ehr-slice/ig/QA-SUMMARY.md`.
 
 ## Validation performed (2026-10-22, third run)
 

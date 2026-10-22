@@ -4,9 +4,9 @@
 
 **EN:** openEHR templates for the Swedish RCC *harmonised cancer genomics dataset* (consultation draft). Built from international CKM archetypes, with per-variable FHIR traceability to support a later EHR-Slice + FHIR profile + bidirectional FHIRconnect mappings.
 
-## Status (2026-10-21)
+## Status (2026-10-22)
 - T1 Genomics cancer report and T2 Genomics request are authored in ADL2 (`templates/adl2/`), EN original + SV translation. Of the 73 variables, 69 are covered, partly covered or covered by local drafts and 4 (demographics) are out of scope; no gaps remain (`docs/template-coverage.md`).
-- `tools/build.sh` rebuilds and validates everything: Archie full validation (31/31 OK), OPT 1.4 + OET 1.4 via Ehrtslib (XSD-valid), ADL 1.4 down-conversion via Ehrtslib and the Archie fork.
+- `tools/build.sh` rebuilds and validates everything: Archie full validation (31/31 OK), OPT 1.4 + OET 1.4 via Ehrtslib main (XSD-valid, no local workarounds or pinned commits), ADL 1.4 down-conversion via Ehrtslib and the Archie fork.
 - **Frågeställning (T2)** follows the dataset's FHIR design: required closed coded list, 1..*, multiple selection (`ServiceRequest.reasonCode`); one ACTIVITY ≈ one ServiceRequest. *Alternative design:* coded plus open free text (DV_TEXT alongside DV_CODED_TEXT, or an extensible value set). It keeps clinical nuance and tolerates list changes, but weakens comparability and breaks the dataset's coded-value requirement. See `docs/decisions.md` §10.
 - **SO URIs:** OBO term PURLs (`http://purl.obolibrary.org/obo/SO_nnnnnnn`) in ADL; FHIR system `http://www.sequenceontology.org` (no trailing slash). Recommended, pending final decision.
 - **EHR Slice demo** (`ehr-slice/`): FHIR IG (SUSHI) with profiles for T2 and part of T1 on Genomics Reporting IG v3, local CodeSystems/ValueSets, the OPT 1.4 + ADL2 templates as IG artefacts, and bidirectional FHIRconnect mappings, run FHIR → openEHR → FHIR → openEHR with openFHIR 3.0.2 (`ehr-slice/roundtrip/RESULTS.md`). Simplifications and upstream findings: `ehr-slice/README.md`. Swedish text for the consultation response: `docs/remissvar-ehr-slice.md`.

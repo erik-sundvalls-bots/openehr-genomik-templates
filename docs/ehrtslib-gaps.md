@@ -37,6 +37,14 @@ There is still **no working automatic ADL2 → 1.4 path** on the box (Archie can
 
 Status 2026-10-21: A = ehrtslib#133, B = ehrtslib#134, C = ehrtslib#135, all fixed/documented on ehrtslib main (ebc2434). The build workaround for A is removed and the fix for B is confirmed in the T2 OPT. Gap D = ehrtslib#141 and gap E = ehrtslib#142 (filed 2026-10-21).
 
+Status 2026-10-22, fourth retest: **all open gaps for this repo are fixed on Ehrtslib main @ 37657ec** (PR #154 merged; it carries the fixes from PRs #150/#151, verified with `git merge-base --is-ancestor` and `git cherry`):
+- `tools/build.sh` exports OPT/OET from Ehrtslib main. The fca190a pin (`EHRTSLIB_OPT_REF`, git worktree) and `ehr-slice/tools/repair_opt_terms.py` are removed.
+- #147: every DV_CODED_TEXT code list in both OPTs is `local` (30 + 4 code phrases), with no LOINC LA codes. The external codes are `term_bindings`: `LOINC(2.65)`, `LOINC(2.80)`, SNOMED CT, `SO` (CURIE form `SO:0001583`) and both HL7 code systems. 0 `Cannot export` warnings.
+- #145: the 10 structural terms are synthesised from the RM type ("Tree", "History"), with a warning per node in `build/ehrtslib-export-log.txt`. openFHIR loads the plain OPTs.
+- Results unchanged: Archie 31/31, XSD valid, round-trip FHIR 45/46 and openEHR flat 78/89, "missense_variant" kept with its code.
+- Side effect: compositions now name these structural nodes "History"/"Tree" where the CKM ADL 1.4 text was e.g. "Event Series"/"structure". Flat paths and FHIRconnect mappings do not use these names, so nothing else changed.
+- Still open: ehrtslib#155 (the #117 test hardcodes this repo's path and writes into `build/ehrtslib-adl14/`).
+
 Status 2026-10-22, third retest: Ehrtslib main @ a5b7541, plus catch-up branch `cursor/catchup-150-151` (06d2007, [PR #154](https://github.com/ErikSundvall/ehrtslib/pull/154)):
 - **LOINC `/ver/` bindings are fixed on main** (ehrtslib#146, PR #149). With an unpinned export there are 0 `Cannot export` warnings, and the bindings appear as `LOINC(2.65)` / `LOINC(2.80)`.
 - **#147 (local value sets) and #145 (structural terms) are fixed by PRs #150/#151, but those were merged into stacked base branches, not main.** On main a5b7541, SO codes still replace the local codes, and 10 structural terms are still missing. Catch-up: PR #154.
@@ -45,7 +53,7 @@ Status 2026-10-22, third retest: Ehrtslib main @ a5b7541, plus catch-up branch `
   - `term_bindings` carry `LOINC(2.65)`/`LOINC(2.80)`, SNOMED CT, `SO` with `SO:0001583`, and both HL7 code systems.
   - The structural terms are synthesised ("Tree", "History").
   - openFHIR loads the OPTs **without** `repair_opt_terms.py`. The round-trip stays at 45/46 and 78/89, and "missense_variant" is preserved. The only composition difference is the synthesised structural names ("History" instead of CKM "Event Series", "Tree" instead of "structure").
-- **Until PR #154 is on main, the fca190a pin and `repair_opt_terms.py` stay.** After that, drop `EHRTSLIB_OPT_REF` and the repair step.
+- ~~Until PR #154 is on main, the fca190a pin and `repair_opt_terms.py` stay.~~ Done in the fourth retest above.
 - Also filed: ehrtslib#155. The #117 test hardcodes `/workspace/openehr-genomik-templates` and writes into this repo's `build/ehrtslib-adl14/`.
 
 Status 2026-10-22, second retest with ehrtslib main @ 35f33da (#148 brought #144 to main):
@@ -70,7 +78,7 @@ Status 2026-10-22, second retest with ehrtslib main @ 35f33da (#148 brought #144
 - `value constraint at /items[at0029] has no OET equivalent; kept only in the OPT export` (specimen type, collection method, fixation method).
 - The OPT is complete. The OET lacks these value sets. That may be acceptable, since OET textConstraint cannot carry new local codes. Document this in ADL_SUPPORT.md.
 
-### D. OPT 1.4 exporter silently drops term bindings that are not `[t::c]` or `http://<host>/id/<code>` (new 2026-10-21, [ehrtslib#141](https://github.com/ErikSundvall/ehrtslib/issues/141); fixed on main by PR #144/#148, commit b300f3a; OPT export pinned because of ehrtslib#147, see status above)
+### D. OPT 1.4 exporter silently drops term bindings that are not `[t::c]` or `http://<host>/id/<code>` (new 2026-10-21, [ehrtslib#141](https://github.com/ErikSundvall/ehrtslib/issues/141); fixed on main by PR #144/#148, commit b300f3a; used by this build since the pin was removed on 2026-10-22)
 - `generation/opt14/opt14_exporter.ts` `parseBinding()` only accepts `[terminology::code]` or `https?://<host>/id/<code>` (SNOMED/LOINC/openEHR style).
 - Valid ADL2 binding URIs such as `http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#cnv` and `http://purl.obolibrary.org/obo/SO_0001583` return `undefined` and are dropped with no warning.
 - Effect: T1 OPT has the SNOMED CT bindings but none of the HL7 study type/method or SO bindings.
@@ -78,6 +86,6 @@ Status 2026-10-22, second retest with ehrtslib main @ 35f33da (#148 brought #144
 - Related: Ehrtslib's ADL 1.4 down-conversion (`tools/ehrtslib-down14.ts`, `ADL14Serializer`) writes no `term_bindings` section at all for the drafts (SNOMED CT, SO and HL7 bindings all missing in `build/ehrtslib-adl14/`).
 - Archie keeps all these bindings in its ADL 1.4 output (`build/archie-adl14/`: 12 HL7 bindings in `sequencing_assay-genomic_study`, 8 SO bindings in `genomic_variant_result-cancer`).
 
-### E. OPT 1.4 export omits term_definitions for structural nodes (new 2026-10-21, [ehrtslib#142](https://github.com/ErikSundvall/ehrtslib/issues/142); still reproducible for ADL2 sources, [ehrtslib#145](https://github.com/ErikSundvall/ehrtslib/issues/145))
+### E. OPT 1.4 export omits term_definitions for structural nodes (new 2026-10-21, [ehrtslib#142](https://github.com/ErikSundvall/ehrtslib/issues/142); ADL2 sources: [ehrtslib#145](https://github.com/ErikSundvall/ehrtslib/issues/145), fixed on main 37657ec; workaround removed)
 
-The exported OPTs have no `term_definitions` entry for locatable structural nodes such as `ITEM_TREE` (e.g. `at0001`, `at0003`, `at0004` in `laboratory_test_result.v1`, `at0008`/`at0009` in `service_request.v1`) and `HISTORY` (`at0001`). The OPTs are XSD-valid, but the EHRbase SDK web-template parser (`OPTParser.buildNode`, openEHR_SDK 2.19.0, used by openFHIR 3.0.2) throws a NullPointerException for any locatable node without a term, so the templates cannot be used by that engine. Workaround: `ehr-slice/tools/repair_opt_terms.py` copies the missing terms from the CKM ADL 1.4 sources (10 terms across the two OPTs). Suggested fix: emit a term for every node id of the flat archetype, including structural nodes.
+The exported OPTs have no `term_definitions` entry for locatable structural nodes such as `ITEM_TREE` (e.g. `at0001`, `at0003`, `at0004` in `laboratory_test_result.v1`, `at0008`/`at0009` in `service_request.v1`) and `HISTORY` (`at0001`). The OPTs are XSD-valid, but the EHRbase SDK web-template parser (`OPTParser.buildNode`, openEHR_SDK 2.19.0, used by openFHIR 3.0.2) throws a NullPointerException for any locatable node without a term, so the templates cannot be used by that engine. The former workaround (`ehr-slice/tools/repair_opt_terms.py`, 10 terms copied from the CKM ADL 1.4 sources) was removed on 2026-10-22. Suggested fix: emit a term for every node id of the flat archetype, including structural nodes.

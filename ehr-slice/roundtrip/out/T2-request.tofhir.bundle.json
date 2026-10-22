@@ -24,7 +24,7 @@
                 "authoredOn": "2026-10-01T09:30:00+02:00",
                 "performer": [
                     {
-                        "reference": "urn:uuid:6add5cdd-0f65-4905-9575-b08674bf63ab"
+                        "reference": "urn:uuid:eea664aa-6c4f-419c-b91f-56f725985436"
                     }
                 ],
                 "reasonCode": [
@@ -49,13 +49,13 @@
                 ],
                 "reasonReference": [
                     {
-                        "reference": "urn:uuid:72cc6524-05b6-47f8-81a0-a90791b84f82"
+                        "reference": "urn:uuid:e4d289fd-c1d9-4afd-8b76-9d39d4a3b5d2"
                     }
                 ]
             }
         },
         {
-            "fullUrl": "urn:uuid:6add5cdd-0f65-4905-9575-b08674bf63ab",
+            "fullUrl": "urn:uuid:eea664aa-6c4f-419c-b91f-56f725985436",
             "resource": {
                 "resourceType": "Organization",
                 "identifier": [
@@ -68,7 +68,7 @@
             }
         },
         {
-            "fullUrl": "urn:uuid:72cc6524-05b6-47f8-81a0-a90791b84f82",
+            "fullUrl": "urn:uuid:e4d289fd-c1d9-4afd-8b76-9d39d4a3b5d2",
             "resource": {
                 "resourceType": "Condition",
                 "meta": {

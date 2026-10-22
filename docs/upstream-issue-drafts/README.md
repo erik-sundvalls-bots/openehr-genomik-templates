@@ -1,7 +1,7 @@
 # Upstream issue drafts (not filed)
 
 Drafts for bugs found while building the genomics EHR-slice demo. Nothing here has been posted.
-Ehrtslib gaps D/E were filed directly as ErikSundvall/ehrtslib#141 and #142. After the 2026-10-22 retest, the follow-ups were filed as #145 (structural terms, ADL2 input), #146 (#144 not on main; LOINC `/ver/` bindings) and #147 (bound local value sets exported as external codes). The catch-up PR #148 is merged (35f33da). On 2026-10-22 #145 and #146 were still open and reproducible. #147 was closed through the #148 reference but is not fixed (commented, reopening requested). Later the same day: #146 was fixed on main (PR #149). The fixes for #147/#145 (PRs #150/#151) landed on stacked branches, with catch-up PR #154. The test-path issue is filed as #155.
+Ehrtslib gaps D/E were filed directly as ErikSundvall/ehrtslib#141 and #142. After the 2026-10-22 retest, the follow-ups were filed as #145 (structural terms, ADL2 input), #146 (#144 not on main; LOINC `/ver/` bindings) and #147 (bound local value sets exported as external codes). The catch-up PR #148 is merged (35f33da). On 2026-10-22 #145 and #146 were still open and reproducible. #147 was closed through the #148 reference but is not fixed (commented, reopening requested). Later the same day: #146 was fixed on main (PR #149). The fixes for #147/#145 (PRs #150/#151) landed on stacked branches, with catch-up PR #154. The test-path issue is filed as #155. #154 was merged the same day (37657ec): #145 and #147 are fixed on main, and this repo no longer needs any Ehrtslib workaround. #155 is still open.
 
 | File | Target | Title |
 |---|---|---|
