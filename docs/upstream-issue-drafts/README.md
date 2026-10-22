@@ -1,7 +1,7 @@
 # Upstream issue drafts (not filed)
 
 Drafts for bugs found while building the genomics EHR-slice demo. Nothing here has been posted.
-Ehrtslib gaps D/E were filed directly as ErikSundvall/ehrtslib#141 and #142.
+Ehrtslib gaps D/E were filed directly as ErikSundvall/ehrtslib#141 and #142. After the 2026-10-22 retest, the follow-ups were filed as #145 (structural terms, ADL2 input), #146 (#144 not on main; LOINC `/ver/` bindings) and #147 (bound local value sets exported as external codes). The catch-up PR is #148.
 
 | File | Target | Title |
 |---|---|---|

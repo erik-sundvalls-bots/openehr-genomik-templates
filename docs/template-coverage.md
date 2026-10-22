@@ -61,7 +61,7 @@ Archie full validation (parse + flatten + validate, 31 artefacts incl. all overl
 ## Still missing / deferred
 
 1. ~~T2 frågeställning constraint missing from OPT (Ehrtslib gap B)~~: fixed by ehrtslib#134. The OPT now has the DV_CODED_TEXT with the 8 codes and occurrences 1..*.
-2. **HL7 study type/method and SO term bindings missing from OPT (Ehrtslib gap D)**: the `#` parse error is fixed (ehrtslib#133) and the build workaround is removed, but the OPT exporter only converts `[terminology::code]` and `http://<host>/id/<code>` binding URIs. HL7 `CodeSystem#code` and OBO `SO_nnnnnnn` URIs are silently dropped. Codes and texts are present.
+2. **HL7 study type/method and SO term bindings missing from OPT (Ehrtslib gap D)**: the `#` parse error is fixed (ehrtslib#133) and the build workaround is removed, but the OPT exporter only converts `[terminology::code]` and `http://<host>/id/<code>` binding URIs. HL7 `CodeSystem#code` and OBO `SO_nnnnnnn` URIs are silently dropped. Codes and texts are present. The fix (ehrtslib#141, PR #144) is not on Ehrtslib main yet (catch-up PR #148). Follow-ups are ehrtslib#146 (LOINC `/ver/` bindings) and #147 (bound local value sets exported as external codes). See `docs/ehrtslib-gaps.md`.
 3. **OET lacks local coded-text value sets (gap C)**: the OPT is complete.
 4. **ICD-10 binding** for diagnosis (T2 problem_diagnosis): external terminology, left to the target CDR.
 5. **Per-finding fynd_id / status**: feeder_audit or Additional details; not a separate ENTRY.
@@ -77,7 +77,13 @@ T2 follows the dataset's FHIR design (closed coded list, `ServiceRequest.reasonC
 
 See `docs/decisions.md` §10.1.
 
-## Validation performed (2026-10-21, `tools/build.sh`)
+## Validation performed (2026-10-22, `tools/build.sh`)
+
+- Rebuilt with Ehrtslib main @ fca190a (includes #143). Archie 31/31 OK, all OPT/OET XSD VALID. The OPTs are identical to the 2026-10-21 build (the OET differs only in its generated `id`).
+- The structural-term gap (E) persists for ADL2 sources (ehrtslib#145), so `ehr-slice/tools/repair_opt_terms.py` is still needed.
+- Round-trip (openFHIR 3.0.2): FHIR 45/46, openEHR flat 78/89 identical (unchanged). IG Publisher: 0 errors, 105 warnings, 67 info, 0 broken links (unchanged).
+
+## Earlier validation (2026-10-21, `tools/build.sh`)
 
 - Archie fork (`feature/adl2-to-adl14-downconverter` @ 6b4e39a, the content merged into the fork's `master` by PR #1) full validation of `archetypes/ckm-adl2`, `archetypes/drafts`, `templates/adl2`: **31/31 OK**.
 - Ehrtslib main @ ebc2434 (includes #133, #134, #135) `export:opt14` / `export:oet14` for T1 and T2, with no `#`-stripping workaround.

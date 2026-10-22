@@ -1,8 +1,8 @@
 # EHR Slice demo – Swedish cancer genomics
 
-**SV:** Ett litet men körbart *EHR Slice* för den harmoniserade datamängden för cancergenomik:
+**SV:** En liten men körbar *EHR Slice* för den harmoniserade datamängden för cancergenomik:
 openEHR-templates (ADL2 + OPT 1.4), FHIR R4-profiler med kodverk och värdemängder, och
-dubbelriktade FHIRconnect-mappningar, paketerat som en FHIR IG. Mappningarna har körts med den
+dubbelriktade FHIRconnect-mappningar, paketerad som en FHIR IG. Mappningarna har körts med den
 öppna motorn openFHIR (FHIR → openEHR → FHIR → openEHR); resultatet finns i
 [`roundtrip/RESULTS.md`](roundtrip/RESULTS.md).
 
@@ -91,6 +91,7 @@ Findings while running the engine (worked around here; worth reporting upstream)
    HISTORY). The EHRbase SDK web-template parser used by openFHIR fails on that
    (NullPointerException in `OPTParser.buildNode`). `tools/repair_opt_terms.py` adds the missing
    terms from the CKM ADL 1.4 sources into `templates/opt14/`; `../build/opt14` is unchanged.
+   Still needed after ehrtslib#142/PR #143 (that fix covers ADL 1.4 input only): ehrtslib#145.
 2. **Mapping library, `service_request.v1`**: maps the requester to `$composition/provider`, which
    does not exist in the RM; neutralised in `se_genomics_service_request.yml`.
 3. **Mapping library, `laboratory_test_result.v1`**: the `unknown` status entry has a non-path

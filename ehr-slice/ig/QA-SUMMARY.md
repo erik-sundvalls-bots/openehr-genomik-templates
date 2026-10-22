@@ -4,6 +4,8 @@
 
 **Result:** Errors 0, Warnings 105, Info 67, Broken links 0. Build errors 0.
 
+Re-run 2026-10-22 (after the Ehrtslib update, IG Publisher tool 6.0.0-snapshot1, FHIR 4.0.1): same result. Errors 0, Warnings 105, Info 67, Broken links 0. SUSHI: 0 errors, 0 warnings.
+
 Main warning groups: example identifier systems under `https://example.org` (placeholder namespace),
 the Sequence Ontology CodeSystem `http://www.sequenceontology.org` is not known to the terminology
 server (SO codes cannot be validated), and the `Binary` artefacts have no description / are not

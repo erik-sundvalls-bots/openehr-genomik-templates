@@ -3,7 +3,7 @@
 
 ### Svenska
 
-Den här guiden är ett **EHR Slice**: en FHIR Implementation Guide som utöver FHIR-profiler,
+Den här guiden är en **EHR Slice**: en FHIR Implementation Guide som utöver FHIR-profiler,
 CodeSystems och ValueSets också bär de teknikneutrala openEHR-artefakterna för samma
 informationsmängd – openEHR-templates (ADL2 och OPT 1.4) – och de **dubbelriktade
 FHIRconnect-mappningarna** mellan templates och profiler. Allt versioneras och publiceras

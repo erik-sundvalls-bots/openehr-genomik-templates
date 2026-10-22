@@ -3,9 +3,9 @@
 *Utkast till avsnitt i remissvar på RCC i samverkans "Konfigurationsunderlag – Harmoniserad
 datamängd cancergenomik". Svarsdatum 24 oktober 2026.*
 
-## Vad är ett EHR Slice?
+## Vad är en EHR Slice?
 
-Ett EHR Slice är en avgränsad, teknikneutral specifikation av en informationsmängd, paketerad som
+En EHR Slice är en avgränsad, teknikneutral specifikation av en informationsmängd, paketerad som
 en FHIR Implementation Guide. Utöver FHIR-profiler, kodverk och värdemängder innehåller guiden
 också openEHR-templates (med de internationella arketyper de bygger på) och de mappningar som
 översätter mellan template och FHIR-profil, i båda riktningarna. Mappningarna uttrycks i
@@ -30,7 +30,7 @@ lagra samma information beständigt och frågbart, utan att tolka specifikatione
 
 ## Demonstration
 
-Som underlag har vi byggt ett litet, körbart EHR Slice för T2 (remiss) och en del av T1
+Som underlag har vi byggt en liten, körbar EHR Slice för T2 (remiss) och en del av T1
 (genomiskt svar), i repot `openehr-genomik-templates`, katalogen `ehr-slice/`:
 
 - FHIR-profiler för remiss (ServiceRequest), genomiskt svar (DiagnosticReport) och variant
@@ -50,6 +50,6 @@ implication-Observationer). De står i `ehr-slice/README.md`.
 
 ## Förslag
 
-Vi föreslår att RCC överväger att förvalta den harmoniserade datamängden som ett EHR Slice:
+Vi föreslår att RCC överväger att förvalta den harmoniserade datamängden som en EHR Slice:
 FHIR-profiler, openEHR-templates och FHIRconnect-mappningar i samma versionerade guide, med
 gemensamma, maskinläsbara kodtabeller för de lokala kodlistorna.
