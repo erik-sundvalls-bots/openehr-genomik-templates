@@ -37,6 +37,17 @@ There is still **no working automatic ADL2 → 1.4 path** on the box (Archie can
 
 Status 2026-10-21: A = ehrtslib#133, B = ehrtslib#134, C = ehrtslib#135, all fixed/documented on ehrtslib main (ebc2434). The build workaround for A is removed and the fix for B is confirmed in the T2 OPT. Gap D = ehrtslib#141 and gap E = ehrtslib#142 (filed 2026-10-21).
 
+Status 2026-10-22, third retest: Ehrtslib main @ a5b7541, plus catch-up branch `cursor/catchup-150-151` (06d2007, [PR #154](https://github.com/ErikSundvall/ehrtslib/pull/154)):
+- **LOINC `/ver/` bindings are fixed on main** (ehrtslib#146, PR #149). With an unpinned export there are 0 `Cannot export` warnings, and the bindings appear as `LOINC(2.65)` / `LOINC(2.80)`.
+- **#147 (local value sets) and #145 (structural terms) are fixed by PRs #150/#151, but those were merged into stacked base branches, not main.** On main a5b7541, SO codes still replace the local codes, and 10 structural terms are still missing. Catch-up: PR #154.
+- On the catch-up branch with `EHRTSLIB_OPT_REF=HEAD`:
+  - Local code lists are kept, with no LOINC LA codes in any code_list.
+  - `term_bindings` carry `LOINC(2.65)`/`LOINC(2.80)`, SNOMED CT, `SO` with `SO:0001583`, and both HL7 code systems.
+  - The structural terms are synthesised ("Tree", "History").
+  - openFHIR loads the OPTs **without** `repair_opt_terms.py`. The round-trip stays at 45/46 and 78/89, and "missense_variant" is preserved. The only composition difference is the synthesised structural names ("History" instead of CKM "Event Series", "Tree" instead of "structure").
+- **Until PR #154 is on main, the fca190a pin and `repair_opt_terms.py` stay.** After that, drop `EHRTSLIB_OPT_REF` and the repair step.
+- Also filed: ehrtslib#155. The #117 test hardcodes `/workspace/openehr-genomik-templates` and writes into this repo's `build/ehrtslib-adl14/`.
+
 Status 2026-10-22, second retest with ehrtslib main @ 35f33da (#148 brought #144 to main):
 - **D is fixed on main** (ehrtslib#141, PR #144 via catch-up PR #148, commit b300f3a). HL7 and SO bindings now reach the OPT, and the Ehrtslib ADL 1.4 down-conversion writes `term_bindings` (SNOMED CT, SO, HL7). The build uses main for the down-conversion.
 - **E is still open for this repo** ([ehrtslib#145](https://github.com/ErikSundvall/ehrtslib/issues/145)). #142 / PR #143 fixed only the ADL 1.4 → ADL2 converter. This build feeds ADL2 (Archie-converted CKM) archetypes, whose structural id-codes have no terms, so the OPTs still lack the same 10 terms. Without `ehr-slice/tools/repair_opt_terms.py`, openFHIR rejects both templates ("Could not create a WebTemplate"). The workaround stays.

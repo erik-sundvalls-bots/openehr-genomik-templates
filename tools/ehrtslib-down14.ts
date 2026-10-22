@@ -1,5 +1,7 @@
-import { parseAdl } from "../../ehrtslib/parser/parse_adl.ts";
-import { ADL14Serializer } from "../../ehrtslib/generation/adl14_serializer.ts";
+// Ehrtslib checkout: $EHRTSLIB, else the current directory (tools/build.sh runs this from the checkout).
+const lib = (Deno.env.get("EHRTSLIB") ?? Deno.cwd()).replace(/\/$/, "");
+const { parseAdl } = await import(`file://${lib}/parser/parse_adl.ts`);
+const { ADL14Serializer } = await import(`file://${lib}/generation/adl14_serializer.ts`);
 const out = Deno.args[0];
 for (const f of Deno.args.slice(1)) {
   const name = f.split("/").pop()!;
