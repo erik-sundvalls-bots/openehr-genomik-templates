@@ -27,14 +27,14 @@ description
 		["en"] = <
 			language = <[ISO_639-1::en]>
 			purpose = <"Swedish RCC genomics service request / referral (T2 Genomikremiss). Managed Response composition: request + service_request (remiss_id, frågeställning / clinical indication, service name) and problem_diagnosis (ICD-10). Receiving organisation optional under service_request protocol.">
-			use = <"Frågeställning is bound to local codes from valuesets/fragestallning.json in the service_request overlay. Mirror remiss_id into report protocol Requester order identifier when fulfilling.">
+			use = <"Frågeställning (Reason for request, renamed Clinical question) is a required closed coded list (1..*, multiple selection) from valuesets/fragestallning.json, mirroring FHIR ServiceRequest.reasonCode in the source dataset. Each ACTIVITY corresponds to one ServiceRequest; the recommended pattern is one ACTIVITY per clinical question. Mirror remiss_id into report protocol Requester order identifier when fulfilling.">
 			keywords = <"genomics", "request", "referral", "RCC", "remiss">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			purpose = <"Svensk RCC genomikremiss (T2). Managed Response: request + tjänstebegäran (remiss_id, frågeställning) och problem_diagnosis (ICD-10).">
-			use = <"Frågeställning är bunden till lokala koder (valuesets/fragestallning.json). Spegla remiss_id till rapportens Requester order identifier vid svar.">
+			use = <"Frågeställning är en obligatorisk stängd kodad lista (1..*, flerval) från valuesets/fragestallning.json, i linje med FHIR ServiceRequest.reasonCode i underlaget. Varje ACTIVITY motsvarar en ServiceRequest; rekommenderat mönster är en ACTIVITY per frågeställning. Spegla remiss_id till rapportens Requester order identifier vid svar.">
 			keywords = <"genomik", "remiss", "RCC">
 			copyright = <"© Regionala cancercentrum i samverkan">
 		>
@@ -92,9 +92,13 @@ specialize
 
 definition
 	INSTRUCTION[id1.1] matches {	-- Genomic service request
-		/activities[id2]/description[id10]/items[id63]/value matches {
-			DV_CODED_TEXT[id9006.1] matches {
-				defining_code matches {[ac0.1]}	-- Genomics request question
+		/activities[id2]/description[id10]/items matches {
+			ELEMENT[id63.1] occurrences matches {1..*} matches {	-- Clinical question (frågeställning)
+				value matches {
+					DV_CODED_TEXT[id9006.1] matches {
+						defining_code matches {[ac0.1]}	-- Genomics request question
+					}
+				}
 			}
 		}
 		/protocol[id9]/items matches {
@@ -110,41 +114,45 @@ terminology
 				text = <"Genomic service request">
 				description = <"Request for genomic laboratory service.">
 			>
+			["id63.1"] = <
+				text = <"Clinical question">
+				description = <"Clinical question (purpose) of the genomic analysis, from the closed national list. Required; several may be selected. Recommended pattern: one activity per clinical question (maps to one FHIR ServiceRequest per question).">
+			>
 			["id143.1"] = <
 				text = <"Receiving laboratory / organisation">
 				description = <"Organisation expected to fulfil the request (HSA).">
 			>
 			["at0.1"] = <
 				text = <"Primary diagnostics">
-				description = <"Local request question code 1.">
+				description = <"Confirm the molecular diagnosis or cancer subtype at new diagnosis.">
 			>
 			["at0.2"] = <
 				text = <"Prediction of treatment response">
-				description = <"Local request question code 2.">
+				description = <"Predict whether a specific treatment is expected to work based on tumour genetics.">
 			>
 			["at0.3"] = <
 				text = <"Treatment monitoring">
-				description = <"Local request question code 3.">
+				description = <"Follow treatment response over time through repeated sampling (not MRD-specific).">
 			>
 			["at0.4"] = <
 				text = <"Relapse detection (MRD)">
-				description = <"Local request question code 4.">
+				description = <"Detect minimal residual disease (MRD) or early relapse after treatment.">
 			>
 			["at0.5"] = <
 				text = <"Resistance question">
-				description = <"Local request question code 5.">
+				description = <"Explain why an ongoing treatment has stopped working.">
 			>
 			["at0.6"] = <
 				text = <"Pharmacogenomics">
-				description = <"Local request question code 6.">
+				description = <"Drug response and dosing based on the patient's genetic profile (not tumour genomics).">
 			>
 			["at0.7"] = <
 				text = <"Hereditary cancer / oncogenetics">
-				description = <"Local request question code 7.">
+				description = <"Investigation of hereditary cancer predisposition and/or screening of individuals with increased genetic risk (includes former 'Screening (predisposition)').">
 			>
 			["at0.8"] = <
 				text = <"Other">
-				description = <"Local request question code 8.">
+				description = <"Other clinical question not covered by the categories above.">
 			>
 			["ac0.1"] = <
 				text = <"Genomics request question">
@@ -156,41 +164,45 @@ terminology
 				text = <"Genomisk tjänstebegäran">
 				description = <"Begäran om genomisk laboratorietjänst.">
 			>
+			["id63.1"] = <
+				text = <"Frågeställning">
+				description = <"Klinisk frågeställning (syfte med analysen) från den stängda nationella listan. Obligatorisk; flerval tillåtet. Rekommenderat mönster: en aktivitet per frågeställning (motsvarar en FHIR ServiceRequest per frågeställning).">
+			>
 			["id143.1"] = <
 				text = <"Mottagande laboratorium / organisation">
 				description = <"Organisation som förväntas utföra begäran (HSA).">
 			>
 			["at0.1"] = <
 				text = <"Primärdiagnostik">
-				description = <"Local request question code 1.">
+				description = <"Bekräfta molekylär diagnos eller subtyp av cancer vid nydiagnos.">
 			>
 			["at0.2"] = <
 				text = <"Behandlingssvarsprediktion">
-				description = <"Local request question code 2.">
+				description = <"Förutsäga om en specifik behandling förväntas fungera baserat på tumörens genetik.">
 			>
 			["at0.3"] = <
 				text = <"Behandlingsmonitorering">
-				description = <"Local request question code 3.">
+				description = <"Följa behandlingssvar över tid via upprepad provtagning (ej MRD-specifik).">
 			>
 			["at0.4"] = <
 				text = <"Återfallsdetektion (MRD)">
-				description = <"Local request question code 4.">
+				description = <"Upptäcka minimal residual disease (MRD) eller tidigt återfall efter behandling.">
 			>
 			["at0.5"] = <
 				text = <"Resistensfrågeställning">
-				description = <"Local request question code 5.">
+				description = <"Förklara varför en pågående behandling upphört att fungera.">
 			>
 			["at0.6"] = <
 				text = <"Farmakogenomik">
-				description = <"Local request question code 6.">
+				description = <"Läkemedelsrespons och dosering baserat på patientens genetiska profil (ej tumörgenomik).">
 			>
 			["at0.7"] = <
 				text = <"Ärftlig cancer / onkogenetik">
-				description = <"Local request question code 7.">
+				description = <"Utredning av ärftlig cancerpredisposition och/eller screening för individer med ökad genetisk risk. Inkluderar tidigare 'Screening (predisposition)'.">
 			>
 			["at0.8"] = <
 				text = <"Övrigt">
-				description = <"Local request question code 8.">
+				description = <"Annan klinisk frågeställning som ej ryms i ovanstående kategorier.">
 			>
 			["ac0.1"] = <
 				text = <"Frågeställning (genomik)">

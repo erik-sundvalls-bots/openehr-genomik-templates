@@ -4,8 +4,14 @@
 
 **EN:** openEHR templates for the Swedish RCC *harmonised cancer genomics dataset* (consultation draft). Built from international CKM archetypes, with per-variable FHIR traceability to support a later EHR-Slice + FHIR profile + bidirectional FHIRconnect mappings.
 
-## Status
-Phase 1 (analysis) — no templates authored yet. See `docs/decisions.md`.
+## Status (2026-10-21)
+- T1 Genomics cancer report and T2 Genomics request are authored in ADL2 (`templates/adl2/`), EN original + SV translation. Of the 73 variables, 69 are covered, partly covered or covered by local drafts and 4 (demographics) are out of scope; no gaps remain (`docs/template-coverage.md`).
+- `tools/build.sh` rebuilds and validates everything: Archie full validation (31/31 OK), OPT 1.4 + OET 1.4 via Ehrtslib (XSD-valid), ADL 1.4 down-conversion via Ehrtslib and the Archie fork.
+- **Frågeställning (T2)** follows the dataset's FHIR design: required closed coded list, 1..*, multiple selection (`ServiceRequest.reasonCode`); one ACTIVITY ≈ one ServiceRequest. *Alternative design:* coded plus open free text (DV_TEXT alongside DV_CODED_TEXT, or an extensible value set). It keeps clinical nuance and tolerates list changes, but weakens comparability and breaks the dataset's coded-value requirement. See `docs/decisions.md` §10.
+- **SO URIs:** OBO term PURLs (`http://purl.obolibrary.org/obo/SO_nnnnnnn`) in ADL; FHIR system `http://www.sequenceontology.org` (no trailing slash). Recommended, pending final decision.
+- Next phases: EHR-Slice, FHIR profile, FHIRconnect mappings.
+
+The phase 2 notes below are kept for history.
 
 ## Layout
 | Path | Content |

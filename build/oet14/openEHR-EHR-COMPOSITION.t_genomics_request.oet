@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template xmlns="openEHR/v1/Template">
-  <id>b7739cae-9ac4-4f9e-ae20-56b4dfc62060</id>
+  <id>28f0e062-1d59-4ef8-8d88-3bb6412e2e04</id>
   <name>Genomics request</name>
   <description>
     <original_author>
@@ -11,7 +11,7 @@
     <lifecycle_state>unmanaged</lifecycle_state>
     <details>
       <purpose>Swedish RCC genomics service request / referral (T2 Genomikremiss). Managed Response composition: request + service_request (remiss_id, frågeställning / clinical indication, service name) and problem_diagnosis (ICD-10). Receiving organisation optional under service_request protocol.</purpose>
-      <use>Frågeställning is bound to local codes from valuesets/fragestallning.json in the service_request overlay. Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
+      <use>Frågeställning (Reason for request, renamed Clinical question) is a required closed coded list (1..*, multiple selection) from valuesets/fragestallning.json, mirroring FHIR ServiceRequest.reasonCode in the source dataset. Each ACTIVITY corresponds to one ServiceRequest; the recommended pattern is one ACTIVITY per clinical question. Mirror remiss_id into report protocol Requester order identifier when fulfilling.</use>
       <misuse></misuse>
     </details>
   </description>
@@ -19,6 +19,12 @@
     <items>
       <item><key>L10n.en</key><value>Genomic service request</value></item>
       <item><key>L10n.sv</key><value>Genomisk tjänstebegäran</value></item>
+    </items>
+  </annotations>
+  <annotations path="[openEHR-EHR-COMPOSITION.request.v1]/content[openEHR-EHR-INSTRUCTION.service_request.v1]/activities[at0001]/description[at0009]/items[at0062]">
+    <items>
+      <item><key>L10n.en</key><value>Clinical question</value></item>
+      <item><key>L10n.sv</key><value>Frågeställning</value></item>
     </items>
   </annotations>
   <annotations path="[openEHR-EHR-COMPOSITION.request.v1]/content[openEHR-EHR-EVALUATION.problem_diagnosis.v1]">
@@ -29,6 +35,7 @@
   </annotations>
   <definition archetype_id="openEHR-EHR-COMPOSITION.request.v1" concept_name="Request for service" name="Genomics request" xmlns:tem="openEHR/v1/Template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="tem:COMPOSITION">
     <Content archetype_id="openEHR-EHR-INSTRUCTION.service_request.v1" concept_name="Service request" name="Genomic service request" max="1" min="1" path="/content" xsi:type="tem:INSTRUCTION">
+      <Rule min="1" name="Clinical question" path="/activities[at0001]/description[at0009]/items[at0062]"/>
       <Rule max="1" min="1" path="/protocol[at0008]/items[at0010]"/>
       <Items archetype_id="openEHR-EHR-CLUSTER.organisation.v1" concept_name="Organisation" max="1" path="/protocol[at0008]/items[at0142]" xsi:type="tem:CLUSTER"/>
     </Content>
