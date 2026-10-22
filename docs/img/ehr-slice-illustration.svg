@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="940" viewBox="0 0 1700 940" font-family="DejaVu Sans, Noto Sans, Liberation Sans, sans-serif">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f8fb"/><stop offset="1" stop-color="#e9f1f6"/></linearGradient>
+<marker id="ah" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="18" refY="11" orient="auto-start-reverse"><path d="M0,0 L22,11 L0,22 z" fill="#3b5b73"/></marker>
+<filter id="sh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1d3a4f" flood-opacity="0.15"/></filter>
+</defs>
+<rect width="1700" height="940" fill="url(#bg)"/>
+<text x="850.0" y="62" text-anchor="middle" font-size="38" font-weight="bold" fill="#1d3a4f">En EHR Slice för harmoniserad datamängd cancergenomik</text>
+<text x="850.0" y="102" text-anchor="middle" font-size="24" fill="#3b5b73">Ett versionerat paket som binder ihop openEHR-lagring och FHIR-utbyte</text>
+<g filter="url(#sh)"><circle cx="850" cy="300" r="154" fill="#7fa9c4"/><circle cx="670" cy="330" r="124" fill="#7fa9c4"/><circle cx="1030" cy="330" r="124" fill="#7fa9c4"/><circle cx="550" cy="420" r="109" fill="#7fa9c4"/><circle cx="1150" cy="420" r="109" fill="#7fa9c4"/><circle cx="550" cy="560" r="109" fill="#7fa9c4"/><circle cx="1150" cy="560" r="109" fill="#7fa9c4"/><circle cx="670" cy="640" r="119" fill="#7fa9c4"/><circle cx="850" cy="660" r="129" fill="#7fa9c4"/><circle cx="1030" cy="640" r="119" fill="#7fa9c4"/><rect x="541" y="326" width="618" height="338" fill="#7fa9c4"/></g>
+<g><circle cx="850" cy="300" r="150" fill="#ffffff"/><circle cx="670" cy="330" r="120" fill="#ffffff"/><circle cx="1030" cy="330" r="120" fill="#ffffff"/><circle cx="550" cy="420" r="105" fill="#ffffff"/><circle cx="1150" cy="420" r="105" fill="#ffffff"/><circle cx="550" cy="560" r="105" fill="#ffffff"/><circle cx="1150" cy="560" r="105" fill="#ffffff"/><circle cx="670" cy="640" r="115" fill="#ffffff"/><circle cx="850" cy="660" r="125" fill="#ffffff"/><circle cx="1030" cy="640" r="115" fill="#ffffff"/><rect x="545" y="330" width="610" height="330" fill="#ffffff"/></g>
+<text x="850" y="240" text-anchor="middle" font-size="46" font-weight="bold" fill="#1d3a4f">EHR Slice</text>
+<text x="850" y="278" text-anchor="middle" font-size="21" fill="#3b5b73">= en utökad FHIR Implementation Guide (IG)</text>
+<rect x="532.0" y="318" width="310" height="128" rx="16" fill="#e3f1dc" stroke="#5a8f3c" stroke-width="2.5"/>
+<text x="687.0" y="362" text-anchor="middle" font-size="19" font-weight="bold" fill="#5a8f3c">openEHR-templates</text>
+<text x="687.0" y="396" text-anchor="middle" font-size="18" fill="#33475b">byggda på internationella</text>
+<text x="687.0" y="421" text-anchor="middle" font-size="18" fill="#33475b">arketyper (CKM)</text>
+<rect x="858.0" y="318" width="310" height="128" rx="16" fill="#fdf0d5" stroke="#b7862a" stroke-width="2.5"/>
+<text x="1013.0" y="362" text-anchor="middle" font-size="19" font-weight="bold" fill="#b7862a">FHIRconnect-mappningar</text>
+<text x="1013.0" y="396" text-anchor="middle" font-size="18" fill="#33475b">dubbelriktade:</text>
+<text x="1013.0" y="421" text-anchor="middle" font-size="18" fill="#33475b">template ⇄ FHIR-profil</text>
+<rect x="532.0" y="468" width="310" height="128" rx="16" fill="#dcecf8" stroke="#2f6f9f" stroke-width="2.5"/>
+<text x="687.0" y="512" text-anchor="middle" font-size="19" font-weight="bold" fill="#2f6f9f">FHIR-profiler</text>
+<text x="687.0" y="546" text-anchor="middle" font-size="18" fill="#33475b">på HL7 Genomics</text>
+<text x="687.0" y="571" text-anchor="middle" font-size="18" fill="#33475b">Reporting IG</text>
+<rect x="858.0" y="468" width="310" height="128" rx="16" fill="#ece3f5" stroke="#7350a0" stroke-width="2.5"/>
+<text x="1013.0" y="512" text-anchor="middle" font-size="19" font-weight="bold" fill="#7350a0">Kodverk och värdemängder</text>
+<text x="1013.0" y="546" text-anchor="middle" font-size="18" fill="#33475b">CodeSystem / ValueSet</text>
+<text x="1013.0" y="571" text-anchor="middle" font-size="18" fill="#33475b">(SO, LOINC, SNOMED CT, lokala)</text>
+<rect x="500" y="622" width="700" height="54" rx="27" fill="#fbe3c2" stroke="#c98a3a" stroke-width="2.5"/>
+<text x="850" y="657" text-anchor="middle" font-size="19" font-weight="bold" fill="#7a4d14">Versioneras och publiceras tillsammans · leverantörsneutralt</text>
+<rect x="30" y="320" width="260" height="310" rx="20" fill="#eef6ea" stroke="#4a7d2f" stroke-width="3" filter="url(#sh)"/>
+<text x="160" y="385" text-anchor="middle" font-size="26" font-weight="bold" fill="#4a7d2f">openEHR CDR</text>
+<text x="160" y="417" text-anchor="middle" font-size="17" fill="#4a7d2f">(Clinical Data Repository)</text>
+<text x="160" y="470" text-anchor="middle" font-size="18" fill="#33475b">beständig, strukturerad</text>
+<text x="160" y="500" text-anchor="middle" font-size="18" fill="#33475b">lagring i openEHR-format</text>
+<text x="160" y="530" text-anchor="middle" font-size="18" fill="#33475b">sökbar med AQL</text>
+<text x="160" y="560" text-anchor="middle" font-size="18" fill="#33475b">valfri leverantör</text>
+<rect x="1410" y="320" width="260" height="310" rx="20" fill="#e8f1f9" stroke="#2f6f9f" stroke-width="3" filter="url(#sh)"/>
+<text x="1540" y="385" text-anchor="middle" font-size="26" font-weight="bold" fill="#2f6f9f">FHIR API</text>
+<text x="1540" y="417" text-anchor="middle" font-size="17" fill="#2f6f9f">(HL7 FHIR R4)</text>
+<text x="1540" y="470" text-anchor="middle" font-size="18" fill="#33475b">utbyte med andra system</text>
+<text x="1540" y="500" text-anchor="middle" font-size="18" fill="#33475b">t.ex. IPÖ, nationella</text>
+<text x="1540" y="530" text-anchor="middle" font-size="18" fill="#33475b">tjänster och EHDS</text>
+<text x="1540" y="560" text-anchor="middle" font-size="18" fill="#33475b">inget openEHR-beroende</text>
+<g transform="translate(135,565)" fill="none" stroke="#4a7d2f" stroke-width="3"><ellipse cx="25" cy="8" rx="25" ry="8" fill="#d7ead0"/><path d="M0,8 v34 a25,8 0 0 0 50,0 v-34"/><path d="M0,25 a25,8 0 0 0 50,0"/></g>
+<g transform="translate(1515,563)" fill="none" stroke="#2f6f9f" stroke-width="3"><rect x="0" y="10" width="50" height="34" rx="6" fill="#d3e5f4"/><path d="M14,10 v-10 M36,10 v-10 M25,44 v12"/></g>
+<line x1="298" y1="470" x2="440" y2="470" stroke="#3b5b73" stroke-width="5" marker-start="url(#ah)" marker-end="url(#ah)"/>
+<text x="369.0" y="505" text-anchor="middle" font-size="17" fill="#3b5b73">openEHR-data</text>
+<line x1="1260" y1="470" x2="1402" y2="470" stroke="#3b5b73" stroke-width="5" marker-start="url(#ah)" marker-end="url(#ah)"/>
+<text x="1331.0" y="505" text-anchor="middle" font-size="17" fill="#3b5b73">FHIR-resurser</text>
+<text x="850.0" y="830" text-anchor="middle" font-size="21" fill="#33475b">Samma specifikation ger både ett FHIR-gränssnitt och en färdig, plattformsoberoende väg till openEHR-lagring.</text>
+<text x="850.0" y="895" text-anchor="middle" font-size="17" fill="#5b6f80">Inspirerad av illustration från openEHR International: openehr.org/what-is-an-ehr-slice-and-why-is-it-relevant-to-the-ehds/</text>
+</svg>

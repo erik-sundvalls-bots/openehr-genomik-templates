@@ -13,6 +13,13 @@ FHIRconnect, ett öppet och maskinläsbart format som kan köras av en mappnings
 versioneras och publiceras tillsammans. En leverantör kan då både ta emot och skicka FHIR och
 lagra samma information beständigt och frågbart, utan att tolka specifikationen på egen hand.
 
+Begreppet och definitionen beskrivs i ["What is an EHR Slice and why is it relevant to the EHDS?"](https://openehr.org/what-is-an-ehr-slice-and-why-is-it-relevant-to-the-ehds/)
+(Seref Arikan, openehr.org, 2026).
+
+![En EHR Slice: openEHR-templates, FHIRconnect-mappningar, FHIR-profiler, kodverk och värdemängder i en FHIR IG mellan openEHR CDR och FHIR API](img/ehr-slice-illustration.png)
+
+*Inspirerad av illustration från openEHR International ([artikeln](https://openehr.org/what-is-an-ehr-slice-and-why-is-it-relevant-to-the-ehds/)).*
+
 ## Varför det är relevant för RCC, INCA och EHDS
 
 - **FHIR förblir utbytesformatet.** Underlagets FHIR-design (bl.a. Genomics Reporting IG och
@@ -31,7 +38,7 @@ lagra samma information beständigt och frågbart, utan att tolka specifikatione
 ## Demonstration
 
 Som underlag har vi byggt en liten, körbar EHR Slice för T2 (remiss) och en del av T1
-(genomiskt svar), i repot `openehr-genomik-templates`, katalogen `ehr-slice/`:
+(genomiskt svar), i repot [regionstockholm/remissrunda-konfigurationsunderlag-cancergenomik](https://github.com/regionstockholm/remissrunda-konfigurationsunderlag-cancergenomik), katalogen `ehr-slice/`:
 
 - FHIR-profiler för remiss (ServiceRequest), genomiskt svar (DiagnosticReport) och variant
   (Observation) på HL7 Genomics Reporting IG v3.0.0, med kodverk för frågeställning, ASCO/AMP och
