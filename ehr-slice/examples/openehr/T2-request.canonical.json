@@ -325,7 +325,7 @@
         "_type": "ITEM_TREE",
         "name": {
           "_type": "DV_TEXT",
-          "value": "structure"
+          "value": "Tree"
         },
         "items": [
           {

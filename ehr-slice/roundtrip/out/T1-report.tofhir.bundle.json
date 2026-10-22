@@ -62,27 +62,27 @@
                 "issued": "2026-10-06T14:00:00+02:00",
                 "performer": [
                     {
-                        "reference": "urn:uuid:a3d2902d-3985-4856-86f5-a06a5cacb1ed"
+                        "reference": "urn:uuid:046f45a7-c99b-49a6-9dbb-50915c35c67d"
                     }
                 ],
                 "specimen": [
                     {
-                        "reference": "urn:uuid:6fdaf1ff-084f-46b9-a53d-99150bf5b294"
+                        "reference": "urn:uuid:17fbe9fc-da57-4e69-a503-b4cc62fb2fb9"
                     }
                 ],
                 "result": [
                     {
-                        "reference": "urn:uuid:e6d1b5cc-bf51-4730-82b8-676cc4a6f00b"
+                        "reference": "urn:uuid:37365e0c-0d9a-4527-bcde-e93e5718f866"
                     },
                     {
-                        "reference": "urn:uuid:dd3051fc-c936-4934-bb51-db6c451e4cba"
+                        "reference": "urn:uuid:bc116ed5-b094-44ab-b799-0784f309dbb1"
                     }
                 ],
                 "conclusion": "EGFR L858R påvisad (Tier I-A / ESCAT I-A). TP53 R273H påvisad."
             }
         },
         {
-            "fullUrl": "urn:uuid:a3d2902d-3985-4856-86f5-a06a5cacb1ed",
+            "fullUrl": "urn:uuid:046f45a7-c99b-49a6-9dbb-50915c35c67d",
             "resource": {
                 "resourceType": "Organization",
                 "identifier": [
@@ -95,7 +95,7 @@
             }
         },
         {
-            "fullUrl": "urn:uuid:6fdaf1ff-084f-46b9-a53d-99150bf5b294",
+            "fullUrl": "urn:uuid:17fbe9fc-da57-4e69-a503-b4cc62fb2fb9",
             "resource": {
                 "resourceType": "Specimen",
                 "identifier": [
@@ -119,7 +119,7 @@
             }
         },
         {
-            "fullUrl": "urn:uuid:e6d1b5cc-bf51-4730-82b8-676cc4a6f00b",
+            "fullUrl": "urn:uuid:37365e0c-0d9a-4527-bcde-e93e5718f866",
             "resource": {
                 "resourceType": "Observation",
                 "meta": {
@@ -310,7 +310,7 @@
             }
         },
         {
-            "fullUrl": "urn:uuid:dd3051fc-c936-4934-bb51-db6c451e4cba",
+            "fullUrl": "urn:uuid:bc116ed5-b094-44ab-b799-0784f309dbb1",
             "resource": {
                 "resourceType": "Observation",
                 "meta": {

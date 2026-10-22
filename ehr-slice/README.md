@@ -20,7 +20,7 @@ placeholders.
 | `fhirconnect/model/openehr-lib/` | 8 model mappings reused unchanged from the open FHIRconnect mapping library (Apache-2.0, see `NOTICE.md`) |
 | `fhirconnect/model/local/` | new model mapping: `CLUSTER.genomic_variant_result-cancer.v1` ↔ variant Observation |
 | `fhirconnect/projects/se-genomics/{request,report}/` | context + extension mappings for T2 and T1 |
-| `templates/opt14/` | OPT 1.4 used by the engine (repaired copy of `../build/opt14`, see below) |
+| `templates/opt14/` | OPT 1.4 used by the engine (copy of `../build/opt14`, refreshed by `engine/bootstrap.sh`) |
 | `examples/fhir/` | input Bundles built from the IG examples |
 | `examples/openehr/` | compositions produced by the engine (flat and canonical JSON) |
 | `engine/` | `docker-compose.yml` (openFHIR 3.0.2 + MongoDB, pinned) and `bootstrap.sh` |
@@ -87,13 +87,14 @@ Demo simplifications (also stated in the IG):
 
 Findings while running the engine (worked around here; worth reporting upstream):
 
-1. **OPT 1.4 export (Ehrtslib)** omits `term_definitions` for structural nodes (ITEM_TREE,
-   HISTORY). The EHRbase SDK web-template parser used by openFHIR fails on that
-   (NullPointerException in `OPTParser.buildNode`). `tools/repair_opt_terms.py` adds the missing
-   terms from the CKM ADL 1.4 sources into `templates/opt14/`; `../build/opt14` is unchanged.
-   Still needed after ehrtslib#142/PR #143 (that fix covers ADL 1.4 input only): ehrtslib#145, retested on Ehrtslib main 35f33da.
-   The OPT export is pinned to Ehrtslib fca190a because of ehrtslib#147 (see `../docs/ehrtslib-gaps.md`). Both workarounds can go once
-   ehrtslib PR #154 (the catch-up for #150/#151) is on main; this was verified on that branch on 2026-10-22.
+1. **OPT 1.4 export (Ehrtslib)**: fixed upstream, no workaround left. Earlier OPTs lacked
+   `term_definitions` for structural nodes (ITEM_TREE, HISTORY), and the web-template parser used
+   by openFHIR failed on that (ehrtslib#145); bound local value sets were exported as external
+   code lists, so openFHIR wrote DV_CODED_TEXT without `value` (ehrtslib#147). Both are fixed on
+   Ehrtslib main (37657ec, PR #154), and the engine now uses the plain export. Side effect: structural
+   nodes without a term in the ADL2 source get a generic name synthesised from the RM type
+   ("Tree", "History"), so compositions carry e.g. "History" where the CKM ADL 1.4 text was
+   "Event Series". Flat paths and mappings are unaffected.
 2. **Mapping library, `service_request.v1`**: maps the requester to `$composition/provider`, which
    does not exist in the RM; neutralised in `se_genomics_service_request.yml`.
 3. **Mapping library, `laboratory_test_result.v1`**: the `unknown` status entry has a non-path

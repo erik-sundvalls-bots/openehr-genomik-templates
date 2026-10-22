@@ -16,6 +16,11 @@
   WARN openEHR-EHR-CLUSTER.variant_clinical_implication.v1.0.0: node id id4 → at0003 would collide with value code at4 → at0003; node renumbered to at9003
   WARN openEHR-EHR-CLUSTER.variant_clinical_implication.v1.0.0: node id id5 → at0004 would collide with value code at5 → at0004; node renumbered to at9004
   WARN openEHR-EHR-CLUSTER.variant_clinical_implication.v1.0.0: node id id6 → at0005 would collide with value code at6 → at0005; node renumbered to at9005
+  WARN openEHR-EHR-COMPOSITION.report-result.v1.1.0: no term for ITEM_TREE[id2 → at0001]; synthesised "Tree"
+  WARN openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.8: no term for HISTORY[id2 → at0001]; synthesised "History"
+  WARN openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.8: no term for ITEM_TREE[id4 → at0003]; synthesised "Tree"
+  WARN openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.8: no term for ITEM_TREE[id113 → at0112]; synthesised "Tree"
+  WARN openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.8: no term for ITEM_TREE[id5 → at0004]; synthesised "Tree"
   Genomics cancer report: 19 archetypes, 6 L10n annotations, 4 repeated-translation conflicts
   WARN openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1.0.0: node id id0.1 → at0.1 would collide with value code at0.1 → at0.1; node renumbered to at0.9000
   WARN openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1.0.0: node id id0.2 → at0.2 would collide with value code at0.2 → at0.2; node renumbered to at0.9001
@@ -35,10 +40,25 @@
   WARN openEHR-EHR-CLUSTER.variant_clinical_implication.v1.0.0: node id id4 → at0003 would collide with value code at4 → at0003; node renumbered to at9003
   WARN openEHR-EHR-CLUSTER.variant_clinical_implication.v1.0.0: node id id5 → at0004 would collide with value code at5 → at0004; node renumbered to at9004
   WARN openEHR-EHR-CLUSTER.variant_clinical_implication.v1.0.0: node id id6 → at0005 would collide with value code at6 → at0005; node renumbered to at9005
+  WARN openEHR-EHR-COMPOSITION.report-result.v1.1.0: no term for ITEM_TREE[id2 → at0001]; synthesised "Tree"
+  WARN openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.8: no term for HISTORY[id2 → at0001]; synthesised "History"
+  WARN openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.8: no term for ITEM_TREE[id4 → at0003]; synthesised "Tree"
+  WARN openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.8: no term for ITEM_TREE[id113 → at0112]; synthesised "Tree"
+  WARN openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.8: no term for ITEM_TREE[id5 → at0004]; synthesised "Tree"
   WARN openEHR-EHR-CLUSTER.specimen.v1.1.3: value constraint at /items[at0029] has no OET equivalent; kept only in the OPT export
   WARN openEHR-EHR-CLUSTER.specimen.v1.1.3: value constraint at /items[at0007] has no OET equivalent; kept only in the OPT export
   WARN openEHR-EHR-CLUSTER.specimen_processing.v1.0.1: value constraint at /items[at0074] has no OET equivalent; kept only in the OPT export
   openEHR-EHR-COMPOSITION.t_genomics_cancer_report.v1.0.0: OET with 19 archetypes, 9 L10n annotations
+  WARN openEHR-EHR-COMPOSITION.request.v1.1.4: no term for ITEM_TREE[id2 → at0001]; synthesised "Tree"
+  WARN openEHR-EHR-INSTRUCTION.service_request.v1.1.3-alpha: no term for ITEM_TREE[id10 → at0009]; synthesised "Tree"
+  WARN openEHR-EHR-INSTRUCTION.service_request.v1.1.3-alpha: no term for ITEM_TREE[id9 → at0008]; synthesised "Tree"
+  WARN openEHR-EHR-EVALUATION.problem_diagnosis.v1.7.4: no term for ITEM_TREE[id2 → at0001]; synthesised "Tree"
+  WARN openEHR-EHR-EVALUATION.problem_diagnosis.v1.7.4: no term for ITEM_TREE[id33 → at0032]; synthesised "Tree"
   Genomics request: 4 archetypes, 0 L10n annotations, 0 repeated-translation conflicts
+  WARN openEHR-EHR-COMPOSITION.request.v1.1.4: no term for ITEM_TREE[id2 → at0001]; synthesised "Tree"
+  WARN openEHR-EHR-INSTRUCTION.service_request.v1.1.3-alpha: no term for ITEM_TREE[id10 → at0009]; synthesised "Tree"
+  WARN openEHR-EHR-INSTRUCTION.service_request.v1.1.3-alpha: no term for ITEM_TREE[id9 → at0008]; synthesised "Tree"
+  WARN openEHR-EHR-EVALUATION.problem_diagnosis.v1.7.4: no term for ITEM_TREE[id2 → at0001]; synthesised "Tree"
+  WARN openEHR-EHR-EVALUATION.problem_diagnosis.v1.7.4: no term for ITEM_TREE[id33 → at0032]; synthesised "Tree"
   WARN openEHR-EHR-INSTRUCTION.service_request.v1.1.3-alpha: value constraint at /activities[at0001]/description[at0009]/items[at0062] has no OET equivalent; kept only in the OPT export
   openEHR-EHR-COMPOSITION.t_genomics_request.v1.0.0: OET with 4 archetypes, 3 L10n annotations

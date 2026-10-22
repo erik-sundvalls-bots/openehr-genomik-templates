@@ -2084,6 +2084,14 @@
           <items id="text">Other</items>
           <items id="description">Other clinical question not covered by the categories above.</items>
         </term_definitions>
+        <term_definitions code="at0009">
+          <items id="text">Tree</items>
+          <items id="description">Tree</items>
+        </term_definitions>
+        <term_definitions code="at0008">
+          <items id="text">Tree</items>
+          <items id="description">Tree</items>
+        </term_definitions>
       </children>
       <children xsi:type="C_ARCHETYPE_ROOT">
         <rm_type_name>EVALUATION</rm_type_name>
@@ -3000,6 +3008,14 @@
           <items id="text">Impact</items>
           <items id="description">Overall assessment of the impact of a health problem for the specific patient.</items>
         </term_definitions>
+        <term_definitions code="at0001">
+          <items id="text">Tree</items>
+          <items id="description">Tree</items>
+        </term_definitions>
+        <term_definitions code="at0032">
+          <items id="text">Tree</items>
+          <items id="description">Tree</items>
+        </term_definitions>
       </children>
       <cardinality>
         <is_ordered>false</is_ordered>
@@ -3039,6 +3055,10 @@
       <items id="text">Referring diagnosis</items>
       <items id="description">Problem / diagnosis motivating the request (typically ICD-10).</items>
     </term_definitions>
+    <term_definitions code="at0001">
+      <items id="text">Tree</items>
+      <items id="description">Tree</items>
+    </term_definitions>
   </definition>
   <component_ontologies archetype_id="openEHR-EHR-COMPOSITION.request.v1">
     <term_definitions language="en">
@@ -3062,6 +3082,10 @@
         <items id="text">Referring diagnosis</items>
         <items id="description">Problem / diagnosis motivating the request (typically ICD-10).</items>
       </items>
+      <items code="at0001">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
@@ -3083,6 +3107,10 @@
       <items code="at0.2">
         <items id="text">Remitterande diagnos</items>
         <items id="description">Problem / diagnos som motiverar remissen (typiskt ICD-10).</items>
+      </items>
+      <items code="at0001">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
       </items>
     </term_definitions>
     <term_bindings terminology="openehr">
@@ -3266,6 +3294,14 @@
         <items id="text">Other</items>
         <items id="description">Other clinical question not covered by the categories above.</items>
       </items>
+      <items code="at0009">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
+      <items code="at0008">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
@@ -3435,6 +3471,14 @@
       <items code="at0.8">
         <items id="text">Övrigt</items>
         <items id="description">Annan klinisk frågeställning som ej ryms i ovanstående kategorier.</items>
+      </items>
+      <items code="at0009">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
+      <items code="at0008">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
       </items>
     </term_definitions>
   </component_ontologies>
@@ -3626,6 +3670,14 @@
         <items id="text">Impact</items>
         <items id="description">Overall assessment of the impact of a health problem for the specific patient.</items>
       </items>
+      <items code="at0001">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
+      <items code="at0032">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
     </term_definitions>
     <term_definitions language="sv">
       <items code="at0000">
@@ -3727,6 +3779,14 @@
       <items code="at0080">
         <items id="text">Påverkan</items>
         <items id="description">Övergripande bedömning av hur ett hälsoproblem påverkar patienten.</items>
+      </items>
+      <items code="at0001">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
+      </items>
+      <items code="at0032">
+        <items id="text">Tree</items>
+        <items id="description">Tree</items>
       </items>
     </term_definitions>
   </component_ontologies>

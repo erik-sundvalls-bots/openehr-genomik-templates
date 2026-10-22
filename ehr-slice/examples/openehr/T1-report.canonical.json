@@ -208,7 +208,7 @@
       "data": {
         "name": {
           "_type": "DV_TEXT",
-          "value": "Event Series"
+          "value": "History"
         },
         "origin": {
           "_type": "DV_DATE_TIME",
