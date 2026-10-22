@@ -1,0 +1,103 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "se-genomics-servicerequest",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-servicerequest",
+  "name": "SEGenomicsServiceRequest",
+  "title": "SE Genomics ServiceRequest (genomikremiss)",
+  "status": "draft",
+  "experimental": true,
+  "description": "Request for genomic analysis (T2). One ServiceRequest corresponds to one openEHR ACTIVITY of INSTRUCTION.service_request.v1 in template 'Genomics request'. The Genomics Reporting IG v3 has no ServiceRequest profile, so this derives from core R4.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ServiceRequest",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/ServiceRequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ServiceRequest.identifier",
+        "path": "ServiceRequest.identifier",
+        "short": "remiss_id (openEHR: protocol/Requester order identifier)",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.status",
+        "path": "ServiceRequest.status",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.intent",
+        "path": "ServiceRequest.intent",
+        "patternCode": "order"
+      },
+      {
+        "id": "ServiceRequest.code",
+        "path": "ServiceRequest.code",
+        "short": "Requested genomic service (openEHR: Service name)",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.subject",
+        "path": "ServiceRequest.subject",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Patient"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.authoredOn",
+        "path": "ServiceRequest.authoredOn",
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.performer",
+        "path": "ServiceRequest.performer",
+        "short": "Receiving laboratory (openEHR: CLUSTER.organisation.v1 in protocol)",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-laboratory"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "ServiceRequest.reasonCode",
+        "path": "ServiceRequest.reasonCode",
+        "short": "frågeställning – closed coded list, multiple selection (openEHR: Clinical question)",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/fragestallning"
+        }
+      },
+      {
+        "id": "ServiceRequest.reasonReference",
+        "path": "ServiceRequest.reasonReference",
+        "short": "Referring diagnosis (openEHR: EVALUATION.problem_diagnosis.v1)",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-referring-diagnosis"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

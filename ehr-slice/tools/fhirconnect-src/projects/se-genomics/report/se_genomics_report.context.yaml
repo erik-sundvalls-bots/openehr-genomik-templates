@@ -1,0 +1,28 @@
+grammar: FHIRConnect/v1.0.0
+type: context
+metadata:
+  name: SE_genomics_report.context
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+
+# T1 'Genomics cancer report' (openEHR) <-> SE Genomic Report (DiagnosticReport) with its
+# SE Variant Observations, Specimen and performing laboratory (FHIR)
+context:
+  profile:
+    url: https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomic-report
+    version: 0.1.0
+  template:
+    id: Genomics cancer report
+    sem_ver: 1.0.0
+  archetypes:
+    - OBSERVATION.laboratory_test_result.v1
+    - COMPOSITION.report_result.v1.DiagnosticReport
+    - CLUSTER.genomic_variant_result-cancer.v1
+    - CLUSTER.specimen.v1
+    - CLUSTER.organisation.v1
+  extensions:
+    - SE_genomic_report
+    - SE_genomics_specimen
+  start: OBSERVATION.laboratory_test_result.v1

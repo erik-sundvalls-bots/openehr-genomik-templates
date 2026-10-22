@@ -111,3 +111,13 @@ Behåll lokala utkastet `sequencing_assay-genomic_study` **och** förbered CKM-�
 
 ### 10.3 SO-URI — rekommenderat (inväntar Eriks slutliga besked)
 ADL: OBO-term-PURL `http://purl.obolibrary.org/obo/SO_nnnnnnn`. FHIR: system `http://www.sequenceontology.org` (utan avslutande snedstreck, HL7 THO NamingSystem SO), kod `SO:nnnnnnn`. Förekomster med snedstreck i docs/valuesets är rättade.
+
+## 11. EHR Slice-demo 2026-10-21 (förenklingar att känna till)
+
+Demo i `ehr-slice/` (se `ehr-slice/README.md` och `docs/remissvar-ehr-slice.md`). Förenklingar jämfört med Genomics Reporting IG v3 och underlaget:
+
+- ASCO/AMP-nivå, ESCAT-nivå och molekylär konsekvens är komponenter i variant-Observation, inte separata *implication*-/*molecular-consequence*-Observationer (en-till-många-mappning med `derivedFrom` är för stor för demon).
+- Variationstyp (coding-change-type) mappas inte: T1 saknar element för den.
+- `Observation.value` ("Present") är en konstant vid export och lagras inte.
+- Ingen svensk basprofil för ServiceRequest finns; remissprofilen bygger på R4 core.
+- Kanoniska URL:er (`https://example.org/fhir/ehr-slice-se-genomics`) och lokala CodeSystem-URL:er är platshållare. **Öppen fråga:** vilken namnrymd (RCC/INCA, Inera, HL7 Sverige) ska äga dem?

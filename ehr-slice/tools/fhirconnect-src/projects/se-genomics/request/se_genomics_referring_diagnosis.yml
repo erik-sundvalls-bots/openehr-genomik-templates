@@ -1,0 +1,21 @@
+grammar: FHIRConnect/v1.0.0
+type: extension
+metadata:
+  name: SE_genomics_referring_diagnosis
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+  extends: EVALUATION.problem_diagnosis.v1
+
+mappings:
+  - name: metaProfile
+    extension: add
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.meta
+    manual:
+      - name: profileUrl
+        fhir:
+          - path: profile
+            value: https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-referring-diagnosis

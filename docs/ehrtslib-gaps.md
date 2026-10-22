@@ -35,7 +35,7 @@ There is still **no working automatic ADL2 → 1.4 path** on the box (Archie can
 
 ## New gaps found 2026-10-16 (genomics value-set bindings)
 
-Status 2026-10-21: A = ehrtslib#133, B = ehrtslib#134, C = ehrtslib#135, all fixed/documented on ehrtslib main (ebc2434). The build workaround for A is removed and the fix for B is confirmed in the T2 OPT. Gap D below is new and not filed.
+Status 2026-10-21: A = ehrtslib#133, B = ehrtslib#134, C = ehrtslib#135, all fixed/documented on ehrtslib main (ebc2434). The build workaround for A is removed and the fix for B is confirmed in the T2 OPT. Gap D = ehrtslib#141 and gap E = ehrtslib#142 (filed 2026-10-21, open).
 
 ### A. ADL2 tokenizer rejects `#` (and likely `?`) inside ODIN URI values
 - Input: `["at0.10"] = <http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#alt-splc>` in `term_bindings`.
@@ -53,10 +53,14 @@ Status 2026-10-21: A = ehrtslib#133, B = ehrtslib#134, C = ehrtslib#135, all fix
 - `value constraint at /items[at0029] has no OET equivalent; kept only in the OPT export` (specimen type, collection method, fixation method).
 - The OPT is complete. The OET lacks these value sets. That may be acceptable, since OET textConstraint cannot carry new local codes. Document this in ADL_SUPPORT.md.
 
-### D. OPT 1.4 exporter silently drops term bindings that are not `[t::c]` or `http://<host>/id/<code>` (new 2026-10-21, not filed)
+### D. OPT 1.4 exporter silently drops term bindings that are not `[t::c]` or `http://<host>/id/<code>` (new 2026-10-21, [ehrtslib#141](https://github.com/ErikSundvall/ehrtslib/issues/141))
 - `generation/opt14/opt14_exporter.ts` `parseBinding()` only accepts `[terminology::code]` or `https?://<host>/id/<code>` (SNOMED/LOINC/openEHR style).
 - Valid ADL2 binding URIs such as `http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/genomic-study-type-cs#cnv` and `http://purl.obolibrary.org/obo/SO_0001583` return `undefined` and are dropped with no warning.
 - Effect: T1 OPT has the SNOMED CT bindings but none of the HL7 study type/method or SO bindings.
 - Expected: map at least `<code-system-uri>#<code>` (FHIR style) and OBO PURLs to a terminology id + code (e.g. terminology id from a configurable URI→id table, defaulting to the binding key), or warn when a binding cannot be exported.
 - Related: Ehrtslib's ADL 1.4 down-conversion (`tools/ehrtslib-down14.ts`, `ADL14Serializer`) writes no `term_bindings` section at all for the drafts (SNOMED CT, SO and HL7 bindings all missing in `build/ehrtslib-adl14/`).
 - Archie keeps all these bindings in its ADL 1.4 output (`build/archie-adl14/`: 12 HL7 bindings in `sequencing_assay-genomic_study`, 8 SO bindings in `genomic_variant_result-cancer`).
+
+### E. OPT 1.4 export omits term_definitions for structural nodes (new 2026-10-21, [ehrtslib#142](https://github.com/ErikSundvall/ehrtslib/issues/142))
+
+The exported OPTs have no `term_definitions` entry for locatable structural nodes such as `ITEM_TREE` (e.g. `at0001`, `at0003`, `at0004` in `laboratory_test_result.v1`, `at0008`/`at0009` in `service_request.v1`) and `HISTORY` (`at0001`). The OPTs are XSD-valid, but the EHRbase SDK web-template parser (`OPTParser.buildNode`, openEHR_SDK 2.19.0, used by openFHIR 3.0.2) throws a NullPointerException for any locatable node without a term, so the templates cannot be used by that engine. Workaround: `ehr-slice/tools/repair_opt_terms.py` copies the missing terms from the CKM ADL 1.4 sources (10 terms across the two OPTs). Suggested fix: emit a term for every node id of the flat archetype, including structural nodes.

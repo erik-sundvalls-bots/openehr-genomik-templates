@@ -1,0 +1,9 @@
+{
+  "resourceType": "Practitioner",
+  "id": "practitioner-demo-1",
+  "name": [
+    {
+      "text": "Remitterande läkare (demo)"
+    }
+  ]
+}

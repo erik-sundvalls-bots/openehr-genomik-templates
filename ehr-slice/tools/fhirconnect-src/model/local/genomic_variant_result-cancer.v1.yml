@@ -1,0 +1,382 @@
+grammar: FHIRConnect/v1.0.0
+type: model
+metadata:
+  name: CLUSTER.genomic_variant_result-cancer.v1
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+  openEhrConfig:
+    archetype: openEHR-EHR-CLUSTER.genomic_variant_result-cancer.v1
+    revision: 0.1.0
+  fhirConfig:
+    # The engine derives the FHIR resource type from this URL, so the base type is given here;
+    # the SE Variant profile is asserted via meta.profile below.
+    structureDefinition: http://hl7.org/fhir/StructureDefinition/Observation
+
+# Local model mapping (no upstream mapping exists yet) for the Swedish cancer specialisation
+# of CLUSTER.genomic_variant_result.v1 <-> SE Variant Observation (profile of the HL7
+# Genomics Reporting IG v3 'variant'). One openEHR cluster per variant Observation; the
+# cluster is reached from the report via DiagnosticReport.result (see SE_genomic_report).
+#
+# Each FHIR component is selected by its code (fhirCondition on component.code) and mapped
+# to one openEHR element; the component code is written back as a constant (manual).
+# Coded values use generated per-code tables (ehr-slice/tools/code_tables.py).
+#
+# Deliberate simplifications (documented in ehr-slice/README.md):
+# - ASCO/AMP tier, ESCAT tier and molecular consequence are components on the variant, not
+#   separate 'implication' / 'molecular-consequence' Observations as in Genomics Reporting v3.
+# - Only the first Transcript cluster (at0008) is mapped (gene, c. and p. HGVS).
+# - DV_PARSABLE.formalism: openFHIR 3.0.2 always writes "text/html" for DV_PARSABLE and drops a
+#   manual formalism, so "HGVS" cannot be set from this mapping (engine limitation).
+# - Observation.value ('Present', LOINC LA9633-4) is a constant on export; the template has no
+#   element for it, so it is not stored.
+mappings:
+  - name: metaProfile
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.meta
+    manual:
+      - name: profileUrl
+        fhir:
+          - path: profile
+            value: https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-variant
+
+  - name: statusConstant
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.status
+      openehr: $archetype
+    manual:
+      - name: final
+        fhir:
+          - path: $fhirRoot
+            value: final
+
+  - name: codeConstant
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.code
+      openehr: $archetype
+    manual:
+      - name: loinc69548
+        fhir:
+          - path: coding.system
+            value: http://loinc.org
+          - path: coding.code
+            value: 69548-6
+          - path: coding.display
+            value: Genetic variant assessment
+
+  - name: valueConstant
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.value.as(CodeableConcept)
+      openehr: $archetype
+    manual:
+      - name: present
+        fhir:
+          - path: coding.system
+            value: http://loinc.org
+          - path: coding.code
+            value: LA9633-4
+          - path: coding.display
+            value: Present
+
+  - name: categoryLaboratory
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.category
+      openehr: $archetype
+    manual:
+      - name: laboratory
+        fhir:
+          - path: coding.system
+            value: http://terminology.hl7.org/CodeSystem/observation-category
+          - path: coding.code
+            value: laboratory
+
+  - name: categoryGenetics
+    unidirectional: openehr->fhir
+    with:
+      fhir: $resource.category
+      openehr: $archetype
+    manual:
+      - name: genetics
+        fhir:
+          - path: coding.system
+            value: http://terminology.hl7.org/CodeSystem/v2-0074
+          - path: coding.code
+            value: GE
+
+  # Gene studied (LOINC 48018-6): CodeableConcept.text <-> Transcript/Gene/Gene symbol (DV_TEXT)
+  - name: geneStudied
+    with:
+      fhir: $resource.component
+      openehr: $archetype
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "48018-6"
+    followedBy:
+      mappings:
+        - name: geneStudiedValue
+          with:
+            fhir: value.as(CodeableConcept).text
+            openehr: items[at0008]/items[at0019]/items[at0020]
+
+        - name: geneStudiedCode
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype
+          manual:
+            - name: geneStudiedComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "48018-6"
+
+  # DNA change, c. HGVS (LOINC 48004-6) <-> Transcript/DNA change (DV_PARSABLE, formalism HGVS)
+  - name: codingHgvs
+    with:
+      fhir: $resource.component
+      openehr: $archetype
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "48004-6"
+    followedBy:
+      mappings:
+        - name: codingHgvsValue
+          with:
+            fhir: value.as(CodeableConcept).coding
+            openehr: items[at0008]/items[at0011]
+            type: NONE
+          followedBy:
+            mappings:
+              - name: codingHgvsCode
+                with:
+                  fhir: code
+                  openehr: $openehrRoot
+              - name: codingHgvsSystem
+                with:
+                  fhir: $fhirRoot
+                  openehr: $openehrRoot
+                manual:
+                  - name: varnomen
+                    fhir:
+                      - path: system
+                        value: http://varnomen.hgvs.org
+
+        - name: codingHgvsCode
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype
+          manual:
+            - name: codingHgvsComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "48004-6"
+
+  # Amino acid change, p. HGVS (LOINC 48005-3) <-> Transcript/Amino acid change (DV_PARSABLE)
+  - name: proteinHgvs
+    with:
+      fhir: $resource.component
+      openehr: $archetype
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "48005-3"
+    followedBy:
+      mappings:
+        - name: proteinHgvsValue
+          with:
+            fhir: value.as(CodeableConcept).coding
+            openehr: items[at0008]/items[at0012]
+            type: NONE
+          followedBy:
+            mappings:
+              - name: proteinHgvsCode
+                with:
+                  fhir: code
+                  openehr: $openehrRoot
+              - name: proteinHgvsSystem
+                with:
+                  fhir: $fhirRoot
+                  openehr: $openehrRoot
+                manual:
+                  - name: varnomen
+                    fhir:
+                      - path: system
+                        value: http://varnomen.hgvs.org
+
+        - name: proteinHgvsCode
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype
+          manual:
+            - name: proteinHgvsComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "48005-3"
+
+  # Genomic source class (LOINC 48002-0, answer list LL378-1) <-> Genetic origin (local at0.1-at0.5)
+  - name: genomicSourceClass
+    with:
+      fhir: $resource.component
+      openehr: $archetype/items[at0.9000]
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "48002-0"
+    followedBy:
+      mappings:
+        - name: genomicSourceClassValue
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            __MANUAL_CC:GENETIC_ORIGIN:value.as(CodeableConcept)__
+
+        - name: genomicSourceClassCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: genomicSourceClassComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "48002-0"
+
+  # Sample variant allelic frequency (LOINC 81258-6) <-> Allele frequency (DV_QUANTITY, unit 1)
+  - name: alleleFrequency
+    with:
+      fhir: $resource.component
+      openehr: $archetype
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "81258-6"
+    followedBy:
+      mappings:
+        - name: alleleFrequencyValue
+          with:
+            fhir: value.as(Quantity)
+            openehr: items[at0047]
+
+        - name: alleleFrequencyCode
+          with:
+            fhir: $fhirRoot
+            openehr: $archetype
+          manual:
+            - name: alleleFrequencyComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "81258-6"
+
+  # Molecular consequence (Sequence Ontology) <-> Molecular consequence (local at0.40-at0.47)
+  - name: molecularConsequence
+    with:
+      fhir: $resource.component
+      openehr: $archetype/items[at0.6]
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "feature-consequence"
+    followedBy:
+      mappings:
+        - name: molecularConsequenceValue
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            __MANUAL_CC:MOLECULAR_CONSEQUENCE:value.as(CodeableConcept)__
+
+        - name: molecularConsequenceCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: molecularConsequenceComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs
+                - path: code.coding.code
+                  value: "feature-consequence"
+
+  # ASCO/AMP/CAP tier (LOINC 53037-8 as component code) <-> local at0.10-at0.16
+  - name: ascoAmpTier
+    with:
+      fhir: $resource.component
+      openehr: $archetype/items[at0.9001]
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "53037-8"
+    followedBy:
+      mappings:
+        - name: ascoAmpTierValue
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            __MANUAL_CC:ASCO:value.as(CodeableConcept)__
+
+        - name: ascoAmpTierCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: ascoAmpTierComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "53037-8"
+
+  # ESCAT tier (LOINC 93044-6 as component code) <-> local at0.20-at0.30
+  - name: escatTier
+    with:
+      fhir: $resource.component
+      openehr: $archetype/items[at0.9002]
+    fhirCondition:
+      targetRoot: $resource.component
+      targetAttribute: code.coding.code
+      operator: one of
+      criteria: "93044-6"
+    followedBy:
+      mappings:
+        - name: escatTierValue
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            __MANUAL_CC:ESCAT:value.as(CodeableConcept)__
+
+        - name: escatTierCode
+          with:
+            fhir: $fhirRoot
+            openehr: $openehrRoot
+          manual:
+            - name: escatTierComponentCode
+              fhir:
+                - path: code.coding.system
+                  value: http://loinc.org
+                - path: code.coding.code
+                  value: "93044-6"

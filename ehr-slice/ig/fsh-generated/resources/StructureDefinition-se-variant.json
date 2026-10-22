@@ -1,0 +1,189 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "se-variant",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-variant",
+  "name": "SEVariant",
+  "title": "SE Variant",
+  "status": "draft",
+  "experimental": true,
+  "description": "Variant finding (T1: CLUSTER.genomic_variant_result-cancer.v1). Demo simplification: molecular consequence, AMP/ASCO/CAP tier and ESCAT tier are carried as components on the variant (mirroring the openEHR cluster) instead of separate molecular-consequence / diagnostic-implication / therapeutic-implication Observations as in Genomics Reporting v3. See the round-trip page.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/variant",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.specimen",
+        "path": "Observation.specimen",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component",
+        "path": "Observation.component",
+        "min": 2
+      },
+      {
+        "id": "Observation.component:gene-studied",
+        "path": "Observation.component",
+        "sliceName": "gene-studied",
+        "short": "studerad_gen (openEHR: Transcript/Gene/Gene symbol)",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:representative-coding-hgvs",
+        "path": "Observation.component",
+        "sliceName": "representative-coding-hgvs",
+        "short": "dna_förändring (openEHR: Transcript/DNA change)",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:genomic-source-class",
+        "path": "Observation.component",
+        "sliceName": "genomic-source-class",
+        "short": "genetiskt_ursprung (openEHR: Genetic origin)",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:genomic-source-class.value[x]",
+        "path": "Observation.component.value[x]",
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/genetic-origin-se"
+        }
+      },
+      {
+        "id": "Observation.component:sample-allelic-frequency",
+        "path": "Observation.component",
+        "sliceName": "sample-allelic-frequency",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:representative-protein-hgvs",
+        "path": "Observation.component",
+        "sliceName": "representative-protein-hgvs",
+        "short": "protein_förändring (openEHR: Transcript/Amino acid change)",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:molecular-consequence",
+        "path": "Observation.component",
+        "sliceName": "molecular-consequence",
+        "short": "molecular_consequence, Sequence Ontology (openEHR: Molecular consequence)",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:molecular-consequence.code",
+        "path": "Observation.component.code",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "feature-consequence",
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Observation.component:molecular-consequence.value[x]",
+        "path": "Observation.component.value[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/molecular-consequence-se"
+        }
+      },
+      {
+        "id": "Observation.component:asco-amp-tier",
+        "path": "Observation.component",
+        "sliceName": "asco-amp-tier",
+        "short": "klinisk_signifikans_asco (openEHR: ASCO/AMP clinical significance tier)",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:asco-amp-tier.code",
+        "path": "Observation.component.code",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "53037-8",
+              "system": "http://loinc.org"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Observation.component:asco-amp-tier.value[x]",
+        "path": "Observation.component.value[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/asco-amp-tier"
+        }
+      },
+      {
+        "id": "Observation.component:escat-tier",
+        "path": "Observation.component",
+        "sliceName": "escat-tier",
+        "short": "behandlingsrelevans_escat (openEHR: ESCAT therapeutic relevance)",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.component:escat-tier.code",
+        "path": "Observation.component.code",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "code": "93044-6",
+              "system": "http://loinc.org"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Observation.component:escat-tier.value[x]",
+        "path": "Observation.component.value[x]",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/escat-tier"
+        }
+      }
+    ]
+  }
+}

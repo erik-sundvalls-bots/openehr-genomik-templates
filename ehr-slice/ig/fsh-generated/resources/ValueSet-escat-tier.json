@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "EscatTierVS",
+  "id": "escat-tier",
+  "title": "ESCAT tier",
+  "description": "ESCAT tier (behandlingsrelevans_escat).",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/escat-tier",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/escat-tier"
+      }
+    ]
+  }
+}

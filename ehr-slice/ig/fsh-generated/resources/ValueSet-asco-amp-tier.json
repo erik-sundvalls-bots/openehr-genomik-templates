@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "status": "draft",
+  "name": "AscoAmpTierVS",
+  "id": "asco-amp-tier",
+  "title": "AMP/ASCO/CAP tier",
+  "description": "AMP/ASCO/CAP 2017 tier (klinisk_signifikans_asco).",
+  "url": "https://example.org/fhir/ehr-slice-se-genomics/ValueSet/asco-amp-tier",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://example.org/fhir/ehr-slice-se-genomics/CodeSystem/asco-amp-tier"
+      }
+    ]
+  }
+}

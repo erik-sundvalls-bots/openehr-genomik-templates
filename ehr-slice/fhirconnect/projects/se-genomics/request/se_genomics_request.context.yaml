@@ -1,0 +1,26 @@
+grammar: FHIRConnect/v1.0.0
+type: context
+metadata:
+  name: SE_genomics_request.context
+  version: 0.1.0
+spec:
+  system: FHIR
+  version: R4
+
+# T2 'Genomics request' (openEHR) <-> SE Genomics ServiceRequest (FHIR)
+context:
+  profile:
+    url: https://example.org/fhir/ehr-slice-se-genomics/StructureDefinition/se-genomics-servicerequest
+    version: 0.1.0
+  template:
+    id: Genomics request
+    sem_ver: 1.0.0
+  archetypes:
+    - INSTRUCTION.service_request.v1
+    - COMPOSITION.request.v1.ServiceRequest
+    - CLUSTER.organisation.v1
+    - EVALUATION.problem_diagnosis.v1
+  extensions:
+    - SE_genomics_service_request
+    - SE_genomics_referring_diagnosis
+  start: INSTRUCTION.service_request.v1
