@@ -1,6 +1,6 @@
 # openehr-genomik-templates
 
-**SV:** openEHR-templates för RCC i samverkans *Konfigurationsunderlag – Harmoniserad datamängd cancergenomik* (remissversion, NAG CancerGenomik), byggda på internationella CKM-arketyper, samt en körbar demo av en EHR Slice: FHIR-profiler, kodverk och dubbelriktade FHIRconnect-mappningar för samma data.
+**SV:** openEHR-templates för RCC i samverkans *Konfigurationsunderlag – Harmoniserad datamängd cancergenomik* (remissversion, NAG CancerGenomik). Målet är att hela konfigurationsunderlaget ska kunna representeras som openEHR-templates byggda på internationella CKM-arketyper. FHIR-resurs/element/profil per variabel spåras så att en EHR-Slice med FHIR-profil och dubbelriktad FHIRconnect-mappning mellan FHIR och openEHR blir möjlig. En körbar demo av en EHR Slice finns i `ehr-slice/`.
 
 **EN:** openEHR templates for the Swedish RCC *harmonised cancer genomics dataset* (consultation version), built from international CKM archetypes, plus a working EHR Slice demo: FHIR profiles, terminology and bidirectional FHIRconnect mappings for the same data.
 
